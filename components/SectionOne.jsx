@@ -1,29 +1,26 @@
 export default function SectionOne() {
   return (
     <section className="relative w-screen h-screen snap-start flex-shrink-0 overflow-hidden">
-      {/* Imagen completa como fondo */}
-    <div className=" bg-black absolute inset-0 z-10 p-0 overflow-hidden">
-  <img
-    src="/assets/avatar-right.png" // cambia por avatar-left.png en la otra sección
-    alt="Avatar mitad"
-    className="absolute top-0 left-0 h-full w-auto object-contain scale-[1.4] origin-left filter grayscale  p-0 m-0"
-  />
-</div>
+      <div className="bg-black absolute inset-0 z-10 p-0 overflow-hidden">
+        <img
+          src="/assets/avatar-right.png"
+          alt="Avatar mitad"
+          className="absolute top-0 left-0 h-full w-auto object-contain scale-[1.4] origin-left filter grayscale p-0 m-0"
+        />
+      </div>
 
-
-      {/* Futuro fondo tsParticles */}
       <div className="absolute inset-0 z-0 bg-black opacity-80" />
 
-      {/* Botones encima (alineados a la izquierda esta vez) */}
-      <div className="relative z-20 w-full h-full flex items-center justify-start pl-10">
-        <div className="flex flex-col gap-6 text-white text-left">
-          <button className="text-3xl md:text-5xl font-bold hover:text-cyan-400 transition">
+      {/* Botones al lado DERECHO */}
+      <div className="relative z-20 w-full h-full flex items-center justify-end pr-10">
+        <div className="flex flex-col gap-6 text-white text-right font-orbitron">
+          <button className="text-4xl md:text-6xl font-black hover:translate-x-2 transition-all duration-300 hover:text-cyan-400">
             Sobre mí
           </button>
-          <button className="text-3xl md:text-5xl font-bold hover:text-fuchsia-400 transition">
+          <button className="text-4xl md:text-6xl font-black hover:-translate-y-1 transition-all duration-300 hover:text-fuchsia-400">
             Proyectos
           </button>
-          <button className="text-3xl md:text-5xl font-bold hover:text-yellow-400 transition">
+          <button className="text-4xl md:text-6xl font-black hover:translate-x-1 transition-all duration-300 hover:text-yellow-400">
             Contacto
           </button>
         </div>
