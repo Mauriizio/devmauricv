@@ -1,9 +1,11 @@
 import SectionOne from "@/components/SectionOne";
+import SectionTwo from "@/components/SectionTwo";
 
 export default function Home() {
   return (
-    <main className="h-screen w-screen overflow-x-auto flex snap-x snap-mandatory scroll-smooth">
+    <main className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth w-screen h-screen">
       <SectionOne />
+      <SectionTwo />
     </main>
   );
 }
