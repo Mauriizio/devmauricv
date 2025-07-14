@@ -1,13 +1,15 @@
-// components/SectionOne.jsx
 export default function SectionOne() {
   return (
-    <section className="w-screen h-screen flex snap-start flex-shrink-0">
-      {/* IZQUIERDA - avatar-left.png como fondo */}
-      <div className="w-full md:w-1/2 h-full bg-[url('/assets/avatar-left.png')] bg-cover bg-center bg-no-repeat" />
+    <section className="relative w-screen h-screen snap-start flex-shrink-0 overflow-hidden">
+      {/* Imagen completa como fondo */}
+      <div className="absolute inset-0 z-10 bg-[url('/assets/avatar-right.png')] bg-cover bg-center bg-no-repeat" />
 
-      {/* DERECHA - botones */}
-      <div className="w-full md:w-1/2 h-full flex flex-col justify-center items-center gap-6 bg-[#0d0d0d] text-white px-4">
-        <div className="space-y-4 h-40 overflow-y-auto scroll-smooth">
+      {/* Futuro fondo tsParticles */}
+      <div className="absolute inset-0 z-0 bg-black opacity-80" />
+
+      {/* Botones encima (alineados a la izquierda esta vez) */}
+      <div className="relative z-20 w-full h-full flex items-center justify-start pl-10">
+        <div className="flex flex-col gap-6 text-white text-left">
           <button className="text-3xl md:text-5xl font-bold hover:text-cyan-400 transition">
             Sobre mí
           </button>
