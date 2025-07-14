@@ -5,7 +5,7 @@ export default function SectionOne() {
         <img
           src="/assets/avatar-right2.png"
           alt="Avatar mitad"
-          className="absolute top-0 left-0 h-full w-auto object-contain scale-[1.6] origin-left filter grayscale p-0 m-0"
+          className="absolute top-0 left-0 h-full w-auto object-contain scale-[1.7] origin-left filter grayscale p-0 m-0"
         />
       </div>
 
