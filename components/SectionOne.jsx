@@ -3,9 +3,9 @@ export default function SectionOne() {
     <section className="relative w-screen h-screen snap-start flex-shrink-0 overflow-hidden">
       <div className="bg-black absolute inset-0 z-10 p-0 overflow-hidden">
         <img
-          src="/assets/avatar-right.png"
+          src="/assets/avatar-right2.png"
           alt="Avatar mitad"
-          className="absolute top-0 left-0 h-full w-auto object-contain scale-[1.4] origin-left filter grayscale p-0 m-0"
+          className="absolute top-0 left-0 h-full w-auto object-contain scale-[1.6] origin-left filter grayscale p-0 m-0"
         />
       </div>
 

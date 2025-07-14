@@ -3,9 +3,20 @@ export default function SectionTwo() {
     <section className="relative w-screen h-screen snap-start flex-shrink-0 overflow-hidden">
       <div className="bg-white absolute inset-0 z-10 p-0 overflow-hidden">
         <img
-  src="/assets/avatar-left.png"
+  src="/assets/avatar-left2.png"
   alt="Avatar mitad"
-  className="absolute top-0 right-0 h-full w-auto object-contain scale-[1.4] origin-right filter grayscale drop-shadow-[0_0_10px_rgba(0,0,0,0.9)]"
+  className="absolute top-0 right-0 h-full w-auto object-contain scale-[1.6] origin-right filter grayscale
+    drop-shadow-[0_0_2px_rgba(0,0,0,1)]
+    drop-shadow-[0_0_4px_rgba(0,0,0,1)]
+    drop-shadow-[0_0_6px_rgba(0,0,0,1)]
+    drop-shadow-[0_0_8px_rgba(0,0,0,1)]
+    drop-shadow-[0_0_10px_rgba(0,0,0,1)]
+    drop-shadow-[0_0_12px_rgba(0,0,0,1)]
+    drop-shadow-[0_0_14px_rgba(0,0,0,1)]
+    drop-shadow-[0_0_16px_rgba(0,0,0,1)]
+    drop-shadow-[0_0_18px_rgba(0,0,0,1)]
+    drop-shadow-[0_0_20px_rgba(0,0,0,1)]
+  "
 />
       </div>
 
