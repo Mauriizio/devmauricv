@@ -2,7 +2,14 @@ export default function SectionOne() {
   return (
     <section className="relative w-screen h-screen snap-start flex-shrink-0 overflow-hidden">
       {/* Imagen completa como fondo */}
-      <div className="absolute inset-0 z-10 bg-[url('/assets/avatar-right.png')] bg-cover bg-center bg-no-repeat" />
+    <div className=" bg-black absolute inset-0 z-10 p-0 overflow-hidden">
+  <img
+    src="/assets/avatar-right.png" // cambia por avatar-left.png en la otra sección
+    alt="Avatar mitad"
+    className="absolute top-0 left-0 h-full w-auto object-contain scale-[1.4] origin-left filter grayscale  p-0 m-0"
+  />
+</div>
+
 
       {/* Futuro fondo tsParticles */}
       <div className="absolute inset-0 z-0 bg-black opacity-80" />
