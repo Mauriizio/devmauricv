@@ -19,20 +19,20 @@ export default function SectionOne() {
 
           {/* Bloque de nombre */}
           <div className="flex flex-col items-end gap-0">
-            <button className="text-7xl md:text-6xl font-black hover:translate-x-2 transition-all duration-300 hover:text-cyan-400">
+            <button className="text-7xl  md:text-6xl font-black hover:translate-x-2 transition-all duration-300 hover:text-cyan-400">
               Maurizio
             </button>
-            <button className="text-5xl md:text-6xl font-black hover:translate-x-2 transition-all duration-300 hover:text-cyan-400 hover:underline">
+            <button className="text-5xl bg-gray-700 md:text-6xl font-black hover:translate-x-2 transition-all duration-300 hover:text-cyan-400 hover:underline">
               Caballero
             </button>
           </div>
 
           {/* Bloque de botón VER y Proyectos */}
           <div className="flex flex-col items-end gap-1 mb-2">
-            <button className="text-3xl text-red-600 md:text-3xl font-black hover:-translate-y-1 transition-all duration-300 hover:text-fuchsia-400">
+            <button className="text-3xl text-cyan-400 md:text-3xl font-black hover:-translate-y-1 transition-all duration-300 hover:text-fuchsia-400">
               VER
             </button>
-            <button className="text-6xl text-red-600 md:text-6xl font-black hover:-translate-y-1 transition-all duration-300 hover:text-fuchsia-400">
+            <button className="text-6xl text-cyan-400 md:text-6xl font-black hover:-translate-y-1 transition-all duration-300 hover:text-fuchsia-400">
               Proyectos
             </button>
           </div>
