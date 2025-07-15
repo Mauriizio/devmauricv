@@ -36,9 +36,12 @@ export default function SectionTwo() {
           </h1>
 
           {/* Descripción adicional */}
-          <p className="text-xl md:text-2xl text-white/90 max-w-xl drop-shadow-[2px_2px_4px_rgba(0,0,0,0.9)]">
+          <p className="text-xl  md:text-2xl text-white max-w-xl drop-shadow-[1px_1px_0_black] drop-shadow-[-1px_-1px_0_black]">
             Me especializo en crear experiencias visuales modernas con tecnologías como React, Tailwind y JavaScript.  
-            Siempre estoy explorando nuevas ideas, aprendiendo rápido y construyendo soluciones desde cero con un enfoque en la usabilidad y el rendimiento.
+            <span className="bg-cyan-200 text-black px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]">
+              Siempre estoy explorando nuevas ideas, aprendiendo rápido y construyendo soluciones desde cero con un enfoque en la usabilidad y el rendimiento.
+            </span>
+            
           </p>
 
           {/* Botones / acciones */}

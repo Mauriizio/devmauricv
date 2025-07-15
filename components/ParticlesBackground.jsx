@@ -93,7 +93,7 @@ export default function ParticlesBackground() {
     { src: "/logos/lwor.png", width: 20, height: 20, preload: true }
   ],
       },
-      size: { value: { min: 4, max: 15 } },
+      size: { value: { min: 10, max: 30 } },
       move: {
         enable: true,
         speed: 2,
@@ -103,6 +103,13 @@ export default function ParticlesBackground() {
         outModes: { default: "out" },
         attract: { enable: false, rotateX: 600, rotateY: 1200 }
       },
+      angle: {
+    value: 120,
+    offset: 0
+  },
+  gravity: {
+    enable: false// puedes probar true con acceleration si quieres más caos
+  },
       opacity: { value: 0.8, random: false, animation: { enable: true, speed: 1, minimumValue: 1, sync: true } },
 
        shadow: {
@@ -117,14 +124,15 @@ export default function ParticlesBackground() {
       detectsOn: "window",
       events: {
         onHover: { enable: true, mode: "repulse" },
-        onClick: { enable: true, mode: "push" },
+        onClick: { enable: true, mode: "none" },
+        ontouchmove: { enable: true, mode: "repulse" },
         resize: true,
         touchstart: { enable: true, mode: "repulse" },
         touchmove: { enable: true, mode: "repulse" },
         touchend: { enable: true, mode: "repulse" }
       },
       modes: {
-        repulse: { distance: 120, duration: 0.6, speed: 4, maxSpeed: 5, easing: "ease-out" },
+        repulse: { distance: 300, duration: 0.6, speed: 4, maxSpeed: 5, easing: "ease-out" },
         push: { quantity: 2 }
       }
     },
