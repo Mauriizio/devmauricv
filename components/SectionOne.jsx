@@ -14,7 +14,7 @@ export default function SectionOne() {
       <div className="absolute inset-0 z-0 bg-black opacity-80" />
 
       {/* Contenido al lado derecho */}
-      <div className="relative z-20 w-full h-full flex items-start justify-between pt-5 pr-5">
+      <div className="relative z-20 w-full h-full flex items-start justify-between ml-2 pt-5 pb-5 pr-5">
         <div className="flex flex-col justify-between h-full w-full items-end text-white text-right font-azonix">
 
           {/* Bloque de nombre */}
