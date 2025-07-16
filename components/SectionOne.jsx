@@ -48,11 +48,12 @@ export default function SectionOne() {
           {/* Botones de navegación */}
           <div className="flex flex-col items-end gap-5 mb-2">
             <button
-              onClick={irAlMenu}
-              className="text-9xl md:text-6xl font-black hover:translate-x-1 transition-all duration-300 hover:text-yellow-400"
-            >
-              →
-            </button>
+  onClick={() => router.push("/menu")}
+  className="text-9xl md:text-6xl font-black hover:translate-x-1 transition-all duration-300 hover:text-yellow-400"
+>
+  →
+</button>
+
             <button className="text-4xl md:text-6xl font-black hover:translate-x-1 transition-all duration-300 hover:text-yellow-400">
               Contacto
             </button>
