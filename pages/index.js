@@ -32,9 +32,12 @@ export default function Home() {
   }
 
   const handleBackToProjects = () => {
-    setShowProject(false)
-    setSelectedProject(null)
+    // Abrir el menú inmediatamente y cerrar el proyecto con un pequeño delay
     setShowMenu(true)
+    setTimeout(() => {
+      setShowProject(false)
+      setSelectedProject(null)
+    }, 100) // Delay muy pequeño para evitar el flash
   }
 
   return (
@@ -56,10 +59,10 @@ export default function Home() {
       {/* Contenedor principal con scroll */}
       <main
         className={`flex flex-row-reverse overflow-x-auto snap-x snap-mandatory scroll-smooth w-screen h-screen transition-transform duration-1000 ease-in-out ${
-          showAbout || showProject ? "transform -translate-y-full overflow-hidden" : ""
+          showAbout || showProject || showMenu ? "transform -translate-y-full overflow-hidden" : ""
         }`}
         style={{
-          overflowX: showAbout || showProject ? "hidden" : "auto",
+          overflowX: showAbout || showProject || showMenu ? "hidden" : "auto",
         }}
       >
         <SectionOne onMenuOpen={() => setShowMenu(true)} onVerMas={handleVerMas} />

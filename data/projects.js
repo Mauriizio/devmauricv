@@ -1,22 +1,25 @@
 export const projectsData = [
   {
-    id: "html5",
-    title: "Proyecto HTML5",
-    image: "/devmauricv/public/assets/avatar-right2.png", // Cambia por tu imagen
+    id: "mecanica-int",
+    title: "El Intercontinental",
+    image: "/assets/proyecto1.png", // Cambia por tu imagen
     description:
-      "Una aplicación web moderna desarrollada con HTML5 semántico, implementando las mejores prácticas de accesibilidad y SEO. Este proyecto demuestra el uso avanzado de elementos HTML5 y APIs nativas del navegador.",
-    technologies: ["HTML5", "CSS3", "JavaScript", "Web APIs", "Responsive Design"],
-    challenges:
-      "El principal reto fue implementar funcionalidades avanzadas usando solo tecnologías nativas sin frameworks. Logré crear una experiencia fluida optimizando el rendimiento y la compatibilidad entre navegadores.",
-    features: [
-      "Diseño completamente responsivo",
-      "Implementación de Web APIs nativas",
-      "Optimización SEO avanzada",
-      "Accesibilidad WCAG 2.1 compliant",
-    ],
-    githubUrl: "https://github.com/tuusuario/proyecto-html5",
-    liveUrl: "https://tu-proyecto-html5.vercel.app",
+  "Sitio web desarrollado para Mecánica El Intercontinental, un taller mecánico que buscaba aumentar su clientela. La página mejoró su presencia digital y facilitó el contacto directo. Además, implementé una campaña de publicidad con Google Ads, lo que incrementó notablemente las llamadas y solicitudes de servicios.",
+technologies: ["React", "Tailwind CSS", "JavaScript", "WhatsApp API", "Responsive Design", "Google ADS"],
+challenges:
+  "El reto principal fue lograr una interfaz moderna, rápida y totalmente adaptada a móviles, manteniendo una experiencia fluida y profesional en todos los dispositivos.",
+features: [
+  "Diseño completamente responsivo",
+  "Integración con la API de WhatsApp",
+  "Optimización básica para SEO local",
+  "Campaña activa con Google Ads",
+],
+
+    githubUrl: "https://github.com/Mauriizio/webmecanic",
+    liveUrl: "https://www.mecanicaelintercontinental.com/",
   },
+
+
   {
     id: "css3",
     title: "Proyecto CSS3 Avanzado",

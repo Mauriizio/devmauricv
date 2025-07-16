@@ -4,11 +4,16 @@ import { motion, AnimatePresence } from "framer-motion"
 import { projectsData } from "@/data/projects"
 
 const projectIcons = [
-  { id: "html5", name: "HTML5", icon: "/logos/lhtml.png", color: "bg-orange-500" },
+  { id: "mecanica-int", name: "Mecanica Intercontinental", icon: "/assets/proyecto1.png", color: "bg-orange-500" },
+
   { id: "css3", name: "CSS3", icon: "/logos/lcss.png", color: "bg-blue-500" },
+
   { id: "javascript", name: "JavaScript", icon: "/logos/ljs.png", color: "bg-yellow-400" },
+
   { id: "react", name: "React", icon: "/logos/lwor.png", color: "bg-cyan-400" },
+
   { id: "nextjs", name: "Next.js", icon: "/logos/lnext.png", color: "bg-gray-700" },
+  
   { id: "tailwind", name: "Tailwind", icon: "/logos/ltailwind.png", color: "bg-teal-500" },
 ]
 
