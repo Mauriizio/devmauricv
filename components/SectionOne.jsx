@@ -1,12 +1,4 @@
-import { useRouter } from "next/router";
-
-export default function SectionOne() {
-  const router = useRouter();
-
-  const irAlMenu = () => {
-    router.push("/menu");
-  };
-
+export default function SectionOne({ onMenuOpen }) {
   return (
     <section className="relative w-screen h-screen snap-start flex-shrink-0 overflow-hidden">
       {/* Imagen de fondo */}
@@ -48,11 +40,11 @@ export default function SectionOne() {
           {/* Botones de navegación */}
           <div className="flex flex-col items-end gap-5 mb-2">
             <button
-  onClick={() => router.push("/menu")}
-  className="text-9xl md:text-6xl font-black hover:translate-x-1 transition-all duration-300 hover:text-yellow-400"
->
-  →
-</button>
+        onClick={onMenuOpen}
+        className="absolute bottom-10 right-10 text-9xl md:text-6xl font-black hover:translate-x-1 transition duration-300 hover:text-yellow-400"
+      >
+        →
+      </button>
 
             <button className="text-4xl md:text-6xl font-black hover:translate-x-1 transition-all duration-300 hover:text-yellow-400">
               Contacto
