@@ -1,6 +1,6 @@
 import ParticlesBackground from "@/components/ParticlesBackground";
 
-export default function SectionTwo() {
+export default function SectionTwo({ onMenuOpen}) {
   return (
 
     
@@ -54,9 +54,12 @@ export default function SectionTwo() {
             <button className="bg-black border border-white text-white px-6 py-2 rounded-md text-lg font-semibold hover:bg-cyan-500 transition-all duration-300">
               Descargar CV
             </button>
-            <button className="bg-yellow-500 text-black px-6 py-2 rounded-md text-lg font-semibold hover:bg-yellow-400 transition-all duration-300">
-              Ver proyectos
-            </button>
+            <button
+  onClick={onMenuOpen}
+  className="bg-yellow-500 text-black px-6 py-2 rounded-md text-lg font-semibold hover:bg-yellow-400 transition-all duration-300"
+>
+  Ver proyectos
+</button>
           </div>
         </div>
       </div>

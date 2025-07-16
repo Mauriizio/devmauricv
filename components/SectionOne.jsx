@@ -29,10 +29,14 @@ export default function SectionOne({ onMenuOpen }) {
 
           {/* Bloque VER / Proyectos */}
           <div className="flex flex-col items-end gap-1 mb-2">
-            <button className="text-3xl text-cyan-400 md:text-3xl font-black hover:-translate-y-1 transition-all duration-300 hover:text-fuchsia-400">
+            <button 
+            onClick={onMenuOpen}
+            className="text-3xl text-cyan-400 md:text-3xl font-black hover:-translate-y-1 transition-all duration-300 hover:text-fuchsia-400">
               VER
             </button>
-            <button className="text-6xl text-cyan-400 md:text-6xl font-black hover:-translate-y-1 transition-all duration-300 hover:text-fuchsia-400">
+            <button
+            onClick={onMenuOpen}
+            className="text-6xl text-cyan-400 md:text-6xl font-black hover:-translate-y-1 transition-all duration-300 hover:text-fuchsia-400">
               Proyectos
             </button>
           </div>
@@ -41,7 +45,7 @@ export default function SectionOne({ onMenuOpen }) {
           <div className="flex flex-col items-end gap-5 mb-2">
             <button
         onClick={onMenuOpen}
-        className="absolute bottom-10 right-10 text-9xl md:text-6xl font-black hover:translate-x-1 transition duration-300 hover:text-yellow-400"
+        className="absolute bottom-10 right-10  pb-20 text-9xl md:text-9xl font-black hover:translate-x-1 transition duration-300 hover:text-yellow-400"
       >
         →
       </button>

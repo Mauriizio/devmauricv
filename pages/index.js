@@ -14,7 +14,7 @@ export default function Home() {
       {/* Contenedor principal con scroll */}
       <main className="flex flex-row-reverse overflow-x-auto snap-x snap-mandatory scroll-smooth w-screen h-screen">
         <SectionOne onMenuOpen={() => setShowMenu(true)} />
-        <SectionTwo />
+        <SectionTwo onMenuOpen={() => setShowMenu(true)} />
       </main>
     </>
   );
