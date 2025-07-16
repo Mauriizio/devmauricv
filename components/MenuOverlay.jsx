@@ -1,17 +1,26 @@
 "use client"
 
 import { motion, AnimatePresence } from "framer-motion"
+import { projectsData } from "@/data/projects"
 
-const projects = [
-  { name: "HTML5", icon: "/logos/lhtml.png", color: "bg-orange-500" },
-  { name: "CSS3", icon: "/logos/lcss.png", color: "bg-blue-500" },
-  { name: "JavaScript", icon: "/logos/ljs.png", color: "bg-yellow-400" },
-  { name: "React", icon: "/logos/lwor.png", color: "bg-cyan-400" },
-  { name: "Next.js", icon: "/logos/lnext.png", color: "bg-gray-700" },
-  { name: "Tailwind", icon: "/logos/ltailwind.png", color: "bg-teal-500" },
+const projectIcons = [
+  { id: "html5", name: "HTML5", icon: "/logos/lhtml.png", color: "bg-orange-500" },
+  { id: "css3", name: "CSS3", icon: "/logos/lcss.png", color: "bg-blue-500" },
+  { id: "javascript", name: "JavaScript", icon: "/logos/ljs.png", color: "bg-yellow-400" },
+  { id: "react", name: "React", icon: "/logos/lwor.png", color: "bg-cyan-400" },
+  { id: "nextjs", name: "Next.js", icon: "/logos/lnext.png", color: "bg-gray-700" },
+  { id: "tailwind", name: "Tailwind", icon: "/logos/ltailwind.png", color: "bg-teal-500" },
 ]
 
-export default function MenuOverlay({ show, onClose }) {
+export default function MenuOverlay({ show, onClose, onProjectSelect }) {
+  const handleProjectClick = (projectId) => {
+    const project = projectsData.find((p) => p.id === projectId)
+    if (project) {
+      onProjectSelect(project)
+      onClose()
+    }
+  }
+
   return (
     <AnimatePresence>
       {show && (
@@ -35,14 +44,15 @@ export default function MenuOverlay({ show, onClose }) {
 
           {/* Grid de iconos mejorado */}
           <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 p-6 overflow-y-auto">
-            {projects.map((proj, index) => (
+            {projectIcons.map((proj, index) => (
               <motion.div
-                key={proj.name}
+                key={proj.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.3 }}
                 whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => handleProjectClick(proj.id)}
                 className={`flex flex-col items-center justify-center p-6 rounded-2xl bg-black/30 backdrop-blur-sm border border-cyan-400/20 shadow-lg cursor-pointer hover:border-cyan-400/50 transition-all duration-300`}
               >
                 <div className="p-4 bg-white rounded-full mb-3 shadow-lg">

@@ -1,4 +1,4 @@
-export default function SectionOne({ onMenuOpen }) {
+export default function SectionOne({ onMenuOpen, onVerMas }) {
   return (
     <section className="relative w-screen h-screen snap-start flex-shrink-0 overflow-hidden">
       {/* Imagen de fondo */}
@@ -53,7 +53,7 @@ export default function SectionOne({ onMenuOpen }) {
             <button className="text-4xl md:text-6xl font-black hover:translate-x-1 transition-all duration-300 hover:text-yellow-400">
               Contacto
             </button>
-            <button className="text-4xl md:text-6xl font-black hover:translate-x-1 transition-all duration-300 hover:text-yellow-400">
+            <button onClick={onVerMas} className="text-4xl md:text-6xl font-black hover:translate-x-1 transition-all duration-300 hover:text-yellow-400">
               Sobre mí
             </button>
           </div>

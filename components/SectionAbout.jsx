@@ -3,7 +3,7 @@
 export default function SectionAbout({ show, onVolverArriba }) {
   return (
     <section
-      className={`fixed inset-0 w-screen h-screen bg-gradient-to-br from-gray-900 via-gray-950 to-black text-white font-azonix z-40 transition-transform duration-600 ease-in-out overflow-y-auto ${
+      className={`fixed inset-0 w-screen h-screen bg-gradient-to-br from-gray-900 via-gray-950 to-black text-white font-azonix z-40 transition-transform duration-1000 ease-in-out overflow-y-auto ${
         show ? "transform translate-y-0" : "transform translate-y-full"
       }`}
     >
@@ -154,6 +154,6 @@ export default function SectionAbout({ show, onVolverArriba }) {
           </div>
         </div>
       </div>
-    </section>
+    </section> 
   )
 }

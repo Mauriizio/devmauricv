@@ -24,10 +24,10 @@ export default function SectionTwo({ onMenuOpen, onVerMas }) {
 
       {/* Contenido principal */}
       <div className="relative z-20 w-full h-full flex items-start justify-start pl-5 pr-10 pt-5">
-        <div className="flex flex-col items-start gap-8 text-left font-azonix">
+        <div className="flex flex-col items-start gap-4 text-left font-azonix">
 
           {/* Título principal */}
-          <h1 className="text-4xl md:text-6xl font-black text-cyan-400 leading-tight drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]">
+          <h1 className="text-4xl mb-0  md:text-6xl font-black text-cyan-400 leading-tight drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]">
             ¡Hola! Soy <br />
             <span className="bg-cyan-200 text-black px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]">
               Maurizio Caballero
@@ -36,13 +36,13 @@ export default function SectionTwo({ onMenuOpen, onVerMas }) {
           </h1>
 
           {/* Descripción adicional */}
-         <ul className="text-white/90 text-l md:text-xl space-y-2 bg-black/30 dark:bg-white/10 backdrop-blur-sm p-4 rounded-md leading-relaxed max-w-3xl drop-shadow-[1px_1px_1px_rgba(0,0,0,0.9)]">
+         <ul className="text-white/90 text-l mt-0 md:text-xl space-y-2 bg-black/30 dark:bg-white/10 backdrop-blur-sm p-4 rounded-md leading-relaxed max-w-3xl drop-shadow-[1px_1px_1px_rgba(0,0,0,0.9)]">
   <li>🔧 Me adapto rápido a nuevas herramientas y entornos.</li>
   <li>🚀 Proactivo para aprender, proponer y ejecutar soluciones.</li>
   <li>🧠 Aprovecho la IA para ser más eficiente, sin depender ciegamente de ella.</li>
   <li>🎯 Enfocado en resultados reales y productividad sostenible.</li>
   <li>🤝 Trabajo bien en equipo y asumo liderazgo cuando hace falta.</li>
-  <li>🛠️ Resuelvo problemas con criterio técnico y pensamiento estratégico.</li>
+ 
 </ul>
 
 
