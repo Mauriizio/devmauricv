@@ -8,7 +8,7 @@ export default function SectionTwo() {
        {/* Partículas de fondo */}
      
       {/* Imagen fondo lado izquierdo */}
-      <div className="bg-white absolute inset-0 z-10 p-0 overflow-hidden">
+      <div className="bg-black/70 absolute inset-0 z-10 p-0 overflow-hidden">
          <ParticlesBackground />
         <img
           src="/assets/avatar-left2.png"
@@ -32,20 +32,25 @@ export default function SectionTwo() {
             <span className="bg-cyan-200 text-black px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]">
               Maurizio Caballero
             </span>, <br />
-            desarrollador web & estudiante de ingeniería en sistemas.
+            Frontend Developer 
           </h1>
 
           {/* Descripción adicional */}
-          <p className="text-xl  md:text-2xl text-white max-w-xl drop-shadow-[1px_1px_0_black] drop-shadow-[-1px_-1px_0_black]">
-            Me especializo en crear experiencias visuales modernas con tecnologías como React, Tailwind y JavaScript.  
-            <span className="bg-cyan-200 text-black px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]">
-              Siempre estoy explorando nuevas ideas, aprendiendo rápido y construyendo soluciones desde cero con un enfoque en la usabilidad y el rendimiento.
-            </span>
-            
-          </p>
+         <ul className="text-white/90 text-l md:text-xl space-y-2 bg-black/30 dark:bg-white/10 backdrop-blur-sm p-4 rounded-md leading-relaxed max-w-3xl drop-shadow-[1px_1px_1px_rgba(0,0,0,0.9)]">
+  <li>🔧 Me adapto rápido a nuevas herramientas y entornos.</li>
+  <li>🚀 Proactivo para aprender, proponer y ejecutar soluciones.</li>
+  <li>🧠 Aprovecho la IA para ser más eficiente, sin depender ciegamente de ella.</li>
+  <li>🎯 Enfocado en resultados reales y productividad sostenible.</li>
+  <li>🤝 Trabajo bien en equipo y asumo liderazgo cuando hace falta.</li>
+  <li>🛠️ Resuelvo problemas con criterio técnico y pensamiento estratégico.</li>
+</ul>
+
+
+
+
 
           {/* Botones / acciones */}
-          <div className="flex gap-6 mt-2">
+          <div className="flex gap-6 mt-0">
             <button className="bg-black border border-white text-white px-6 py-2 rounded-md text-lg font-semibold hover:bg-cyan-500 transition-all duration-300">
               Descargar CV
             </button>

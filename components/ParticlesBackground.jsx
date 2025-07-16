@@ -74,7 +74,8 @@ export default function ParticlesBackground() {
     fullScreen: { enable: false },
     background: { color: "transparent" },
     particles: {
-      number: { value: 33, density: { enable: true, area: 800 } },
+      number: { value: 20,
+         density: { enable: true, area: 200 } },
       color: { value: ["#00ffea", "#ff00f7", "#00ff00", "#ffffff"] },
       shape: {
         type: ["image", "char"],
@@ -93,7 +94,7 @@ export default function ParticlesBackground() {
     { src: "/logos/lwor.png", width: 20, height: 20, preload: true }
   ],
       },
-      size: { value: { min: 10, max: 30 } },
+      size: { value: { min: 10, max: 20 } },
       move: {
         enable: true,
         speed: 2,
