@@ -1,10 +1,10 @@
 import ParticlesBackground from "@/components/ParticlesBackground";
 
-export default function SectionTwo({ onMenuOpen}) {
+export default function SectionTwo({ onMenuOpen, onVerMas }) {
   return (
 
     
-    <section className="relative w-screen h-screen snap-start flex-shrink-0 overflow-hidden">
+     <section className="relative w-screen h-screen snap-start flex-shrink-0 overflow-hidden">
        {/* Partículas de fondo */}
      
       {/* Imagen fondo lado izquierdo */}
@@ -50,16 +50,22 @@ export default function SectionTwo({ onMenuOpen}) {
 
 
           {/* Botones / acciones */}
-          <div className="flex gap-6 mt-0">
+           <div className="flex gap-6 mt-0 flex-wrap">
             <button className="bg-black border border-white text-white px-6 py-2 rounded-md text-lg font-semibold hover:bg-cyan-500 transition-all duration-300">
               Descargar CV
             </button>
             <button
-  onClick={onMenuOpen}
-  className="bg-yellow-500 text-black px-6 py-2 rounded-md text-lg font-semibold hover:bg-yellow-400 transition-all duration-300"
->
+              onClick={onMenuOpen}
+              className="bg-yellow-500 text-black px-6 py-2 rounded-md text-lg font-semibold hover:bg-yellow-400 transition-all duration-300"
+            >
   Ver proyectos
-</button>
+            </button>
+            <button
+              onClick={onVerMas}
+              className="bg-white text-black px-6 py-2 rounded-md text-lg font-semibold hover:bg-cyan-400 transition-all duration-300"
+            >
+              Ver más sobre mí
+            </button>
           </div>
         </div>
       </div>

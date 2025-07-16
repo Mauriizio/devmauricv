@@ -1,7 +1,6 @@
-// src/components/MenuOverlay.jsx
-"use client";
+"use client"
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion"
 
 const projects = [
   { name: "HTML5", icon: "/logos/lhtml.png", color: "bg-orange-500" },
@@ -10,8 +9,7 @@ const projects = [
   { name: "React", icon: "/logos/lwor.png", color: "bg-cyan-400" },
   { name: "Next.js", icon: "/logos/lnext.png", color: "bg-gray-700" },
   { name: "Tailwind", icon: "/logos/ltailwind.png", color: "bg-teal-500" },
-  // Agrega más proyectos aquí...
-];
+]
 
 export default function MenuOverlay({ show, onClose }) {
   return (
@@ -21,52 +19,53 @@ export default function MenuOverlay({ show, onClose }) {
           initial={{ x: "100%" }}
           animate={{ x: 0 }}
           exit={{ x: "100%" }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed inset-0 z-50 bg-black text-white font-azonix overflow-hidden flex flex-col"
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className="fixed inset-0 z-50 bg-gradient-to-br from-black via-gray-900 to-black text-white font-azonix overflow-hidden flex flex-col"
         >
-          {/* Header */}
-          <div className="flex items-center justify-between p-6">
-            <h1 className="text-4xl">Proyectos</h1>
+          {/* Header mejorado */}
+          <div className="flex items-center justify-between p-6 border-b border-cyan-400/20 bg-black/50 backdrop-blur-sm">
+            <h1 className="text-4xl font-bold text-cyan-400">Proyectos</h1>
             <button
               onClick={onClose}
-              className="text-xl font-bold px-3 py-1 bg-white text-black rounded hover:bg-gray-200 transition"
+              className="flex items-center justify-center w-10 h-10 bg-cyan-500 text-black rounded-full font-bold hover:bg-cyan-400 transition-all duration-300 hover:scale-110"
             >
               ✕
             </button>
           </div>
 
-          {/* Grid de iconos */}
-          <div className="flex-1 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-6 p-6">
-            {projects.map((proj) => (
+          {/* Grid de iconos mejorado */}
+          <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 p-6 overflow-y-auto">
+            {projects.map((proj, index) => (
               <motion.div
                 key={proj.name}
-                whileHover={{ scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 300 }}
-                className={`flex flex-col items-center justify-center p-4 rounded-2xl ${proj.color}/20 backdrop-blur-sm shadow-lg cursor-pointer`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.3 }}
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                className={`flex flex-col items-center justify-center p-6 rounded-2xl bg-black/30 backdrop-blur-sm border border-cyan-400/20 shadow-lg cursor-pointer hover:border-cyan-400/50 transition-all duration-300`}
               >
-                <div className="p-3 bg-white rounded-full mb-2">
-                  <img
-                    src={proj.icon}
-                    alt={proj.name}
-                    className="w-10 h-10 object-contain"
-                  />
+                <div className="p-4 bg-white rounded-full mb-3 shadow-lg">
+                  <img src={proj.icon || "/placeholder.svg"} alt={proj.name} className="w-12 h-12 object-contain" />
                 </div>
-                <span className="mt-2 text-sm">{proj.name}</span>
+                <span className="text-sm font-semibold text-center">{proj.name}</span>
               </motion.div>
             ))}
           </div>
 
-          {/* Footer con botón Volver */}
-          <div className="p-6 flex justify-center">
-            <button
-              onClick={onClose}
-              className="px-8 py-3 bg-cyan-400 text-black font-semibold rounded-lg hover:bg-cyan-300 transition"
-            >
-              Volver al inicio
-            </button>
+          {/* Footer mejorado */}
+          <div className="p-6 border-t border-cyan-400/20 bg-black/50 backdrop-blur-sm">
+            <div className="flex justify-center">
+              <button
+                onClick={onClose}
+                className="px-8 py-3 bg-cyan-500 text-black font-semibold rounded-lg hover:bg-cyan-400 transition-all duration-300 hover:scale-105 flex items-center gap-2"
+              >
+                <span>←</span> Volver al inicio
+              </button>
+            </div>
           </div>
         </motion.div>
       )}
     </AnimatePresence>
-  );
+  )
 }
