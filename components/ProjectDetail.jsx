@@ -35,7 +35,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
       {/* Contenido principal */}
       <div className="max-w-6xl mx-auto p-6 space-y-8 overflow-x-hidden py-10">
         {/* Imagen principal del proyecto */}
-        <div className="relative w-full h-64 md:h-96 rounded-xl overflow-hidden border border-cyan-400/20 shadow-lg">
+        <div className="relative object-cover w-full  h-full md:h-96 rounded-xl overflow-hidden border border-cyan-400/20 shadow-lg">
           <img
             src={project.image || "/placeholder.svg?height=400&width=800"}
             alt={project.title}

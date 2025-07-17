@@ -1,6 +1,6 @@
 "use client"
 
-export default function SectionAbout({ show, onVolverArriba }) {
+export default function SectionAbout({ show, onVolverArriba, onContactOpen}) {
   return (
     <section
       className={`fixed inset-0 w-screen h-screen bg-gradient-to-br from-gray-900 via-gray-950 to-black text-white font-azonix z-40 transition-transform duration-1000 ease-in-out overflow-y-auto ${
@@ -148,7 +148,7 @@ export default function SectionAbout({ show, onVolverArriba }) {
             <button className="bg-cyan-500 text-black px-8 py-3 rounded-lg font-semibold hover:bg-cyan-400 transition-all duration-300 hover:scale-105">
               Descargar CV
             </button>
-            <button className="bg-transparent border-2 border-cyan-400 text-cyan-400 px-8 py-3 rounded-lg font-semibold hover:bg-cyan-400 hover:text-black transition-all duration-300">
+            <button onClick={onContactOpen}className="bg-transparent border-2 border-cyan-400 text-cyan-400 px-8 py-3 rounded-lg font-semibold hover:bg-cyan-400 hover:text-black transition-all duration-300">
               Contactar
             </button>
           </div>
