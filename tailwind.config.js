@@ -7,8 +7,12 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        azonix: ['Azonix', 'sans-serif'],
-      },
+  azonix: ['Azonix', 'sans-serif'],
+  orbitron: ['Orbitron', 'sans-serif'],
+  titillium: ['"Titillium Web"', 'sans-serif'],
+  sans: ['Rajdhani', 'sans-serif'], // o la que quieras como por defecto
+},
+
     },
   },
   plugins: [],

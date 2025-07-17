@@ -3,6 +3,8 @@
 export default function ProjectDetail({ show, project, onClose, onBackToProjects }) {
   if (!project) return null
 
+  
+
   return (
     <section
       className={`fixed inset-0 w-screen h-screen bg-gradient-to-br from-gray-900 via-gray-950 to-black text-white font-azonix z-50 transition-transform duration-1000 ease-in-out overflow-y-auto overflow-x-hidden ${
@@ -47,7 +49,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
           <h2 className="text-2xl font-bold text-cyan-400 mb-4 flex items-center gap-2">
             <span>📋</span> Descripción del Proyecto
           </h2>
-          <p className="text-lg text-white/90 leading-relaxed">{project.description}</p>
+          <p className="text-lg text-white/90 leading-relaxed ">{project.description}</p>
         </div>
 
         {/* Tecnologías utilizadas */}
