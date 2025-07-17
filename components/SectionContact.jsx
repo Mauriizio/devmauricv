@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Mail, Phone, Linkedin, Instagram, PhoneIcon as Whatsapp } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion" // ADD AnimatePresence here
 
 export default function SectionContact({ show, onClose }) {
   const [formData, setFormData] = useState({
@@ -44,6 +45,18 @@ export default function SectionContact({ show, onClose }) {
       setStatus("error")
     }
   }
+
+  useEffect(() => {
+    if (status === "success" || status === "error") {
+      const timer = setTimeout(() => {
+        setStatus("idle")
+        // Optionally, if you want to clear the form only on success, keep it in handleSubmit
+        // If you want to allow re-submission after error, clearing form here might be bad.
+        // For now, I'll keep form clearing only on success in handleSubmit.
+      }, 5000) // Clear message after 5 seconds
+      return () => clearTimeout(timer)
+    }
+  }, [status]) // Dependency array includes status
 
   return (
     <section
@@ -90,7 +103,8 @@ export default function SectionContact({ show, onClose }) {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full p-3 rounded-md bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                disabled={status === "submitting"} // ADD THIS LINE
+                className="w-full p-3 rounded-md bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:opacity-70 disabled:cursor-not-allowed" // ADD disabled: classes
               />
             </div>
             <div>
@@ -104,7 +118,8 @@ export default function SectionContact({ show, onClose }) {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full p-3 rounded-md bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                disabled={status === "submitting"} 
+                className="w-full p-3 rounded-md bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:opacity-70 disabled:cursor-not-allowed" 
               />
             </div>
             <div>
@@ -118,7 +133,8 @@ export default function SectionContact({ show, onClose }) {
                 onChange={handleChange}
                 rows="5"
                 required
-                className="w-full p-3 rounded-md bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                disabled={status === "submitting"}
+                className="w-full p-3 rounded-md bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:opacity-70 disabled:cursor-not-allowed" // ADD disabled: classes
               ></textarea>
             </div>
             <button
@@ -154,14 +170,32 @@ export default function SectionContact({ show, onClose }) {
                 "Enviar Mensaje"
               )}
             </button>
-            {status === "success" && (
-              <p className="text-green-400 text-center mt-4">¡Mensaje enviado con éxito! Te responderé pronto.</p>
-            )}
-            {status === "error" && (
-              <p className="text-red-400 text-center mt-4">
-                Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo o contáctame directamente.
-              </p>
-            )}
+            <AnimatePresence mode="wait">
+              {status === "success" && (
+                <motion.div
+                  key="success-message"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="mt-4 p-3 rounded-md bg-green-900/30 border border-green-400 text-green-400 text-center"
+                >
+                  ¡Mensaje enviado con éxito! Te responderé pronto.
+                </motion.div>
+              )}
+              {status === "error" && (
+                <motion.div
+                  key="error-message"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="mt-4 p-3 rounded-md bg-red-900/30 border border-red-400 text-red-400 text-center"
+                >
+                  Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo o contáctame directamente.
+                </motion.div>
+              )}
+            </AnimatePresence>
           </form>
         </div>
 
