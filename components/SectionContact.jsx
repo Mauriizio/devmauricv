@@ -20,20 +20,29 @@ export default function SectionContact({ show, onClose }) {
     e.preventDefault()
     setStatus("submitting")
 
-    // --- Placeholder para el envío del formulario ---
-    // Aquí es donde integrarías un Server Action, una API Route, o un servicio de terceros (ej. Formspree, Resend)
-    // Por ahora, solo simula un envío exitoso.
-
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500)) // Simula una llamada a la API
-      console.log("Formulario enviado:", formData)
-      setStatus("success")
-      setFormData({ name: "", email: "", message: "" }) // Limpiar formulario
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        console.log("Formulario enviado:", data)
+        setStatus("success")
+        setFormData({ name: "", email: "", message: "" }) // Limpiar formulario
+      } else {
+        console.error("Error al enviar el formulario:", data.error)
+        setStatus("error")
+      }
     } catch (error) {
-      console.error("Error al enviar el formulario:", error)
+      console.error("Error de red o inesperado:", error)
       setStatus("error")
     }
-    // --- Fin del placeholder ---
   }
 
   return (

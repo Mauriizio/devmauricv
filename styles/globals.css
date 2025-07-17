@@ -19,4 +19,10 @@ body {
   p {
     @apply font-sans;
   }
+  input {
+    @apply font-sans;
+  }
+  textarea {
+    @apply font-sans;
+  }
 }
