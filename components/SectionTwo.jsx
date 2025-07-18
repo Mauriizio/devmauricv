@@ -6,7 +6,7 @@ export default function SectionTwo({ onMenuOpen, onVerMas }) {
     
      <section className="relative w-screen h-screen snap-start flex-shrink-0 overflow-hidden">
        {/* Partículas de fondo */}
-     
+     <div className="absolute inset-0 z-20 bg-black opacity-50" />
       {/* Imagen fondo lado izquierdo */}
       <div className="bg-black/70 absolute inset-0 z-10 p-0 overflow-hidden">
          <ParticlesBackground />

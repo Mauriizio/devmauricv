@@ -2,6 +2,7 @@
 
 
 import { useEffect, useState } from "react"
+import CodeParticlesBackground from "./CodeParticlesBackground"  
 
 export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
   const [contentVisible, setContentVisible] = useState(false)
@@ -15,16 +16,27 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
 
   return (
     <section className="relative w-screen h-screen snap-start flex-shrink-0 overflow-hidden">
+
+
+
+      
+       
+
+
+
+ <div className="absolute inset-0 z-5 bg-black" />
+  <CodeParticlesBackground />
       {/* Imagen de fondo */}
-      <div className="bg-black absolute inset-0 z-10 p-0 overflow-hidden">
+
+      <div className="absolute inset-0 z-10 p-0 overflow-hidden">
         <img
           src="/assets/avatar-right2.png"
           alt="Avatar mitad"
-          className="absolute top-0 left-0 h-full w-auto object-contain scale-[1.7] origin-left"
+          className="absolute top-0 left-0 h-full w-auto object-contain scale-[1.7] origin-left z-10"
         />
       </div>
       {/* Fondo negro translúcido */}
-      <div className="absolute inset-0 z-0 bg-black opacity-80" />
+      
       {/* Contenido */}
       <div
         className={`relative z-20 w-full h-full   flex items-start justify-between ml-2 pt-5 pb-5 pr-3 lg:pr-10 transition-opacity duration-1000 ease-out ${
