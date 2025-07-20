@@ -118,15 +118,16 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
                 <h4 className="text-lg font-semibold text-white">Desarrollo Web Frontend</h4>
                 <p className="text-cyan-400">Autodidacta • Cursos Online</p>
               </div>
-              <span className="text-white/60 text-sm">2022 - Presente</span>
+              <span className="text-white/60 text-sm">2020 - Presente</span>
             </div>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between">
               <div>
-                <h4 className="text-lg font-semibold text-white">JavaScript & React</h4>
-                <p className="text-cyan-400">Platafomas Educativas</p>
+                <h4 className="text-lg font-semibold text-white">(8 Semestres aprobados en <strong>Pedagogia en Lenguaje </strong>con enfoque autodidacta a la computacion)</h4>
+                <p className="text-cyan-400">Universidad Pedagogica Experimental Libertador UPEL</p>
               </div>
-              <span className="text-white/60 text-sm">2023</span>
+              <span className="text-white/60 text-sm">2013-2016</span>
             </div>
+            
           </div>
         </div>
 
