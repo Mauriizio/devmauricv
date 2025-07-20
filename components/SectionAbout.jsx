@@ -143,7 +143,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
             <div className="flex flex-col md:flex-row md:items-center md:justify-between">
               <div>
                 <h4 className="text-lg font-semibold text-white">Desarrollo Web Frontend</h4>
-                <p className="text-cyan-400">Autodidacta • Cursos Online</p>
+                <p className="text-cyan-400">Autodidacta • Diversos Cursos Online</p>
               </div>
               <span className="text-white/60 text-sm">2020 - Presente</span>
             </div>
@@ -154,8 +154,21 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
               </div>
               <span className="text-white/60 text-sm">2013-2016</span>
             </div>
+
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+              <div>
+                <h4 className="text-lg font-semibold text-white">Técnico en Mantenimiento de Equipos Informáticos</h4>
+                <p className="text-cyan-400">Instituto Nacional de Capacitación y Educación INCE</p>
+              </div>
+              <span className="text-white/60 text-sm">2010-2013</span>
+            </div>
+            
             
           </div>
+
+              
+
+
         </div>
 
         {/* Sección de Diplomas y Cursos (NUEVA) */}
