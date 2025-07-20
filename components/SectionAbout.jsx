@@ -71,7 +71,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
               <span>🛠️</span> Herramientas & Otros
             </h3>
             <div className="grid grid-cols-2 gap-3 font-sans">
-              {["Git & GitHub", "VS Code", "Figma", "Cubase", "Vercel", "Netlify", "NPM/Yarn", "Chrome DevTools"].map(
+              {["Git & GitHub", "VS Code", "Figma", "Cubase", "Deploy", "Chrome DevTools", "Google ADS", "GIMP"].map(
                 (tool) => (
                   <div key={tool} className="bg-cyan-400/10 px-3 py-2 rounded-lg text-sm">
                     {tool}
@@ -83,29 +83,56 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
         </div>
 
         {/* Experiencia */}
-        <div className="bg-black/30 backdrop-blur-sm p-6 rounded-xl border border-cyan-400/20">
-          <h3 className="text-2xl font-bold text-cyan-400 mb-6 flex items-center gap-2">
-            <span>💼</span> Experiencia & Proyectos
-          </h3>
-          <div className="space-y-6 font-sans">
-            <div className="border-l-2 border-cyan-400 pl-4">
-              <h4 className="text-xl font-semibold text-white">Frontend Developer</h4>
-              <p className="text-cyan-400 mb-2">Proyectos Freelance • 2023 - Presente</p>
-              <p className="text-white/80">
-                Desarrollo de aplicaciones web modernas con React y Next.js. Implementación de interfaces responsivas y
-                optimización de rendimiento.
-              </p>
-            </div>
-            <div className="border-l-2 border-cyan-400 pl-4">
-              <h4 className="text-xl font-semibold text-white">Desarrollador Web</h4>
-              <p className="text-cyan-400 mb-2">Proyectos Personales • 2022 - Presente</p>
-              <p className="text-white/80">
-                Creación de portfolios interactivos, landing pages y aplicaciones web con enfoque en UX/UI y tecnologías
-                modernas.
-              </p>
-            </div>
-          </div>
-        </div>
+<div className="bg-black/30 backdrop-blur-sm p-6 rounded-xl border border-cyan-400/20">
+
+  <h3 className="text-2xl font-bold text-cyan-400 mb-6 flex items-center gap-2">
+    <span>💼</span> Experiencia & Proyectos
+  </h3>
+
+  <div className="space-y-6 font-sans">
+
+    <div className="border-l-2 border-cyan-400 pl-4">
+      <h4 className="text-xl font-semibold text-white">Frontend Developer</h4>
+      <p className="text-cyan-400 mb-2">Proyectos Freelance • 2023 - Presente</p>
+      <p className="text-white/80">
+        Desarrollo de aplicaciones web modernas con React y Next.js. Implementación de interfaces responsivas y
+        optimización de rendimiento.
+      </p>
+    </div>
+
+    <div className="border-l-2 border-cyan-400 pl-4">
+      <h4 className="text-xl font-semibold text-white">Desarrollador Web - Freelance</h4>
+      <p className="text-cyan-400 mb-2">Proyectos Personales • 2022 - Presente</p>
+      <p className="text-white/80">
+        Creación de portfolios interactivos, landing pages y aplicaciones web con enfoque en UX/UI y tecnologías
+        modernas. Sitios web para resolver problemas específicos de clientes.
+      </p>
+    </div>
+
+
+    <div className="border-l-2 border-cyan-400 pl-4">
+      <h4 className="text-xl font-semibold text-white">Técnico de Software & Producción Digital</h4>
+      <p className="text-cyan-400 mb-2">Litocopias.com (El Vigía, Mérida - Venezuela) • 2012 - 2016</p>
+      <p className="text-white/80">
+        Instalación y configuración de sistemas operativos (Windows), drivers y software especializado. Soporte técnico a usuarios,
+        mantenimiento de equipos y optimización de rendimiento. Diseño de piezas gráficas en Illustrator y edición de documentos académicos.
+        Asesoría universitaria creacion de ensayos redaccion de trabajos universitarios con aplicación de normas APA y corrección de estilo. Servicios integrales de impresión, digitalización y gestión de archivos.
+      </p>
+    </div>
+
+    
+    <div className="border-l-2 border-cyan-400 pl-4">
+      <h4 className="text-xl font-semibold text-white">TDH Studios</h4>
+      <p className="text-cyan-400 mb-2">Mérida, Venezuela • 2010-2012</p>
+      <p className="text-white/80">
+        Mantenimiento y soporte de sistemas informáticos. Participación en proyectos de diseño gráfico y producción audiovisual.
+        Colaboración en soluciones técnicas para entornos creativos y digitales.
+      </p>
+    </div>
+
+  </div>
+</div>
+
 
         {/* Educación */}
         <div className="bg-black/30 backdrop-blur-sm p-6 rounded-xl border border-cyan-400/20">
@@ -186,19 +213,18 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
             <span>🎮</span> Intereses y Pasatiempos
           </h3>
           <p className="text-lg text-white/90 leading-relaxed mb-4 font-sans">
-            Fuera del código, me encanta explorar el mundo de la música electrónica, producir mis propios beats y
-            sumergirme en videojuegos de estrategia. También disfruto de la fotografía y el senderismo, buscando siempre
-            nuevas perspectivas y desafíos.
+            Fuera del código, me encanta escribir. Tengo una libreta llena de letras, me gusta experimentar con la musica. En mis ratos libres es posible que juegue una buena partida de AOE2, o cualquier juego de estrategia, También disfruto de la fotografía y la naturaleza, mi pasion es ir a la montaña, acampar y explorar nuevos lugares. Siempre estoy buscando
+            nuevas formas de inspirarme y recargar energías para mis proyectos.
           </p>
           <div className="flex items-center gap-3 font-sans">
             <span className="text-xl text-cyan-400">🎵</span>
             <a
-              href="https://soundcloud.com/tu-usuario-musica" // ¡Cambia esto por tu enlace de música!
+              href="https://www.youtube.com/channel/UCKez-YgBAW7-XH1riPoxHog" 
               target="_blank"
               rel="noopener noreferrer"
               className="text-cyan-400 hover:underline transition-colors duration-300"
             >
-              Escucha mi música en SoundCloud
+              Escucha mi música en Youtube
             </a>
           </div>
         </div>
@@ -209,9 +235,8 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
             <span>💡</span> Mi Filosofía
           </h3>
           <p className="text-lg text-white/90 leading-relaxed font-sans">
-            Creo firmemente en el aprendizaje continuo y la adaptabilidad. Cada desafío es una oportunidad para crecer y
-            cada línea de código, una forma de dar vida a ideas. Mi objetivo es crear soluciones que no solo sean
-            funcionales, sino también intuitivas y estéticamente agradables, siempre con un enfoque en el usuario final.
+            Creo firmemente que la tecnología debe ser una herramienta para mejorar nuestras vidas y resolver problemas reales. Me esfuerzo por crear soluciones que no solo sean funcionales, sino también accesibles y sostenibles. La colaboración y el aprendizaje continuo son pilares fundamentales en mi enfoque profesional, siempre buscando crecer y aportar valor a cada proyecto.
+
           </p>
         </div>
 

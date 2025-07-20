@@ -40,11 +40,12 @@ export default function SectionTwo({ onMenuOpen, onVerMas }) {
           
         <ul className="text-white/90 text-xl mt-0 md:text-xl space-y-2 bg-black/30 dark:bg-white/10 backdrop-blur-sm p-4 rounded-md leading-relaxed max-w-3xl drop-shadow-[1px_1px_1px_rgba(0,0,0,0.9)]">
 
-  <li>🔧 Me adapto rápido a nuevas herramientas y entornos.</li>
-  <li>🚀 Proactivo para aprender, proponer y ejecutar soluciones.</li>
-  <li>🧠 Aprovecho la IA para ser más eficiente, sin depender ciegamente de ella.</li>
-  <li>🎯 Enfocado en resultados reales y productividad sostenible.</li>
-  <li>🤝 Trabajo bien en equipo y asumo liderazgo cuando hace falta.</li>
+  <li>🕸️React</li>
+  <li>🚀Next.Js</li>
+  <li>🧠Tailwind/CSS</li>
+  <li>🎯AI-Powered Development</li>
+  <li>🤝Mobile-First Design </li>
+  <li>🤝API Integrations</li>
  
 </ul>
 
