@@ -3,10 +3,12 @@
 export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
   // Datos de ejemplo para diplomas (puedes reemplazar con tus propias imágenes)
   const diplomas = [
-    { id: 1, title: "Certificado React Avanzado", image: "/placeholder.svg?height=200&width=300" },
-    { id: 2, title: "Certificado Next.js Fundamentos", image: "/placeholder.svg?height=200&width=300" },
-    { id: 3, title: "Certificado Tailwind CSS", image: "/placeholder.svg?height=200&width=300" },
-    { id: 4, title: "Certificado JavaScript Moderno", image: "/placeholder.svg?height=200&width=300" },
+    { id: 1, title: "Iniciación a HTML, CSS y JavaScript  Centro de Desarrollo de Competencias Digitales de Castilla-La Mancha.", image: "/certificados/n1Certificado_Iniciacin_a_HTML_CSS_y_JavaScript.jpg" },
+    { id: 2, title: "Fundamentos de Ingeniería de Software  Platzi Academy", image: "/certificados/n2diploma-ingenieria.jpg" },
+    { id: 3, title: "Diseño y Programacion Web – AIEP / Fundación Telefonica Movistar / SENCE", image: "/certificados/n3.jpg" },
+    { id: 4, title: "Programacion con JavaScript– AIEP / Fundación Telefonica Movistar / SENCE", image: "/certificados/n4.jpg" },
+    { id: 5, title: "Diseño Web con HTML5+CSS– AIEP / Fundación Telefonica Movistar / SENCE", image: "/certificados/n5.jpg" },
+    { id: 6, title: "Fundamentos de CyberSeguridad / Coursera Google", image: "/certificados/n6.jpg" },
   ]
 
   return (
@@ -33,10 +35,11 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
         {/* Introducción */}
         <div className="text-center space-y-6 py-8">
           <h2 className="text-4xl md:text-5xl font-bold text-cyan-400 mb-4">Maurizio Caballero</h2>
-          <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-4xl mx-auto font-sans">
-            Frontend Developer apasionado por crear experiencias digitales excepcionales. Combino creatividad técnica
-            con pensamiento estratégico para resolver problemas complejos.
-          </p>
+          <ul className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-4xl mx-auto font-sans">
+            <li>Desarrollador Frontend especializado en React y Next.js</li>
+            <li>Apasionado por crear experiencias web intuitivas y atractivas</li>
+            <li>Siempre aprendiendo y explorando nuevas tecnologías</li>
+          </ul>
         </div>
 
         {/* Habilidades Técnicas */}
@@ -141,7 +144,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
                 <img
                   src={diploma.image || "/placeholder.svg"}
                   alt={diploma.title}
-                  className="w-full h-36 object-cover"
+                  className="w-full h-36 object-contain"
                 />
                 <div className="p-4">
                   <h4 className="text-lg font-semibold text-white font-sans">{diploma.title}</h4>

@@ -36,6 +36,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
         />
       </div>
       {/* Fondo negro translúcido */}
+       <div className="absolute inset-0 z-20 bg-black opacity-50" />
       
       {/* Contenido */}
       <div
@@ -72,7 +73,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
             </button>
             <button
               onClick={onMenuOpen}
-              className="bg-white/30 text-6xl md:text-7xl lg:text-9xl xl:text-[10rem] font-black text-cyan-400 transition-all duration-300 ease-out mb-0
+              className=" text-6xl md:text-7xl lg:text-9xl xl:text-[10rem] font-black text-cyan-400 transition-all duration-300 ease-out mb-0
                          hover:scale-[1.02] hover:-translate-y-1 hover:skew-x-[-2deg] hover:text-fuchsia-400" // Ajustado scale y skew
             >
               Proyectos
