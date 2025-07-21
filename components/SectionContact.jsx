@@ -1,16 +1,27 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Mail, Phone, Linkedin, Instagram, PhoneIcon as Whatsapp } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion" // ADD AnimatePresence here
+import { motion, AnimatePresence } from "framer-motion"
 
 export default function SectionContact({ show, onClose }) {
+  const [isDark, setIsDark] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   })
   const [status, setStatus] = useState("") // 'idle', 'submitting', 'success', 'error'
+
+  // Referencia al contenedor scrolleable
+  const scrollContainerRef = useRef(null)
+
+  // Reset scroll cuando se abre el componente
+  useEffect(() => {
+    if (show && scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = 0
+    }
+  }, [show])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -35,7 +46,7 @@ export default function SectionContact({ show, onClose }) {
       if (response.ok) {
         console.log("Formulario enviado:", data)
         setStatus("success")
-        setFormData({ name: "", email: "", message: "" }) // Limpiar formulario
+        setFormData({ name: "", email: "", message: "" })
       } else {
         console.error("Error al enviar el formulario:", data.error)
         setStatus("error")
@@ -50,189 +61,243 @@ export default function SectionContact({ show, onClose }) {
     if (status === "success" || status === "error") {
       const timer = setTimeout(() => {
         setStatus("idle")
-        // Optionally, if you want to clear the form only on success, keep it in handleSubmit
-        // If you want to allow re-submission after error, clearing form here might be bad.
-        // For now, I'll keep form clearing only on success in handleSubmit.
-      }, 5000) // Clear message after 5 seconds
+      }, 5000)
       return () => clearTimeout(timer)
     }
-  }, [status]) // Dependency array includes status
+  }, [status])
+
+  const toggleDarkMode = () => {
+    setIsDark(!isDark)
+  }
+
+  const socialLinks = [
+    {
+      name: "WhatsApp",
+      url: "https://wa.me/56923927777",
+      icon: Whatsapp,
+      className: "btn-whatsapp",
+    },
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/maurizio-caballero/",
+      icon: Linkedin,
+      className: "btn-linkedin",
+    },
+    {
+      name: "Instagram",
+      url: "https://instagram.com/devmauriz?igsh=eWo4dTFtcHhmeXpm",
+      icon: Instagram,
+      className: "btn-instagram",
+    },
+  ]
 
   return (
     <section
-      className={`fixed inset-0 w-screen h-screen bg-gradient-to-br from-gray-900 via-gray-950 to-black text-white font-azonix z-40 transition-transform duration-1000 ease-in-out overflow-y-auto ${
+      ref={scrollContainerRef}
+      className={`fixed inset-0 w-screen h-screen font-azonix z-40 transition-all duration-1000 ease-in-out overflow-y-auto noise-overlay ${
         show ? "transform translate-y-0" : "transform translate-y-full"
-      }`}
+      } ${isDark ? "dark bg-gray-900 text-white" : "bg-stone-200 text-zinc-800"}`}
     >
-      {/* Header con botón de volver */}
-      <div className="sticky top-0 bg-black/80 backdrop-blur-sm border-b border-cyan-400/20 p-4 z-10 shadow-md">
+      {/* Header */}
+      <div
+        className={`sticky top-0 backdrop-blur-lg border-b p-4 z-20 ${
+          isDark ? "bg-gray-900/60 border-white/10" : "bg-stone-200/60 border-stone-300/50"
+        }`}
+      >
         <div className="flex items-center justify-between max-w-6xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold text-cyan-400">Contacto</h1>
-          <button
-            onClick={onClose}
-            className="flex items-center gap-2 bg-cyan-500 text-black px-4 py-2 rounded-lg font-semibold hover:bg-cyan-400 transition-all duration-300 hover:scale-105"
-          >
-            <span>←</span> Volver
-          </button>
+          <h1 className="title-section mb-0">Contacto</h1>
+          <div className="flex items-center gap-3">
+            <button onClick={toggleDarkMode} className="btn-toggle">
+              {isDark ? "☀️" : "🌙"}
+            </button>
+            <button onClick={onClose} className="btn-primary">
+              <span className="text-xl">←</span> Volver
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Contenido principal */}
-      <div className="max-w-4xl mx-auto p-6 space-y-10 py-10">
-        <div className="text-center space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-cyan-400">¡Hablemos!</h2>
-          <p className="text-xl text-white/90 leading-relaxed">
-            Estoy disponible para nuevos proyectos, colaboraciones o simplemente para charlar.
+      <div className="relative max-w-6xl mx-auto p-4 md:p-6 space-y-12 md:space-y-16 z-10">
+        {/* Introducción */}
+        <div className="text-center space-y-4 md:space-y-6 py-6 md:py-8">
+          <h2 className="title-main mb-4">¡Hablemos!</h2>
+          <p className="text-intro max-w-4xl mx-auto font-sans">
+            Estoy disponible para nuevos proyectos, colaboraciones o simplemente para charlar sobre tecnología.
           </p>
         </div>
 
-        {/* Formulario de Contacto */}
-        <div className="bg-black/30 backdrop-blur-sm p-8 rounded-xl border border-cyan-400/20 shadow-lg">
-          <h3 className="text-2xl font-bold text-cyan-400 mb-6 flex items-center gap-2">
-            <Mail className="w-6 h-6" /> Envíame un mensaje
-          </h3>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="name" className="block text-lg font-semibold text-white/90 mb-2">
-                Nombre
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                disabled={status === "submitting"} // ADD THIS LINE
-                className="w-full p-3 rounded-md bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:opacity-70 disabled:cursor-not-allowed" // ADD disabled: classes
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="block text-lg font-semibold text-white/90 mb-2">
-                Correo Electrónico
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                disabled={status === "submitting"} 
-                className="w-full p-3 rounded-md bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:opacity-70 disabled:cursor-not-allowed" 
-              />
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-lg font-semibold text-white/90 mb-2">
-                Mensaje
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows="5"
-                required
+        <div className="space-y-12 md:space-y-16">
+          {/* Formulario de Contacto */}
+          <div className="card-primary">
+            <h3 className="title-section flex items-center gap-3">
+              <Mail className="w-6 h-6 md:w-8 md:h-8" /> Envíame un mensaje
+            </h3>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="form-label">
+                  Nombre
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  disabled={status === "submitting"}
+                  className="form-input disabled:opacity-50 disabled:cursor-not-allowed"
+                  placeholder="Tu nombre completo"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="form-label">
+                  Correo Electrónico
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  disabled={status === "submitting"}
+                  className="form-input disabled:opacity-50 disabled:cursor-not-allowed"
+                  placeholder="tu@email.com"
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="form-label">
+                  Mensaje
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows="5"
+                  required
+                  disabled={status === "submitting"}
+                  className="form-textarea disabled:opacity-50 disabled:cursor-not-allowed"
+                  placeholder="Cuéntame sobre tu proyecto o idea..."
+                ></textarea>
+              </div>
+              <button
+                type="submit"
                 disabled={status === "submitting"}
-                className="w-full p-3 rounded-md bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 disabled:opacity-70 disabled:cursor-not-allowed" // ADD disabled: classes
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              disabled={status === "submitting"}
-              className="w-full bg-cyan-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-cyan-400 transition-all duration-300 hover:scale-105 shadow-md disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-            >
-              {status === "submitting" ? (
-                <>
-                  <svg
-                    className="animate-spin h-5 w-5 text-black"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
-                  Enviando...
-                </>
-              ) : (
-                "Enviar Mensaje"
-              )}
-            </button>
-            <AnimatePresence mode="wait">
-              {status === "success" && (
-                <motion.div
-                  key="success-message"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="mt-4 p-3 rounded-md bg-green-900/30 border border-green-400 text-green-400 text-center"
-                >
-                  ¡Mensaje enviado con éxito! Te responderé pronto.
-                </motion.div>
-              )}
-              {status === "error" && (
-                <motion.div
-                  key="error-message"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="mt-4 p-3 rounded-md bg-red-900/30 border border-red-400 text-red-400 text-center"
-                >
-                  Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo o contáctame directamente.
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </form>
-        </div>
+                className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              >
+                {status === "submitting" ? (
+                  <>
+                    <svg
+                      className="animate-spin h-5 w-5"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    Enviando...
+                  </>
+                ) : (
+                  "Enviar Mensaje"
+                )}
+              </button>
 
-        {/* Botones de Redes Sociales */}
-        <div className="bg-black/30 backdrop-blur-sm p-8 rounded-xl border border-cyan-400/20 shadow-lg text-center">
-          <h3 className="text-2xl font-bold text-cyan-400 mb-6 flex items-center justify-center gap-2">
-            <Phone className="w-6 h-6" /> O encuéntrame en:
-          </h3>
-          <div className="flex flex-wrap justify-center gap-6">
-            <a
-              href="https://wa.me/56923927777" // ¡Cambia esto por tu número de WhatsApp!
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center gap-2 p-4 rounded-lg bg-green-600 text-white hover:bg-green-500 transition-all duration-300 hover:scale-105 shadow-md"
-            >
-              <Whatsapp className="w-8 h-8" />
-              <span className="text-sm">WhatsApp</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/maurizio-caballero/" // ¡Cambia esto por tu perfil de LinkedIn!
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center gap-2 p-4 rounded-lg bg-blue-700 text-white hover:bg-blue-600 transition-all duration-300 hover:scale-105 shadow-md"
-            >
-              <Linkedin className="w-8 h-8" />
-              <span className="text-sm">LinkedIn</span>
-            </a>
-            <a
-              href="https://instagram.com/devmauriz?igsh=eWo4dTFtcHhmeXpm" // ¡Cambia esto por tu usuario de Instagram!
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center gap-2 p-4 rounded-lg bg-pink-600 text-white hover:bg-pink-500 transition-all duration-300 hover:scale-105 shadow-md"
-            >
-              <Instagram className="w-8 h-8" />
-              <span className="text-sm">Instagram</span>
-            </a>
-            {/* Puedes añadir más redes sociales aquí */}
+              <AnimatePresence mode="wait">
+                {status === "success" && (
+                  <motion.div
+                    key="success-message"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="form-success"
+                  >
+                    ¡Mensaje enviado con éxito! Te responderé pronto.
+                  </motion.div>
+                )}
+                {status === "error" && (
+                  <motion.div
+                    key="error-message"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="form-error"
+                  >
+                    Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo o contáctame directamente.
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </form>
+          </div>
+
+          {/* Redes Sociales */}
+          <div className="card-secondary">
+            <h3 className="title-section flex items-center gap-3">
+              <Phone className="w-6 h-6 md:w-8 md:h-8" /> O encuéntrame en:
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+              {socialLinks.map((social) => {
+                const IconComponent = social.icon
+                return (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`btn-social ${social.className}`}
+                  >
+                    <IconComponent className="w-6 h-6 md:w-8 md:h-8" />
+                    <span className="text-sm md:text-base">{social.name}</span>
+                  </a>
+                )
+              })}
+            </div>
+            <p className="text-zinc-600 mt-6 text-center font-sans text-sm md:text-base">
+              Respondo rápidamente en todas las plataformas. ¡Elige la que prefieras!
+            </p>
+          </div>
+
+          {/* Información adicional */}
+          <div className="card-primary">
+            <h3 className="title-section flex items-center gap-3">
+              <span className="text-2xl md:text-4xl">💼</span> ¿En qué puedo ayudarte?
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6 font-sans">
+              <div className="space-y-4">
+                <h4 className="title-subsection">Servicios que ofrezco:</h4>
+                <ul className="space-y-2 text-responsive text-zinc-600">
+                  <li>• Desarrollo de aplicaciones web con React y Next.js</li>
+                  <li>• Diseño y desarrollo de interfaces de usuario</li>
+                  <li>• Optimización de rendimiento web</li>
+                  <li>• Integración de APIs y servicios</li>
+                  <li>• Consultoría en tecnologías frontend</li>
+                </ul>
+              </div>
+              <div className="space-y-4">
+                <h4 className="title-subsection">Tiempo de respuesta:</h4>
+                <ul className="space-y-2 text-responsive text-zinc-600">
+                  <li>• WhatsApp: Inmediato (horario laboral)</li>
+                  <li>• Email: Dentro de 24 horas</li>
+                  <li>• LinkedIn: 1-2 días hábiles</li>
+                  <li>• Instagram: 2-3 días</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
