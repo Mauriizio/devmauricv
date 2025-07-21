@@ -148,6 +148,14 @@ body {
   @apply text-gray-300;
 }
 
+.dark .text-zinc-600 {
+  @apply text-gray-300 !important;
+}
+
+.dark  .text-zinc-700 {
+  @apply text-gray-200 !important;
+}
+
 /* Overlay de ruido para modo oscuro */
 .dark .noise-overlay::before {
   background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
