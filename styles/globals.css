@@ -1,26 +1,21 @@
 /* 🟢 IMPORTS PRIMERO - antes de cualquier @tailwind */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;1,400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;1,400&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Azonix';
-  src: url('/fonts/Azonix.otf') format('opentype');
+  font-family: "Azonix";
+  src: url("/fonts/Azonix.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
 
-
-
 body {
-
-
-
   p {
     @apply font-sans;
   }
@@ -30,4 +25,130 @@ body {
   textarea {
     @apply font-sans;
   }
+}
+
+/* ===== CLASES REUTILIZABLES ===== */
+
+/* Títulos responsivos */
+.title-main {
+  @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-cyan-600;
+}
+
+.title-section {
+  @apply text-xl sm:text-2xl md:text-3xl font-bold text-cyan-600 mb-6;
+}
+
+.title-subsection {
+  @apply text-lg sm:text-xl md:text-2xl font-semibold;
+}
+
+/* Tarjetas */
+.card-primary {
+  @apply bg-white p-6 md:p-8 rounded-2xl border border-black/5 shadow-xl;
+}
+
+.card-secondary {
+  @apply bg-stone-50 p-4 md:p-6 rounded-xl border border-stone-200 shadow-sm;
+}
+
+/* Botones */
+.btn-primary {
+  @apply bg-cyan-600 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg font-semibold hover:bg-cyan-700 transition-all duration-300 hover:scale-105 active:scale-95;
+}
+
+.btn-secondary {
+  @apply bg-transparent border-2 border-cyan-600 text-cyan-600 px-6 md:px-8 py-2 md:py-3 rounded-lg font-semibold hover:bg-cyan-600 hover:text-white transition-all duration-300;
+}
+
+.btn-toggle {
+  @apply p-2 rounded-lg bg-stone-300 hover:bg-stone-400 transition-colors duration-200;
+}
+
+/* Tags/Badges */
+.tag-tech {
+  @apply bg-cyan-50 text-cyan-900 px-3 md:px-4 py-1 md:py-1.5 rounded-full text-sm md:text-base font-medium border border-cyan-200/80;
+}
+
+.tag-tool {
+  @apply bg-stone-100 text-stone-800 px-3 md:px-4 py-1 md:py-1.5 rounded-full text-sm md:text-base font-medium border border-stone-200/90;
+}
+
+/* Características */
+.feature-item {
+  @apply flex items-start gap-3 p-3 bg-stone-200/60 rounded-lg;
+}
+
+/* Timeline */
+.timeline-item {
+  @apply border-l-4 border-cyan-500/70 pl-6;
+}
+
+/* Texto responsivo */
+.text-responsive {
+  @apply text-base sm:text-lg leading-relaxed;
+}
+
+.text-intro {
+  @apply text-lg sm:text-xl md:text-2xl text-zinc-600 leading-relaxed;
+}
+
+/* ===== MODO OSCURO ===== */
+.dark {
+  /* Fondos */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-card: #333333;
+  --bg-card-secondary: #404040;
+
+  /* Textos */
+  --text-primary: #ffffff;
+  --text-secondary: #d1d5db;
+  --text-muted: #9ca3af;
+
+  /* Bordes */
+  --border-primary: rgba(255, 255, 255, 0.1);
+  --border-secondary: rgba(255, 255, 255, 0.05);
+}
+
+.dark .card-primary {
+  @apply bg-gray-800 border-white/10 text-white;
+}
+
+.dark .card-secondary {
+  @apply bg-gray-700 border-white/10 text-white;
+}
+
+.dark .tag-tech {
+  @apply bg-cyan-900/50 text-cyan-200 border-cyan-700/50;
+}
+
+.dark .tag-tool {
+  @apply bg-gray-600 text-gray-200 border-gray-500;
+}
+
+.dark .feature-item {
+  @apply bg-gray-600/60;
+}
+
+.dark .btn-toggle {
+  @apply bg-gray-600 hover:bg-gray-500 text-white;
+}
+
+.dark .title-section,
+.dark .title-main {
+  @apply text-cyan-400;
+}
+
+.dark .title-subsection {
+  @apply text-gray-100;
+}
+
+.dark .text-responsive,
+.dark .text-intro {
+  @apply text-gray-300;
+}
+
+/* Overlay de ruido para modo oscuro */
+.dark .noise-overlay::before {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
 }
