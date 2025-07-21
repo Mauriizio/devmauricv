@@ -1,11 +1,12 @@
 "use client"
 
-
 import { useEffect, useState } from "react"
-import CodeParticlesBackground from "./CodeParticlesBackground"  
+import { useTheme } from "@/context/ThemeContext"
+import CodeParticlesBackground from "./CodeParticlesBackground"
 
 export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
   const [contentVisible, setContentVisible] = useState(false)
+  const { isDark } = useTheme()
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -15,19 +16,18 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
   }, [])
 
   return (
-    <section className="relative w-screen h-screen snap-start flex-shrink-0 overflow-hidden">
+    <section
+      className={`relative w-screen h-screen snap-start flex-shrink-0 overflow-hidden transition-colors duration-500 ${
+        isDark ? "bg-black" : "bg-white"
+      }`}
+    >
+      {/* Fondo base */}
+      <div className={`absolute inset-0 z-5 transition-colors duration-500 ${isDark ? "bg-black" : "bg-white"}`} />
 
+      {/* Partículas de fondo */}
+      <CodeParticlesBackground />
 
-
-      
-       
-
-
-
- <div className="absolute inset-0 z-5 bg-black" />
-  <CodeParticlesBackground />
       {/* Imagen de fondo */}
-
       <div className="absolute inset-0 z-10 p-0 overflow-hidden">
         <img
           src="/assets/avatar-right2.png"
@@ -35,69 +35,70 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
           className="absolute top-0 left-0 h-full w-auto object-contain scale-[1.7] origin-left z-10"
         />
       </div>
-      {/* Fondo negro translúcido */}
-       <div className="absolute inset-0 z-20 bg-black opacity-50" />
-      
+
+      {/* Overlay translúcido */}
+      <div
+        className={`absolute inset-0 z-20 transition-colors duration-500 ${
+          isDark ? "bg-black opacity-50" : "bg-white opacity-30"
+        }`}
+      />
+
       {/* Contenido */}
       <div
-        className={`relative z-20 w-full h-full   flex items-start justify-between ml-2 pt-5 pb-5 pr-3 lg:pr-10 transition-opacity duration-1000 ease-out ${
+        className={`relative z-20 w-full h-full flex items-start justify-between ml-2 pt-5 pb-5 pr-3 lg:pr-10 transition-opacity duration-1000 ease-out ${
           contentVisible ? "opacity-100" : "opacity-0"
         }`}
       >
-        <div className="flex flex-col justify-between h-full w-full items-end text-white text-right mr-4 font-azonix">
+        <div
+          className={`flex flex-col justify-between h-full w-full items-end text-right mr-4 font-azonix transition-colors duration-500 ${
+            isDark ? "text-white" : "text-gray-900"
+          }`}
+        >
           {/* Bloque de nombre */}
           <div className="flex flex-col items-end gap-0">
             <button
-              className="text-7xl md:text-8xl lg:text-[10rem] xl:text-[11rem] font-black transition-all duration-300 ease-out
-                         hover:scale-x-[1.03] hover:skew-x-2 hover:translate-x-2 hover:text-cyan-400" // Ajustado scale-x y translate-x
+              className={`text-7xl md:text-8xl lg:text-[10rem] xl:text-[11rem] font-black transition-all duration-300 ease-out hover:scale-x-[1.03] hover:skew-x-2 hover:translate-x-2 hover:text-cyan-400 ${
+                isDark ? "text-white" : "text-gray-900"
+              }`}
             >
               Maurizio
             </button>
             <button
-              className="text-5xl bg-gray-700 md:text-7xl lg:text-[8rem] xl:text-[10rem] font-black transition-all duration-300 ease-out
-                         hover:scale-x-[1.03] hover:skew-x-2 hover:translate-x-2 hover:text-cyan-400 hover:underline" // Ajustado scale-x y translate-x
+              className={`text-5xl md:text-7xl lg:text-[8rem] xl:text-[10rem] font-black transition-all duration-300 ease-out hover:scale-x-[1.03] hover:skew-x-2 hover:translate-x-2 hover:text-cyan-400 hover:underline ${
+                isDark ? "bg-gray-700 text-white" : "bg-gray-200 text-gray-900"
+              }`}
             >
               Caballero
             </button>
           </div>
 
-
           {/* Bloque VER / Proyectos */}
           <div className="flex flex-col items-end gap-2 mb-2">
             <button
               onClick={onMenuOpen}
-              className="text-3xl md:text-4xl lg:text-7xl font-black text-cyan-400 transition-all duration-300 ease-out
-                         hover:scale-[1.02] hover:-translate-y-1 hover:skew-x-[-2deg] hover:text-fuchsia-400" // Ajustado scale y skew
+              className="text-3xl md:text-4xl lg:text-7xl font-black text-cyan-400 transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-1 hover:skew-x-[-2deg] hover:text-fuchsia-400"
             >
               VER
             </button>
             <button
               onClick={onMenuOpen}
-              className=" text-6xl md:text-7xl lg:text-9xl xl:text-[10rem] font-black text-cyan-400 transition-all duration-300 ease-out mb-0
-                         hover:scale-[1.02] hover:-translate-y-1 hover:skew-x-[-2deg] hover:text-fuchsia-400" // Ajustado scale y skew
+              className="text-6xl md:text-7xl lg:text-9xl xl:text-[10rem] font-black text-cyan-400 transition-all duration-300 ease-out mb-0 hover:scale-[1.02] hover:-translate-y-1 hover:skew-x-[-2deg] hover:text-fuchsia-400"
             >
               Proyectos
             </button>
-
           </div>
-
-
-
 
           {/* Botones de navegación */}
           <div className="flex flex-col items-end gap-5 mb-2 mt-0">
-            
             <button
               onClick={onContactOpen}
-              className="text-4xl md:text-5xl font-black text-yellow-400 transition-all duration-300 ease-out
-                         hover:scale-105 hover:translate-x-2"
+              className="text-4xl md:text-5xl font-black text-yellow-400 transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
             >
               Contacto
             </button>
             <button
               onClick={onVerMas}
-              className="text-4xl md:text-4xl mt-0  font-black text-yellow-400 transition-all duration-300 ease-out
-                         hover:scale-105 hover:translate-x-2"
+              className="text-4xl md:text-4xl mt-0 font-black text-yellow-400 transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
             >
               Sobre mí
             </button>

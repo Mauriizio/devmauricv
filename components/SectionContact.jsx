@@ -3,9 +3,10 @@
 import { useState, useEffect, useRef } from "react"
 import { Mail, Phone, Linkedin, Instagram, PhoneIcon as Whatsapp } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useTheme } from "@/context/ThemeContext"
 
 export default function SectionContact({ show, onClose }) {
-  const [isDark, setIsDark] = useState(false)
+  const { isDark, toggleDarkMode } = useTheme()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -65,10 +66,6 @@ export default function SectionContact({ show, onClose }) {
       return () => clearTimeout(timer)
     }
   }, [status])
-
-  const toggleDarkMode = () => {
-    setIsDark(!isDark)
-  }
 
   const socialLinks = [
     {

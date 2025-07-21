@@ -1,8 +1,9 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { projectsData } from "@/data/projects"
+import { useTheme } from "@/context/ThemeContext"
 
 const projectIcons = [
   { id: "mecanica-int", name: "Mecanica Intercontinental", icon: "/assets/proyecto1.png", color: "bg-orange-500" },
@@ -14,7 +15,7 @@ const projectIcons = [
 ]
 
 export default function MenuOverlay({ show, onClose, onProjectSelect }) {
-  const [isDark, setIsDark] = useState(false)
+  const { isDark, toggleDarkMode } = useTheme()
 
   // Referencia al contenedor scrolleable
   const scrollContainerRef = useRef(null)
@@ -34,10 +35,6 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
     }
   }
 
-  const toggleDarkMode = () => {
-    setIsDark(!isDark)
-  }
-
   return (
     <AnimatePresence>
       {show && (
@@ -47,16 +44,10 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
           animate={{ x: 0 }}
           exit={{ x: "100%" }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
-          className={`fixed inset-0 w-screen h-screen font-azonix z-50 transition-all duration-1000 ease-in-out overflow-y-auto noise-overlay ${
-            isDark ? "dark bg-gray-900 text-white" : "bg-stone-200 text-zinc-800"
-          }`}
+          className="fixed inset-0 w-screen h-screen font-azonix z-50 overflow-y-auto noise-overlay bg-stone-200 text-zinc-800 dark:bg-gray-900 dark:text-white"
         >
           {/* Header */}
-          <div
-            className={`sticky top-0 backdrop-blur-lg border-b p-4 z-20 ${
-              isDark ? "bg-gray-900/60 border-white/10" : "bg-stone-200/60 border-stone-300/50"
-            }`}
-          >
+          <div className="sticky top-0 backdrop-blur-lg border-b p-4 z-20 bg-stone-200/60 border-stone-300/50 dark:bg-gray-900/60 dark:border-white/10">
             <div className="flex items-center justify-between max-w-6xl mx-auto">
               <h1 className="title-section mb-0">Proyectos</h1>
               <div className="flex items-center gap-3">
@@ -71,22 +62,22 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
           </div>
 
           {/* Contenido principal */}
-          <div className="relative max-w-6xl mx-auto p-4 md:p-6 space-y-12 md:space-y-16 z-10">
+          <div className="relative max-w-6xl mx-auto p-4 md:p-6 space-y-8 md:space-y-12 z-10">
             {/* Introducción */}
-            <div className="text-center space-y-4 md:space-y-6 py-6 md:py-8">
-              <h2 className="title-main mb-4">Mis Proyectos</h2>
+            <div className="text-center space-y-3 md:space-y-4 py-4 md:py-6">
+              <h2 className="title-main mb-3">Mis Proyectos</h2>
               <p className="text-intro max-w-4xl mx-auto font-sans">
                 Explora mi portafolio de proyectos desarrollados con las últimas tecnologías web.
               </p>
             </div>
 
-            <div className="space-y-12 md:space-y-16">
+            <div className="space-y-8 md:space-y-12">
               {/* Grid de proyectos */}
               <div className="card-secondary">
                 <h3 className="title-section flex items-center gap-3">
-                  <span className="text-2xl md:text-4xl">🚀</span> Selecciona un proyecto
+                  <span className="text-xl md:text-2xl">🚀</span> Selecciona un proyecto
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
                   {projectIcons.map((proj, index) => (
                     <motion.div
                       key={proj.id}
@@ -102,14 +93,14 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
                         <img
                           src={proj.icon || "/placeholder.svg"}
                           alt={proj.name}
-                          className="w-8 h-8 md:w-12 md:h-12 object-contain mx-auto"
+                          className="w-6 h-6 md:w-8 md:h-8 object-contain mx-auto"
                         />
                       </div>
-                      <h4 className="title-subsection text-center text-sm md:text-base font-sans">{proj.name}</h4>
+                      <h4 className="title-subsection text-center text-xs md:text-sm font-sans">{proj.name}</h4>
                     </motion.div>
                   ))}
                 </div>
-                <p className="text-zinc-600 mt-6 text-center font-sans text-sm md:text-base">
+                <p className="text-zinc-600 dark:text-gray-300 mt-4 text-center font-sans text-xs md:text-sm">
                   Haz clic en cualquier proyecto para ver más detalles.
                 </p>
               </div>
@@ -117,10 +108,10 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
               {/* Información adicional */}
               <div className="card-primary">
                 <h3 className="title-section flex items-center gap-3">
-                  <span className="text-2xl md:text-4xl">💡</span> Sobre mis proyectos
+                  <span className="text-xl md:text-2xl">💡</span> Sobre mis proyectos
                 </h3>
-                <div className="grid md:grid-cols-2 gap-6 font-sans">
-                  <div className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-4 font-sans">
+                  <div className="space-y-3">
                     <h4 className="title-subsection">Tecnologías principales:</h4>
                     <div className="flex flex-wrap gap-2">
                       {["React.js", "Next.js", "Tailwind CSS", "JavaScript", "TypeScript"].map((tech) => (
@@ -130,9 +121,9 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
                       ))}
                     </div>
                   </div>
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     <h4 className="title-subsection">Enfoque de desarrollo:</h4>
-                    <ul className="space-y-2 text-responsive text-zinc-600">
+                    <ul className="space-y-1 text-responsive text-zinc-600 dark:text-gray-300">
                       <li>• Diseño responsive y mobile-first</li>
                       <li>• Optimización de rendimiento</li>
                       <li>• Código limpio y mantenible</li>
@@ -144,11 +135,11 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
             </div>
 
             {/* Call to action final */}
-            <div className="text-center py-6 md:py-8">
-              <p className="text-responsive text-zinc-600 mb-4 md:mb-6 font-sans">
+            <div className="text-center py-4 md:py-6">
+              <p className="text-responsive text-zinc-600 dark:text-gray-300 mb-3 md:mb-4 font-sans">
                 ¿Te interesa algún proyecto? ¡Hablemos!
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <button className="btn-primary">Contactar</button>
                 <button onClick={onClose} className="btn-secondary">
                   Volver al inicio

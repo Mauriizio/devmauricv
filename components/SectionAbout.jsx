@@ -2,9 +2,10 @@
 
 import { useState, useEffect, useRef } from "react"
 import { X, ZoomIn } from "lucide-react"
+import { useTheme } from "@/context/ThemeContext"
 
 export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
-  const [isDark, setIsDark] = useState(false)
+  const { isDark, toggleDarkMode } = useTheme()
   const [selectedDiploma, setSelectedDiploma] = useState(null)
 
   // Referencia al contenedor scrolleable
@@ -130,10 +131,6 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
       period: "2010-2013",
     },
   ]
-
-  const toggleDarkMode = () => {
-    setIsDark(!isDark)
-  }
 
   const openDiplomaModal = (diploma) => {
     setSelectedDiploma(diploma)

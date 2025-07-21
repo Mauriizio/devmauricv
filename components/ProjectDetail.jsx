@@ -1,12 +1,12 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useEffect, useRef } from "react"
+import { useTheme } from "@/context/ThemeContext"
 
 export default function ProjectDetail({ show, project, onClose, onBackToProjects }) {
-  const [isDark, setIsDark] = useState(false)
-
   // Referencia al contenedor scrolleable
   const scrollContainerRef = useRef(null)
+  const { isDark, toggleDarkMode } = useTheme()
 
   // Reset scroll cuando se abre el componente
   useEffect(() => {
@@ -14,10 +14,6 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
       scrollContainerRef.current.scrollTop = 0
     }
   }, [show])
-
-  const toggleDarkMode = () => {
-    setIsDark(!isDark)
-  }
 
   if (!project) return null
 
