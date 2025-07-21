@@ -15,24 +15,11 @@
   font-style: normal;
 }
 
+
+
 body {
 
-.noise-overlay::after {
-  content: "";
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXWBgYGHh4d5eXlzc3OLi4ubm5uVlZWPj4+NjY19fX2JiYl/f39tbW1paWhzc3NQEAAAAFVJREFUSvZ7cQADAAAAAABFT+I9AAAAAElFTkSuQmCC');
-  background-repeat: repeat;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  /* ✨ CAMBIO: Opacidad aumentada para un efecto mucho más visible */
-  opacity: 0.5;
-  z-index: 0; /* Lo ponemos detrás del contenido pero encima del fondo base */
-  pointer-events: none;
-}
+
 
   p {
     @apply font-sans;
