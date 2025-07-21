@@ -4,16 +4,30 @@ import { useTheme } from "@/context/ThemeContext"
 import ParticlesBackground from "@/components/ParticlesBackground"
 
 export default function SectionTwo({ onMenuOpen, onVerMas }) {
-  const { isDark } = useTheme()
+  const { isDark, toggleDarkMode } = useTheme()
 
   return (
     <section
       className={`relative w-screen h-screen snap-start flex-shrink-0 overflow-hidden transition-colors duration-500 ${
-        isDark ? "bg-black" : "bg-white"
+        isDark ? "bg-black" : "bg-gray-50"
       }`}
     >
+      {/* Header con botón toggle */}
+      <div
+        className={`absolute top-0 left-0 right-0 z-30 backdrop-blur-lg border-b p-4 ${
+          isDark ? "bg-black/60 border-white/10" : "bg-white/60 border-gray-300/50"
+        }`}
+      >
+        <div className="flex items-center justify-between max-w-6xl mx-auto">
+          <h1 className={`text-lg font-bold ${isDark ? "text-cyan-400" : "text-cyan-600"}`}>Frontend Developer</h1>
+          <button onClick={toggleDarkMode} className="btn-toggle">
+            {isDark ? "☀️" : "🌙"}
+          </button>
+        </div>
+      </div>
+
       {/* Fondo base */}
-      <div className={`absolute inset-0 z-5 transition-colors duration-500 ${isDark ? "bg-black" : "bg-white"}`} />
+      <div className={`absolute inset-0 z-5 transition-colors duration-500 ${isDark ? "bg-black" : "bg-gray-50"}`} />
 
       {/* Partículas de fondo */}
       <ParticlesBackground />
@@ -21,7 +35,7 @@ export default function SectionTwo({ onMenuOpen, onVerMas }) {
       {/* Imagen fondo lado izquierdo */}
       <div
         className={`absolute inset-0 z-10 p-0 overflow-hidden transition-colors duration-500 ${
-          isDark ? "bg-black/70" : "bg-white/70"
+          isDark ? "bg-black/70" : "bg-gray-50/70"
         }`}
       >
         <img
@@ -31,19 +45,17 @@ export default function SectionTwo({ onMenuOpen, onVerMas }) {
         />
       </div>
 
-      {/* Overlay translúcido */}
+      {/* Overlay mejorado - sin neblina en modo claro */}
       <div
-        className={`absolute inset-0 z-20 transition-colors duration-500 ${
-          isDark ? "bg-black opacity-50" : "bg-white opacity-30"
-        }`}
+        className={`absolute inset-0 z-20 transition-colors duration-500 ${isDark ? "bg-black/50" : "bg-gray-900/20"}`}
       />
 
       {/* Contenido principal */}
-      <div className="relative z-20 w-full h-full flex items-start justify-start pl-5 pr-10 pt-5">
+      <div className="relative z-20 w-full h-full flex items-start justify-start pl-5 pr-10 pt-20">
         <div className="flex flex-col items-start gap-4 text-left">
           {/* Título principal */}
           <h1
-            className={`text-4xl mb-0 md:text-6xl font-black leading-tight drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)] font-azonix transition-colors duration-500 ${
+            className={`text-3xl mb-0 md:text-4xl lg:text-5xl font-black leading-tight drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)] font-azonix transition-colors duration-500 ${
               isDark ? "text-cyan-400" : "text-cyan-600"
             }`}
           >
@@ -61,8 +73,8 @@ export default function SectionTwo({ onMenuOpen, onVerMas }) {
 
           {/* Lista de tecnologías */}
           <ul
-            className={`text-xl mt-0 md:text-xl space-y-2 backdrop-blur-sm p-4 rounded-md leading-relaxed max-w-3xl drop-shadow-[1px_1px_1px_rgba(0,0,0,0.9)] transition-colors duration-500 ${
-              isDark ? "text-white/90 bg-black/30" : "text-gray-800 bg-white/60"
+            className={`text-lg mt-0 md:text-xl space-y-2 backdrop-blur-sm p-4 rounded-md leading-relaxed max-w-3xl drop-shadow-[1px_1px_1px_rgba(0,0,0,0.9)] transition-colors duration-500 ${
+              isDark ? "text-white/90 bg-black/30" : "text-gray-800 bg-white/80"
             }`}
           >
             <li>🕸️React</li>
@@ -74,23 +86,23 @@ export default function SectionTwo({ onMenuOpen, onVerMas }) {
           </ul>
 
           {/* Botones / acciones */}
-          <div className="flex gap-6 mt-0 flex-wrap">
+          <div className="flex gap-4 mt-0 flex-wrap">
             <button
-              className={`border px-6 py-2 rounded-md text-lg font-semibold transition-all duration-300 hover:bg-cyan-500 ${
-                isDark ? "bg-black border-white text-white" : "bg-white border-gray-300 text-gray-900 hover:text-white"
+              className={`border px-4 py-2 rounded-md text-base font-semibold transition-all duration-300 hover:bg-cyan-500 hover:text-white ${
+                isDark ? "bg-black border-white text-white" : "bg-white border-gray-400 text-gray-900"
               }`}
             >
               Descargar CV
             </button>
             <button
               onClick={onMenuOpen}
-              className="bg-yellow-500 text-black px-6 py-2 rounded-md text-lg font-semibold hover:bg-yellow-400 transition-all duration-300"
+              className="bg-yellow-500 text-black px-4 py-2 rounded-md text-base font-semibold hover:bg-yellow-400 transition-all duration-300"
             >
               Ver proyectos
             </button>
             <button
               onClick={onVerMas}
-              className={`px-6 py-2 rounded-md text-lg font-semibold transition-all duration-300 hover:bg-cyan-400 hover:text-white ${
+              className={`px-4 py-2 rounded-md text-base font-semibold transition-all duration-300 hover:bg-cyan-400 hover:text-white ${
                 isDark ? "bg-white text-black" : "bg-gray-900 text-white"
               }`}
             >

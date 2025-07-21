@@ -6,7 +6,7 @@ import CodeParticlesBackground from "./CodeParticlesBackground"
 
 export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
   const [contentVisible, setContentVisible] = useState(false)
-  const { isDark } = useTheme()
+  const { isDark, toggleDarkMode } = useTheme()
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -18,11 +18,25 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
   return (
     <section
       className={`relative w-screen h-screen snap-start flex-shrink-0 overflow-hidden transition-colors duration-500 ${
-        isDark ? "bg-black" : "bg-white"
+        isDark ? "bg-black" : "bg-gray-50"
       }`}
     >
+      {/* Header con botón toggle */}
+      <div
+        className={`absolute top-0 left-0 right-0 z-30 backdrop-blur-lg border-b p-4 ${
+          isDark ? "bg-black/60 border-white/10" : "bg-white/60 border-gray-300/50"
+        }`}
+      >
+        <div className="flex items-center justify-between max-w-6xl mx-auto">
+          <h1 className={`text-lg font-bold ${isDark ? "text-cyan-400" : "text-cyan-600"}`}>Maurizio Caballero</h1>
+          <button onClick={toggleDarkMode} className="btn-toggle">
+            {isDark ? "☀️" : "🌙"}
+          </button>
+        </div>
+      </div>
+
       {/* Fondo base */}
-      <div className={`absolute inset-0 z-5 transition-colors duration-500 ${isDark ? "bg-black" : "bg-white"}`} />
+      <div className={`absolute inset-0 z-5 transition-colors duration-500 ${isDark ? "bg-black" : "bg-gray-50"}`} />
 
       {/* Partículas de fondo */}
       <CodeParticlesBackground />
@@ -36,16 +50,14 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
         />
       </div>
 
-      {/* Overlay translúcido */}
+      {/* Overlay mejorado - sin neblina en modo claro */}
       <div
-        className={`absolute inset-0 z-20 transition-colors duration-500 ${
-          isDark ? "bg-black opacity-50" : "bg-white opacity-30"
-        }`}
+        className={`absolute inset-0 z-20 transition-colors duration-500 ${isDark ? "bg-black/50" : "bg-gray-900/20"}`}
       />
 
       {/* Contenido */}
       <div
-        className={`relative z-20 w-full h-full flex items-start justify-between ml-2 pt-5 pb-5 pr-3 lg:pr-10 transition-opacity duration-1000 ease-out ${
+        className={`relative z-20 w-full h-full flex items-start justify-between ml-2 pt-20 pb-5 pr-3 lg:pr-10 transition-opacity duration-1000 ease-out ${
           contentVisible ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -57,14 +69,14 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
           {/* Bloque de nombre */}
           <div className="flex flex-col items-end gap-0">
             <button
-              className={`text-7xl md:text-8xl lg:text-[10rem] xl:text-[11rem] font-black transition-all duration-300 ease-out hover:scale-x-[1.03] hover:skew-x-2 hover:translate-x-2 hover:text-cyan-400 ${
+              className={`text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black transition-all duration-300 ease-out hover:scale-x-[1.03] hover:skew-x-2 hover:translate-x-2 hover:text-cyan-400 ${
                 isDark ? "text-white" : "text-gray-900"
               }`}
             >
               Maurizio
             </button>
             <button
-              className={`text-5xl md:text-7xl lg:text-[8rem] xl:text-[10rem] font-black transition-all duration-300 ease-out hover:scale-x-[1.03] hover:skew-x-2 hover:translate-x-2 hover:text-cyan-400 hover:underline ${
+              className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black transition-all duration-300 ease-out hover:scale-x-[1.03] hover:skew-x-2 hover:translate-x-2 hover:text-cyan-400 hover:underline ${
                 isDark ? "bg-gray-700 text-white" : "bg-gray-200 text-gray-900"
               }`}
             >
@@ -76,13 +88,13 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
           <div className="flex flex-col items-end gap-2 mb-2">
             <button
               onClick={onMenuOpen}
-              className="text-3xl md:text-4xl lg:text-7xl font-black text-cyan-400 transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-1 hover:skew-x-[-2deg] hover:text-fuchsia-400"
+              className="text-2xl md:text-3xl lg:text-5xl font-black text-cyan-400 transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-1 hover:skew-x-[-2deg] hover:text-fuchsia-400"
             >
               VER
             </button>
             <button
               onClick={onMenuOpen}
-              className="text-6xl md:text-7xl lg:text-9xl xl:text-[10rem] font-black text-cyan-400 transition-all duration-300 ease-out mb-0 hover:scale-[1.02] hover:-translate-y-1 hover:skew-x-[-2deg] hover:text-fuchsia-400"
+              className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-black text-cyan-400 transition-all duration-300 ease-out mb-0 hover:scale-[1.02] hover:-translate-y-1 hover:skew-x-[-2deg] hover:text-fuchsia-400"
             >
               Proyectos
             </button>
@@ -92,13 +104,13 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
           <div className="flex flex-col items-end gap-5 mb-2 mt-0">
             <button
               onClick={onContactOpen}
-              className="text-4xl md:text-5xl font-black text-yellow-400 transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
+              className="text-3xl md:text-4xl font-black text-yellow-400 transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
             >
               Contacto
             </button>
             <button
               onClick={onVerMas}
-              className="text-4xl md:text-4xl mt-0 font-black text-yellow-400 transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
+              className="text-3xl md:text-3xl mt-0 font-black text-yellow-400 transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
             >
               Sobre mí
             </button>
