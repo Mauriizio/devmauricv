@@ -152,3 +152,33 @@ body {
 .dark .noise-overlay::before {
   background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
 }
+
+/* Clases para el modal de diplomas */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Mejorar scrollbar para diplomas */
+.scrollbar-thin::-webkit-scrollbar {
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  @apply bg-stone-200 rounded-full;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  @apply bg-cyan-500 rounded-full;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  @apply bg-cyan-600;
+}
+
+/* Dark mode para scrollbar */
+.dark .scrollbar-thin::-webkit-scrollbar-track {
+  @apply bg-gray-700;
+}
