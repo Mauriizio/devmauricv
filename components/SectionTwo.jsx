@@ -18,8 +18,8 @@ export default function SectionTwo({ onMenuOpen, onVerMas }) {
           isDark ? "bg-black/60 border-white/10" : "bg-white/60 border-gray-300/50"
         }`}
       >
-        <div className="flex items-center justify-between max-w-6xl mx-auto">
-          <h1 className={`text-lg font-bold ${isDark ? "text-cyan-400" : "text-cyan-600"}`}>Frontend Developer</h1>
+        <div className="flex items-center justify-between max-w-6xl mx-auto font-azonix">
+          <h1 className={`text-lg font-bold ${isDark ? "text-cyan-400" : "text-cyan-600"}`}>Dev</h1>
           <button onClick={toggleDarkMode} className="btn-toggle">
             {isDark ? "☀️" : "🌙"}
           </button>
@@ -47,7 +47,7 @@ export default function SectionTwo({ onMenuOpen, onVerMas }) {
 
       {/* Overlay mejorado - sin neblina en modo claro */}
       <div
-        className={`absolute inset-0 z-20 transition-colors duration-500 ${isDark ? "bg-black/50" : "bg-gray-900/20"}`}
+        className={`absolute inset-0 z-20 transition-colors duration-500 ${isDark ? "bg-black/10" : "bg-gray-900/20"}`}
       />
 
       {/* Contenido principal */}

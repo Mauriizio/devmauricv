@@ -77,7 +77,7 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
                 <h3 className="title-section flex items-center gap-3">
                   <span className="text-xl md:text-2xl">🚀</span> Selecciona un proyecto
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
                   {projectIcons.map((proj, index) => (
                     <motion.div
                       key={proj.id}
@@ -89,14 +89,15 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
                       onClick={() => handleProjectClick(proj.id)}
                       className="project-card"
                     >
-                      <div className="project-icon-container mx-auto">
+                      <div className="project-icon-container mx-auto h-full">
                         <img
                           src={proj.icon || "/placeholder.svg"}
                           alt={proj.name}
-                          className="w-6 h-6 md:w-8 md:h-8 object-contain mx-auto"
+                          className="w-full h-full md:w-8 md:h-8 object-cover mx-auto"
                         />
+                         <h4 className="title-subsection text-center text-xs md:text-sm font-sans">{proj.name}</h4>
                       </div>
-                      <h4 className="title-subsection text-center text-xs md:text-sm font-sans">{proj.name}</h4>
+                     
                     </motion.div>
                   ))}
                 </div>

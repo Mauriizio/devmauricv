@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { useTheme } from "@/context/ThemeContext"
 import CodeParticlesBackground from "./CodeParticlesBackground"
+import { Download, ChevronsRight } from "lucide-react"
 
 export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
   const [contentVisible, setContentVisible] = useState(false)
@@ -28,10 +29,18 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
         }`}
       >
         <div className="flex items-center justify-between max-w-6xl mx-auto">
-          <h1 className={`text-lg font-bold ${isDark ? "text-cyan-400" : "text-cyan-600"}`}>Maurizio Caballero</h1>
-          <button onClick={toggleDarkMode} className="btn-toggle">
-            {isDark ? "☀️" : "🌙"}
-          </button>
+          <h1 className={`text-lg font-bold font-azonix ${isDark ? "text-cyan-400" : "text-cyan-700"}`}>@devMauriz</h1>
+
+          <div className="flex items-center gap-3">
+            <button className="btn-primary flex items-center gap-2 text-sm px-3 py-1.5">
+              <Download size={16} />
+              <span className="hidden sm:inline">CV</span>
+            </button>
+
+            <button onClick={toggleDarkMode} className="btn-toggle">
+              {isDark ? "☀️" : "🌙"}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -84,19 +93,18 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
             </button>
           </div>
 
-          {/* Bloque VER / Proyectos */}
-          <div className="flex flex-col items-end gap-2 mb-2">
-            <button
+          {/* Bloque de Proyectos con icono */}
+          <div className="flex flex-col items-end gap-4 mb-2">
+            
+            <button id="ver-portfolio"
               onClick={onMenuOpen}
-              className="text-2xl md:text-3xl lg:text-5xl font-black text-cyan-400 transition-all duration-300 ease-out hover:scale-[1.02] hover:-translate-y-1 hover:skew-x-[-2deg] hover:text-fuchsia-400"
+              className="group flex items-center gap-0 text-black transition-all duration-300 ease-out hover:scale-110 hover:text-fuchsia-400 hover:translate-x-2"
             >
-              VER
-            </button>
-            <button
-              onClick={onMenuOpen}
-              className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-black text-cyan-400 transition-all duration-300 ease-out mb-0 hover:scale-[1.02] hover:-translate-y-1 hover:skew-x-[-2deg] hover:text-fuchsia-400"
-            >
-              Proyectos
+              <span className="text-4xl md:text-3xl font-bold font-sans">Ver Portfolio</span>
+              <ChevronsRight
+                size={32}
+                className="transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110"
+              />
             </button>
           </div>
 
@@ -104,13 +112,13 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
           <div className="flex flex-col items-end gap-5 mb-2 mt-0">
             <button
               onClick={onContactOpen}
-              className="text-3xl md:text-4xl font-black text-yellow-400 transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
+              className="text-3xl md:text-4xl font-black text-cyan-700 transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
             >
               Contacto
             </button>
             <button
               onClick={onVerMas}
-              className="text-3xl md:text-3xl mt-0 font-black text-yellow-400 transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
+              className="text-3xl md:text-3xl mt-0 font-black text-cyan-700 transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
             >
               Sobre mí
             </button>

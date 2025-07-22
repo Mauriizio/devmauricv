@@ -105,7 +105,7 @@ body {
 }
 
 .project-icon-container {
-  @apply p-2 md:p-3 bg-stone-100 rounded-full mb-2 md:mb-3 shadow-md;
+  @apply p-2 md:p-3 bg-stone-100  mb-2 md:mb-3 shadow-md;
 }
 
 /* Características */
@@ -167,8 +167,12 @@ body {
   --border-secondary: rgba(255, 255, 255, 0.05);
 }
 
+.dark #ver-portfolio {
+  @apply border-white/10 text-white;
+}
+
 .dark .card-primary {
-  @apply bg-gray-800 border-white/10 text-white;
+  @apply bg-gray-50 border-white/10 text-white;
 }
 
 .dark .card-secondary {
