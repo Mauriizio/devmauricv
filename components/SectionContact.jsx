@@ -124,13 +124,13 @@ export default function SectionContact({ show, onClose }) {
           </p>
         </div>
 
-        <div className="space-y-12 md:space-y-16">
+        <div className="space-y-12 md:space-y-16 ">
           {/* Formulario de Contacto */}
           <div className="card-primary">
             <h3 className="title-section flex items-center gap-3">
               <Mail className="w-6 h-6 md:w-8 md:h-8" /> Envíame un mensaje
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6 ">
               <div>
                 <label htmlFor="name" className="form-label">
                   Nombre
@@ -143,7 +143,7 @@ export default function SectionContact({ show, onClose }) {
                   onChange={handleChange}
                   required
                   disabled={status === "submitting"}
-                  className="form-input disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="form-input disabled:opacity-50 disabled:cursor-not-allowed "
                   placeholder="Tu nombre completo"
                 />
               </div>

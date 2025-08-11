@@ -156,7 +156,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
       {items.map((item, index) => (
         <div key={index} className="feature-item">
           <span className="text-xl">{item.icon}</span>
-          <p className="text-zinc-700">{item.text}</p>
+          <p className="text-zinc-900">{item.text}</p>
         </div>
       ))}
     </div>
@@ -270,7 +270,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
                     <p className="text-cyan-700 font-medium mb-2">
                       {exp.company} • {exp.period}
                     </p>
-                    <p className="text-responsive text-zinc-600">{exp.description}</p>
+                    <p className="text-responsive text-zinc-700">{exp.description}</p>
                   </div>
                 ))}
               </div>
@@ -350,12 +350,12 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
             </div>
 
             {/* Mi Filosofía */}
-            <div className="card-secondary">
+            <div className="card-primary">
               <h3 className="title-section flex items-center gap-2">
                 <span>💡</span> Mi Filosofía
               </h3>
-              <div className="card-primary">
-                <p className="font-sans text-responsive text-zinc-600">
+              <div className="card-secondary">
+                <p className="font-sans text-responsive .text-zinc-700">
                   Creo firmemente que la tecnología debe ser una herramienta que mejore la vida de las personas. Mi
                   enfoque siempre está en crear soluciones que no solo funcionen bien técnicamente, sino que también
                   proporcionen una experiencia excepcional al usuario. La simplicidad y la elegancia en el código se

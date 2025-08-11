@@ -1,26 +1,25 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import Head from "next/head"
 import { motion, AnimatePresence } from "framer-motion"
 import { projectsData } from "@/data/projects"
 import { useTheme } from "@/context/ThemeContext"
 
 const projectIcons = [
   { id: "mecanica-int", name: "Mecanica Intercontinental", icon: "/assets/proyecto1.png", color: "bg-orange-500" },
-  { id: "css3", name: "CSS3", icon: "/logos/lcss.png", color: "bg-blue-500" },
-  { id: "javascript", name: "JavaScript", icon: "/logos/ljs.png", color: "bg-yellow-400" },
-  { id: "react", name: "React", icon: "/logos/lwor.png", color: "bg-cyan-400" },
-  { id: "nextjs", name: "Next.js", icon: "/logos/lnext.png", color: "bg-gray-700" },
-  { id: "tailwind", name: "Tailwind", icon: "/logos/ltailwind.png", color: "bg-teal-500" },
+  { id: "css3",          name: "CSS3",                    icon: "/logos/lcss.png",       color: "bg-blue-500" },
+  { id: "javascript",    name: "JavaScript",              icon: "/logos/ljs.png",        color: "bg-yellow-400" },
+  { id: "react",         name: "React",                   icon: "/logos/lwor.png",       color: "bg-cyan-400" },
+  { id: "nextjs",        name: "Next.js",                 icon: "/logos/lwor.png",      color: "bg-gray-700" },
+  { id: "tailwind",      name: "Tailwind",                icon: "/logos/lwor.png",  color: "bg-teal-500" },
 ]
 
 export default function MenuOverlay({ show, onClose, onProjectSelect }) {
   const { isDark, toggleDarkMode } = useTheme()
-
-  // Referencia al contenedor scrolleable
   const scrollContainerRef = useRef(null)
 
-  // Reset scroll cuando se abre el componente
+  // Reset scroll al abrir
   useEffect(() => {
     if (show && scrollContainerRef.current) {
       scrollContainerRef.current.scrollTop = 0
@@ -35,120 +34,172 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
     }
   }
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Escape") onClose?.()
+  }
+
+  // SEO (solo al abrir para no duplicar metas)
+  const seoDescription =
+    "Explora el portafolio de proyectos de Maurizio Caballero: React, Next.js, Tailwind y más."
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Proyectos de Maurizio Caballero",
+    itemListElement: projectIcons.map((p, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      name: p.name,
+      url: `#project-${p.id}`,
+    })),
+  }
+
   return (
     <AnimatePresence>
       {show && (
-        <motion.section
-          ref={scrollContainerRef}
-          initial={{ x: "100%" }}
-          animate={{ x: 0 }}
-          exit={{ x: "100%" }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="fixed inset-0 w-screen h-screen font-azonix z-50 overflow-y-auto noise-overlay bg-stone-200 text-zinc-800 dark:bg-gray-900 dark:text-white"
-        >
-          {/* Header */}
-          <div className="sticky top-0 backdrop-blur-lg border-b p-4 z-20 bg-stone-200/60 border-stone-300/50 dark:bg-gray-900/60 dark:border-white/10">
-            <div className="flex items-center justify-between max-w-6xl mx-auto">
-              <h1 className="title-section mb-0">Proyectos</h1>
-              <div className="flex items-center gap-3">
-                <button onClick={toggleDarkMode} className="btn-toggle">
-                  {isDark ? "☀️" : "🌙"}
-                </button>
-                <button onClick={onClose} className="btn-primary">
-                  <span className="text-xl">✕</span> Cerrar
-                </button>
+        <>
+          <Head>
+            <title>Proyectos — devMauriz</title>
+            <meta name="description" content={seoDescription} />
+            <meta name="robots" content="index,follow" />
+            <meta name="author" content="Maurizio Caballero" />
+            <meta name="theme-color" content={isDark ? "#0b0b0b" : "#f5f5f4"} />
+
+            <meta property="og:type" content="website" />
+            <meta property="og:site_name" content="devMauriz" />
+            <meta property="og:title" content="Proyectos — devMauriz" />
+            <meta property="og:description" content={seoDescription} />
+
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:title" content="Proyectos — devMauriz" />
+            <meta name="twitter:description" content={seoDescription} />
+
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+          </Head>
+
+          <motion.section
+            ref={scrollContainerRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="overlay-title"
+            tabIndex={-1}
+            onKeyDown={handleKeyDown}
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            className="fixed inset-0 w-screen h-screen font-azonix z-50 overflow-y-auto noise-overlay bg-stone-200 text-zinc-800 dark:bg-gray-900 dark:text-white"
+          >
+            {/* Header */}
+            <div className="sticky top-0 backdrop-blur-lg border-b p-4 z-20 bg-stone-200/60 border-stone-300/50 dark:bg-gray-900/60 dark:border-white/10">
+              <div className="flex items-center justify-between max-w-6xl mx-auto px-4 gap-3 overflow-hidden">
+                <h1 id="overlay-title" className="title-section mb-0 min-w-0 truncate">
+                  Proyectos
+                </h1>
+                <div className="shrink-0 flex items-center gap-3">
+                  <button onClick={toggleDarkMode} className="btn-toggle" aria-label="Cambiar tema">
+                    {isDark ? "☀️" : "🌙"}
+                  </button>
+                  <button onClick={onClose} className="btn-primary">
+                    <span className="text-xl" aria-hidden>✕</span> Cerrar
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Contenido principal */}
-          <div className="relative max-w-6xl mx-auto p-4 md:p-6 space-y-8 md:space-y-12 z-10">
-            {/* Introducción */}
-            <div className="text-center space-y-3 md:space-y-4 py-4 md:py-6">
-              <h2 className="title-main mb-3">Mis Proyectos</h2>
-              <p className="text-intro max-w-4xl mx-auto font-sans">
-                Explora mi portafolio de proyectos desarrollados con las últimas tecnologías web.
-              </p>
-            </div>
-
-            <div className="space-y-8 md:space-y-12">
-              {/* Grid de proyectos */}
-              <div className="card-secondary">
-                <h3 className="title-section flex items-center gap-3">
-                  <span className="text-xl md:text-2xl">🚀</span> Selecciona un proyecto
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
-                  {projectIcons.map((proj, index) => (
-                    <motion.div
-                      key={proj.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1, duration: 0.3 }}
-                      whileHover={{ scale: 1.05, y: -5 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => handleProjectClick(proj.id)}
-                      className="project-card"
-                    >
-                      <div className="project-icon-container mx-auto h-full">
-                        <img
-                          src={proj.icon || "/placeholder.svg"}
-                          alt={proj.name}
-                          className="w-full h-full md:w-8 md:h-8 object-cover mx-auto"
-                        />
-                         <h4 className="title-subsection text-center text-xs md:text-sm font-sans">{proj.name}</h4>
-                      </div>
-                     
-                    </motion.div>
-                  ))}
-                </div>
-                <p className="text-zinc-600 dark:text-gray-300 mt-4 text-center font-sans text-xs md:text-sm">
-                  Haz clic en cualquier proyecto para ver más detalles.
+            {/* Contenido principal */}
+            <div className="relative max-w-6xl mx-auto p-4 md:p-6 space-y-8 md:space-y-12 z-10">
+              {/* Introducción */}
+              <div className="text-center space-y-3 md:space-y-4 py-4 md:py-6">
+                <h2 className="title-main mb-3">Mis Proyectos</h2>
+                <p className="text-intro max-w-4xl mx-auto font-sans">
+                  Explora mi portafolio de proyectos desarrollados con las últimas tecnologías web.
                 </p>
               </div>
 
-              {/* Información adicional */}
-              <div className="card-primary">
-                <h3 className="title-section flex items-center gap-3">
-                  <span className="text-xl md:text-2xl">💡</span> Sobre mis proyectos
-                </h3>
-                <div className="grid md:grid-cols-2 gap-4 font-sans">
-                  <div className="space-y-3">
-                    <h4 className="title-subsection">Tecnologías principales:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {["React.js", "Next.js", "Tailwind CSS", "JavaScript", "TypeScript"].map((tech) => (
-                        <div key={tech} className="tag-tech">
-                          {tech}
+              <div className="space-y-8 md:space-y-12">
+                {/* Grid de proyectos */}
+                <div className="card-secondary">
+                  <h3 className="title-section flex items-center gap-3">
+                    <span className="text-xl md:text-2xl">🚀</span> Selecciona un proyecto
+                  </h3>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
+                    {projectIcons.map((proj, index) => (
+                      <motion.div
+                        key={proj.id}
+                        id={`project-${proj.id}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.06, duration: 0.22 }}
+                        whileHover={{ scale: 1.05, y: -4 }}
+                        whileTap={{ scale: 0.96 }}
+                        onClick={() => handleProjectClick(proj.id)}
+                        className="project-card"
+                      >
+                        <div className="project-icon-container mx-auto h-full">
+                          <img
+                            src={proj.icon || "/placeholder.svg"}
+                            alt={proj.name}
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-full md:w-8 md:h-8 object-cover mx-auto"
+                            onError={(e) => { e.currentTarget.src = "/placeholder.svg" }}
+                          />
+                          <h4 className="title-subsection text-center text-xs md:text-sm font-sans">{proj.name}</h4>
                         </div>
-                      ))}
-                    </div>
+                      </motion.div>
+                    ))}
                   </div>
-                  <div className="space-y-3">
-                    <h4 className="title-subsection">Enfoque de desarrollo:</h4>
-                    <ul className="space-y-1 text-responsive text-zinc-600 dark:text-gray-300">
-                      <li>• Diseño responsive y mobile-first</li>
-                      <li>• Optimización de rendimiento</li>
-                      <li>• Código limpio y mantenible</li>
-                      <li>• Experiencia de usuario intuitiva</li>
-                    </ul>
+
+                  <p className="text-zinc-600 dark:text-gray-300 mt-4 text-center font-sans text-xs md:text-sm">
+                    Haz clic en cualquier proyecto para ver más detalles.
+                  </p>
+                </div>
+
+                {/* Información adicional */}
+                <div className="card-primary">
+                  <h3 className="title-section flex items-center gap-3">
+                    <span className="text-xl md:text-2xl">💡</span> Sobre mis proyectos
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-4 font-sans">
+                    <div className="space-y-3">
+                      <h4 className="title-subsection">Tecnologías principales:</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {["React.js", "Next.js", "Tailwind CSS", "JavaScript", "TypeScript"].map((tech) => (
+                          <div key={tech} className="tag-tech">
+                            {tech}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <h4 className="title-subsection">Enfoque de desarrollo:</h4>
+                      <ul className="space-y-1 text-responsive text-zinc-600 dark:text-gray-300">
+                        <li>• Diseño responsive y mobile-first</li>
+                        <li>• Optimización de rendimiento</li>
+                        <li>• Código limpio y mantenible</li>
+                        <li>• Experiencia de usuario intuitiva</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Call to action final */}
-            <div className="text-center py-4 md:py-6">
-              <p className="text-responsive text-zinc-600 dark:text-gray-300 mb-3 md:mb-4 font-sans">
-                ¿Te interesa algún proyecto? ¡Hablemos!
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <button className="btn-primary">Contactar</button>
-                <button onClick={onClose} className="btn-secondary">
-                  Volver al inicio
-                </button>
+              {/* Call to action final */}
+              <div className="text-center py-4 md:py-6">
+                <p className="text-responsive text-zinc-600 dark:text-gray-300 mb-3 md:mb-4 font-sans">
+                  ¿Te interesa algún proyecto? ¡Hablemos!
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <button className="btn-primary">Contactar</button>
+                  <button onClick={onClose} className="btn-secondary">
+                    Volver al inicio
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        </motion.section>
+          </motion.section>
+        </>
       )}
     </AnimatePresence>
   )

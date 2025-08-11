@@ -176,7 +176,7 @@ body {
 }
 
 .dark .card-secondary {
-  @apply bg-gray-700 border-white/10 text-white;
+  @apply bg-gray-500 border-white/10 text-white;
 }
 
 .dark .tag-tech {
@@ -201,20 +201,22 @@ body {
 }
 
 .dark .title-subsection {
-  @apply text-gray-100;
+  @apply text-gray-900;
 }
 
-.dark .text-responsive,
+.dark .text-responsive {
+  @apply text-gray-300;
+}
 .dark .text-intro {
   @apply text-gray-300;
 }
 
 .dark .text-zinc-600 {
-  @apply text-gray-300 !important;
+  @apply text-gray-500 !important;
 }
 
 .dark .text-zinc-700 {
-  @apply text-gray-200 !important;
+  @apply text-gray-500 !important;
 }
 
 /* Tarjetas de proyecto en modo oscuro */
@@ -233,7 +235,7 @@ body {
 
 .dark .form-input,
 .dark .form-textarea {
-  @apply bg-gray-700 border-gray-600 text-white placeholder-gray-400;
+  @apply bg-gray-300 border-gray-600 text-black font-bold placeholder-gray-400;
 }
 
 .dark .form-input:focus,
@@ -247,7 +249,7 @@ body {
 }
 
 .dark .form-success {
-  @apply bg-green-900/30 border-green-400 text-green-400;
+  @apply bg-gray-900/30 border-green-400 text-green-600 font-bold;
 }
 
 .dark .form-error {
