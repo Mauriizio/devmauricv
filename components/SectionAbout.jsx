@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import Head from "next/head"
 import { X, ZoomIn } from "lucide-react"
 import { useTheme } from "@/context/ThemeContext"
 
@@ -14,10 +15,14 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
   // Reset scroll cuando se abre el componente
   useEffect(() => {
     if (show && scrollContainerRef.current) {
-      // Reset inmediato del scroll del contenedor
       scrollContainerRef.current.scrollTop = 0
     }
   }, [show])
+
+  // Cerrar con Esc (sin cambiar tu UX, reutiliza onVolverArriba)
+  const handleKeyDown = (e) => {
+    if (e.key === "Escape") onVolverArriba?.()
+  }
 
   // Datos optimizados
   const diplomas = [
@@ -26,28 +31,13 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
       title:
         "Iniciación a HTML, CSS y JavaScript - Centro de Desarrollo de Competencias Digitales de Castilla-La Mancha.",
       image: "/certificados/n1Certificado_Iniciacin_a_HTML_CSS_y_JavaScript.jpg",
+      provider: "Centro de Desarrollo de Competencias Digitales de Castilla-La Mancha",
     },
-    {
-      id: 2,
-      title: "Fundamentos de Ingeniería de Software - Platzi Academy",
-      image: "/certificados/n2diploma-ingenieria.jpg",
-    },
-    {
-      id: 3,
-      title: "Diseño y Programacion Web – AIEP / Fundación Telefonica Movistar / SENCE",
-      image: "/certificados/n3.jpg",
-    },
-    {
-      id: 4,
-      title: "Programacion con JavaScript– AIEP / Fundación Telefonica Movistar / SENCE",
-      image: "/certificados/n4.jpg",
-    },
-    {
-      id: 5,
-      title: "Diseño Web con HTML5+CSS– AIEP / Fundación Telefonica Movistar / SENCE",
-      image: "/certificados/n5.jpg",
-    },
-    { id: 6, title: "Fundamentos de CyberSeguridad / Coursera Google", image: "/certificados/n6.jpg" },
+    { id: 2, title: "Fundamentos de Ingeniería de Software - Platzi Academy", image: "/certificados/n2diploma-ingenieria.jpg", provider: "Platzi" },
+    { id: 3, title: "Diseño y Programacion Web – AIEP / Fundación Telefonica Movistar / SENCE", image: "/certificados/n3.jpg", provider: "AIEP / Fundación Telefónica Movistar / SENCE" },
+    { id: 4, title: "Programacion con JavaScript– AIEP / Fundación Telefonica Movistar / SENCE", image: "/certificados/n4.jpg", provider: "AIEP / Fundación Telefónica Movistar / SENCE" },
+    { id: 5, title: "Diseño Web con HTML5+CSS– AIEP / Fundación Telefonica Movistar / SENCE", image: "/certificados/n5.jpg", provider: "AIEP / Fundación Telefónica Movistar / SENCE" },
+    { id: 6, title: "Fundamentos de CyberSeguridad / Coursera Google", image: "/certificados/n6.jpg", provider: "Google via Coursera" },
   ]
 
   const technologies = [
@@ -132,13 +122,8 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
     },
   ]
 
-  const openDiplomaModal = (diploma) => {
-    setSelectedDiploma(diploma)
-  }
-
-  const closeDiplomaModal = () => {
-    setSelectedDiploma(null)
-  }
+  const openDiplomaModal = (diploma) => setSelectedDiploma(diploma)
+  const closeDiplomaModal = () => setSelectedDiploma(null)
 
   // Componentes auxiliares
   const TagList = ({ items, className }) => (
@@ -165,7 +150,6 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
   // Modal para diplomas
   const DiplomaModal = () => {
     if (!selectedDiploma) return null
-
     return (
       <div
         className="fixed inset-0 z-50 flex items-center justify-center p-4"
@@ -179,6 +163,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
             className={`absolute -top-12 right-0 p-2 rounded-full transition-colors z-10 ${
               isDark ? "bg-gray-800 hover:bg-gray-700 text-white" : "bg-white hover:bg-gray-100 text-gray-800"
             }`}
+            aria-label="Cerrar diploma"
           >
             <X size={24} />
           </button>
@@ -188,7 +173,11 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
             <img
               src={selectedDiploma.image || "/placeholder.svg"}
               alt={selectedDiploma.title}
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
               className="w-full h-auto max-h-[80vh] object-contain"
+              onError={(e) => { e.currentTarget.src = "/placeholder.svg" }}
             />
 
             {/* Título */}
@@ -201,10 +190,61 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
     )
   }
 
+  // --------- SEO (solo cuando está visible) ----------
+  const aboutTitle = "Sobre mí — Maurizio Caballero"
+  const aboutDesc =
+    "Conoce a Maurizio Caballero: Frontend Developer (React, Next.js). Experiencia, habilidades, educación y diplomas."
+  const jsonLdPerson = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Maurizio Caballero",
+    jobTitle: "Frontend Developer",
+    description: aboutDesc,
+    knowsAbout: [...technologies, ...tools],
+    skills: technologies,
+    hasCredential: diplomas.map((d) => ({
+      "@type": "EducationalOccupationalCredential",
+      name: d.title,
+      recognizedBy: d.provider ? { "@type": "Organization", name: d.provider } : undefined,
+      url: d.image?.startsWith("/") ? undefined : d.image,
+    })),
+  }
+
   return (
     <>
+      {show && (
+        <Head>
+          <title>{aboutTitle}</title>
+          <meta name="description" content={aboutDesc} />
+          <meta name="author" content="Maurizio Caballero" />
+          <meta name="robots" content="index,follow" />
+          <meta name="theme-color" content={isDark ? "#0b0b0b" : "#f5f5f4"} />
+
+          {/* Open Graph */}
+          <meta property="og:type" content="profile" />
+          <meta property="og:site_name" content="devMauriz" />
+          <meta property="og:title" content={aboutTitle} />
+          <meta property="og:description" content={aboutDesc} />
+          <meta property="og:image" content="/assets/avatar-right2.png" />
+
+          {/* Twitter */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={aboutTitle} />
+          <meta name="twitter:description" content={aboutDesc} />
+          <meta name="twitter:image" content="/assets/avatar-right2.png" />
+
+          {/* JSON-LD Person + credenciales */}
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPerson) }} />
+        </Head>
+      )}
+
       <section
         ref={scrollContainerRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="about-title"
+        tabIndex={-1}
+        onKeyDown={handleKeyDown}
         className={`fixed inset-0 w-screen h-screen font-azonix z-40 transition-all duration-1000 ease-in-out overflow-y-auto noise-overlay ${
           show ? "transform translate-y-0" : "transform translate-y-full"
         } ${isDark ? "dark bg-gray-900 text-white" : "bg-stone-200 text-zinc-800"}`}
@@ -215,14 +255,16 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
             isDark ? "bg-gray-900/60 border-white/10" : "bg-stone-200/60 border-stone-300/50"
           }`}
         >
-          <div className="flex items-center justify-between max-w-6xl mx-auto">
-            <h1 className="title-section mb-0">Sobre mí</h1>
-            <div className="flex items-center gap-3">
-              <button onClick={toggleDarkMode} className="btn-toggle">
+          <div className="flex items-center justify-between max-w-6xl mx-auto px-4 gap-3 overflow-hidden">
+            <h1 id="about-title" className="title-section mb-0 min-w-0 truncate">
+              Sobre mí
+            </h1>
+            <div className="shrink-0 flex items-center gap-3">
+              <button onClick={toggleDarkMode} className="btn-toggle" aria-label="Cambiar tema">
                 {isDark ? "☀️" : "🌙"}
               </button>
               <button onClick={onVolverArriba} className="btn-primary">
-                <span className="text-xl">←</span> Volver
+                <span className="text-xl" aria-hidden>←</span> Volver
               </button>
             </div>
           </div>
@@ -310,7 +352,10 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
                       <img
                         src={diploma.image || "/placeholder.svg"}
                         alt={diploma.title}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-32 md:h-36 object-contain"
+                        onError={(e) => { e.currentTarget.src = "/placeholder.svg" }}
                       />
                       {/* Overlay con icono de zoom */}
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">

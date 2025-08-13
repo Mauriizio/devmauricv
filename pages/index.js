@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Head from "next/head"
 import SectionOne from "@/components/SectionOne"
 import SectionTwo from "@/components/SectionTwo"
 import SectionAbout from "@/components/SectionAbout"
@@ -15,13 +16,8 @@ export default function Home() {
   const [showProject, setShowProject] = useState(false)
   const [showContact, setShowContact] = useState(false)
 
-  const handleVerMas = () => {
-    setShowAbout(true)
-  }
-
-  const handleVolverArriba = () => {
-    setShowAbout(false)
-  }
+  const handleVerMas = () => setShowAbout(true)
+  const handleVolverArriba = () => setShowAbout(false)
 
   const handleProjectSelect = (project) => {
     setSelectedProject(project)
@@ -33,25 +29,45 @@ export default function Home() {
     setSelectedProject(null)
   }
 
+  // Snappier y sin "flash": abrimos el menú y en el siguiente frame cerramos el detalle
   const handleBackToProjects = () => {
-    // Abrir el menú inmediatamente y cerrar el proyecto con un pequeño delay
     setShowMenu(true)
-    setTimeout(() => {
-      setShowProject(false)
-      setSelectedProject(null)
-    }, 100) // Delay muy pequeño para evitar el flash
+    if (typeof window !== "undefined") {
+      requestAnimationFrame(() => {
+        setShowProject(false)
+        setSelectedProject(null)
+      })
+    }
   }
 
-  const handleContactOpen = () => {
-    setShowContact(true)
-  }
+  const handleContactOpen = () => setShowContact(true)
+  const handleContactClose = () => setShowContact(false)
 
-  const handleContactClose = () => {
-    setShowContact(false)
-  }
+  // Flags de overlay activos (para no repetir condiciones)
+  const anyOverlayOpen = showAbout || showProject || showMenu || showContact
 
   return (
     <>
+      {/* SEO básico de Home (reforzamos luego en _app con canonical + JSON-LD global) */}
+      <Head>
+        <title>Portafolio — Maurizio Caballero (Frontend)</title>
+        <meta
+          name="description"
+          content="Portafolio de Maurizio Caballero: proyectos, experiencia y contacto. Frontend Developer con React y Next.js."
+        />
+        <meta name="author" content="Maurizio Caballero" />
+        <meta name="robots" content="index,follow" />
+        <meta property="og:site_name" content="devMauriz" />
+        <meta property="og:title" content="Portafolio — Maurizio Caballero" />
+        <meta
+          property="og:description"
+          content="Proyectos, experiencia y contacto. Frontend con React/Next.js."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/assets/avatar-right2.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
+
       {/* Overlay del menú */}
       <MenuOverlay show={showMenu} onClose={() => setShowMenu(false)} onProjectSelect={handleProjectSelect} />
 
@@ -69,17 +85,19 @@ export default function Home() {
       {/* SectionContact - Posicionada como overlay */}
       <SectionContact show={showContact} onClose={handleContactClose} />
 
-      {/* Contenedor principal con scroll */}
+      {/* Contenedor principal con scroll (sin tocar tu lógica de scroll a la izquierda) */}
       <main
-        className={`flex flex-row-reverse overflow-x-auto snap-x snap-mandatory scroll-smooth w-screen h-screen transition-transform duration-1000 ease-in-out ${
-          showAbout || showProject || showMenu || showContact ? "transform -translate-y-full overflow-hidden" : ""
-        }`}
+        className={`flex flex-row-reverse overflow-x-auto snap-x snap-mandatory scroll-smooth w-screen h-screen
+          transition-transform duration-300 ease-out
+          motion-reduce:transition-none
+          ${anyOverlayOpen ? "transform -translate-y-full overflow-hidden" : ""}`}
         style={{
-          overflowX: showAbout || showProject || showMenu || showContact ? "hidden" : "auto",
+          overflowX: anyOverlayOpen ? "hidden" : "auto",
+          willChange: "transform", // hint al navegador para animar más fluido
         }}
       >
         <SectionOne onMenuOpen={() => setShowMenu(true)} onVerMas={handleVerMas} onContactOpen={handleContactOpen} />
-        <SectionTwo onMenuOpen={() => setShowMenu(true)} onVerMas={handleVerMas} />
+        <SectionTwo onMenuOpen={() => setShowMenu(true)} onVerMas={handleVerMas} onContactOpen={handleContactOpen} />
       </main>
     </>
   )
