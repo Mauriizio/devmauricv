@@ -8,7 +8,7 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
 
   return (
     <section
-      className={` relative w-screen h-screen snap-start flex-shrink-0 overflow-hidden transition-colors duration-150 ${
+      className={`relative w-screen h-dvh snap-start snap-always flex-shrink-0 overflow-hidden overscroll-none transition-colors duration-150 ${
         isDark ? "bg-black" : "bg-gray-50"
       }`}
     >
@@ -19,7 +19,7 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
         }`}
       >
         <div className="flex items-center justify-between max-w-6xl mx-auto px-4 gap-6 overflow-hidden font-azonix">
-          <h1 className={`min-w-0 truncate text-lg  font-bold ${isDark ? "text-cyan-400" : "text-cyan-600"}`}>Dev</h1>
+          <h1 className={`min-w-0 truncate text-lg font-bold ${isDark ? "text-cyan-400" : "text-cyan-600"}`}>Dev</h1>
           <button onClick={toggleDarkMode} className="btn-toggle" aria-label="Cambiar tema">
             {isDark ? "☀️" : "🌙"}
           </button>
@@ -52,15 +52,10 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
         }`}
       />
 
-      {/* Contenido (scroll vertical solo aquí) */}
+      {/* Contenido principal (sin scroll vertical) */}
       <div className="relative z-20 w-full h-full px-5 md:px-10 pt-20">
-        {/* Altura exacta: viewport - header (pt-20 = 5rem) */}
-        <div
-          className="h-[calc(100vh-5rem)] max-h-[calc(100vh-5rem)]
-                     overflow-y-auto overscroll-y-contain no-scrollbar pr-2"
-          style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
-        >
-          <div className="flex flex-col items-start gap-3 md:gap-4 max-w-[92%] font-azonix pb-6">
+        <div className="h-full min-h-0">
+          <div className="flex flex-col items-start gap-3 md:gap-4 max-w-[92%] font-azonix">
             {/* Título */}
             <h1
               className={`text-[1.6rem] leading-[1.15] md:text-4xl lg:text-5xl font-black drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)] ${
@@ -79,8 +74,8 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
               Frontend Developer
             </h1>
 
-            {/* Cards: apiladas en mobile, lado a lado en desktop */}
-            <div className="flex flex-col gap-3 md:gap-4 lg:flex-row lg:flex-wrap lg:gap-4 lg:items-start">
+            {/* Lista de skills (se mantiene) */}
+            <div className="mt-16">
               <ul
                 className={`text-sm md:text-base space-y-1.5 backdrop-blur-sm p-3 md:p-4 rounded-md leading-relaxed drop-shadow-[1px_1px_1px_rgba(0,0,0,0.9)]
                             w-[260px] sm:w-[280px] md:w-[340px] lg:w-[320px] xl:w-[360px] shrink-0
@@ -93,63 +88,55 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
                 <li>📱 Mobile-First Design</li>
                 <li>🔗 API Integrations</li>
               </ul>
-
-              <ul
-                className={`text-sm md:text-base space-y-1.5 backdrop-blur-sm p-3 md:p-4 rounded-md leading-relaxed drop-shadow-[1px_1px_1px_rgba(0,0,0,0.9)]
-                            w-[260px] sm:w-[280px] md:w-[340px] lg:w-[320px] xl:w-[360px] shrink-0
-                            ${isDark ? "text-white/90 bg-black/30" : "text-gray-800 bg-white/80"}`}
-              >
-                <li>🛠️ Git & Version Control</li>
-                <li>🌐 Web Performance</li>
-                <li>🔒 Seguridad Web</li>
-                <li>📈 SEO Optimización</li>
-                <li>📊 Analytics & Tracking</li>
-                <li>📧 Email Marketing</li>
-              </ul>
-            </div>
-
-            {/* Botones estilo SectionOne */}
-            <div className=" ml-4 flex flex-col gap-2 md:gap-2 mt-1 w-[260px] sm:w-[280px] md:w-[340px] lg:w-auto lg:max-w-[760px]">
-              <button
-                type="button"
-                className="text-left whitespace-nowrap leading-none tracking-tight 
-                           text-3xl md:text-4xl lg:text-6xl xl:text-2xl
-                           font-black text-cyan-700 transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
-              >
-                Descargar CV
-              </button>
-
-              <button
-                type="button"
-                onClick={onMenuOpen}
-                className="text-left whitespace-nowrap leading-none tracking-tight
-                           text-3xl md:text-4xl lg:text-6xl xl:text-6xl
-                           font-black text-cyan-700 transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
-              >
-                Ver proyectos
-              </button>
-
-              <button
-                type="button"
-                onClick={onVerMas}
-                className="text-left whitespace-nowrap leading-none tracking-tight
-                           text-3xl md:text-4xl lg:text-6xl xl:text-2xl
-                           font-black text-cyan-700 transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
-              >
-                Más sobre mí
-              </button>
-
-              <button
-                type="button"
-                onClick={onContactOpen}
-                className="text-left whitespace-nowrap leading-none tracking-tight
-                           text-3xl md:text-4xl lg:text-6xl xl:text-5xl
-                           font-black text-cyan-700 transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
-              >
-                Contacto
-              </button>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* === Botones estilo SectionOne, fijados en esquina inferior izquierda === */}
+      <div
+        className=" font-azonix absolute z-30 left-4 bottom-4 md:left-8 md:bottom-6"
+        style={{ paddingBottom: "env(safe-area-inset-bottom)" }}  // respeta notch en iOS
+      >
+        <div className="flex flex-col items-start gap-4 md:gap-5">
+          <button
+            type="button"
+            className="text-left whitespace-nowrap leading-none tracking-tight
+                       text-3xl md:text-4xl font-black text-cyan-700
+                       transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
+          >
+            Descargar CV
+          </button>
+
+          <button
+            type="button"
+            onClick={onMenuOpen}
+            className="text-left whitespace-nowrap leading-none tracking-tight
+                       text-3xl md:text-4xl font-black text-cyan-700
+                       transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
+          >
+            Ver proyectos
+          </button>
+
+          <button
+            type="button"
+            onClick={onVerMas}
+            className="text-left whitespace-nowrap leading-none tracking-tight
+                       text-3xl md:text-4xl font-black text-cyan-700
+                       transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
+          >
+            Más sobre mí
+          </button>
+
+          <button
+            type="button"
+            onClick={onContactOpen}
+            className="text-left whitespace-nowrap leading-none tracking-tight
+                       text-3xl md:text-4xl font-black text-cyan-700
+                       transition-all duration-300 ease-out hover:scale-105 hover:translate-x-2"
+          >
+            Contacto
+          </button>
         </div>
       </div>
     </section>

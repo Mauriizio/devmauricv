@@ -18,13 +18,13 @@ export default function Document() {
         />
 
         {/* Precarga de fuente local (si la usas en <body>) */}
-        <link
+        {/* <link
           rel="preload"
           as="font"
           href="/fonts/Azonix.otf"
           type="font/otf"
           crossOrigin="anonymous"
-        />
+        /> */}
 
         {/* Favicon (coloca /public/favicon.ico en tu proyecto) */}
         <link rel="icon" href="/favicon.ico" sizes="any" />

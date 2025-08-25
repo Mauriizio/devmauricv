@@ -18,7 +18,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
 
   return (
     <section
-      className={`relative w-screen h-screen snap-start flex-shrink-0 overflow-hidden transition-colors duration-500 ${
+      className={`relative w-screen h-dvh snap-start snap-always flex-shrink-0 overflow-hidden overscroll-none transition-colors duration-500 ${
         isDark ? "bg-black" : "bg-gray-50"
       }`}
     >
@@ -95,8 +95,8 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
 
           {/* Bloque de Proyectos con icono */}
           <div className="flex flex-col items-end gap-4 mb-2">
-            
-            <button id="ver-portfolio"
+            <button
+              id="ver-portfolio"
               onClick={onMenuOpen}
               className="group flex items-center gap-0 text-black transition-all duration-300 ease-out hover:scale-110 hover:text-fuchsia-400 hover:translate-x-2"
             >

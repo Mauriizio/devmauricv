@@ -122,11 +122,11 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
                         transition={{ delay: index * 0.06, duration: 0.22 }}
                         whileHover={{ scale: 1.02, y: -2 }}
                         whileTap={{ scale: 0.98 }}
-                        onClick={() => { onProjectSelect(proj); onClose(); }}
+                        onClick={() => { onProjectSelect(proj) }}
                         className="group rounded-2xl overflow-hidden border border-stone-300/70 dark:border-white/10 shadow-lg bg-white/60 dark:bg-white/5 text-left"
                       >
                         {/* Imagen con aspect-video para que siempre llene el card */}
-                        <div className="relative w-full aspect-video overflow-hidden">
+                       <div className="relative w-full aspect-video overflow-hidden bg-white dark:bg-white">
                           <img
                             src={proj.icon || proj.image || "/placeholder.svg"}
                             alt={proj.title || proj.id}
