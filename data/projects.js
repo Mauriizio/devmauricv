@@ -4,7 +4,12 @@ export const projectsData = [
     id: "mecanica-int",
     slug: "mecanica-intercontinental",
     title: "El Intercontinental",
-    image: "/assets/proyecto1.png",
+    icon: "/assets/mec/icon-mec.webp",
+    detailImage: "/assets/mec/mec-1.webp", 
+    contentImage: "/assets/mec/mec-2.webp",
+    extraImage: "/assets/mec/mec-3.webp",
+    ogImage: "/assets/coriolisacc/og.webp",
+    image: "/assets/coriolisacc/icon-mec.webp",
     description:
       "Sitio web desarrollado para Mecánica El Intercontinental, un taller mecánico que buscaba aumentar su clientela. La página mejoró su presencia digital y facilitó el contacto directo. Además, implementé una campaña de publicidad con Google Ads, lo que incrementó notablemente las llamadas y solicitudes de servicios.",
     technologies: ["React", "Tailwind CSS", "JavaScript", "WhatsApp API", "Responsive Design", "Google ADS"],
@@ -54,41 +59,71 @@ export const projectsData = [
   },
 
   {
-    id: "javascript",
-    title: "Aplicación JavaScript ES6+",
-    image: "/assets/project-js.jpg",
-    description:
-      "Una aplicación web interactiva desarrollada con JavaScript moderno (ES6+), implementando patrones de diseño avanzados y mejores prácticas de desarrollo.",
-    technologies: ["JavaScript ES6+", "Webpack", "Babel", "ESLint", "Jest"],
+    
+    id: "dulcessecretos",
+    slug: "duleces-secretos",
+    title: "Dulces Secretos",
+
+    // Miniatura del menú
+    icon: "/assets/dulces/icon-dul.webp",
+
+    // Imágenes del detalle
+    detailImage: "/assets/coriolisacc/hero.webp",     // HERO inicial
+    contentImage: "/assets/coriolisacc/cor-2.webp", // grande tras la descripción
+    extraImage: "/assets/coriolisacc/cor-3.webp",     // grande tras retos/soluciones
+
+    // (Opcional) Imagen para Open Graph/Twitter
+    ogImage: "/assets/coriolisacc/og.webp",
+
+    // Fallback (compatibilidad con código previo)
+    image: "/assets/coriolisacc/cover.webp",
+
+    description: "Página web para emprendimiento local, con tienda online.",
+    technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
     challenges:
-      "Manejar la complejidad del estado de la aplicación sin un framework fue desafiante. Implementé un patrón de arquitectura personalizado inspirado en Redux para mantener el código organizado y escalable.",
+      "Crear colecciones por temporada y categorizar productos, yendo más allá del desarrollo hacia la creación visual de assets con IA.",
     features: [
-      "Arquitectura modular escalable",
-      "Manejo avanzado del DOM",
-      "Programación asíncrona con async/await",
-      "Testing unitario completo",
+      "Animaciones CSS complejas",
+      "Layouts avanzados con Grid y Flexbox",
+      "Efectos visuales modernos",
+      "Optimización de rendimiento",
     ],
-    githubUrl: "https://github.com/tuusuario/proyecto-javascript",
-    liveUrl: "https://tu-proyecto-js.vercel.app",
+    githubUrl: "https://github.com/Mauriizio/sturdy-rotary-phone",
+    liveUrl: "https://www.dulcessecretos.online/",
   },
 
   {
-    id: "react",
-    title: "Aplicación React Moderna",
-    image: "/assets/project-react.jpg",
-    description:
-      "Una aplicación web completa desarrollada con React, implementando hooks personalizados, context API, y las mejores prácticas de desarrollo moderno.",
-    technologies: ["React", "React Hooks", "Context API", "React Router", "Styled Components"],
+    
+    id: "lcl",
+    slug: "chamitos-locos",
+    title: "Los Chamitos Locos",
+
+    // Miniatura del menú
+    icon: "/assets/lcl/icon-lcl.webp",
+
+    // Imágenes del detalle
+    detailImage: "/assets/coriolisacc/hero.webp",     // HERO inicial
+    contentImage: "/assets/coriolisacc/cor-2.webp", // grande tras la descripción
+    extraImage: "/assets/coriolisacc/cor-3.webp",     // grande tras retos/soluciones
+
+    // (Opcional) Imagen para Open Graph/Twitter
+    ogImage: "/assets/coriolisacc/og.webp",
+
+    // Fallback (compatibilidad con código previo)
+    image: "/assets/coriolisacc/cover.webp",
+
+    description: "Página web para emprendimiento local, con tienda online.",
+    technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
     challenges:
-      "Optimizar el rendimiento de la aplicación con grandes cantidades de datos fue crucial. Implementé técnicas como memoización, lazy loading y virtualización para mantener una experiencia fluida.",
+      "Crear colecciones por temporada y categorizar productos, yendo más allá del desarrollo hacia la creación visual de assets con IA.",
     features: [
-      "Hooks personalizados reutilizables",
-      "Gestión de estado con Context API",
-      "Routing dinámico",
-      "Optimización de rendimiento avanzada",
+      "Animaciones CSS complejas",
+      "Layouts avanzados con Grid y Flexbox",
+      "Efectos visuales modernos",
+      "Optimización de rendimiento",
     ],
-    githubUrl: "https://github.com/tuusuario/proyecto-react",
-    liveUrl: "https://tu-proyecto-react.vercel.app",
+    githubUrl: "https://github.com/Mauriizio/sturdy-rotary-phone",
+    liveUrl: "https://www.dulcessecretos.online/",
   },
 
   {
