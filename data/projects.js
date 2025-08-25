@@ -102,20 +102,20 @@ export const projectsData = [
     icon: "/assets/lcl/icon-lcl.webp",
 
     // Imágenes del detalle
-    detailImage: "/assets/coriolisacc/hero.webp",     // HERO inicial
-    contentImage: "/assets/coriolisacc/cor-2.webp", // grande tras la descripción
-    extraImage: "/assets/coriolisacc/cor-3.webp",     // grande tras retos/soluciones
+    detailImage: "/assets/lcl/lcl (2).webp",     // HERO inicial
+    contentImage: "/assets/lcl/lcl (3).webp", // grande tras la descripción
+    extraImage: "/assets/lcl/lcl (1).webp",     // grande tras retos/soluciones
 
     // (Opcional) Imagen para Open Graph/Twitter
     ogImage: "/assets/coriolisacc/og.webp",
 
     // Fallback (compatibilidad con código previo)
-    image: "/assets/coriolisacc/cover.webp",
+    image: "/assets/lcl/icon-lcl.webp",
 
-    description: "Página web para emprendimiento local, con tienda online.",
+    description: "Página web para grupo musical venezolano.",
     technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
     challenges:
-      "Crear colecciones por temporada y categorizar productos, yendo más allá del desarrollo hacia la creación visual de assets con IA.",
+      "Crear Tours Date y categorizar eventos, yendo más allá del desarrollo hacia la creación visual de assets con IA.",
     features: [
       "Animaciones CSS complejas",
       "Layouts avanzados con Grid y Flexbox",
@@ -126,42 +126,5 @@ export const projectsData = [
     liveUrl: "https://www.dulcessecretos.online/",
   },
 
-  {
-    id: "nextjs",
-    title: "Aplicación Next.js Full-Stack",
-    image: "/assets/project-nextjs.jpg",
-    description:
-      "Una aplicación full-stack desarrollada con Next.js, implementando SSR, API routes, y optimizaciones avanzadas para producción.",
-    technologies: ["Next.js", "React", "API Routes", "SSR/SSG", "Vercel"],
-    challenges:
-      "Balancear el rendimiento entre SSR y CSR fue complejo. Implementé una estrategia híbrida usando ISR (Incremental Static Regeneration) para obtener lo mejor de ambos mundos.",
-    features: [
-      "Server-Side Rendering optimizado",
-      "API Routes integradas",
-      "Optimización automática de imágenes",
-      "Deploy automático con Vercel",
-    ],
-    githubUrl: "https://github.com/tuusuario/proyecto-nextjs",
-    liveUrl: "https://tu-proyecto-nextjs.vercel.app",
-  },
-
-  {
-    id: "tailwind",
-    title: "UI Kit con Tailwind CSS",
-    image: "/assets/project-tailwind.jpg",
-    description:
-      "Un sistema de diseño completo y biblioteca de componentes desarrollada con Tailwind CSS, enfocada en la reutilización y consistencia visual.",
-    technologies: ["Tailwind CSS", "PostCSS", "Storybook", "React", "TypeScript"],
-    challenges:
-      "Crear un sistema de diseño escalable y mantenible requería una arquitectura cuidadosa. Desarrollé un sistema de tokens de diseño y componentes modulares que facilitan la consistencia en proyectos grandes.",
-    features: [
-      "Sistema de tokens de diseño",
-      "Componentes reutilizables",
-      "Documentación interactiva",
-      "Temas personalizables",
-    ],
-    githubUrl: "https://github.com/tuusuario/proyecto-tailwind",
-    liveUrl: "https://tu-ui-kit-tailwind.vercel.app",
-  },
 ]
 // --- End of code ---
