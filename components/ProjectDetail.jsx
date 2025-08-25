@@ -4,15 +4,19 @@
 import { useEffect, useRef, useState } from "react"
 import Head from "next/head"
 import Image from "next/image"
+import { createPortal } from "react-dom"
 import { useTheme } from "@/context/ThemeContext"
 
 export default function ProjectDetail({ show, project, onClose, onBackToProjects }) {
   const scrollContainerRef = useRef(null)
   const { isDark, toggleDarkMode } = useTheme()
 
-  // Lightbox
+  // Lightbox (portal)
   const [lightboxSrc, setLightboxSrc] = useState(null)
   const [zoomed, setZoomed] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => { setMounted(true) }, [])
 
   // Reset scroll cuando se abre el componente
   useEffect(() => {
@@ -21,17 +25,22 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
     }
   }, [show])
 
-  // Cerrar lightbox con ESC
+  // Cerrar lightbox con ESC y bloquear scroll del fondo
   useEffect(() => {
     if (!lightboxSrc) return
     const onKey = (e) => { if (e.key === "Escape") { setLightboxSrc(null); setZoomed(false) } }
     window.addEventListener("keydown", onKey)
-    return () => window.removeEventListener("keydown", onKey)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      window.removeEventListener("keydown", onKey)
+      document.body.style.overflow = prev
+    }
   }, [lightboxSrc])
 
   if (!project) return null
 
-  // ------- Imágenes del proyecto (con fallbacks seguros) -------
+  // ------- Imágenes del proyecto (con fallbacks) -------
   const heroImage =
     project.detailImage ||
     project.images?.hero ||
@@ -52,7 +61,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
     project.image ||
     heroImage
 
-  // ------- SEO dinámico -------
+  // ------- SEO -------
   const description =
     project.seoDescription ||
     project.description ||
@@ -83,6 +92,27 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
   const openLightbox = (src) => { setLightboxSrc(src); setZoomed(false) }
   const closeLightbox = () => { setLightboxSrc(null); setZoomed(false) }
   const toggleZoom = () => setZoomed((z) => !z)
+
+  // Nodo del lightbox (lo enviamos a portal)
+  const lightboxNode = lightboxSrc ? (
+    <div
+      role="dialog"
+      aria-modal="true"
+      className="fixed inset-0 z-[1000] bg-black/90 flex items-center justify-center p-2 md:p-6"
+      onClick={(e) => { if (e.target === e.currentTarget) closeLightbox() }}
+    >
+      <img
+        src={lightboxSrc}
+        alt=""
+        draggable={false}
+        onDoubleClick={toggleZoom}
+        className={`max-w-full max-h-full object-contain select-none transition-transform duration-200 ${
+          zoomed ? "scale-[1.5] md:scale-[2]" : "scale-100"
+        }`}
+        style={{ cursor: zoomed ? "zoom-out" : "zoom-in" }}
+      />
+    </div>
+  ) : null
 
   return (
     <section
@@ -310,26 +340,9 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
         </div>
       </div>
 
-      {/* Lightbox (sin textos ni avisos) */}
-      {lightboxSrc && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center p-2 md:p-6"
-          onClick={(e) => { if (e.target === e.currentTarget) closeLightbox() }}
-        >
-          <img
-            src={lightboxSrc}
-            alt=""
-            draggable={false}
-            onDoubleClick={toggleZoom}
-            className={`max-w-full max-h-full object-contain select-none transition-transform duration-200 ${
-              zoomed ? "scale-[1.5] md:scale-[2]" : "scale-100"
-            }`}
-            style={{ cursor: zoomed ? "zoom-out" : "zoom-in" }}
-          />
-        </div>
-      )}
+      {/* Lightbox en portal (evita “salir arriba” del contenedor con transform) */}
+      {mounted && lightboxNode && createPortal(lightboxNode, document.body)}
     </section>
   )
 }
+// --- End of code ---

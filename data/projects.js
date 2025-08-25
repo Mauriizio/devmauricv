@@ -30,8 +30,8 @@ export const projectsData = [
 
     // Imágenes del detalle
     detailImage: "/assets/coriolisacc/hero.webp",     // HERO inicial
-    contentImage: "/assets/coriolisacc/content.webp", // grande tras la descripción
-    extraImage: "/assets/coriolisacc/extra.webp",     // grande tras retos/soluciones
+    contentImage: "/assets/coriolisacc/cor-2.webp", // grande tras la descripción
+    extraImage: "/assets/coriolisacc/cor-3.webp",     // grande tras retos/soluciones
 
     // (Opcional) Imagen para Open Graph/Twitter
     ogImage: "/assets/coriolisacc/og.webp",

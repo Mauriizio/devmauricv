@@ -132,7 +132,7 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
                             alt={proj.title || proj.id}
                             loading="lazy"
                             decoding="async"
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            className="absolute inset-0 w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
                             onError={(e) => { e.currentTarget.src = "/placeholder.svg" }}
                           />
                         </div>
@@ -152,6 +152,35 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
                   </p>
                 </div>
               </div>
+
+              {/* Información adicional */}
+                <div className="card-primary">
+                  <h3 className="title-section flex items-center gap-3">
+                    <span className="text-xl md:text-2xl">💡</span> Sobre mis proyectos
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-4 font-sans">
+                    <div className="space-y-3">
+                      <h4 className="title-subsection">Tecnologías principales:</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {["React.js", "Next.js", "Tailwind CSS", "JavaScript", "TypeScript"].map((tech) => (
+                          <div key={tech} className="tag-tech">
+                            {tech}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      <h4 className="title-subsection">Enfoque de desarrollo:</h4>
+                      <ul className="space-y-1 text-responsive text-zinc-600 dark:text-gray-300">
+                        <li>• Diseño responsive y mobile-first</li>
+                        <li>• Optimización de rendimiento</li>
+                        <li>• Código limpio y mantenible</li>
+                        <li>• Experiencia de usuario intuitiva</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              
 
               {/* CTA final */}
               <div className="text-center py-4 md:py-6">
