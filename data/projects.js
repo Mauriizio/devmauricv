@@ -1,43 +1,58 @@
+// data/projects.js
 export const projectsData = [
   {
     id: "mecanica-int",
+    slug: "mecanica-intercontinental",
     title: "El Intercontinental",
-    image: "/assets/proyecto1.png", // Cambia por tu imagen
+    image: "/assets/proyecto1.png",
     description:
-  "Sitio web desarrollado para Mecánica El Intercontinental, un taller mecánico que buscaba aumentar su clientela. La página mejoró su presencia digital y facilitó el contacto directo. Además, implementé una campaña de publicidad con Google Ads, lo que incrementó notablemente las llamadas y solicitudes de servicios.",
-technologies: ["React", "Tailwind CSS", "JavaScript", "WhatsApp API", "Responsive Design", "Google ADS"],
-challenges:
-  "El reto principal fue lograr una interfaz moderna, rápida y totalmente adaptada a móviles, manteniendo una experiencia fluida y profesional en todos los dispositivos.",
-features: [
-  "Diseño completamente responsivo",
-  "Integración con la API de WhatsApp",
-  "Optimización básica para SEO local",
-  "Campaña activa con Google Ads",
-],
-
+      "Sitio web desarrollado para Mecánica El Intercontinental, un taller mecánico que buscaba aumentar su clientela. La página mejoró su presencia digital y facilitó el contacto directo. Además, implementé una campaña de publicidad con Google Ads, lo que incrementó notablemente las llamadas y solicitudes de servicios.",
+    technologies: ["React", "Tailwind CSS", "JavaScript", "WhatsApp API", "Responsive Design", "Google ADS"],
+    challenges:
+      "El reto principal fue lograr una interfaz moderna, rápida y totalmente adaptada a móviles, manteniendo una experiencia fluida y profesional en todos los dispositivos.",
+    features: [
+      "Diseño completamente responsivo",
+      "Integración con la API de WhatsApp",
+      "Optimización básica para SEO local",
+      "Campaña activa con Google Ads",
+    ],
     githubUrl: "https://github.com/Mauriizio/webmecanic",
     liveUrl: "https://www.mecanicaelintercontinental.com/",
   },
 
-
   {
-    id: "css3",
-    title: "Proyecto CSS3 Avanzado",
-    image: "/assets/project-css.jpg",
-    description:
-      "Un showcase de técnicas avanzadas de CSS3 incluyendo animaciones complejas, grid layouts, y efectos visuales modernos. Demuestra el poder del CSS moderno para crear interfaces atractivas.",
-    technologies: ["CSS3", "Sass", "CSS Grid", "Flexbox", "Animations"],
+    id: "coriolis",
+    slug: "coriolis-accesorios",
+    title: "Coriolis Accesorios",
+
+    // Miniatura del menú
+    icon: "/assets/coriolisacc/cover.webp",
+
+    // Imágenes del detalle
+    detailImage: "/assets/coriolisacc/hero.webp",     // HERO inicial
+    contentImage: "/assets/coriolisacc/content.webp", // grande tras la descripción
+    extraImage: "/assets/coriolisacc/extra.webp",     // grande tras retos/soluciones
+
+    // (Opcional) Imagen para Open Graph/Twitter
+    ogImage: "/assets/coriolisacc/og.webp",
+
+    // Fallback (compatibilidad con código previo)
+    image: "/assets/coriolisacc/cover.webp",
+
+    description: "Página web para emprendimiento local, con tienda online.",
+    technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
     challenges:
-      "Crear animaciones fluidas y complejas manteniendo el rendimiento óptimo fue el mayor desafío. Implementé técnicas de optimización como will-change y transform3d para aprovechar la aceleración por hardware.",
+      "Crear colecciones por temporada y categorizar productos, yendo más allá del desarrollo hacia la creación visual de assets con IA.",
     features: [
       "Animaciones CSS complejas",
       "Layouts avanzados con Grid y Flexbox",
       "Efectos visuales modernos",
       "Optimización de rendimiento",
     ],
-    githubUrl: "https://github.com/tuusuario/proyecto-css3",
-    liveUrl: "https://tu-proyecto-css3.vercel.app",
+    githubUrl: "https://github.com/Mauriizio/coriolis",
+    liveUrl: "https://www.coriolisaccesorios.store/",
   },
+
   {
     id: "javascript",
     title: "Aplicación JavaScript ES6+",
@@ -56,6 +71,7 @@ features: [
     githubUrl: "https://github.com/tuusuario/proyecto-javascript",
     liveUrl: "https://tu-proyecto-js.vercel.app",
   },
+
   {
     id: "react",
     title: "Aplicación React Moderna",
@@ -74,6 +90,7 @@ features: [
     githubUrl: "https://github.com/tuusuario/proyecto-react",
     liveUrl: "https://tu-proyecto-react.vercel.app",
   },
+
   {
     id: "nextjs",
     title: "Aplicación Next.js Full-Stack",
@@ -92,6 +109,7 @@ features: [
     githubUrl: "https://github.com/tuusuario/proyecto-nextjs",
     liveUrl: "https://tu-proyecto-nextjs.vercel.app",
   },
+
   {
     id: "tailwind",
     title: "UI Kit con Tailwind CSS",
@@ -111,3 +129,4 @@ features: [
     liveUrl: "https://tu-ui-kit-tailwind.vercel.app",
   },
 ]
+// --- End of code ---

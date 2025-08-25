@@ -1,6 +1,7 @@
+// components/ProjectDetail.jsx
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import Head from "next/head"
 import Image from "next/image"
 import { useTheme } from "@/context/ThemeContext"
@@ -9,6 +10,10 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
   const scrollContainerRef = useRef(null)
   const { isDark, toggleDarkMode } = useTheme()
 
+  // Lightbox
+  const [lightboxSrc, setLightboxSrc] = useState(null)
+  const [zoomed, setZoomed] = useState(false)
+
   // Reset scroll cuando se abre el componente
   useEffect(() => {
     if (show && scrollContainerRef.current) {
@@ -16,14 +21,43 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
     }
   }, [show])
 
+  // Cerrar lightbox con ESC
+  useEffect(() => {
+    if (!lightboxSrc) return
+    const onKey = (e) => { if (e.key === "Escape") { setLightboxSrc(null); setZoomed(false) } }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [lightboxSrc])
+
   if (!project) return null
 
-  // ------- SEO dinámico (sin hooks extras) -------
+  // ------- Imágenes del proyecto (con fallbacks seguros) -------
+  const heroImage =
+    project.detailImage ||
+    project.images?.hero ||
+    project.image ||
+    "/placeholder.svg?height=400&width=800"
+
+  const contentImage =
+    project.contentImage ||
+    project.images?.content ||
+    project.images?.section ||
+    project.image ||
+    heroImage
+
+  const extraImage =
+    project.extraImage ||
+    project.images?.extra ||
+    project.images?.afterChallenges ||
+    project.image ||
+    heroImage
+
+  // ------- SEO dinámico -------
   const description =
     project.seoDescription ||
     project.description ||
     `Proyecto "${project.title}" de Maurizio Caballero: características, stack y enlaces.`
-  const ogImage = project.image || "/placeholder.svg?height=400&width=800"
+  const ogImage = project.ogImage || heroImage
 
   const preconnectHosts = (() => {
     const hosts = []
@@ -37,16 +71,18 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
     "@type": "SoftwareSourceCode",
     name: project.title || "Proyecto",
     description,
-    author: {
-      "@type": "Person",
-      name: "Maurizio Caballero",
-    },
+    author: { "@type": "Person", name: "Maurizio Caballero" },
     programmingLanguage: project.technologies || [],
     codeRepository: project.githubUrl || undefined,
     url: project.liveUrl || undefined,
     image: ogImage,
     keywords: Array.isArray(project.technologies) ? project.technologies.join(", ") : undefined,
   }
+
+  // Helpers lightbox
+  const openLightbox = (src) => { setLightboxSrc(src); setZoomed(false) }
+  const closeLightbox = () => { setLightboxSrc(null); setZoomed(false) }
+  const toggleZoom = () => setZoomed((z) => !z)
 
   return (
     <section
@@ -122,22 +158,27 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
         </div>
 
         <div className="space-y-12 md:space-y-16">
-          {/* Imagen principal del proyecto */}
+          {/* 1) Imagen principal (Hero) */}
           <div className="card-secondary">
             <h3 className="title-section flex items-center gap-3">
               <span className="text-2xl md:text-4xl">🖼️</span> Vista previa
             </h3>
-            <div className="relative w-full h-64 md:h-96 rounded-xl overflow-hidden border border-stone-300 shadow-lg">
+            <button
+              type="button"
+              onClick={() => openLightbox(heroImage)}
+              className="relative w-full h-64 md:h-96 rounded-xl overflow-hidden border border-stone-300 shadow-lg cursor-zoom-in"
+              aria-label="Abrir imagen en grande"
+            >
               <Image
-                src={ogImage}
-                alt={project.title}
+                src={heroImage}
+                alt={`${project.title} — Hero`}
                 fill
                 sizes="(max-width: 768px) 100vw, 960px"
                 priority={false}
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-            </div>
+            </button>
           </div>
 
           {/* Descripción detallada */}
@@ -146,6 +187,29 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
               <span className="text-2xl md:text-4xl">📋</span> Descripción del Proyecto
             </h3>
             <p className="text-responsive text-zinc-600 font-sans">{project.description}</p>
+          </div>
+
+          {/* 2) Imagen de contenido */}
+          <div className="card-secondary">
+            <h3 className="title-section flex items-center gap-3">
+              <span className="text-2xl md:text-4xl">🧭</span> Vista de contenido
+            </h3>
+            <button
+              type="button"
+              onClick={() => openLightbox(contentImage)}
+              className="relative w-full h-64 md:h-96 rounded-xl overflow-hidden border border-stone-300 shadow-lg cursor-zoom-in"
+              aria-label="Abrir imagen en grande"
+            >
+              <Image
+                src={contentImage}
+                alt={`${project.title} — Contenido`}
+                fill
+                sizes="(max-width: 768px) 100vw, 960px"
+                priority={false}
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </button>
           </div>
 
           {/* Tecnologías utilizadas */}
@@ -170,6 +234,29 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
             <div className="card-primary">
               <p className="text-responsive text-zinc-600 font-sans">{project.challenges}</p>
             </div>
+          </div>
+
+          {/* 3) Imagen adicional (después de retos) */}
+          <div className="card-secondary">
+            <h3 className="title-section flex items-center gap-3">
+              <span className="text-2xl md:text-4xl">🖼️</span> Otra vista
+            </h3>
+            <button
+              type="button"
+              onClick={() => openLightbox(extraImage)}
+              className="relative w-full h-64 md:h-96 rounded-xl overflow-hidden border border-stone-300 shadow-lg cursor-zoom-in"
+              aria-label="Abrir imagen en grande"
+            >
+              <Image
+                src={extraImage}
+                alt={`${project.title} — Vista adicional`}
+                fill
+                sizes="(max-width: 768px) 100vw, 960px"
+                priority={false}
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </button>
           </div>
 
           {/* Características destacadas */}
@@ -222,6 +309,27 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
           </div>
         </div>
       </div>
+
+      {/* Lightbox (sin textos ni avisos) */}
+      {lightboxSrc && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center p-2 md:p-6"
+          onClick={(e) => { if (e.target === e.currentTarget) closeLightbox() }}
+        >
+          <img
+            src={lightboxSrc}
+            alt=""
+            draggable={false}
+            onDoubleClick={toggleZoom}
+            className={`max-w-full max-h-full object-contain select-none transition-transform duration-200 ${
+              zoomed ? "scale-[1.5] md:scale-[2]" : "scale-100"
+            }`}
+            style={{ cursor: zoomed ? "zoom-out" : "zoom-in" }}
+          />
+        </div>
+      )}
     </section>
   )
 }

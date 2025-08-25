@@ -1,3 +1,4 @@
+// pages/index.js
 "use client"
 
 import { useState } from "react"
@@ -8,6 +9,7 @@ import SectionAbout from "@/components/SectionAbout"
 import MenuOverlay from "@/components/MenuOverlay"
 import ProjectDetail from "@/components/ProjectDetail"
 import SectionContact from "@/components/SectionContact"
+
 
 export default function Home() {
   const [showMenu, setShowMenu] = useState(false)
@@ -46,9 +48,12 @@ export default function Home() {
   // Flags de overlay activos (para no repetir condiciones)
   const anyOverlayOpen = showAbout || showProject || showMenu || showContact
 
+  // Canonical opcional (definir NEXT_PUBLIC_SITE_URL en tu .env)
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+
   return (
     <>
-      {/* SEO básico de Home (reforzamos luego en _app con canonical + JSON-LD global) */}
+      {/* SEO básico de Home */}
       <Head>
         <title>Portafolio — Maurizio Caballero (Frontend)</title>
         <meta
@@ -66,10 +71,15 @@ export default function Home() {
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/assets/avatar-right2.png" />
         <meta name="twitter:card" content="summary_large_image" />
+        {siteUrl ? <link rel="canonical" href={siteUrl} /> : null}
       </Head>
 
       {/* Overlay del menú */}
-      <MenuOverlay show={showMenu} onClose={() => setShowMenu(false)} onProjectSelect={handleProjectSelect} />
+      <MenuOverlay
+        show={showMenu}
+        onClose={() => setShowMenu(false)}
+        onProjectSelect={handleProjectSelect}
+      />
 
       {/* ProjectDetail - Overlay para proyectos */}
       <ProjectDetail
@@ -80,7 +90,11 @@ export default function Home() {
       />
 
       {/* SectionAbout - Posicionada como overlay */}
-      <SectionAbout show={showAbout} onVolverArriba={handleVolverArriba} onContactOpen={handleContactOpen} />
+      <SectionAbout
+        show={showAbout}
+        onVolverArriba={handleVolverArriba}
+        onContactOpen={handleContactOpen}
+      />
 
       {/* SectionContact - Posicionada como overlay */}
       <SectionContact show={showContact} onClose={handleContactClose} />
@@ -96,8 +110,16 @@ export default function Home() {
           willChange: "transform", // hint al navegador para animar más fluido
         }}
       >
-        <SectionOne onMenuOpen={() => setShowMenu(true)} onVerMas={handleVerMas} onContactOpen={handleContactOpen} />
-        <SectionTwo onMenuOpen={() => setShowMenu(true)} onVerMas={handleVerMas} onContactOpen={handleContactOpen} />
+        <SectionOne
+          onMenuOpen={() => setShowMenu(true)}
+          onVerMas={handleVerMas}
+          onContactOpen={handleContactOpen}
+        />
+        <SectionTwo
+          onMenuOpen={() => setShowMenu(true)}
+          onVerMas={handleVerMas}
+          onContactOpen={handleContactOpen}
+        />
       </main>
     </>
   )

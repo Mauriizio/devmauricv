@@ -1,3 +1,4 @@
+// components/MenuOverlay.jsx
 "use client"
 
 import { useEffect, useRef } from "react"
@@ -5,15 +6,6 @@ import Head from "next/head"
 import { motion, AnimatePresence } from "framer-motion"
 import { projectsData } from "@/data/projects"
 import { useTheme } from "@/context/ThemeContext"
-
-const projectIcons = [
-  { id: "mecanica-int", name: "Mecanica Intercontinental", icon: "/assets/proyecto1.png", color: "bg-orange-500" },
-  { id: "css3",          name: "CSS3",                    icon: "/logos/lcss.png",       color: "bg-blue-500" },
-  { id: "javascript",    name: "JavaScript",              icon: "/logos/ljs.png",        color: "bg-yellow-400" },
-  { id: "react",         name: "React",                   icon: "/logos/lwor.png",       color: "bg-cyan-400" },
-  { id: "nextjs",        name: "Next.js",                 icon: "/logos/lwor.png",      color: "bg-gray-700" },
-  { id: "tailwind",      name: "Tailwind",                icon: "/logos/lwor.png",  color: "bg-teal-500" },
-]
 
 export default function MenuOverlay({ show, onClose, onProjectSelect }) {
   const { isDark, toggleDarkMode } = useTheme()
@@ -26,17 +18,12 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
     }
   }, [show])
 
-  const handleProjectClick = (projectId) => {
-    const project = projectsData.find((p) => p.id === projectId)
-    if (project) {
-      onProjectSelect(project)
-      onClose()
-    }
-  }
-
+  // Manejo de teclado (ESC para cerrar)
   const handleKeyDown = (e) => {
     if (e.key === "Escape") onClose?.()
   }
+
+  const menuProjects = Array.isArray(projectsData) ? projectsData : []
 
   // SEO (solo al abrir para no duplicar metas)
   const seoDescription =
@@ -45,10 +32,10 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Proyectos de Maurizio Caballero",
-    itemListElement: projectIcons.map((p, idx) => ({
+    itemListElement: menuProjects.map((p, idx) => ({
       "@type": "ListItem",
       position: idx + 1,
-      name: p.name,
+      name: p.title || p.id,
       url: `#project-${p.id}`,
     })),
   }
@@ -106,9 +93,9 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
               </div>
             </div>
 
-            {/* Contenido principal */}
+            {/* Contenido */}
             <div className="relative max-w-6xl mx-auto p-4 md:p-6 space-y-8 md:space-y-12 z-10">
-              {/* Introducción */}
+              {/* Intro */}
               <div className="text-center space-y-3 md:space-y-4 py-4 md:py-6">
                 <h2 className="title-main mb-3">Mis Proyectos</h2>
                 <p className="text-intro max-w-4xl mx-auto font-sans">
@@ -123,31 +110,40 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
                     <span className="text-xl md:text-2xl">🚀</span> Selecciona un proyecto
                   </h3>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
-                    {projectIcons.map((proj, index) => (
-                      <motion.div
+                  {/* 1 col en mobile, 2 cols en md+; cards grandes y consistentes */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                    {menuProjects.map((proj, index) => (
+                      <motion.button
+                        type="button"
                         key={proj.id}
                         id={`project-${proj.id}`}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.06, duration: 0.22 }}
-                        whileHover={{ scale: 1.05, y: -4 }}
-                        whileTap={{ scale: 0.96 }}
-                        onClick={() => handleProjectClick(proj.id)}
-                        className="project-card"
+                        whileHover={{ scale: 1.02, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => { onProjectSelect(proj); onClose(); }}
+                        className="group rounded-2xl overflow-hidden border border-stone-300/70 dark:border-white/10 shadow-lg bg-white/60 dark:bg-white/5 text-left"
                       >
-                        <div className="project-icon-container mx-auto h-full">
+                        {/* Imagen con aspect-video para que siempre llene el card */}
+                        <div className="relative w-full aspect-video overflow-hidden">
                           <img
-                            src={proj.icon || "/placeholder.svg"}
-                            alt={proj.name}
+                            src={proj.icon || proj.image || "/placeholder.svg"}
+                            alt={proj.title || proj.id}
                             loading="lazy"
                             decoding="async"
-                            className="w-full h-full md:w-8 md:h-8 object-cover mx-auto"
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                             onError={(e) => { e.currentTarget.src = "/placeholder.svg" }}
                           />
-                          <h4 className="title-subsection text-center text-xs md:text-sm font-sans">{proj.name}</h4>
                         </div>
-                      </motion.div>
+
+                        {/* Título */}
+                        <div className="px-4 py-3">
+                          <h4 className="title-subsection font-sans text-base md:text-lg truncate">
+                            {proj.title || proj.id}
+                          </h4>
+                        </div>
+                      </motion.button>
                     ))}
                   </div>
 
@@ -155,37 +151,9 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
                     Haz clic en cualquier proyecto para ver más detalles.
                   </p>
                 </div>
-
-                {/* Información adicional */}
-                <div className="card-primary">
-                  <h3 className="title-section flex items-center gap-3">
-                    <span className="text-xl md:text-2xl">💡</span> Sobre mis proyectos
-                  </h3>
-                  <div className="grid md:grid-cols-2 gap-4 font-sans">
-                    <div className="space-y-3">
-                      <h4 className="title-subsection">Tecnologías principales:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {["React.js", "Next.js", "Tailwind CSS", "JavaScript", "TypeScript"].map((tech) => (
-                          <div key={tech} className="tag-tech">
-                            {tech}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="space-y-3">
-                      <h4 className="title-subsection">Enfoque de desarrollo:</h4>
-                      <ul className="space-y-1 text-responsive text-zinc-600 dark:text-gray-300">
-                        <li>• Diseño responsive y mobile-first</li>
-                        <li>• Optimización de rendimiento</li>
-                        <li>• Código limpio y mantenible</li>
-                        <li>• Experiencia de usuario intuitiva</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
               </div>
 
-              {/* Call to action final */}
+              {/* CTA final */}
               <div className="text-center py-4 md:py-6">
                 <p className="text-responsive text-zinc-600 dark:text-gray-300 mb-3 md:mb-4 font-sans">
                   ¿Te interesa algún proyecto? ¡Hablemos!

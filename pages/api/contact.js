@@ -1,3 +1,4 @@
+// pages/api/contact.js
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY); // Asegúrate de tener esta variable de entorno
@@ -12,9 +13,10 @@ export default async function handler(req, res) {
 
     try {
       const data = await resend.emails.send({
-        from: 'Maurizio Caballero <onboarding@resend.dev>', 
+        from: 'Maurizio Caballero <onboarding@resend.dev>',
         to: 'livemauriz@gmail.com',
         subject: `Mensaje de contacto de ${name} - Portafolio`,
+        replyTo: email,
         html: `
           <p><strong>Nombre:</strong> ${name}</p>
           <p><strong>Correo:</strong> ${email}</p>
@@ -31,6 +33,6 @@ export default async function handler(req, res) {
     }
   } else {
     res.setHeader('Allow', ['POST']);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+    return res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
