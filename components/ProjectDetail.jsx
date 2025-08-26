@@ -157,27 +157,33 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
         </Head>
       )}
 
-      {/* Header */}
-      <div
-        className={`sticky top-0 backdrop-blur-lg border-b p-4 z-20 ${
-          isDark ? "bg-gray-900/60 border-white/10" : "bg-stone-200/60 border-stone-300/50"
-        }`}
-      >
-        <div className="flex items-center justify-between max-w-6xl mx-2 px-2 gap-1 overflow-hidden">
-          <h1 className="title-section mb-0 min-w-0 truncate">{project.title}</h1>
-          <div className="shrink-0 flex items-center align-start gap-2">
-            <button onClick={toggleDarkMode} className="btn-toggle" aria-label="Cambiar tema">
-              {isDark ? "☀️" : "🌙"}
-            </button>
-            <button onClick={onBackToProjects} className="btn-warning">
-              <span className="text-xl" aria-hidden>←</span> Proyectos
-            </button>
-            <button onClick={onClose} className="btn-primary">
-              <span className="text-xl" aria-hidden>✕</span> Cerrar
-            </button>
-          </div>
-        </div>
-      </div>
+     {/* Header */}
+<div
+  className={`sticky top-0 backdrop-blur-lg border-b p-4 z-20 ${
+    isDark ? "bg-gray-900/60 border-white/10" : "bg-stone-200/60 border-stone-300/50"
+  }`}
+>
+  <div className="max-w-6xl mx-auto px-4">
+    {/* Fila 1: botones a la derecha */}
+    <div className="flex items-center justify-end gap-2">
+      <button onClick={toggleDarkMode} className="btn-toggle" aria-label="Cambiar tema">
+        {isDark ? "☀️" : "🌙"}
+      </button>
+      <button onClick={onBackToProjects} className="btn-warning">
+        <span className="text-xl" aria-hidden>←</span> Proyectos
+      </button>
+      <button onClick={onClose} className="btn-primary">
+        <span className="text-xl" aria-hidden>✕</span> Cerrar
+      </button>
+    </div>
+
+    {/* Fila 2: título centrado con margen */}
+    <h1 className="title-section text-center mt-3">
+      {project.title}
+    </h1>
+  </div>
+</div>
+
 
       {/* Contenido principal */}
       <div className="relative max-w-6xl mx-auto p-4 md:p-6 space-y-12 md:space-y-16 z-10">
