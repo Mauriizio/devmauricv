@@ -75,9 +75,9 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
             </h1>
 
             {/* Lista de skills (se mantiene) */}
-            <div className="mt-16">
+            <div className="mt-0">
               <ul
-                className={`text-sm md:text-base space-y-1.5 backdrop-blur-sm p-3 md:p-4 rounded-md leading-relaxed drop-shadow-[1px_1px_1px_rgba(0,0,0,0.9)]
+                className={`text-sm md:text-base space-y-1 backdrop-blur-sm p-3 md:p-4 rounded-md leading-relaxed drop-shadow-[1px_1px_1px_rgba(0,0,0,0.9)]
                             w-[260px] sm:w-[280px] md:w-[340px] lg:w-[320px] xl:w-[360px] shrink-0
                             ${isDark ? "text-white/90 bg-black/30" : "text-gray-800 bg-white/80"}`}
               >

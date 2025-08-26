@@ -100,7 +100,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
               onClick={onMenuOpen}
               className="group flex items-center gap-0 text-black transition-all duration-300 ease-out hover:scale-110 hover:text-fuchsia-400 hover:translate-x-2"
             >
-              <span className="text-4xl md:text-3xl font-bold font-sans">Ver Portfolio</span>
+              <span className="text-6xl md:text-8xl font-bold font-sans">Ver Portfolio</span>
               <ChevronsRight
                 size={32}
                 className="transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110"
