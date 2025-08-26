@@ -1,10 +1,8 @@
 // postcss.config.mjs
-import tailwindcss from "@tailwindcss/postcss"
-import nesting from "postcss-nesting"
-
 export default {
-  plugins: [
-    nesting(),      // CSS Nesting (debe ir antes)
-    tailwindcss(),  // Tailwind
-  ],
-}
+  plugins: {
+    "postcss-nesting": {}, // nesting primero
+    tailwindcss: {},       // Tailwind v3.x
+    autoprefixer: {},      // Autoprefixer
+  },
+};
