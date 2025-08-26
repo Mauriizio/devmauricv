@@ -39,7 +39,7 @@ body {
 }
 
 .title-subsection {
-  @apply text-sm sm:text-base md:text-lg font-semibold;
+  @apply text-zinc-800 text-sm sm:text-base md:text-lg font-semibold;
 }
 
 /* Tarjetas */
@@ -124,7 +124,7 @@ body {
 }
 
 .text-intro {
-  @apply text-sm sm:text-base md:text-lg text-zinc-600 leading-relaxed;
+  @apply text-sm sm:text-base md:text-lg  leading-relaxed;
 }
 
 /* Formularios */
@@ -176,7 +176,7 @@ body {
 }
 
 .dark .card-secondary {
-  @apply bg-gray-500 border-white/10 text-white;
+  @apply bg-gray-600 border-white/90 text-white;
 }
 
 .dark .tag-tech {
@@ -201,14 +201,14 @@ body {
 }
 
 .dark .title-subsection {
-  @apply text-gray-900;
+  @apply text-black;
 }
 
 .dark .text-responsive {
   @apply text-gray-300;
 }
 .dark .text-intro {
-  @apply text-gray-300;
+  @apply text-zinc-200;
 }
 
 .dark .text-zinc-600 {

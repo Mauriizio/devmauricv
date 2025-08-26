@@ -163,9 +163,9 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
           isDark ? "bg-gray-900/60 border-white/10" : "bg-stone-200/60 border-stone-300/50"
         }`}
       >
-        <div className="flex items-center justify-between max-w-6xl mx-auto px-4 gap-3 overflow-hidden">
+        <div className="flex items-center justify-between max-w-6xl mx-auto px-4 gap-2 overflow-hidden">
           <h1 className="title-section mb-0 min-w-0 truncate">{project.title}</h1>
-          <div className="shrink-0 flex items-center gap-3">
+          <div className="shrink-0 flex items-center align-start gap-2">
             <button onClick={toggleDarkMode} className="btn-toggle" aria-label="Cambiar tema">
               {isDark ? "☀️" : "🌙"}
             </button>

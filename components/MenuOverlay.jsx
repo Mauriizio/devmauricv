@@ -78,7 +78,7 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
           >
             {/* Header */}
             <div className="sticky top-0 backdrop-blur-lg border-b p-4 z-20 bg-stone-200/60 border-stone-300/50 dark:bg-gray-900/60 dark:border-white/10">
-              <div className="flex items-center justify-between max-w-6xl mx-auto px-4 gap-3 overflow-hidden">
+              <div className="flex items-center justify-between max-w-6xl mx-auto px-2 gap-2 overflow-hidden">
                 <h1 id="overlay-title" className="title-section mb-0 min-w-0 truncate">
                   Proyectos
                 </h1>
@@ -98,7 +98,7 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
               {/* Intro */}
               <div className="text-center space-y-3 md:space-y-4 py-4 md:py-6">
                 <h2 className="title-main mb-3">Mis Proyectos</h2>
-                <p className="text-intro max-w-4xl mx-auto font-sans">
+                <p className="text-intro  max-w-4xl mx-6 font-orbitron">
                   Explora mi portafolio de proyectos desarrollados con las últimas tecnologías web.
                 </p>
               </div>
@@ -138,8 +138,8 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
                         </div>
 
                         {/* Título */}
-                        <div className="px-4 py-3">
-                          <h4 className="title-subsection font-sans text-base md:text-lg truncate">
+                        <div className="px-4 py-3 bg-white">
+                          <h4 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900 font-orbitron text-center text-base md:text-lg  truncate">
                             {proj.title || proj.id}
                           </h4>
                         </div>
@@ -147,7 +147,7 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
                     ))}
                   </div>
 
-                  <p className="text-zinc-600 dark:text-gray-300 mt-4 text-center font-sans text-xs md:text-sm">
+                  <p className="text-zinc-200dark:text-white mt-4 text-center font-orbitron text-xs md:text-sm">
                     Haz clic en cualquier proyecto para ver más detalles.
                   </p>
                 </div>
@@ -155,13 +155,13 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
 
               {/* Información adicional */}
                 <div className="card-primary">
-                  <h3 className="title-section flex items-center gap-3">
+                  <h3 className="title-section flex items-center text-center gap-3">
                     <span className="text-xl md:text-2xl">💡</span> Sobre mis proyectos
                   </h3>
                   <div className="grid md:grid-cols-2 gap-4 font-sans">
                     <div className="space-y-3">
-                      <h4 className="title-subsection">Tecnologías principales:</h4>
-                      <div className="flex flex-wrap gap-2">
+                      <h4 className="title-subsection text-center">Tecnologías principales:</h4>
+                      <div className="flex flex-wrap text-center gap-2">
                         {["React.js", "Next.js", "Tailwind CSS", "JavaScript", "TypeScript"].map((tech) => (
                           <div key={tech} className="tag-tech">
                             {tech}
@@ -169,9 +169,9 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
                         ))}
                       </div>
                     </div>
-                    <div className="space-y-3">
-                      <h4 className="title-subsection">Enfoque de desarrollo:</h4>
-                      <ul className="space-y-1 text-responsive text-zinc-600 dark:text-gray-300">
+                    <div className="space-y-0">
+                      <h4 className="title-subsection text-center">Enfoque de desarrollo:</h4>
+                      <ul className="space-y-1 text-responsive text-center text-zinc-600 dark:text-gray-300">
                         <li>• Diseño responsive y mobile-first</li>
                         <li>• Optimización de rendimiento</li>
                         <li>• Código limpio y mantenible</li>
