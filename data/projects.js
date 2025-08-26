@@ -97,6 +97,7 @@ export const projectsData = [
     id: "lcl",
     slug: "chamitos-locos",
     title: "Los Chamitos Locos",
+    category: "Sitio web para bandas / Tour dates",
 
     // Miniatura del menú
     icon: "/assets/lcl/icon-lcl.webp",

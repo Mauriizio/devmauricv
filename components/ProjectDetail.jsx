@@ -163,27 +163,39 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
     isDark ? "bg-gray-900/60 border-white/10" : "bg-stone-200/60 border-stone-300/50"
   }`}
 >
-  <div className="max-w-6xl mx-auto px-4">
-    {/* Fila 1: botones a la derecha */}
-    <div className="flex items-center justify-end gap-2">
+  <div className="max-w-6xl mx-auto px-2 sm:px-4">
+    <div
+      className="flex flex-wrap items-center justify-center sm:justify-end gap-2 sm:gap-3
+                 w-full pr-[env(safe-area-inset-right)]"
+    >
       <button onClick={toggleDarkMode} className="btn-toggle" aria-label="Cambiar tema">
         {isDark ? "☀️" : "🌙"}
       </button>
-      <button onClick={onBackToProjects} className="btn-warning">
-        <span className="text-xl" aria-hidden>←</span> Proyectos
+
+      {/* ← Proyectos */}
+      <button
+        onClick={onBackToProjects}
+        className="btn-warning !inline-flex !flex-row !items-center !gap-2
+                   !px-3 !py-2 md:!px-4 md:!py-2.5 rounded-xl
+                   font-azonix text-sm md:text-base whitespace-nowrap
+                   active:translate-y-px"
+      >
+        <span className="text-base md:text-lg" aria-hidden>←</span>
+        <span className="uppercase tracking-wide">Proyectos</span>
       </button>
-      <button onClick={onClose} className="btn-primary">
-        <span className="text-xl" aria-hidden>✕</span> Cerrar
+
+      {/* ✕ Cerrar */}
+      <button
+        onClick={onClose}
+        className="btn-primary !inline-flex !flex-row !items-center !gap-2
+                   !px-3 !py-2 md:!px-4 md:!py-2.5 rounded-xl
+                   font-azonix text-sm md:text-base whitespace-nowrap
+                   active:translate-y-px"
+      >
+        <span className="text-base md:text-lg" aria-hidden>✕</span>
+        <span className="uppercase tracking-wide">Cerrar</span>
       </button>
     </div>
-
-    {/* Fila 2: categoría (opcional). Si no hay, no se muestra nada */}
-    { (project.category || project.type || project.kind) && (
-      <p className={`mt-2 text-center font-azonix uppercase tracking-wide
-                     text-xs md:text-sm ${isDark ? "text-cyan-300/90" : "text-cyan-700/80"}`}>
-        {project.category || project.type || project.kind}
-      </p>
-    )}
   </div>
 </div>
 
