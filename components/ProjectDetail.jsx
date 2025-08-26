@@ -177,10 +177,13 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
       </button>
     </div>
 
-    {/* Fila 2: título centrado con margen */}
-    <h1 className="title-section text-center mt-3">
-      {project.title}
-    </h1>
+    {/* Fila 2: categoría (opcional). Si no hay, no se muestra nada */}
+    { (project.category || project.type || project.kind) && (
+      <p className={`mt-2 text-center font-azonix uppercase tracking-wide
+                     text-xs md:text-sm ${isDark ? "text-cyan-300/90" : "text-cyan-700/80"}`}>
+        {project.category || project.type || project.kind}
+      </p>
+    )}
   </div>
 </div>
 
