@@ -282,7 +282,7 @@ export default function SectionContact({ show, onClose }) {
                 )
               })}
             </div>
-            <p className="text-zinc-600 mt-6 text-center font-sans text-sm md:text-base">
+            <p className="text-responsive mt-6 text-center font-sans text-sm md:text-base">
               Respondo rápidamente en todas las plataformas. ¡Elige la que prefieras!
             </p>
           </div>
@@ -294,8 +294,8 @@ export default function SectionContact({ show, onClose }) {
             </h3>
             <div className="grid md:grid-cols-2 gap-6 font-sans">
               <div className="space-y-4">
-                <h4 className="title-subsection">Servicios que ofrezco:</h4>
-                <ul className="space-y-2 text-responsive text-zinc-600">
+                <h4 className="title-subsection font-orbitron">Servicios que ofrezco:</h4>
+                <ul className="space-y-2 text-responsive ">
                   <li>• Desarrollo de aplicaciones web con React y Next.js</li>
                   <li>• Diseño y desarrollo de interfaces de usuario</li>
                   <li>• Optimización de rendimiento web</li>
@@ -304,8 +304,8 @@ export default function SectionContact({ show, onClose }) {
                 </ul>
               </div>
               <div className="space-y-4">
-                <h4 className="title-subsection">Tiempo de respuesta:</h4>
-                <ul className="space-y-2 text-responsive text-zinc-600">
+                <h4 className="title-subsection font-orbitron">Tiempo de respuesta:</h4>
+                <ul className="space-y-2 text-responsive">
                   <li>• WhatsApp: Inmediato (horario laboral)</li>
                   <li>• Email: Dentro de 24 horas</li>
                   <li>• LinkedIn: 1-2 días hábiles</li>

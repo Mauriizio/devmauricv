@@ -205,7 +205,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
         {/* Introducción */}
         <div className="text-center space-y-4 md:space-y-6 py-6 md:py-8">
           <h2 className="title-main mb-4">{project.title}</h2>
-          <p className="text-intro max-w-4xl mx-auto font-sans">{project.description}</p>
+          <p className="text-intro max-w-4xl mx-auto ">{project.description}</p>
         </div>
 
         <div className="space-y-12 md:space-y-16">
