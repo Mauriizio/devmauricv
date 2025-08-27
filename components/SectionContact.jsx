@@ -294,7 +294,7 @@ export default function SectionContact({ show, onClose }) {
             </h3>
             <div className="grid md:grid-cols-2 gap-6 font-sans">
               <div className="space-y-4">
-                <h4 className="title-subsection font-orbitron">Servicios que ofrezco:</h4>
+                <h4 className="title-subsection font-orbitron text-gray-600 dark:text-zinc-200">Servicios que ofrezco:</h4>
                 <ul className="space-y-2 text-responsive ">
                   <li>• Desarrollo de aplicaciones web con React y Next.js</li>
                   <li>• Diseño y desarrollo de interfaces de usuario</li>

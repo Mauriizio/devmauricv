@@ -137,11 +137,11 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
   )
 
   const FeatureGrid = ({ items }) => (
-    <div className="grid md:grid-cols-2 gap-4 font-sans text-responsive text-zinc-600">
+    <div className="grid md:grid-cols-2 gap-4  text-responsive">
       {items.map((item, index) => (
-        <div key={index} className="feature-item">
-          <span className="text-xl">{item.icon}</span>
-          <p className="text-zinc-900">{item.text}</p>
+        <div key={index} className="feature-item font-orbitron ">
+          <span className="text-xl ">{item.icon}</span>
+          <p className="text-responsive font-orbitron ">{item.text}</p>
         </div>
       ))}
     </div>
@@ -309,10 +309,10 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
                 {experiences.map((exp, index) => (
                   <div key={index} className="timeline-item">
                     <h4 className="title-subsection">{exp.title}</h4>
-                    <p className="text-cyan-700 font-medium mb-2">
+                    <p className="text-cyan-700  font-medium mb-2">
                       {exp.company} • {exp.period}
                     </p>
-                    <p className="text-responsive text-zinc-700">{exp.description}</p>
+                    <p className="text-responsive">{exp.description}</p>
                   </div>
                 ))}
               </div>
@@ -323,14 +323,14 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
               <h3 className="title-section flex items-center gap-2">
                 <span>🎓</span> Educación & Certificaciones
               </h3>
-              <div className="space-y-4 font-sans">
+              <div className="space-y-4 font-orbitron">
                 {education.map((edu, index) => (
                   <div key={index} className="flex flex-col md:flex-row md:items-center md:justify-between">
                     <div>
                       <h4 className="title-subsection">{edu.title}</h4>
                       <p className="text-cyan-700">{edu.institution}</p>
                     </div>
-                    <span className="text-zinc-500 text-sm">{edu.period}</span>
+                    <span className="text-zinc-500dark:text-white text-sm">{edu.period}</span>
                   </div>
                 ))}
               </div>
@@ -361,26 +361,26 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
                         <ZoomIn
                           size={32}
-                          className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          className="text-white font-orbitron  opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-orbitron"
                         />
                       </div>
                     </div>
                     <div className="p-3 md:p-4">
-                      <h4 className="text-sm md:text-lg font-semibold text-zinc-800 font-sans line-clamp-3">
+                      <h4 className="text-xs md:text-lg font-orbitron font-semibold text-zinc-800  line-clamp-3">
                         {diploma.title}
                       </h4>
                     </div>
                   </div>
                 ))}
               </div>
-              <p className="text-zinc-600 mt-4 text-center font-sans text-sm md:text-base">
+              <p className="text-responsive mt-4 text-center font-orbitron text-sm md:text-base">
                 Haz clic en cualquier diploma para verlo en grande.
               </p>
             </div>
 
             {/* Características */}
             <div className="card-primary">
-              <h3 className="title-section flex items-center gap-2">
+              <h3 className="title-section   flex items-center gap-2">
                 <span>⚡</span> Lo que me caracteriza
               </h3>
               <FeatureGrid items={characteristics} />
@@ -400,7 +400,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
                 <span>💡</span> Mi Filosofía
               </h3>
               <div className="card-secondary">
-                <p className="font-sans text-responsive .text-zinc-700">
+                <p className="text-responsive">
                   Creo firmemente que la tecnología debe ser una herramienta que mejore la vida de las personas. Mi
                   enfoque siempre está en crear soluciones que no solo funcionen bien técnicamente, sino que también
                   proporcionen una experiencia excepcional al usuario. La simplicidad y la elegancia en el código se
@@ -411,7 +411,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
 
             {/* Call to action final */}
             <div className="text-center py-6 md:py-8">
-              <p className="text-responsive text-zinc-600 mb-4 md:mb-6 font-sans">
+              <p className="text-responsive mb-4 md:mb-6 font-sans">
                 ¿Listo para trabajar juntos en tu próximo proyecto?
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
