@@ -187,7 +187,7 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
                     </div>
                     <div className="space-y-0">
                       <h4 className="title-subsection text-center">Enfoque de desarrollo:</h4>
-                      <ul className="space-y-1 text-responsive text-center text-zinc-600 dark:text-gray-300">
+                      <ul className="space-y-1 text-responsive text-center ">
                         <li>• Diseño responsive y mobile-first</li>
                         <li>• Optimización de rendimiento</li>
                         <li>• Código limpio y mantenible</li>

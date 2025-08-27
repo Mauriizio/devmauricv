@@ -226,7 +226,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
                 fill
                 sizes="(max-width: 768px) 100vw, 960px"
                 priority={false}
-                className="object-cover"
+                className="object-cover object-top"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </button>
@@ -237,7 +237,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
             <h3 className="title-section flex items-center gap-3">
               <span className="text-2xl md:text-4xl">📋</span> Descripción del Proyecto
             </h3>
-            <p className="text-responsive text-zinc-600 font-sans">{project.description}</p>
+            <p className="text-responsive  font-orbitron">{project.description}</p>
           </div>
 
           {/* 2) Imagen de contenido */}
@@ -257,7 +257,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
                 fill
                 sizes="(max-width: 768px) 100vw, 960px"
                 priority={false}
-                className="object-cover"
+                className="object-cover object-top"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </button>
@@ -278,13 +278,13 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
           </div>
 
           {/* Retos y soluciones */}
-          <div className="card-secondary">
+          <div className="card-primary">
             <h3 className="title-section flex items-center gap-3">
               <span className="text-2xl md:text-4xl">⚡</span> Retos y Soluciones
             </h3>
-            <div className="card-primary">
-              <p className="text-responsive text-zinc-600 font-sans">{project.challenges}</p>
-            </div>
+           
+              <p className="text-responsive">{project.challenges}</p>
+            
           </div>
 
           {/* 3) Imagen adicional (después de retos) */}
@@ -304,7 +304,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
                 fill
                 sizes="(max-width: 768px) 100vw, 960px"
                 priority={false}
-                className="object-cover"
+                className="object-cover object-top"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
             </button>
@@ -316,11 +316,11 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
               <h3 className="title-section flex items-center gap-3">
                 <span className="text-2xl md:text-4xl">✨</span> Características Destacadas
               </h3>
-              <div className="grid md:grid-cols-2 gap-4 font-sans">
+              <div className="grid md:grid-cols-2 gap-4 font-orbitron">
                 {project.features.map((feature, index) => (
                   <div key={index} className="feature-item">
-                    <span className="text-xl">•</span>
-                    <p className="text-zinc-700">{feature}</p>
+                    <span className="text-xl ">•</span>
+                    <p className="text-responsive font-orbitron">{feature}</p>
                   </div>
                 ))}
               </div>
@@ -328,7 +328,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
           )}
 
           {/* Botones de acción */}
-          <div className="card-secondary">
+          <div className="card-primary">
             <h3 className="title-section flex items-center gap-3">
               <span className="text-2xl md:text-4xl">🔗</span> Enlaces del proyecto
             </h3>
@@ -354,7 +354,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
                 </a>
               )}
             </div>
-            <p className="text-zinc-600 mt-4 text-center font-sans text-sm md:text-base">
+            <p className="text-responsive mt-4 text-center font-sans text-sm md:text-base">
               Explora el código fuente y la implementación en vivo.
             </p>
           </div>
