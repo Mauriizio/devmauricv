@@ -3,6 +3,7 @@ export const projectsData = [
   {
     id: "mecanica-int",
     slug: "mecanica-intercontinental",
+    category: "Sitio web para taller mecánico",
     title: "El Intercontinental",
     icon: "/assets/mec/icon-mec.webp",
     detailImage: "/assets/mec/mec-1.webp", 
@@ -28,6 +29,7 @@ export const projectsData = [
   {
     id: "coriolis",
     slug: "coriolis-accesorios",
+    category: "Sitio web para tienda online",
     title: "Coriolis Accesorios",
 
     // Miniatura del menú
@@ -62,6 +64,7 @@ export const projectsData = [
     
     id: "dulcessecretos",
     slug: "duleces-secretos",
+    category: "Sitio web/App para tienda online",
     title: "Dulces Secretos",
 
     // Miniatura del menú
@@ -97,7 +100,7 @@ export const projectsData = [
     id: "lcl",
     slug: "chamitos-locos",
     title: "Los Chamitos Locos",
-    category: "Sitio web para bandas / Tour dates",
+    category: "Sitio web de Banda Musical",
 
     // Miniatura del menú
     icon: "/assets/lcl/icon-lcl.webp",

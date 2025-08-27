@@ -111,41 +111,57 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
                   </h3>
 
                   {/* 1 col en mobile, 2 cols en md+; cards grandes y consistentes */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                    {menuProjects.map((proj, index) => (
-                      <motion.button
-                        type="button"
-                        key={proj.id}
-                        id={`project-${proj.id}`}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.06, duration: 0.22 }}
-                        whileHover={{ scale: 1.02, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => { onProjectSelect(proj) }}
-                        className="group rounded-2xl overflow-hidden border border-stone-300/70 dark:border-white/10 shadow-lg bg-white/60 dark:bg-white/5 text-left"
-                      >
-                        {/* Imagen con aspect-video para que siempre llene el card */}
-                       <div className="relative w-full aspect-video overflow-hidden bg-white dark:bg-white">
-                          <img
-                            src={proj.icon || proj.image || "/placeholder.svg"}
-                            alt={proj.title || proj.id}
-                            loading="lazy"
-                            decoding="async"
-                            className="absolute inset-0 w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
-                            onError={(e) => { e.currentTarget.src = "/placeholder.svg" }}
-                          />
-                        </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+  {menuProjects.map((proj, index) => (
+    <motion.button
+      type="button"
+      key={proj.id}
+      id={`project-${proj.id}`}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.06, duration: 0.22 }}
+      whileHover={{ scale: 1.02, y: -2 }}
+      whileTap={{ scale: 0.98 }}
+      onClick={() => { onProjectSelect(proj) }}
+      aria-label={`Abrir proyecto: ${proj.title || proj.id}`}
+      className="group relative rounded-2xl overflow-hidden border border-stone-300/70 dark:border-white/10 shadow-lg bg-white/60 dark:bg-white/5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
+    >
+      {/* Miniatura con badge */}
+      <div className="relative w-full aspect-video overflow-hidden bg-white dark:bg-white">
+        {proj.category && (
+          <span
+            className="absolute top-2 left-2 z-10 inline-flex items-center
+                       px-2 py-1 rounded-md bg-white/70 text-gray-900
+                       text-[10px] md:text-xs uppercase tracking-wide font-azonix
+                       ring-1 ring-black/10 shadow-sm max-w-[70%] truncate"
+            title={proj.category}
+          >
+            {proj.category}
+          </span>
+        )}
 
-                        {/* Título */}
-                        <div className="px-4 py-3 bg-white">
-                          <h4 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900 font-orbitron text-center text-base md:text-lg  truncate">
-                            {proj.title || proj.id}
-                          </h4>
-                        </div>
-                      </motion.button>
-                    ))}
-                  </div>
+        <img
+          src={proj.icon || proj.image || "/placeholder.svg"}
+          alt={proj.title || proj.id}
+          loading="lazy"
+          decoding="async"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="absolute inset-0 w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+          onError={(e) => { e.currentTarget.src = "/placeholder.svg" }}
+        />
+      </div>
+
+      {/* Título */}
+      <div className="px-4 py-3 bg-white">
+        <h4 className="font-orbitron text-gray-900 text-sm sm:text-base md:text-lg text-center truncate">
+          {proj.title || proj.id}
+        </h4>
+      </div>
+    </motion.button>
+  ))}
+</div>
+
+
 
                   <p className="text-zinc-200dark:text-white mt-4 text-center font-orbitron text-xs md:text-sm">
                     Haz clic en cualquier proyecto para ver más detalles.
@@ -155,11 +171,11 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
 
               {/* Información adicional */}
                 <div className="card-primary">
-                  <h3 className="title-section flex items-center text-center gap-3">
+                  <h3 className="title-section flex items-center text-center gap-3 ">
                     <span className="text-xl md:text-2xl">💡</span> Sobre mis proyectos
                   </h3>
-                  <div className="grid md:grid-cols-2 gap-4 font-sans">
-                    <div className="space-y-3">
+                  <div className="grid md:grid-cols-2 gap-4 font-orbitron">
+                    <div className="space-y-2">
                       <h4 className="title-subsection text-center">Tecnologías principales:</h4>
                       <div className="flex flex-wrap text-center gap-2">
                         {["React.js", "Next.js", "Tailwind CSS", "JavaScript", "TypeScript"].map((tech) => (
@@ -184,7 +200,7 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
 
               {/* CTA final */}
               <div className="text-center py-4 md:py-6">
-                <p className="text-responsive text-zinc-600 dark:text-gray-300 mb-3 md:mb-4 font-sans">
+                <p className="text-responsive  mb-3 md:mb-4 font-orbitron">
                   ¿Te interesa algún proyecto? ¡Hablemos!
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
