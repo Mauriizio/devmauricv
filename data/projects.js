@@ -50,7 +50,7 @@ export const projectsData = [
 },
   
 
-  {
+{
     id: "coriolis",
     slug: "coriolis-accesorios",
     category: "Sitio web para tienda online",
@@ -82,9 +82,9 @@ export const projectsData = [
     ],
     githubUrl: "https://github.com/Mauriizio/coriolis",
     liveUrl: "https://www.coriolisaccesorios.store/",
-  },
+},
 
-  {
+{
     
     id: "dulcessecretos",
     slug: "duleces-secretos",

@@ -56,7 +56,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
       
         
 
-      <div className="absolute inset-0 z-10 group">
+<div className="absolute inset-0 z-10 group">
   <LogoSplitBg half="right" dock="left" className="text-black/60 dark:text-cyan-600" />
 </div>
       
