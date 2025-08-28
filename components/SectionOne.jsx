@@ -57,7 +57,6 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
         
 
       <div className="absolute inset-0 z-10 group">
-  {/* Mostrar la MITAD DERECHA, anclada a la IZQUIERDA */}
   <LogoSplitBg half="right" dock="left" className="text-cyan-600/25 dark:text-cyan-300/20" />
 </div>
       

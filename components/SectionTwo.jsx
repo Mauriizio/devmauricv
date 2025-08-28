@@ -55,7 +55,6 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
       </div> */}
 
       <div className="absolute inset-0 z-10 group">
-  {/* Mostrar la MITAD IZQUIERDA, anclada a la DERECHA */}
   <LogoSplitBg half="left" dock="right" className="text-cyan-600/25 dark:text-cyan-300/20" />
 </div>
 
