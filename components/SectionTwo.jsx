@@ -2,7 +2,9 @@
 
 import { useTheme } from "@/context/ThemeContext"
 import ParticlesBackground from "@/components/ParticlesBackground"
-
+import LogoMCFancy from "@/components/LogoMCFancy"
+import LogoMC from "@/components/LogoMC"    
+import LogoSplitBg from "@/components/LogoSplitBg"  
 export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
   const { isDark, toggleDarkMode } = useTheme()
 
@@ -19,7 +21,14 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
         }`}
       >
         <div className="flex items-center justify-between max-w-6xl mx-auto px-4 gap-6 overflow-hidden font-azonix">
-          <h1 className={`min-w-0 truncate text-lg font-bold ${isDark ? "text-cyan-400" : "text-cyan-600"}`}>Dev</h1>
+
+           <LogoMCFancy
+        className="h-10 w-auto text-gray-900 hover:text-fuchsia-500 transition-colors"
+        gap={0.5}      // grosor de “hendidura” (px aprox visual)
+        shift={0.08}   // separación relativa en hover (0.08 = 8%)
+        duration={500} // ms
+      />
+
           <button onClick={toggleDarkMode} className="btn-toggle" aria-label="Cambiar tema">
             {isDark ? "☀️" : "🌙"}
           </button>
@@ -33,7 +42,7 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
       <ParticlesBackground />
 
       {/* Imagen lado izquierdo (mitad de la cara) */}
-      <div
+      {/* <div
         className={`absolute inset-0 z-10 p-0 overflow-hidden transition-colors duration-150 ${
           isDark ? "bg-black/70" : "bg-gray-50/70"
         }`}
@@ -43,7 +52,12 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
           alt="Avatar mitad"
           className="absolute top-0 right-0 h-full w-auto object-contain scale-[1.7] origin-right z-30"
         />
-      </div>
+      </div> */}
+
+      <div className="absolute inset-0 z-10 group">
+  {/* Mostrar la MITAD IZQUIERDA, anclada a la DERECHA */}
+  <LogoSplitBg half="left" dock="right" className="text-cyan-600/25 dark:text-cyan-300/20" />
+</div>
 
       {/* Overlay unificado con SectionOne */}
       <div

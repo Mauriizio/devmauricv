@@ -5,6 +5,8 @@ import { useTheme } from "@/context/ThemeContext"
 import CodeParticlesBackground from "./CodeParticlesBackground"
 import { Download, ChevronsRight } from "lucide-react"
 import LogoMC from "@/components/LogoMC";
+import LogoMCFancy from "@/components/LogoMCFancy"; 
+import LogoSplitBg from "@/components/LogoSplitBg"
 
 export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
   const [contentVisible, setContentVisible] = useState(false)
@@ -30,7 +32,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
         }`}
       >
         <div className="flex items-center justify-between max-w-6xl mx-auto">
-          <LogoMC className="h-10 w-auto text-gray-900 hover:text-fuchsia-500 transition-colors duration-300" />
+          <LogoMCFancy className="h-12 w-auto text-cyan-600 dark:text-cyan-300" />
 
           <div className="flex items-center gap-3">
             <button className="btn-primary flex items-center gap-2 text-sm px-3 py-1.5">
@@ -51,14 +53,14 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
       {/* Partículas de fondo */}
       <CodeParticlesBackground />
 
-      {/* Imagen de fondo */}
-      <div className="absolute inset-0 z-10 p-0 overflow-hidden">
-        <img
-          src="/assets/avatar-right2.png"
-          alt="Avatar mitad"
-          className="absolute top-0 left-0 h-full w-auto object-contain scale-[1.7] origin-left z-10"
-        />
-      </div>
+      
+        
+
+      <div className="absolute inset-0 z-10 group">
+  {/* Mostrar la MITAD DERECHA, anclada a la IZQUIERDA */}
+  <LogoSplitBg half="right" dock="left" className="text-cyan-600/25 dark:text-cyan-300/20" />
+</div>
+      
 
       {/* Overlay mejorado - sin neblina en modo claro */}
       <div
