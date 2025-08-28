@@ -6,7 +6,7 @@ export default function LogoMC({
   return (
   <svg
  
-   viewBox="0 0 76.680709 44.671051"
+  viewBox="0 0 76.680709 44.671051"
    role="img"
    aria-label={title}
   className={className + " select-none"}
