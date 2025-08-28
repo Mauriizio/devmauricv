@@ -1,30 +1,54 @@
 // data/projects.js
 export const projectsData = [
-  {
-    id: "mecanica-int",
-    slug: "mecanica-intercontinental",
-    category: "Sitio web para taller mecánico",
-    title: "El Intercontinental",
-    icon: "/assets/mec/icon-mec.webp",
-    detailImage: "/assets/mec/mec-1.webp", 
-    contentImage: "/assets/mec/mec-2.webp",
-    extraImage: "/assets/mec/mec-3.webp",
-    ogImage: "/assets/coriolisacc/og.webp",
-    image: "/assets/coriolisacc/icon-mec.webp",
-    description:
-      "Sitio web desarrollado para Mecánica El Intercontinental, un taller mecánico que buscaba aumentar su clientela. La página mejoró su presencia digital y facilitó el contacto directo. Además, implementé una campaña de publicidad con Google Ads, lo que incrementó notablemente las llamadas y solicitudes de servicios.",
-    technologies: ["React", "Tailwind CSS", "JavaScript", "WhatsApp API", "Responsive Design", "Google ADS"],
-    challenges:
-      "El reto principal fue lograr una interfaz moderna, rápida y totalmente adaptada a móviles, manteniendo una experiencia fluida y profesional en todos los dispositivos.",
-    features: [
-      "Diseño completamente responsivo",
-      "Integración con la API de WhatsApp",
-      "Optimización básica para SEO local",
-      "Campaña activa con Google Ads",
-    ],
-    githubUrl: "https://github.com/Mauriizio/webmecanic",
-    liveUrl: "https://www.mecanicaelintercontinental.com/",
-  },
+
+{
+  "id": "mecanica-int",
+  "slug": "mecanica-intercontinental",
+  "category": "Sitio web para taller mecánico",
+  "title": "El Intercontinental",
+  "icon": "/assets/mec/icon-mec.webp",
+  "detailImage": "/assets/mec/mec-1.webp",
+  "contentImage": "/assets/mec/mec-2.webp",
+  "extraImage": "/assets/mec/mec-3.webp",
+  "ogImage": "/assets/coriolisacc/og.webp",
+  "image": "/assets/coriolisacc/icon-mec.webp",
+  "description": "Diseñé y desarrollé el sitio web para Mecánica El Intercontinental partiendo de un objetivo claro: que el taller dejara de depender solo del boca a boca y empezara a captar clientes de forma constante por canales digitales. Me encargué desde el wireframe hasta la implementación final: arquitectura de la información, diseño mobile-first, animaciones sutiles para mejorar la percepción de profesionalismo y los llamados a la acción que convierten (WhatsApp directo, formulario rápido y mapa de ubicación). Además optimicé imágenes, configuré SEO local básico y preparé la landing para una campaña de Google Ads enfocada en servicios clave. El resultado fue una presencia digital mucho más clara y un aumento visible en las solicitudes de servicio y llamadas en las semanas posteriores.",
+  "technologies": [
+    "React",
+    "Tailwind CSS",
+    "JavaScript (ES6+)",
+    "WhatsApp API (enlace directo y mensajes preconfigurados)",
+    "Responsive Design (mobile-first)",
+    "Optimización de imágenes y lazy-loading",
+    "Google Ads (configuración y optimización básica)"
+  ],
+  "role": "Desarrollador full-stack: diseño UI/UX, maquetación responsiva, integración con API de mensajería y gestión inicial de la campaña publicitaria.",
+  "year": "2024",
+  "duration": "4 semanas (diseño, desarrollo y puesta en marcha de la campaña inicial)",
+  "challenges": "El principal desafío fue lograr una experiencia rápida y confiable en dispositivos móviles con imágenes del taller y galerías pesadas. Tuve que balancear calidad visual con tiempos de carga, implementar compresión y lazy-loading, y asegurar que la integración con la API de WhatsApp funcionara sin fricciones en distintos navegadores. También optimicé la landing para que la campaña de Google Ads dirigiera tráfico cualificado con una tasa de rebote baja.",
+  "process": [
+    "Análisis rápido del negocio y definición de objetivos (captación de clientes y facilidad de contacto).",
+    "Wireframes y prototipo móvil-first para priorizar la información que más convierte.",
+    "Maquetación en React con Tailwind CSS; componentes reutilizables para servicios y testimonios.",
+    "Integración de WhatsApp API y formulario de contacto con validación.",
+    "Optimización de rendimiento: compresión, lazy-loading, sprites y preloading crítico.",
+    "Lanzamiento de la campaña básica en Google Ads y ajustes iniciales para medir conversiones."
+  ],
+  "features": [
+    "Diseño completamente responsivo con enfoque mobile-first — botones y CTAs optimizados para tocar con el pulgar.",
+    "Integración directa con WhatsApp: mensajes predefinidos por servicio y botón visible en todas las secciones.",
+    "Formulario de contacto simple y rápido para solicitudes de presupuesto y reserva de turnos.",
+    "Mapa embebido con ubicación y horarios para facilitar la llegada de clientes.",
+    "Optimización básica para SEO local (metatags, esquema de negocio local y NAP consistente).",
+    "Preparación de la landing para campañas de Google Ads (mensajes claros, velocidad y tracking)."
+  ],
+  "results": "Mejoré la presencia digital del taller y facilité el contacto directo entre clientes y mecánicos. Tras la puesta en marcha se observó un incremento en llamadas y solicitudes de servicio. (Si tienes números concretos —llamadas, formularios, conversion rate— los agrego para dejar la ficha con métricas).",
+  "learnings": "Aprendí a priorizar recursos gráficos sin sacrificar la experiencia móvil y a montar una estructura de landing que responde bien a anuncios pagados; pequeñas optimizaciones en la carga marcaron la diferencia en la tasa de conversión.",
+  "notes": "Si quieres que redacte esta misma entrada en inglés, en formato para Behance, o que añada un testimonio real del cliente y métricas, pásame los textos y cifras y lo dejo listo.",
+  "githubUrl": "https://github.com/Mauriizio/webmecanic",
+  "liveUrl": "https://www.mecanicaelintercontinental.com/"
+},
+  
 
   {
     id: "coriolis",

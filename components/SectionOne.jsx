@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { useTheme } from "@/context/ThemeContext"
 import CodeParticlesBackground from "./CodeParticlesBackground"
 import { Download, ChevronsRight } from "lucide-react"
+import LogoMC from "@/components/LogoMC";
 
 export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
   const [contentVisible, setContentVisible] = useState(false)
@@ -29,7 +30,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
         }`}
       >
         <div className="flex items-center justify-between max-w-6xl mx-auto">
-          <h1 className={`text-lg font-bold font-azonix ${isDark ? "text-cyan-400" : "text-cyan-700"}`}>@devMauriz</h1>
+          <LogoMC className="h-10 w-auto text-gray-900 hover:text-fuchsia-500 transition-colors duration-300" />
 
           <div className="flex items-center gap-3">
             <button className="btn-primary flex items-center gap-2 text-sm px-3 py-1.5">

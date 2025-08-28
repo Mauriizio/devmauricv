@@ -1,0 +1,21 @@
+// components/LogoMC.jsx
+export default function LogoMC({
+  className = "h-10 w-auto text-cyan-600",
+  title = "Logo Maurizio Caballero",
+}) {
+  return (
+    <svg
+      viewBox="0 0 76.680717 45.807781"
+      role="img"
+      aria-label={title}
+      className={className + " select-none"}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <title>{title}</title>
+      <path
+        fill="currentColor"
+        d="M -4.2022406e-7,45.797323 H 9.8984556 L 25.686288,18.77733 l 15.763247,27.030453 35.23118,-0.0307 -5.11014,-8.02009 -30.88751,0.0171 9.839499,-18.557993 c 8.634193,-0.10105 6.653376,-0.01924 11.742801,-0.01887 L 51.319315,1.1367297 51.262715,-2.8265559e-7 38.68293,21.5211 38.69083,22.23818 26.184442,1.2516597 26.154672,0.04975972 Z"
+      />
+    </svg>
+  );
+}
