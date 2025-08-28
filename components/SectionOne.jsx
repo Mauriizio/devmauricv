@@ -32,7 +32,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
         }`}
       >
         <div className="flex items-center justify-between max-w-6xl mx-auto">
-          <LogoMCFancy className="h-12 w-auto text-cyan-600 dark:text-cyan-300" />
+          <LogoMCFancy className="h-12 w-auto text-gray-900 dark:text-cyan-300" />
 
           <div className="flex items-center gap-3">
             <button className="btn-primary flex items-center gap-2 text-sm px-3 py-1.5">

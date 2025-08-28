@@ -23,7 +23,7 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
         <div className="flex items-center justify-between max-w-6xl mx-auto px-4 gap-6 overflow-hidden font-azonix">
 
            <LogoMCFancy
-        className="h-10 w-auto text-gray-900 hover:text-fuchsia-500 transition-colors"
+        className="h-12 w-auto text-gray-900 dark:text-cyan-300 hover:text-fuchsia-500  transition-colors"
         gap={0.5}      // grosor de “hendidura” (px aprox visual)
         shift={0.08}   // separación relativa en hover (0.08 = 8%)
         duration={500} // ms
