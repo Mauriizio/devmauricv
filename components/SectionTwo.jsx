@@ -2,8 +2,7 @@
 
 import { useTheme } from "@/context/ThemeContext"
 import ParticlesBackground from "@/components/ParticlesBackground"
-import LogoMCFancy from "@/components/LogoMCFancy"
-import LogoMC from "@/components/LogoMC"    
+import LogoMCFancy from "@/components/LogoMCFancy" 
 import LogoSplitBg from "@/components/LogoSplitBg"  
 export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
   const { isDark, toggleDarkMode } = useTheme()
@@ -55,7 +54,7 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
       </div> */}
 
       <div className="absolute inset-0 z-10 group">
-  <LogoSplitBg half="left" dock="right" className="text-cyan-600/25 dark:text-cyan-300/20" />
+  <LogoSplitBg half="left" dock="right" className="text-black/60 dark:text-cyan-600" />
 </div>
 
       {/* Overlay unificado con SectionOne */}
