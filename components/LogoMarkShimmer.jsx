@@ -133,7 +133,7 @@ export default function LogoMarkShimmer({ className = "", isDark = false }) {
           width="160%"
           height="120%"
           fill="url(#mc_shimmer)"
-          opacity="0.75"
+          opacity="0.50"
         />
       </g>
     </svg>

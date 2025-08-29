@@ -49,28 +49,32 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
       {/* Partículas de código */}
       <CodeParticlesBackground />
 
+      {/* Overlay para contraste */}
+      
+
       {/* Watermark del logo (más notorio) */}
       <LogoMarkShimmer
   isDark={isDark}
   className="
-    pointer-events-none absolute z-10
+    pointer-events-none absolute z-30
     left-1/2 -translate-x-1/2
-    top-[24vh] md:top-[12vh]
-    w-[140vw] md:w-[110vw] lg:w-[65vw]
+    top-[24vh] md:top-[12vh] 
+    w-[140vw] md:w-[110vw] lg:w-[70vw]
     text-slate-900 dark:text-slate-100
     opacity-[0.9]
   "
 />
 
 
-
-      {/* Overlay para contraste */}
-      <div
+<div
         aria-hidden
         className={`absolute inset-0 z-20 transition-colors duration-500 pointer-events-none ${
-          isDark ? "bg-black/35" : "bg-white/40"
+          isDark ? "bg-black/35" : "bg-gray-700/50"
         }`}
       />
+
+
+      
 
       {/* Ruido fuerte (sin random → no hay hydration mismatch) */}
       <div className="absolute inset-0 z-30 pointer-events-none mix-blend-overlay">

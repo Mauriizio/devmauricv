@@ -49,8 +49,8 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
       >
         <img
           src="/assets/avatar.png"
-          alt="Avatar mitad"
-          className="absolute top-0 right-0 h-full w-auto object-contain scale-[1.7] origin-right z-30"
+          alt="Avatar Maurizio Caballero"
+          className="absolute top-0 right-0 h-full w-auto object-cover scale-[1.1] origin-left z-30"
         />
       </div>
 
@@ -86,7 +86,7 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
             </h1>
 
             {/* Lista de skills (se mantiene) */}
-            <div className="mt-0">
+            {/* <div className="mt-0">
               <ul
                 className={`text-sm md:text-base space-y-1 backdrop-blur-sm p-3 md:p-4 rounded-md leading-relaxed drop-shadow-[1px_1px_1px_rgba(0,0,0,0.9)]
                             w-[260px] sm:w-[280px] md:w-[340px] lg:w-[320px] xl:w-[360px] shrink-0
@@ -99,7 +99,7 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
                 <li>📱 Mobile-First Design</li>
                 <li>🔗 API Integrations</li>
               </ul>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
