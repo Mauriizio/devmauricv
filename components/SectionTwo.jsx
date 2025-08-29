@@ -4,6 +4,7 @@ import { useTheme } from "@/context/ThemeContext"
 import ParticlesBackground from "@/components/ParticlesBackground"
 import LogoMCFancy from "@/components/LogoMCFancy" 
 import LogoSplitBg from "@/components/LogoSplitBg"  
+import LogoSplitParticlesBg from "@/components/LogoSplitParticlesBg"  
 export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
   const { isDark, toggleDarkMode } = useTheme()
 
@@ -41,21 +42,19 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
       <ParticlesBackground />
 
       {/* Imagen lado izquierdo (mitad de la cara) */}
-      {/* <div
+      <div
         className={`absolute inset-0 z-10 p-0 overflow-hidden transition-colors duration-150 ${
           isDark ? "bg-black/70" : "bg-gray-50/70"
         }`}
       >
         <img
-          src="/assets/avatar-left2.png"
+          src="/assets/avatar.png"
           alt="Avatar mitad"
           className="absolute top-0 right-0 h-full w-auto object-contain scale-[1.7] origin-right z-30"
         />
-      </div> */}
+      </div>
 
-      <div className="absolute inset-0 z-10 group">
-  <LogoSplitBg half="left" dock="right" className="text-black/60 dark:text-cyan-600" />
-</div>
+      
 
       {/* Overlay unificado con SectionOne */}
       <div

@@ -299,3 +299,14 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;            /* Chrome/Safari/Opera */
 }
+
+/* --- Logo shimmer, determinístico y leve --- */
+.mc-shimmer {
+  transform: translateX(-120%);
+  animation: mc-shimmer-move 9s linear infinite;
+}
+
+@keyframes mc-shimmer-move {
+  0%   { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
