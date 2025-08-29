@@ -301,12 +301,13 @@ body {
 }
 
 /* --- Logo shimmer, determinístico y leve --- */
+/* Shimmer bar del logo */
 .mc-shimmer {
-  transform: translateX(-120%);
-  animation: mc-shimmer-move 9s linear infinite;
+  animation: mcShimmer 5.6s linear infinite;
+  will-change: transform;
+}
+@keyframes mcShimmer {
+  0%   { transform: translateX(-30%); }
+  100% { transform: translateX(130%); }
 }
 
-@keyframes mc-shimmer-move {
-  0%   { transform: translateX(-120%); }
-  100% { transform: translateX(120%); }
-}

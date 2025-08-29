@@ -51,22 +51,24 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
 
       {/* Watermark del logo (más notorio) */}
       <LogoMarkShimmer
-        aria-hidden
-        className={`
-          pointer-events-none absolute z-10
-          left-1/2 -translate-x-1/2
-          top-[24vh] md:top-[12vh]
-          w-[140vw] md:w-[110vw] lg:w-[95vw]
-          text-slate-900 dark:text-slate-100
-          ${isDark ? "opacity-[0.5]" : "opacity-[0.5]"}
-        `}
-      />
+  isDark={isDark}
+  className="
+    pointer-events-none absolute z-10
+    left-1/2 -translate-x-1/2
+    top-[24vh] md:top-[12vh]
+    w-[140vw] md:w-[110vw] lg:w-[65vw]
+    text-slate-900 dark:text-slate-100
+    opacity-[0.9]
+  "
+/>
+
+
 
       {/* Overlay para contraste */}
       <div
         aria-hidden
         className={`absolute inset-0 z-20 transition-colors duration-500 pointer-events-none ${
-          isDark ? "bg-black/35" : "bg-white/55"
+          isDark ? "bg-black/35" : "bg-white/40"
         }`}
       />
 
@@ -77,7 +79,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
           aria-hidden
           className={`
             absolute inset-0 ${isDark ? "hidden" : "block"}
-            opacity-30
+            opacity-90
             [background-image:radial-gradient(rgba(0,0,0,0.26)_1px,transparent_1px),
                               radial-gradient(rgba(0,0,0,0.16)_1px,transparent_1px)]
             bg-[length:3px_3px,7px_7px] bg-[position:0_0,1px_1px]
