@@ -25,7 +25,7 @@ export default function LogoMarkShimmer({ className = "", isDark = false }) {
         {/* Oro claro */}
         <linearGradient id="mc_gold_light" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%"  stopColor="#999999ff" />
-          <stop offset="45%" stopColor="#000000ff" />
+          <stop offset="45%" stopColor="#ffffffff" />
           <stop offset="100%" stopColor="#868686ff" />
         </linearGradient>
 
@@ -55,8 +55,8 @@ export default function LogoMarkShimmer({ className = "", isDark = false }) {
         <filter id="mc_grain_light" x="-20%" y="-20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
           <feTurbulence
             type="turbulence"
-            baseFrequency="9"
-            numOctaves="9"
+            baseFrequency="2"
+            numOctaves="5"
             seed="0"
             stitchTiles="stitch"
             result="grain"
