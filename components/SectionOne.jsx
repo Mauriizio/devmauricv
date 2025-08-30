@@ -108,7 +108,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
           "left-1/2 -translate-x-1/2",
           "top-[24vh] md:top-[20vh]",
           "w-[88vw] md:w-[72vw] lg:w-[64vw] max-w-[100vw]",
-          isDark ? "opacity-80" : "opacity-55",
+          isDark ? "opacity-80" : "opacity-90",
         ].join(" ")}
       />
 
@@ -179,16 +179,16 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
           <div className="mt-auto w-full flex flex-col items-center gap-4 sm:gap-5 pb-[env(safe-area-inset-bottom)]">
             <button
               onClick={onContactOpen}
-              className="text-2xl sm:text-3xl lg:text-4xl font-black text-cyan-400 dark:text-cyan-300 transition-transform duration-300 hover:translate-y-0.5"
+              className="text-2xl bg-gray-200 mb-16 sm:text-3xl lg:text-2xl font-black text-gray-600 dark:text-cyan-300 transition-transform duration-300 hover:translate-y-0.5"
             >
               Contacto
             </button>
-            <button
+            {/* <button
               onClick={onVerMas}
               className="text-2xl sm:text-3xl lg:text-4xl font-black text-cyan-400 dark:text-cyan-300 transition-transform duration-300 hover:translate-y-0.5"
             >
               Sobre mí
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
@@ -200,7 +200,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
         type="button"
         onClick={goSectionTwo}
         className={[
-          "group absolute left-3 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 z-40 flex flex-col items-center select-none",
+          "group absolute mt-20 left-3 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 z-40 flex flex-col items-center select-none",
           "focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 rounded-xl",
           isDark ? "text-white/90" : "text-gray-900/90",
         ].join(" ")}
@@ -236,7 +236,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
         type="button"
         onClick={onMenuOpen}
         className={[
-          "group absolute right-3 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 z-40 flex flex-col items-center select-none",
+          "group absolute mt-20 right-3 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 z-40 flex flex-col items-center select-none",
           "focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 rounded-xl",
           isDark ? "text-white/90" : "text-gray-900/90",
         ].join(" ")}

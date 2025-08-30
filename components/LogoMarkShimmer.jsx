@@ -72,7 +72,7 @@ export default function LogoMarkShimmer({ className = "", isDark = false }) {
               1 0 0 0 0
               0 1 0 0 0
               0 0 1 0 0
-              0 0 0 2 -0.8
+              1 0 0 2 -0.8
             "
             result="grainHi"
           />
