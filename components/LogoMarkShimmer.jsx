@@ -24,9 +24,9 @@ export default function LogoMarkShimmer({ className = "", isDark = false }) {
       <defs>
         {/* Oro claro */}
         <linearGradient id="mc_gold_light" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"  stopColor="#F6E98B" />
-          <stop offset="45%" stopColor="#E2C66E" />
-          <stop offset="100%" stopColor="#B6893F" />
+          <stop offset="0%"  stopColor="#BFA157" />
+          <stop offset="45%" stopColor="#9A7B37" />
+          <stop offset="100%" stopColor="#6F5425" />
         </linearGradient>
 
         {/* Oro oscuro (un poco más frío y contrastado) */}
@@ -39,7 +39,7 @@ export default function LogoMarkShimmer({ className = "", isDark = false }) {
         {/* Barra shimmer */}
         <linearGradient id="mc_shimmer" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%"   stopColor="transparent" />
-          <stop offset="50%"  stopColor="rgba(255,255,255,0.75)" />
+          <stop offset="50%"  stopColor="rgba(255, 255, 255, 0.75)" />
           <stop offset="100%" stopColor="transparent" />
         </linearGradient>
 

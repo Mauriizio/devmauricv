@@ -15,7 +15,7 @@ export default function CodeParticlesBackground() {
     background: { color: "transparent" },
     particles: {
       number: { value: 100, density: { enable: true, area: 800 } },
-      color: { value: ["#ff0000ff", "#00c52bff"] },
+      color: { value: ["#000000ff", "#ffffffff"] },
       shape: {
         type: ["char"],
         character: [

@@ -23,14 +23,19 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
         isDark ? "bg-black" : "bg-gray-50"
       }`}
     >
-      {/* Header (alto z-index y clickeable) */}
+      {/* Header */}
       <div
         className={`absolute top-0 left-0 right-0 z-50 backdrop-blur-lg border-b p-4 ${
           isDark ? "bg-black/60 border-white/10" : "bg-white/60 border-gray-300/50"
         }`}
       >
         <div className="flex items-center justify-between max-w-6xl mx-auto">
-          <LogoMCFancy className="h-12 w-auto text-gray-900 dark:text-cyan-300" />
+          <LogoMCFancy
+            className="h-12 w-auto text-gray-900 dark:text-cyan-300 hover:text-fuchsia-500 transition-colors"
+            gap={0.5}
+            shift={0.08}
+            duration={500}
+          />
           <div className="flex items-center gap-3">
             <button className="btn-primary flex items-center gap-2 text-sm px-3 py-1.5" aria-label="CV">
               <Download size={16} />
@@ -49,83 +54,76 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
       {/* Partículas de código */}
       <CodeParticlesBackground />
 
-      {/* Overlay para contraste */}
-      
-
-      {/* Watermark del logo (más notorio) */}
+      {/* Marca de agua (ajustada para no generar scroll horizontal) */}
       <LogoMarkShimmer
-  isDark={isDark}
-  className="
-    pointer-events-none absolute z-30
-    left-1/2 -translate-x-1/2
-    top-[24vh] md:top-[12vh] 
-    w-[140vw] md:w-[110vw] lg:w-[70vw]
-    text-slate-900 dark:text-slate-100
-    opacity-[0.9]
-  "
-/>
+        isDark={isDark}
+        className={[
+          "pointer-events-none absolute z-30",
+          "left-1/2 -translate-x-1/2",
+          "top-[24vh] md:top-[20vh]",
+          // Tamaños prudentes para evitar overflow horizontal en cualquier breakpoint
+          "w-[88vw] md:w-[76vw] lg:w-[68vw]",
+          // Opacidad separada por tema
+          isDark ? "opacity-85" : "opacity-70",
+        ].join(" ")}
+      />
 
-
-<div
+      {/* Overlay global para contraste */}
+      <div
         aria-hidden
         className={`absolute inset-0 z-20 transition-colors duration-500 pointer-events-none ${
-          isDark ? "bg-black/35" : "bg-gray-700/50"
+          isDark ? "bg-black/35" : "bg-white/35"
         }`}
       />
 
-
-      
-
-      {/* Ruido fuerte (sin random → no hay hydration mismatch) */}
+      {/* Ruido fino global (determinístico, sin random en runtime) */}
       <div className="absolute inset-0 z-30 pointer-events-none mix-blend-overlay">
         {/* Claro */}
         <div
           aria-hidden
-          className={`
-            absolute inset-0 ${isDark ? "hidden" : "block"}
-            opacity-90
-            [background-image:radial-gradient(rgba(0,0,0,0.26)_1px,transparent_1px),
-                              radial-gradient(rgba(0,0,0,0.16)_1px,transparent_1px)]
-            bg-[length:3px_3px,7px_7px] bg-[position:0_0,1px_1px]
-          `}
+          className={[
+            "absolute inset-0",
+            isDark ? "hidden" : "block",
+            "opacity-80",
+            "[background-image:radial-gradient(rgba(0,0,0,0.22)_1px,transparent_1px),radial-gradient(rgba(0,0,0,0.12)_1px,transparent_1px)]",
+            "bg-[length:3px_3px,7px_7px] bg-[position:0_0,1px_1px]",
+          ].join(" ")}
         />
         {/* Oscuro */}
         <div
           aria-hidden
-          className={`
-            absolute inset-0 ${isDark ? "block" : "hidden"}
-            opacity-30
-            [background-image:radial-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),
-                              radial-gradient(rgba(255,255,255,0.10)_1px,transparent_1px)]
-            bg-[length:3px_3px,7px_7px] bg-[position:0_0,1px_1px]
-          `}
+          className={[
+            "absolute inset-0",
+            isDark ? "block" : "hidden",
+            "opacity-30",
+            "[background-image:radial-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),radial-gradient(rgba(255,255,255,0.10)_1px,transparent_1px)]",
+            "bg-[length:3px_3px,7px_7px] bg-[position:0_0,1px_1px]",
+          ].join(" ")}
         />
       </div>
 
-      {/* Hint de scroll (izquierda) */}
+      {/* Hint scroll lateral */}
       <div
         aria-hidden
-        className="hidden sm:flex items-center gap-1 absolute left-3 top-1/2 -translate-y-1/2 z-40
+        className="hidden sm:flex items-center gap-2 absolute left-3 top-1/2 -translate-y-1/2 z-40
                    text-gray-800 dark:text-white/80 opacity-70 animate-pulse select-none"
       >
         <span className="text-3xl md:text-4xl">»</span>
       </div>
 
-      {/* Contenido centrado (mobile y desktop) */}
+      {/* Contenido */}
       <div
         className={`relative z-40 w-full h-full transition-opacity duration-700 ease-out ${
           contentVisible ? "opacity-100" : "opacity-0"
         }`}
       >
         <div
-          className={`
-            mx-auto h-full max-w-6xl flex flex-col
-            pt-24 pb-6 sm:pb-8 md:pb-10 px-4 sm:px-6 lg:px-8
-            items-center justify-start text-center
-            font-azonix ${isDark ? "text-white" : "text-gray-900"}
-          `}
+          className={`mx-auto h-full max-w-6xl flex flex-col
+                      pt-24 pb-6 sm:pb-8 md:pb-10 px-4 sm:px-6 lg:px-8
+                      items-center justify-start text-center
+                      font-azonix ${isDark ? "text-white" : "text-gray-900"}`}
         >
-          {/* Nombre (Maurizio sobre Caballero) */}
+          {/* Nombre */}
           <div className="flex flex-col gap-0">
             <button
               className={`text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-black transition-all duration-300
@@ -142,17 +140,29 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
             </button>
           </div>
 
-          {/* CTA principal más grande */}
-          <div className="mt-8 md:mt-10">
+          {/* CTA con scrim local para legibilidad */}
+          <div className="relative mt-52 md:mt-10">
+            {/* Scrim/halo detrás del CTA para que nunca compita con el fondo */}
+            <div
+              aria-hidden
+              className="absolute -inset-x-8 -inset-y-3 rounded-xl
+                         bg-gradient-to-b from-white/70 to-white/0
+                         dark:from-black/40 dark:to-transparent
+                         blur-md pointer-events-none"
+            />
             <button
               id="ver-portfolio"
               onClick={onMenuOpen}
-              className="group inline-flex items-center gap-2 text-black dark:text-white transition-all duration-300 hover:scale-105"
+              className="group relative inline-flex items-center gap-3 text-black dark:text-white transition-transform duration-300 hover:scale-[1.03]"
             >
-              <span className="mt-40 md:mt-8 text-6xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold font-sans">
+              <span className="text-3xl sm:text-5xl lg:text-6xl xl:text-6xl font-bold font-azonix leading-none">
                 Ver Portfolio
               </span>
-              <ChevronsRight size={36} className=" mt-40 md:mt-8 transition-transform group-hover:translate-x-1" />
+              <ChevronsRight
+                size={40}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden
+              />
             </button>
           </div>
 
