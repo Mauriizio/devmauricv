@@ -1,27 +1,75 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { useTheme } from "@/context/ThemeContext"
-import CodeParticlesBackground from "./CodeParticlesBackground"
-import { Download, ChevronsRight } from "lucide-react"
-
-import LogoMCFancy from "@/components/LogoMCFancy"
-import LogoMarkShimmer from "@/components/LogoMarkShimmer"
+import { useEffect, useState, useRef, useCallback } from "react";
+import { useTheme } from "@/context/ThemeContext";
+import CodeParticlesBackground from "./CodeParticlesBackground";
+import { Download, ChevronsLeft, ChevronsRight } from "lucide-react";
+import LogoMCFancy from "@/components/LogoMCFancy";
+import LogoMarkShimmer from "@/components/LogoMarkShimmer";
 
 export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
-  const [contentVisible, setContentVisible] = useState(false)
-  const { isDark, toggleDarkMode } = useTheme()
+  const rootRef = useRef(null);
+  const [contentVisible, setContentVisible] = useState(false);
+  const { isDark, toggleDarkMode } = useTheme();
 
   useEffect(() => {
-    const t = setTimeout(() => setContentVisible(true), 100)
-    return () => clearTimeout(t)
-  }, [])
+    const t = setTimeout(() => setContentVisible(true), 100);
+    return () => clearTimeout(t);
+  }, []);
+
+  // Local helper: sube por el árbol buscando un contenedor que realmente scrollee horizontalmente
+  const findHorizontalScroller = (el) => {
+    let node = el?.parentElement ?? null;
+    for (let i = 0; i < 6 && node; i++) {
+      const cs = window.getComputedStyle(node);
+      const mayScrollX =
+        (cs.overflowX === "auto" || cs.overflowX === "scroll" || cs.overflowX === "overlay") &&
+        node.scrollWidth > node.clientWidth + 1;
+      if (mayScrollX) return node;
+      node = node.parentElement;
+    }
+    return null;
+  };
+
+  // IZQUIERDA: ir a Section Two (como scroll horizontal real). NO usa onVerMas.
+  const goSectionTwo = useCallback(() => {
+    // 1) Probar el siguiente <section> hermano
+    let target = null;
+    const here = rootRef.current;
+    if (here?.nextElementSibling && here.nextElementSibling.tagName === "SECTION") {
+      target = here.nextElementSibling;
+    }
+
+    // 2) Selectores de respaldo (#section-two o data-section)
+    if (!target) {
+      target =
+        document.getElementById("section-two") ||
+        document.querySelector('[data-section="two"]') ||
+        document.querySelector('[data-section="SectionTwo"]') ||
+        document.querySelector('section#two');
+    }
+
+    if (!target) return;
+
+    // 3) Intentar scroll en contenedor horizontal si existe
+    const scroller = findHorizontalScroller(target);
+    if (scroller) {
+      const left = target.offsetLeft - scroller.offsetLeft;
+      scroller.scrollTo({ left, behavior: "smooth" });
+      return;
+    }
+
+    // 4) Fallback: scrollIntoView (también sirve con snap-x)
+    target.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "start" });
+  }, []);
 
   return (
     <section
+      ref={rootRef}
       className={`relative w-screen h-dvh snap-start snap-always flex-shrink-0 overflow-hidden overscroll-none transition-colors duration-500 ${
         isDark ? "bg-black" : "bg-gray-50"
       }`}
+      style={{ overflowX: "clip" }}
     >
       {/* Header */}
       <div
@@ -48,35 +96,31 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
         </div>
       </div>
 
-      {/* Fondo base */}
+      {/* Fondo + partículas */}
       <div className={`absolute inset-0 z-0 ${isDark ? "bg-black" : "bg-gray-50"}`} />
-
-      {/* Partículas de código */}
       <CodeParticlesBackground />
 
-      {/* Marca de agua (ajustada para no generar scroll horizontal) */}
+      {/* Marca de agua (oro + ruido) */}
       <LogoMarkShimmer
         isDark={isDark}
         className={[
           "pointer-events-none absolute z-30",
           "left-1/2 -translate-x-1/2",
           "top-[24vh] md:top-[20vh]",
-          // Tamaños prudentes para evitar overflow horizontal en cualquier breakpoint
-          "w-[88vw] md:w-[76vw] lg:w-[68vw]",
-          // Opacidad separada por tema
-          isDark ? "opacity-85" : "opacity-70",
+          "w-[88vw] md:w-[72vw] lg:w-[64vw] max-w-[100vw]",
+          isDark ? "opacity-80" : "opacity-55",
         ].join(" ")}
       />
 
-      {/* Overlay global para contraste */}
+      {/* Overlay para contraste */}
       <div
         aria-hidden
         className={`absolute inset-0 z-20 transition-colors duration-500 pointer-events-none ${
-          isDark ? "bg-black/35" : "bg-white/35"
+          isDark ? "bg-black/35" : "bg-white/10"
         }`}
       />
 
-      {/* Ruido fino global (determinístico, sin random en runtime) */}
+      {/* Ruido fino global (determinístico) */}
       <div className="absolute inset-0 z-30 pointer-events-none mix-blend-overlay">
         {/* Claro */}
         <div
@@ -84,8 +128,8 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
           className={[
             "absolute inset-0",
             isDark ? "hidden" : "block",
-            "opacity-80",
-            "[background-image:radial-gradient(rgba(0,0,0,0.22)_1px,transparent_1px),radial-gradient(rgba(0,0,0,0.12)_1px,transparent_1px)]",
+            "opacity-70",
+            "[background-image:radial-gradient(rgba(0,0,0,0.20)_1px,transparent_1px),radial-gradient(rgba(0,0,0,0.10)_1px,transparent_1px)]",
             "bg-[length:3px_3px,7px_7px] bg-[position:0_0,1px_1px]",
           ].join(" ")}
         />
@@ -95,20 +139,11 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
           className={[
             "absolute inset-0",
             isDark ? "block" : "hidden",
-            "opacity-30",
+            "opacity-25",
             "[background-image:radial-gradient(rgba(255,255,255,0.18)_1px,transparent_1px),radial-gradient(rgba(255,255,255,0.10)_1px,transparent_1px)]",
             "bg-[length:3px_3px,7px_7px] bg-[position:0_0,1px_1px]",
           ].join(" ")}
         />
-      </div>
-
-      {/* Hint scroll lateral */}
-      <div
-        aria-hidden
-        className="hidden sm:flex items-center gap-2 absolute left-3 top-1/2 -translate-y-1/2 z-40
-                   text-gray-800 dark:text-white/80 opacity-70 animate-pulse select-none"
-      >
-        <span className="text-3xl md:text-4xl">»</span>
       </div>
 
       {/* Contenido */}
@@ -140,49 +175,97 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
             </button>
           </div>
 
-          {/* CTA con scrim local para legibilidad */}
-          <div className="relative mt-52 md:mt-10">
-            {/* Scrim/halo detrás del CTA para que nunca compita con el fondo */}
-            <div
-              aria-hidden
-              className="absolute -inset-x-8 -inset-y-3 rounded-xl
-                         bg-gradient-to-b from-white/70 to-white/0
-                         dark:from-black/40 dark:to-transparent
-                         blur-md pointer-events-none"
-            />
-            <button
-              id="ver-portfolio"
-              onClick={onMenuOpen}
-              className="group relative inline-flex items-center gap-3 text-black dark:text-white transition-transform duration-300 hover:scale-[1.03]"
-            >
-              <span className="text-3xl sm:text-5xl lg:text-6xl xl:text-6xl font-bold font-azonix leading-none">
-                Ver Portfolio
-              </span>
-              <ChevronsRight
-                size={40}
-                className="transition-transform duration-300 group-hover:translate-x-1"
-                aria-hidden
-              />
-            </button>
-          </div>
-
-          {/* Botones secundarios centrados y pegados abajo */}
+          {/* Botones secundarios (abajo, centrados) */}
           <div className="mt-auto w-full flex flex-col items-center gap-4 sm:gap-5 pb-[env(safe-area-inset-bottom)]">
             <button
               onClick={onContactOpen}
-              className="text-2xl sm:text-3xl lg:text-4xl font-black text-cyan-700 dark:text-cyan-300 transition-transform duration-300 hover:translate-y-0.5"
+              className="text-2xl sm:text-3xl lg:text-4xl font-black text-cyan-400 dark:text-cyan-300 transition-transform duration-300 hover:translate-y-0.5"
             >
               Contacto
             </button>
             <button
               onClick={onVerMas}
-              className="text-2xl sm:text-3xl lg:text-4xl font-black text-cyan-700 dark:text-cyan-300 transition-transform duration-300 hover:translate-y-0.5"
+              className="text-2xl sm:text-3xl lg:text-4xl font-black text-cyan-400 dark:text-cyan-300 transition-transform duration-300 hover:translate-y-0.5"
             >
               Sobre mí
             </button>
           </div>
         </div>
       </div>
+
+      {/* === CHEVRONS PRINCIPALES === */}
+
+      {/* IZQUIERDA → SIEMPRE a Section Two */}
+      <button
+        type="button"
+        onClick={goSectionTwo}
+        className={[
+          "group absolute left-3 sm:left-4 md:left-6 top-1/2 -translate-y-1/2 z-40 flex flex-col items-center select-none",
+          "focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 rounded-xl",
+          isDark ? "text-white/90" : "text-gray-900/90",
+        ].join(" ")}
+        aria-label="Ir a la sección siguiente"
+      >
+        <span
+          className={[
+            "grid place-items-center rounded-full",
+            "w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28",
+            "backdrop-blur-xl transition-all duration-300",
+            isDark
+              ? "bg-white/8 ring-1 ring-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.25)] hover:ring-cyan-400/40 hover:shadow-cyan-400/30"
+              : "bg-gradient-to-b from-white/92 to-cyan-50/60 ring-1 ring-black/10 shadow-[0_10px_30px_rgba(0,0,0,0.20)] hover:ring-cyan-500/40 hover:shadow-cyan-300/30",
+          ].join(" ")}
+        >
+          <ChevronsLeft
+            className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 transition-transform duration-300 group-hover:-translate-x-1"
+            strokeWidth={2.6}
+          />
+        </span>
+        <span
+          className={[
+            "mt-3 text-sm sm:text-base tracking-wider uppercase font-azonix",
+            isDark ? "text-white/85" : "text-gray-900/85",
+          ].join(" ")}
+        >
+          más
+        </span>
+      </button>
+
+      {/* DERECHA → Portfolio */}
+      <button
+        type="button"
+        onClick={onMenuOpen}
+        className={[
+          "group absolute right-3 sm:right-4 md:right-6 top-1/2 -translate-y-1/2 z-40 flex flex-col items-center select-none",
+          "focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 rounded-xl",
+          isDark ? "text-white/90" : "text-gray-900/90",
+        ].join(" ")}
+        aria-label="Abrir portfolio"
+      >
+        <span
+          className={[
+            "grid place-items-center rounded-full",
+            "w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28",
+            "backdrop-blur-xl transition-all duration-300",
+            isDark
+              ? "bg-white/8 ring-1 ring-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.25)] hover:ring-cyan-400/40 hover:shadow-cyan-400/30"
+              : "bg-gradient-to-b from-white/92 to-cyan-50/60 ring-1 ring-black/10 shadow-[0_10px_30px_rgba(0,0,0,0.20)] hover:ring-cyan-500/40 hover:shadow-cyan-300/30",
+          ].join(" ")}
+        >
+          <ChevronsRight
+            className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 transition-transform duration-300 group-hover:translate-x-1"
+            strokeWidth={2.6}
+          />
+        </span>
+        <span
+          className={[
+            "mt-3 text-sm sm:text-base tracking-wider uppercase font-azonix",
+            isDark ? "text-white/85" : "text-gray-900/85",
+          ].join(" ")}
+        >
+          portfolio
+        </span>
+      </button>
     </section>
-  )
+  );
 }

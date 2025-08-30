@@ -7,7 +7,7 @@ export default function LogoMCFancy({
   className = "h-12 w-auto text-cyan-600",
   title = "Logo Maurizio Caballero",
   gap = 0,             // px de separación visual entre slices (0 = sin gap)
-  shift = 0.06,        // cuánto se desplaza cada slice (porcentaje del tamaño)
+  shift = 0.02,        // cuánto se desplaza cada slice (porcentaje del tamaño)
   duration = 350       // ms de la animación
 }) {
   // Path original: tu mismo "d"
