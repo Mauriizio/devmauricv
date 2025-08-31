@@ -2,10 +2,14 @@
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useTheme } from "@/context/ThemeContext";
-import CodeParticlesBackground from "./CodeParticlesBackground";
+// import CodeParticlesBackground from "./CodeParticlesBackground";
 import { Download, ChevronsLeft, ChevronsRight } from "lucide-react";
 import LogoMCFancy from "@/components/LogoMCFancy";
 import LogoMarkShimmer from "@/components/LogoMarkShimmer";
+import dynamic from "next/dynamic"
+
+
+const CodeParticlesBackground = dynamic(() => import("@/components/CodeParticlesBackground"), { ssr: false })
 
 export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
   const rootRef = useRef(null);

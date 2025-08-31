@@ -26,7 +26,6 @@ export default function Document() {
           crossOrigin="anonymous"
         /> */}
 
-        {/* Favicon (coloca /public/favicon.ico en tu proyecto) */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </Head>
       <body>

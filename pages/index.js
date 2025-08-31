@@ -1,5 +1,5 @@
 // pages/index.js
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useState, useRef } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import SectionOne from "@/components/SectionOne"
@@ -10,6 +10,9 @@ import ProjectDetail from "@/components/ProjectDetail"
 import SectionContact from "@/components/SectionContact"
 import { projectsData } from "@/data/projects"
 
+
+
+
 // --- SSR: leer ?view=...&id=... para evitar el "salto" al recargar ---
 export async function getServerSideProps(ctx) {
   const { view = null, id = null } = ctx.query || {}
@@ -18,6 +21,10 @@ export async function getServerSideProps(ctx) {
 
 export default function Home({ initialView, initialId }) {
   const router = useRouter()
+  const scrollerRef = useRef(null)
+
+
+  
 
   // Resolver proyecto inicial en SSR
   const initialProject = useMemo(
@@ -82,8 +89,7 @@ export default function Home({ initialView, initialId }) {
   // Volver del detalle a lista de proyectos sin duplicar historial
   const handleBackToProjects = () => {
     const nextQuery = { ...router.query, view: "projects" }
-    delete nextQuery.id
-    router.replace({ pathname: router.pathname, query: nextQuery }, undefined, { shallow: true })
+    router.push({ pathname: router.pathname, query: nextQuery }, undefined, { shallow: true })
 
   }
 
@@ -125,12 +131,14 @@ export default function Home({ initialView, initialId }) {
 
       {/* Contenedor principal con scroll horizontal + snap */}
       <main
-        className={`flex flex-row-reverse overflow-x-auto snap-x snap-mandatory scroll-smooth w-screen h-screen
-          transition-transform duration-300 ease-out motion-reduce:transition-none
+      ref={scrollerRef}
+        className={`flex flex-row-reverse w-screen h-dvh min-h-0 overflow-x-auto overflow-y-hidden overscroll-y-none
+          snap-x snap-mandatory scroll-smooth transition-transform duration-300 ease-out motion-reduce:transition-none
           ${anyOverlayOpen ? "transform -translate-y-full overflow-hidden" : ""}`}
         style={{
           overflowX: anyOverlayOpen ? "hidden" : "auto",
-          willChange: "transform",
+          overscrollBehaviorY: "none",
+           willChange: "transform",
         }}
       >
         <SectionOne onMenuOpen={openMenu} onVerMas={handleVerMas} onContactOpen={handleContactOpen} />

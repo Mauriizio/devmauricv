@@ -1,8 +1,12 @@
 "use client";
 
 import { useTheme } from "@/context/ThemeContext";
-import ParticlesBackground from "@/components/ParticlesBackground";
+// import ParticlesBackground from "@/components/ParticlesBackground";
 import LogoMCFancy from "@/components/LogoMCFancy";
+import dynamic from "next/dynamic"
+import Image from "next/image"
+
+const ParticlesBackground = dynamic(() => import("@/components/ParticlesBackground"), { ssr: false })
 
 export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
   const { isDark, toggleDarkMode } = useTheme();
@@ -44,11 +48,16 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
           isDark ? "bg-black/70" : "bg-gray-50/70"
         }`}
       >
-        <img
+
+        <Image src="/assets/avatar.png" alt="Avatar Maurizio Caballero"
+        fill priority sizes="(min-width: 1024px) 50vw, 100vw"
+         className="absolute top-0 right-0 object-cover  scale-[1.06] origin-left z-30" />
+
+        {/* <img
           src="/assets/avatar.png"
           alt="Avatar Maurizio Caballero"
           className="absolute top-0 right-0 h-full w-auto object-cover scale-[1.06] origin-left z-30"
-        />
+        /> */}
       </div>
 
       {/* Scrim izquierdo */}

@@ -27,7 +27,7 @@ body {
   }
 }
 
-html, body {
+html, body #__next {
   height: 100%;
   overflow-y: hidden;        /* bloquea vertical global cuando todo es horizontal */
   overscroll-behavior-y: none;
