@@ -8,6 +8,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fuente Azonix local */
 @font-face {
   font-family: "Azonix";
   src: url("/fonts/Azonix.otf") format("opentype");
@@ -15,45 +16,43 @@
   font-style: normal;
 }
 
-body {
-  p {
-    @apply font-sans;
-  }
-  input {
-    @apply font-sans;
-  }
-  textarea {
-    @apply font-sans;
-  }
-}
+/* Base: tipografía consistente */
+:root { scrollbar-gutter: stable both-edges; }
 
-html, body #__next {
+html, body, #__next {
   height: 100%;
   overflow-y: hidden;        /* bloquea vertical global cuando todo es horizontal */
   overscroll-behavior-y: none;
 }
 
+body {
+  @apply font-sans antialiased text-zinc-800 bg-white dark:bg-gray-900 dark:text-white;
+}
+
+/* Párrafos e inputs → font-sans y tamaños coherentes */
+body {
+  p { @apply font-sans text-base sm:text-lg leading-relaxed; }
+  input { @apply font-sans; }
+  textarea { @apply font-sans; }
+}
 
 /* ===== CLASES REUTILIZABLES ===== */
 
-/* Títulos responsivos - AJUSTE FINAL PROFESIONAL */
+/* Títulos responsivos (Azonix + centrados) */
 .title-main {
-  @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-cyan-600;
+  @apply font-azonix text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-cyan-600;
 }
-
 .title-section {
-  @apply text-base sm:text-lg md:text-xl font-bold text-cyan-600 mb-4;
+  @apply font-azonix text-center text-lg sm:text-xl md:text-2xl text-cyan-600 mb-4;
 }
-
 .title-subsection {
-  @apply text-zinc-800 text-sm sm:text-base md:text-lg font-semibold;
+  @apply font-azonix text-center text-sm sm:text-base md:text-lg text-zinc-800;
 }
 
 /* Tarjetas */
 .card-primary {
   @apply bg-white p-4 md:p-6 rounded-2xl border border-stone-300/70 shadow-xl;
 }
-
 .card-secondary {
   @apply bg-stone-50 p-3 md:p-4 rounded-xl border border-stone-200 shadow-sm;
 }
@@ -62,213 +61,109 @@ html, body #__next {
 .btn-primary {
   @apply bg-cyan-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-semibold hover:bg-cyan-700 transition-all duration-300 hover:scale-105 active:scale-95;
 }
-
 .btn-secondary {
   @apply bg-transparent border-2 border-cyan-600 text-cyan-600 px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-semibold hover:bg-cyan-600 hover:text-white transition-all duration-300;
 }
-
-.btn-toggle {
-  @apply p-2 rounded-lg bg-stone-300 hover:bg-stone-400 transition-colors duration-200;
-}
+.btn-toggle { @apply p-2 rounded-lg bg-stone-300 hover:bg-stone-400 transition-colors duration-200; }
 
 /* Botones especiales */
 .btn-warning {
   @apply bg-yellow-500 text-black px-2 md:px-6 py-2 md:py-2.5 rounded-lg font-semibold hover:bg-yellow-400 transition-all duration-300 hover:scale-105 active:scale-95;
 }
-
 .btn-github {
   @apply bg-gray-600 text-white px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-semibold hover:bg-gray-700 transition-all duration-300 hover:scale-105 active:scale-95;
 }
 
-/* Botones de redes sociales */
-.btn-social {
-  @apply flex flex-col items-center gap-2 p-3 md:p-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-md text-white font-sans;
-}
-
-.btn-whatsapp {
-  @apply bg-green-600 hover:bg-green-500;
-}
-
-.btn-linkedin {
-  @apply bg-blue-700 hover:bg-blue-600;
-}
-
-.btn-instagram {
-  @apply bg-pink-600 hover:bg-pink-500;
-}
+/* Redes */
+.btn-social { @apply flex flex-col items-center gap-2 p-3 md:p-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-md text-white font-sans; }
+.btn-whatsapp { @apply bg-green-600 hover:bg-green-500; }
+.btn-linkedin { @apply bg-blue-700 hover:bg-blue-600; }
+.btn-instagram { @apply bg-pink-600 hover:bg-pink-500; }
 
 /* Tags/Badges */
-.tag-tech {
-  @apply bg-cyan-50 text-cyan-900 px-2 md:px-3 py-1 md:py-1.5 rounded-full text-xs md:text-sm font-medium border border-cyan-200/80;
-}
-
-.tag-tool {
-  @apply bg-stone-100 text-stone-800 px-2 md:px-3 py-1 md:py-1.5 rounded-full text-xs md:text-sm font-medium border border-stone-200/90;
-}
+.tag-tech { @apply bg-cyan-50 text-cyan-900 px-2 md:px-3 py-1 md:py-1.5 rounded-full text-xs md:text-sm font-medium border border-cyan-200/80; }
+.tag-tool { @apply bg-stone-100 text-stone-800 px-2 md:px-3 py-1 md:py-1.5 rounded-full text-xs md:text-sm font-medium border border-stone-200/90; }
 
 /* Tarjetas de proyecto */
 .project-card {
-  @apply bg-white p-3 md:p-4 rounded-2xl border border-black/5 shadow-xl cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+  @apply bg-white rounded-2xl border border-black/5 shadow-xl overflow-hidden transition-transform duration-300 hover:shadow-2xl;
 }
 
-.project-icon-container {
-  @apply p-2 md:p-3 bg-stone-100  mb-2 md:mb-3 shadow-md;
-}
+/* Icon container */
+.project-icon-container { @apply p-2 md:p-3 bg-stone-100 mb-2 md:mb-3 shadow-md; }
 
 /* Características */
-.feature-item {
-  @apply flex items-start gap-3 p-3 bg-stone-200/60 rounded-lg;
-}
+.feature-item { @apply flex items-start gap-3 p-3 bg-stone-200/60 rounded-lg; }
 
 /* Timeline */
-.timeline-item {
-  @apply border-l-4 border-cyan-500/70 pl-4;
-}
+.timeline-item { @apply border-l-4 border-cyan-500/70 pl-4; }
 
-/* Texto responsivo - AJUSTE FINAL PROFESIONAL */
-.text-responsive {
-  @apply text-black text-base sm:text-lg leading-relaxed  font-sans !important;
-}
-
-.text-intro {
-  @apply font-orbitron text-sm sm:text-base md:text-lg  leading-relaxed;
-}
+/* Texto responsivo (UNICA definición) */
+.text-responsive { @apply text-base sm:text-lg leading-relaxed font-sans; }
+.text-intro { @apply font-orbitron text-sm sm:text-base md:text-lg leading-relaxed; }
 
 /* Formularios */
-.form-label {
-  @apply block text-sm sm:text-base font-orbitron font-semibold mb-2 text-zinc-700;
-}
-
+.form-label { @apply block text-sm sm:text-base font-orbitron font-semibold mb-2 text-zinc-700; }
 .form-input {
-  @apply w-full p-3 rounded-lg border border-stone-300 bg-white text-zinc-800 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors duration-200 font-orbitron;
+  @apply w-full p-3 rounded-lg border border-stone-300 bg-white text-zinc-800 placeholder-zinc-500
+         focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors duration-200 font-orbitron;
 }
-
 .form-textarea {
-  @apply w-full p-3 rounded-lg border border-stone-300 bg-white text-zinc-800 placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors duration-200 font-orbitron resize-y;
+  @apply w-full p-3 rounded-lg border border-stone-300 bg-white text-zinc-800 placeholder-zinc-500
+         focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-colors duration-200 font-orbitron resize-y;
 }
-
-/* Estados de formulario */
-.form-success {
-  @apply p-3 rounded-lg bg-green-50 border border-green-200 text-green-700 text-center font-orbitron;
-}
-
-.form-error {
-  @apply p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-center font-sans;
-}
+.form-success { @apply p-3 rounded-lg bg-green-50 border border-green-200 text-green-700 text-center font-orbitron; }
+.form-error   { @apply p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-center font-sans; }
 
 /* ===== MODO OSCURO ===== */
 .dark {
-  /* Fondos */
   --bg-primary: #1a1a1a;
   --bg-secondary: #2d2d2d;
   --bg-card: #333333;
   --bg-card-secondary: #404040;
-
-  /* Textos */
   --text-primary: #ffffff;
   --text-secondary: #d1d5db;
   --text-muted: #9ca3af;
-
-  /* Bordes */
   --border-primary: rgba(255, 255, 255, 0.1);
   --border-secondary: rgba(255, 255, 255, 0.05);
 }
 
-.dark #ver-portfolio {
-  @apply border-white/10 text-white;
-}
-
-.dark .card-primary {
-  @apply bg-gray-900 border-white/90 text-white;
-}
-
-.dark .card-secondary {
-  @apply bg-gray-600 border-white/90 text-white;
-}
-
-.dark .tag-tech {
-  @apply bg-cyan-900/50 text-cyan-200 border-cyan-700/50;
-}
-
-.dark .tag-tool {
-  @apply bg-gray-600 text-gray-200 border-gray-500;
-}
-
-.dark .feature-item {
-  @apply bg-gray-600/40 font-orbitron ;
-}
-
-.dark .btn-toggle {
-  @apply bg-gray-600 hover:bg-gray-500 text-white;
-}
+.dark #ver-portfolio { @apply border-white/10 text-white; }
+.dark .card-primary  { @apply bg-gray-900 border-white/90 text-white; }
+.dark .card-secondary{ @apply bg-gray-700 border-white/20 text-white; }
+.dark .tag-tech      { @apply bg-cyan-900/50 text-cyan-200 border-cyan-700/50; }
+.dark .tag-tool      { @apply bg-gray-600 text-gray-200 border-gray-500; }
+.dark .feature-item  { @apply bg-gray-600/40 font-orbitron; }
+.dark .btn-toggle    { @apply bg-gray-600 hover:bg-gray-500 text-white; }
 
 .dark .title-section,
-.dark .title-main {
-  @apply text-cyan-400;
-}
+.dark .title-main    { @apply text-cyan-400; }
+.dark .title-subsection { @apply text-white/90; }
 
-.dark .title-subsection {
-  @apply text-white/90;
-}
+.dark .text-responsive { @apply text-white; }
+.dark .text-intro      { @apply text-zinc-200; }
 
-.dark .text-responsive {
-  @apply text-white text-base sm:text-lg font-sans !important;
-}
-.dark .text-intro {
-  @apply  font-orbitron text-zinc-200;
-}
+.dark .project-card { @apply bg-gray-900 border-white/10 text-white; }
+.dark .project-icon-container { @apply bg-gray-800; }
 
-.dark .text-zinc-600 {
-  @apply text-gray-500 !important;
-}
-
-.dark .text-zinc-700 {
-  @apply text-gray-500 !important;
-}
-
-/* Tarjetas de proyecto en modo oscuro */
-.dark .project-card {
-  @apply bg-gray-800 border-white/10 text-white;
-}
-
-.dark .project-icon-container {
-  @apply bg-gray-700;
-}
-
-/* Formularios en modo oscuro */
-.dark .form-label {
-  @apply font-orbitron text-white !important;
-}
-
+.dark .form-label { @apply font-orbitron text-white; }
 .dark .form-input,
 .dark .form-textarea {
   @apply font-orbitron bg-gray-300 border-gray-800 text-black font-bold placeholder-gray-600;
 }
-
 .dark .form-input:focus,
-.dark .form-textarea:focus {
-  @apply ring-cyan-400 border-cyan-400;
-}
-
+.dark .form-textarea:focus { @apply ring-cyan-400 border-cyan-400; }
 .dark .form-input:disabled,
-.dark .form-textarea:disabled {
-  @apply opacity-50 cursor-not-allowed;
-}
-
-.dark .form-success {
-  @apply bg-gray-900/30 border-green-400 text-green-600 font-bold;
-}
-
-.dark .form-error {
-  @apply font-orbitron bg-red-900/30 border-red-400 text-red-400;
-}
+.dark .form-textarea:disabled { @apply opacity-50 cursor-not-allowed; }
+.dark .form-success { @apply bg-gray-900/30 border-green-400 text-green-400 font-bold; }
+.dark .form-error   { @apply font-orbitron bg-red-900/30 border-red-400 text-red-400; }
 
 /* Overlay de ruido para modo oscuro */
 .dark .noise-overlay::before {
   background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
 }
 
-/* Clases para el modal de diplomas */
+/* Utilidades varias */
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -276,110 +171,44 @@ html, body #__next {
   overflow: hidden;
 }
 
-/* Mejorar scrollbar para diplomas */
-.scrollbar-thin::-webkit-scrollbar {
-  height: 6px;
-}
+/* Scrollbar fino */
+.scrollbar-thin::-webkit-scrollbar { height: 6px; }
+.scrollbar-thin::-webkit-scrollbar-track { @apply bg-stone-200 rounded-full; }
+.scrollbar-thin::-webkit-scrollbar-thumb { @apply bg-cyan-500 rounded-full; }
+.scrollbar-thin::-webkit-scrollbar-thumb:hover { @apply bg-cyan-600; }
+.dark .scrollbar-thin::-webkit-scrollbar-track { @apply bg-gray-700; }
 
-.scrollbar-thin::-webkit-scrollbar-track {
-  @apply bg-stone-200 rounded-full;
-}
+/* Ocultar scrollbar (cuando haga falta) */
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
 
-.scrollbar-thin::-webkit-scrollbar-thumb {
-  @apply bg-cyan-500 rounded-full;
-}
-
-.scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  @apply bg-cyan-600;
-}
-
-/* Dark mode para scrollbar */
-.dark .scrollbar-thin::-webkit-scrollbar-track {
-  @apply bg-gray-700;
-}
-
-
-.no-scrollbar {
-  -ms-overflow-style: none; /* IE/Edge */
-  scrollbar-width: none;    /* Firefox */
-}
-.no-scrollbar::-webkit-scrollbar {
-  display: none;            /* Chrome/Safari/Opera */
-}
-
-/* --- Logo shimmer, determinístico y leve --- */
-/* Shimmer bar del logo */
-.mc-shimmer {
-  animation: mcShimmer 5.6s linear infinite;
-  will-change: transform;
-}
-@keyframes mcShimmer {
-  0%   { transform: translateX(-30%); }
-  100% { transform: translateX(130%); }
-}
-
-
-
-
-
-/* --- FIN GLOBALES --- */
-
-
+/* Logo shimmer */
+.mc-shimmer { animation: mcShimmer 5.6s linear infinite; will-change: transform; }
+@keyframes mcShimmer { 0% { transform: translateX(-30%); } 100% { transform: translateX(130%); } }
 
 /* -------------------- OVERRIDES / AJUSTES PARA SECTION ABOUT -------------------- */
 
-/* Nuevo: sections planas - menos cajas visuales */
-.section-flat {
-  @apply bg-transparent p-0 md:p-2 rounded-md border-b border-stone-500/50;
-}
+/* Secciones planas */
+.section-flat { @apply bg-transparent p-0 md:p-2 rounded-md border-b border-stone-500/50; }
 
-/* Ajuste: feature items más limpios, sin fondo */
-.feature-item {
-  @apply flex items-start gap-3 p-0;
-}
+/* Feature items más limpios */
+.feature-item { @apply flex items-start gap-3 p-0; }
 
-/* Tags más sutiles: menos bloques llamativos */
-.tag-tech {
-  @apply bg-transparent text-cyan-800 px-2 md:px-3 py-1 md:py-1 rounded-full text-xs md:text-sm font-medium border border-transparent;
-}
-
-.tag-tool {
-  @apply bg-transparent text-stone-800 px-2 md:px-3 py-1 md:py-1 rounded-full text-xs md:text-sm font-medium border border-transparent;
-}
+/* Tags más sutiles */
+.tag-tech { @apply bg-transparent text-cyan-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium border border-transparent; }
+.tag-tool { @apply bg-transparent text-stone-800 px-2 md:px-3 py-1 rounded-full text-xs md:text-sm font-medium border border-transparent; }
 
 /* Mantener diplomas con caja visible */
-.card-secondary {
-  @apply bg-white p-3 md:p-4 rounded-xl border border-stone-200 shadow-sm;
-}
+.card-secondary { @apply bg-white p-3 md:p-4 rounded-xl border border-stone-200 shadow-sm; }
 
-/* Reducir peso visual de card-primary por si la usas en otros lados */
-.card-primary {
-  @apply bg-transparent p-4 md:p-6 rounded-lg border border-transparent shadow-none;
-}
+/* Reducir peso visual de card-primary en algunos contextos */
+.card-primary { @apply bg-transparent p-4 md:p-6 rounded-lg border border-transparent shadow-none; }
 
-/* Textos responsivos: usar color actual (no forzar negro) */
-.text-responsive {
-  @apply text-base sm:text-lg leading-relaxed font-sans;
-}
+/* Textos responsivos: usar color actual */
+.text-responsive { @apply text-base sm:text-lg leading-relaxed font-sans; }
 
-/* Dark-mode tweaks para las nuevas clases */
-/* --- CORRECCIÓN: uso border-white/10 en lugar de border-white/6 (esa no existe en tu build) --- */
-.dark .section-flat {
-  @apply border-white/10;
-}
-
-.dark .tag-tech {
-  @apply text-cyan-300;
-}
-
-.dark .tag-tool {
-  @apply text-gray-200;
-}
-
-/* Pequeño ajuste: scrollbar diplomas para contraste en dark */
-.dark .scrollbar-thin::-webkit-scrollbar-track {
-  @apply bg-gray-800;
-}
-
-
-
+/* Dark tweaks */
+.dark .section-flat { @apply border-white/10; }
+.dark .tag-tech     { @apply text-cyan-300; }
+.dark .tag-tool     { @apply text-gray-200; }
+.dark .scrollbar-thin::-webkit-scrollbar-track { @apply bg-gray-800; }
