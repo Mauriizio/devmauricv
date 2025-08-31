@@ -193,7 +193,7 @@ body {
 /* -------------------- OVERRIDES / AJUSTES PARA SECTION ABOUT -------------------- */
 
 /* Secciones planas */
-.section-flat { @apply bg-transparent p-0 md:p-2 rounded-md border-b border-stone-500/50; }
+.section-flat { @apply bg-transparent p-2 rounded-md border-b border-stone-500/50; }
 
 /* Feature items más limpios */
 .feature-item { @apply flex items-start gap-3 p-0; }

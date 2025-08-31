@@ -303,6 +303,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
                 {technologies.map((t) => (<span key={t} className={chipClass}>{t}</span>))}
               </div>
             </section>
+            
             <section className="section-flat">
               <h3 className="title-section text-center">🛠️ Herramientas</h3>
               <div className="flex flex-wrap gap-2 md:gap-3 font-sans">
