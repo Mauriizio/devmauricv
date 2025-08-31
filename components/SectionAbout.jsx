@@ -397,7 +397,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
               <h3 className="title-section flex items-center gap-2">
                 <span>💡</span> Mi Filosofía
               </h3>
-              <p className="text-responsive font-sans">
+              <p className="text-responsive ">
                 Creo firmemente que la tecnología debe ser una herramienta que mejore la vida de las personas. Mi
                 enfoque siempre está en crear soluciones que no solo funcionen bien técnicamente, sino que también
                 proporcionen una experiencia excepcional al usuario. La simplicidad y la elegancia en el código se

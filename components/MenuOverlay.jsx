@@ -95,7 +95,7 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
             {/* Header */}
             <div className="sticky top-0 backdrop-blur-lg border-b p-4 z-20 bg-stone-200/60 border-stone-300/50 dark:bg-gray-900/60 dark:border-white/10">
               <div className="flex items-center justify-between max-w-6xl mx-auto px-2 gap-2 overflow-hidden">
-                <h1 id="overlay-title" className="title-section mb-0 min-w-0 truncate text-center w-full">
+                <h1 id="overlay-title" className="title-header mb-0 min-w-0 truncate text-left w-full">
                   Proyectos
                 </h1>
                 <div className="absolute right-4 top-3 flex items-center gap-3">
@@ -103,7 +103,7 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
                     {isDark ? "☀️" : "🌙"}
                   </button>
                   <button onClick={onClose} className="btn-primary">
-                    <span className="text-xl" aria-hidden>✕</span> Cerrar
+                    <span className="text-xl" aria-hidden>✕</span> 
                   </button>
                 </div>
               </div>

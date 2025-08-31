@@ -42,6 +42,9 @@ body {
 .title-main {
   @apply font-azonix text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-cyan-600;
 }
+.title-header {
+  @apply font-azonix text-left text-lg sm:text-xl md:text-2xl text-cyan-600 mb-4;
+}
 .title-section {
   @apply font-azonix text-center text-lg sm:text-xl md:text-2xl text-cyan-600 mb-4;
 }
@@ -136,6 +139,7 @@ body {
 .dark .feature-item  { @apply bg-gray-600/40 font-orbitron; }
 .dark .btn-toggle    { @apply bg-gray-600 hover:bg-gray-500 text-white; }
 
+.dark .title-header  { @apply text-cyan-400; }
 .dark .title-section,
 .dark .title-main    { @apply text-cyan-400; }
 .dark .title-subsection { @apply text-white/90; }
@@ -212,3 +216,8 @@ body {
 .dark .tag-tech     { @apply text-cyan-300; }
 .dark .tag-tool     { @apply text-gray-200; }
 .dark .scrollbar-thin::-webkit-scrollbar-track { @apply bg-gray-800; }
+
+
+/* Asegura burbuja visible en ambas variantes de color */
+.tag-solid { @apply bg-cyan-50 text-cyan-900 border border-cyan-200/80; }
+.dark .tag-solid { @apply bg-cyan-900/50 text-cyan-200 border-cyan-700/50; }

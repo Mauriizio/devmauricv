@@ -6,67 +6,47 @@ import Head from "next/head"
 import Image from "next/image"
 import { createPortal } from "react-dom"
 import { useTheme } from "@/context/ThemeContext"
+import { useFocusTrap } from "@/components/useFocusTrap"
+import { ArrowLeft, X as IconX, Sun, Moon } from "lucide-react"
 
 export default function ProjectDetail({ show, project, onClose, onBackToProjects }) {
+  const dialogRef = useRef(null)
   const scrollContainerRef = useRef(null)
   const { isDark, toggleDarkMode } = useTheme()
+  useFocusTrap(dialogRef, show)
 
-  // Lightbox (portal)
+  // Lightbox
   const [lightboxSrc, setLightboxSrc] = useState(null)
   const [zoomed, setZoomed] = useState(false)
   const [mounted, setMounted] = useState(false)
-
   useEffect(() => { setMounted(true) }, [])
+  useEffect(() => { if (show && scrollContainerRef.current) scrollContainerRef.current.scrollTop = 0 }, [show])
 
-  // Reset scroll cuando se abre el componente
-  useEffect(() => {
-    if (show && scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTop = 0
-    }
-  }, [show])
-
-  // Cerrar lightbox con ESC y bloquear scroll del fondo
   useEffect(() => {
     if (!lightboxSrc) return
     const onKey = (e) => { if (e.key === "Escape") { setLightboxSrc(null); setZoomed(false) } }
     window.addEventListener("keydown", onKey)
     const prev = document.body.style.overflow
     document.body.style.overflow = "hidden"
-    return () => {
-      window.removeEventListener("keydown", onKey)
-      document.body.style.overflow = prev
-    }
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = prev }
   }, [lightboxSrc])
 
   if (!project) return null
 
-  // ------- Imágenes del proyecto (con fallbacks) -------
+  // Imágenes con fallbacks
   const heroImage =
-    project.detailImage ||
-    project.images?.hero ||
-    project.image ||
-    "/placeholder.svg?height=400&width=800"
-
+    project.detailImage || project.images?.hero || project.image || "/placeholder.svg?height=400&width=800"
   const contentImage =
-    project.contentImage ||
-    project.images?.content ||
-    project.images?.section ||
-    project.image ||
-    heroImage
-
+    project.contentImage || project.images?.content || project.images?.section || project.image || heroImage
   const extraImage =
-    project.extraImage ||
-    project.images?.extra ||
-    project.images?.afterChallenges ||
-    project.image ||
-    heroImage
+    project.extraImage || project.images?.extra || project.images?.afterChallenges || project.image || heroImage
 
-  // ------- SEO -------
+  // SEO
   const description =
-    project.seoDescription ||
-    project.description ||
-    `Proyecto "${project.title}" de Maurizio Caballero: características, stack y enlaces.`
+    project.seoDescription || project.description || `Proyecto "${project.title}" de Maurizio Caballero.`
   const ogImage = project.ogImage || heroImage
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  const canonical = siteUrl && project?.id ? `${siteUrl}?view=project&id=${project.id}` : undefined
 
   const preconnectHosts = (() => {
     const hosts = []
@@ -88,27 +68,17 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
     keywords: Array.isArray(project.technologies) ? project.technologies.join(", ") : undefined,
   }
 
-  // Helpers lightbox
   const openLightbox = (src) => { setLightboxSrc(src); setZoomed(false) }
   const closeLightbox = () => { setLightboxSrc(null); setZoomed(false) }
   const toggleZoom = () => setZoomed((z) => !z)
 
-  // Nodo del lightbox (lo enviamos a portal)
   const lightboxNode = lightboxSrc ? (
-    <div
-      role="dialog"
-      aria-modal="true"
+    <div role="dialog" aria-modal="true"
       className="fixed inset-0 z-[1000] bg-black/90 flex items-center justify-center p-2 md:p-6"
-      onClick={(e) => { if (e.target === e.currentTarget) closeLightbox() }}
-    >
+      onClick={(e) => { if (e.target === e.currentTarget) closeLightbox() }}>
       <img
-        src={lightboxSrc}
-        alt=""
-        draggable={false}
-        onDoubleClick={toggleZoom}
-        className={`max-w-full max-h-full object-contain select-none transition-transform duration-200 ${
-          zoomed ? "scale-[1.5] md:scale-[2]" : "scale-100"
-        }`}
+        src={lightboxSrc} alt="" draggable={false} onDoubleClick={toggleZoom}
+        className={`max-w-full max-h-full object-contain select-none transition-transform duration-200 ${zoomed ? "scale-[1.5] md:scale-[2]" : "scale-100"}`}
         style={{ cursor: zoomed ? "zoom-out" : "zoom-in" }}
       />
     </div>
@@ -116,254 +86,162 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
 
   return (
     <section
-      ref={scrollContainerRef}
-      className={`fixed inset-0 w-screen h-screen font-azonix z-50 transition-all duration-1000 ease-in-out overflow-y-auto noise-overlay ${
-        show ? "transform translate-y-0" : "transform translate-y-full"
-      } ${isDark ? "dark bg-gray-900 text-white" : "bg-stone-200 text-zinc-800"}`}
+      ref={(node) => { scrollContainerRef.current = node; dialogRef.current = node }}
+      role="dialog" aria-modal="true" aria-labelledby="project-detail-title"
+      className={`fixed inset-0 w-screen h-screen font-azonix z-50 overflow-y-auto transition-transform duration-500 ease-in-out
+        ${show ? "translate-y-0" : "translate-y-full"} ${isDark ? "dark bg-gray-900 text-white" : "bg-stone-200 text-zinc-800"}`}
     >
-      {/* SEO solo cuando está visible para evitar duplicados */}
       {show && (
         <Head>
+          <title>{project.title ? `${project.title} — Proyecto` : "Proyecto — devMauriz"}</title>
           <meta name="description" content={description} />
           <meta name="author" content="Maurizio Caballero" />
           <meta name="robots" content="index,follow" />
-
-          {/* Open Graph */}
+          <meta name="theme-color" content={isDark ? "#0b0b0b" : "#f5f5f4"} />
+          {canonical ? <link rel="canonical" href={canonical} /> : null}
           <meta property="og:type" content="article" />
           <meta property="og:site_name" content="devMauriz" />
           <meta property="og:title" content={project.title || "Proyecto"} />
           <meta property="og:description" content={description} />
           {ogImage && <meta property="og:image" content={ogImage} />}
-
-          {/* Twitter */}
+          {canonical ? <meta property="og:url" content={canonical} /> : null}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={project.title || "Proyecto"} />
           <meta name="twitter:description" content={description} />
           {ogImage && <meta name="twitter:image" content={ogImage} />}
-
-          {/* Theme color dinámico */}
-          <meta name="theme-color" content={isDark ? "#0b0b0b" : "#f5f5f4"} />
-
-          {/* Preload de la fuente */}
           <link rel="preload" as="font" href="/fonts/Azonix.otf" type="font/otf" crossOrigin="anonymous" />
-
-          {/* Preconnect a dominios externos si existen */}
-          {preconnectHosts.map((origin) => (
-            <link key={origin} rel="preconnect" href={origin} crossOrigin="anonymous" />
-          ))}
-
-          {/* JSON-LD */}
+          {preconnectHosts.map((origin) => (<link key={origin} rel="preconnect" href={origin} crossOrigin="anonymous" />))}
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         </Head>
       )}
 
-     {/* Header */}
-<div
-  className={`sticky top-0 backdrop-blur-lg border-b p-4 z-20 ${
-    isDark ? "bg-gray-900/60 border-white/10" : "bg-stone-200/60 border-stone-300/50"
-  }`}
->
-  <div className="max-w-6xl mx-auto px-2 sm:px-4">
-    <div
-      className="flex flex-wrap items-center justify-center sm:justify-end gap-2 sm:gap-3
-                 w-full pr-[env(safe-area-inset-right)]"
-    >
-      <button onClick={toggleDarkMode} className="btn-toggle" aria-label="Cambiar tema">
-        {isDark ? "☀️" : "🌙"}
-      </button>
+      {/* Header */}
+      <div className={`sticky top-0 backdrop-blur-lg border-b p-3 sm:p-4 z-20 ${isDark ? "bg-gray-900/60 border-white/10" : "bg-stone-200/60 border-stone-300/50"}`}>
+        <div className="max-w-6xl mx-auto px-2 sm:px-4 flex items-center justify-between gap-2">
+          {/* Título a la izquierda */}
+          <h1 id="project-detail-title" className="title-header truncate">
+            {project.title || "Proyecto"}
+          </h1>
 
-      {/* ← Proyectos */}
-      <button
-        onClick={onBackToProjects}
-        className="btn-warning !inline-flex !flex-row !items-center !gap-2
-                   !px-3 !py-2 md:!px-4 md:!py-2.5 rounded-xl
-                   font-azonix text-sm md:text-base whitespace-nowrap
-                   active:translate-y-px"
-      >
-        <span className="text-base md:text-lg" aria-hidden>←</span>
-        <span className="uppercase tracking-wide">Proyectos</span>
-      </button>
-
-      {/* ✕ Cerrar */}
-      <button
-        onClick={onClose}
-        className="btn-primary !inline-flex !flex-row !items-center !gap-2
-                   !px-3 !py-2 md:!px-4 md:!py-2.5 rounded-xl
-                   font-azonix text-sm md:text-base whitespace-nowrap
-                   active:translate-y-px"
-      >
-        <span className="text-base md:text-lg" aria-hidden>✕</span>
-        <span className="uppercase tracking-wide">Cerrar</span>
-      </button>
-    </div>
-  </div>
-</div>
-
-
-      {/* Contenido principal */}
-      <div className="relative max-w-6xl mx-auto p-4 md:p-6 space-y-12 md:space-y-16 z-10">
-        {/* Introducción */}
-        <div className="text-center space-y-4 md:space-y-6 py-6 md:py-8">
-          <h2 className="title-main mb-4">{project.title}</h2>
-          <p className="text-intro max-w-4xl mx-auto ">{project.description}</p>
-        </div>
-
-        <div className="space-y-12 md:space-y-16">
-          {/* 1) Imagen principal (Hero) */}
-          <div className="card-secondary">
-            <h3 className="title-section flex items-center gap-3">
-              <span className="text-2xl md:text-4xl">🖼️</span> Vista previa
-            </h3>
+          {/* Acciones a la derecha — estilo tipo “CV” */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Volver (solo flecha) */}
             <button
-              type="button"
-              onClick={() => openLightbox(heroImage)}
-              className="relative w-full h-64 md:h-96 rounded-xl overflow-hidden border border-stone-300 shadow-lg cursor-zoom-in"
-              aria-label="Abrir imagen en grande"
+              onClick={onBackToProjects}
+              aria-label="Volver a proyectos"
+              className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors
+                ${isDark
+                  ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border-cyan-700/40 hover:border-cyan-700/70"
+                  : "text-cyan-700 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border-cyan-800/30 hover:border-cyan-800/60"}`}
             >
-              <Image
-                src={heroImage}
-                alt={`${project.title} — Hero`}
-                fill
-                sizes="(max-width: 768px) 100vw, 960px"
-                priority={false}
-                className="object-cover object-top"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              <ArrowLeft size={16} />
             </button>
-          </div>
 
-          {/* Descripción detallada */}
-          <div className="card-primary">
-            <h3 className="title-section flex items-center gap-3">
-              <span className="text-2xl md:text-4xl">📋</span> Descripción del Proyecto
-            </h3>
-            <p className="text-responsive  font-orbitron">{project.description}</p>
-          </div>
-
-          {/* 2) Imagen de contenido */}
-          <div className="card-secondary">
-            <h3 className="title-section flex items-center gap-3">
-              <span className="text-2xl md:text-4xl">🧭</span> Vista de contenido
-            </h3>
+            {/* Cerrar (solo X) */}
             <button
-              type="button"
-              onClick={() => openLightbox(contentImage)}
-              className="relative w-full h-64 md:h-96 rounded-xl overflow-hidden border border-stone-300 shadow-lg cursor-zoom-in"
-              aria-label="Abrir imagen en grande"
+              onClick={onClose}
+              aria-label="Cerrar detalle"
+              className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors
+                ${isDark
+                  ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border-cyan-700/40 hover:border-cyan-700/70"
+                  : "text-cyan-700 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border-cyan-800/30 hover:border-cyan-800/60"}`}
             >
-              <Image
-                src={contentImage}
-                alt={`${project.title} — Contenido`}
-                fill
-                sizes="(max-width: 768px) 100vw, 960px"
-                priority={false}
-                className="object-cover object-top"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              <IconX size={16} />
             </button>
-          </div>
 
-          {/* Tecnologías utilizadas */}
-          <div className="card-primary">
-            <h3 className="title-section flex items-center gap-3">
-              <span className="text-2xl md:text-4xl">🛠️</span> Tecnologías Utilizadas
-            </h3>
-            <div className="flex flex-wrap gap-2 md:gap-3">
-              {project.technologies?.map((tech, index) => (
-                <div key={index} className="tag-tech">
-                  {tech}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Retos y soluciones */}
-          <div className="card-primary">
-            <h3 className="title-section flex items-center gap-3">
-              <span className="text-2xl md:text-4xl">⚡</span> Retos y Soluciones
-            </h3>
-           
-              <p className="text-responsive">{project.challenges}</p>
-            
-          </div>
-
-          {/* 3) Imagen adicional (después de retos) */}
-          <div className="card-secondary">
-            <h3 className="title-section flex items-center gap-3">
-              <span className="text-2xl md:text-4xl">🖼️</span> Otra vista
-            </h3>
+            {/* Toggle tema (icon-only, con color de énfasis) */}
             <button
-              type="button"
-              onClick={() => openLightbox(extraImage)}
-              className="relative w-full h-64 md:h-96 rounded-xl overflow-hidden border border-stone-300 shadow-lg cursor-zoom-in"
-              aria-label="Abrir imagen en grande"
+              onClick={toggleDarkMode}
+              aria-label="Cambiar tema"
+              aria-pressed={isDark}
+              className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors
+                ${isDark
+                  ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border-cyan-700/40 hover:border-cyan-700/70"
+                  : "text-cyan-700 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border-cyan-800/30 hover:border-cyan-800/60"}`}
             >
-              <Image
-                src={extraImage}
-                alt={`${project.title} — Vista adicional`}
-                fill
-                sizes="(max-width: 768px) 100vw, 960px"
-                priority={false}
-                className="object-cover object-top"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              {isDark
+                ? <Sun  size={16} className="fill-current" />
+                : <Moon size={16} className="fill-current" />}
             </button>
-          </div>
-
-          {/* Características destacadas */}
-          {project.features && (
-            <div className="card-primary">
-              <h3 className="title-section flex items-center gap-3">
-                <span className="text-2xl md:text-4xl">✨</span> Características Destacadas
-              </h3>
-              <div className="grid md:grid-cols-2 gap-4 font-orbitron">
-                {project.features.map((feature, index) => (
-                  <div key={index} className="feature-item">
-                    <span className="text-xl ">•</span>
-                    <p className="text-responsive font-orbitron">{feature}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Botones de acción */}
-          <div className="card-primary">
-            <h3 className="title-section flex items-center gap-3">
-              <span className="text-2xl md:text-4xl">🔗</span> Enlaces del proyecto
-            </h3>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              {project.githubUrl && (
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-github flex items-center justify-center gap-2"
-                >
-                  <span aria-hidden>📂</span> Ver Código en GitHub
-                </a>
-              )}
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary flex items-center justify-center gap-2"
-                >
-                  <span aria-hidden>🌐</span> Ver Proyecto en Vivo
-                </a>
-              )}
-            </div>
-            <p className="text-responsive mt-4 text-center font-sans text-sm md:text-base">
-              Explora el código fuente y la implementación en vivo.
-            </p>
           </div>
         </div>
       </div>
 
-      {/* Lightbox en portal (evita “salir arriba” del contenedor con transform) */}
+      {/* Contenido sin “boxes” */}
+      <div className="relative max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-12 space-y-12 md:space-y-16">
+        <header className="text-center space-y-4 md:space-y-6">
+          {/* Título grande centrado (sin id para no duplicar el aria-labelledby) */}
+          <h2 className="title-main mb-2">{project.title}</h2>
+          {project.description && (<p className="text-responsive max-w-3xl mx-auto">{project.description}</p>)}
+        </header>
+
+        {/* Hero */}
+        <figure className="mx-auto max-w-4xl">
+          <button type="button" onClick={() => openLightbox(heroImage)}
+            className="relative block w-full h-64 md:h-96 overflow-hidden rounded-2xl cursor-zoom-in" aria-label="Abrir imagen en grande">
+            <Image src={heroImage} alt={`${project.title} — Hero`} fill sizes="(max-width: 768px) 100vw, 960px" className="object-cover object-center" />
+          </button>
+          <figcaption className="sr-only">Vista previa principal del proyecto</figcaption>
+        </figure>
+
+        {/* Tecnologías */}
+        {Array.isArray(project.technologies) && project.technologies.length > 0 && (
+          <section className="text-center space-y-4">
+            <h3 className="title-section">Tecnologías Utilizadas</h3>
+            <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+              {project.technologies.map((tech, idx) => (<span key={idx} className="tag-tech tag-solid">{tech}</span>))}
+            </div>
+          </section>
+        )}
+
+        {/* Imagen de contenido */}
+        <figure className="mx-auto max-w-4xl">
+          <button type="button" onClick={() => openLightbox(contentImage)}
+            className="relative block w-full h-64 md:h-96 overflow-hidden rounded-2xl cursor-zoom-in" aria-label="Abrir imagen en grande">
+            <Image src={contentImage} alt={`${project.title} — Contenido`} fill sizes="(max-width: 768px) 100vw, 960px" className="object-cover object-center" />
+          </button>
+          <figcaption className="sr-only">Vista de contenido del proyecto</figcaption>
+        </figure>
+
+        {/* Retos */}
+        {project.challenges && (
+          <section className="text-center space-y-4">
+            <h3 className="title-section">Retos y Soluciones</h3>
+            <p className="text-responsive max-w-3xl mx-auto">{project.challenges}</p>
+          </section>
+        )}
+
+        {/* Imagen extra */}
+        <figure className="mx-auto max-w-4xl">
+          <button type="button" onClick={() => openLightbox(extraImage)}
+            className="relative block w-full h-64 md:h-96 overflow-hidden rounded-2xl cursor-zoom-in" aria-label="Abrir imagen en grande">
+            <Image src={extraImage} alt={`${project.title} — Vista adicional`} fill sizes="(max-width: 768px) 100vw, 960px" className="object-cover object-center" />
+          </button>
+          <figcaption className="sr-only">Vista adicional del proyecto</figcaption>
+        </figure>
+
+        {/* Enlaces */}
+        {(project.githubUrl || project.liveUrl) && (
+          <section className="text-center space-y-4">
+            <h3 className="title-section">Enlaces del Proyecto</h3>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              {project.githubUrl && (
+                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn-github inline-flex items-center justify-center gap-2">
+                  <span aria-hidden>📂</span> Ver Código en GitHub
+                </a>
+              )}
+              {project.liveUrl && (
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex items-center justify-center gap-2">
+                  <span aria-hidden>🌐</span> Ver Proyecto en Vivo
+                </a>
+              )}
+            </div>
+            <p className="text-responsive mt-4">Explora el código fuente y la implementación en vivo.</p>
+          </section>
+        )}
+      </div>
+
       {mounted && lightboxNode && createPortal(lightboxNode, document.body)}
     </section>
   )
 }
-// --- End of code ---
