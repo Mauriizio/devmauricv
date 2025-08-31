@@ -8,6 +8,7 @@ import { createPortal } from "react-dom"
 import { useTheme } from "@/context/ThemeContext"
 import { useFocusTrap } from "@/components/useFocusTrap"
 import { ArrowLeft, X as IconX, Sun, Moon } from "lucide-react"
+import LogoMC from "@/components/LogoMC"
 
 export default function ProjectDetail({ show, project, onClose, onBackToProjects }) {
   const dialogRef = useRef(null)
@@ -116,53 +117,66 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
       )}
 
       {/* Header */}
-      <div className={`sticky top-0 backdrop-blur-lg border-b p-3 sm:p-4 z-20 ${isDark ? "bg-gray-900/60 border-white/10" : "bg-stone-200/60 border-stone-300/50"}`}>
-        <div className="max-w-6xl mx-auto px-2 sm:px-4 flex items-center justify-between gap-2">
-          {/* Título a la izquierda */}
-          <h1 id="project-detail-title" className="title-header truncate">
-            {project.title || "Proyecto"}
-          </h1>
+      <div className={`sticky top-0 backdrop-blur-lg border-b z-20 ${isDark ? "bg-gray-900/60 border-white/10" : "bg-stone-200/60 border-stone-300/50"}`}>
+        <div className="max-w-6xl mx-auto px-2 sm:px-4">
+          {/* 3 zonas: logo / título / acciones. Altura fija para alinear verticalmente */}
+          <div className="flex items-center gap-2 sm:gap-3 min-h-[56px] md:min-h-[64px]">
+            {/* IZQ: Logo */}
+            <div className="flex-1 min-w-0 flex items-center">
+              <div className="h-7 md:h-8 flex items-center">
+                <LogoMC />
+              </div>
+            </div>
 
-          {/* Acciones a la derecha — estilo tipo “CV” */}
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* Volver (solo flecha) */}
-            <button
-              onClick={onBackToProjects}
-              aria-label="Volver a proyectos"
-              className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors
-                ${isDark
-                  ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border-cyan-700/40 hover:border-cyan-700/70"
-                  : "text-cyan-700 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border-cyan-800/30 hover:border-cyan-800/60"}`}
+            {/* CENTRO: Título del proyecto (centrado siempre) */}
+            {/* <h1
+              id="project-detail-title"
+              className="title-header !text-center leading-none m-0 truncate px-2"
             >
-              <ArrowLeft size={16} />
-            </button>
+              {project.title || "Proyecto"}
+            </h1> */}
 
-            {/* Cerrar (solo X) */}
-            <button
-              onClick={onClose}
-              aria-label="Cerrar detalle"
-              className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors
-                ${isDark
-                  ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border-cyan-700/40 hover:border-cyan-700/70"
-                  : "text-cyan-700 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border-cyan-800/30 hover:border-cyan-800/60"}`}
-            >
-              <IconX size={16} />
-            </button>
+            {/* DER: Acciones (mismo estilo que botón CV) */}
+            <div className="flex-1 min-w-0 flex items-center justify-end gap-2 sm:gap-3">
+              {/* Volver */}
+              <button
+                onClick={onBackToProjects}
+                aria-label="Volver a proyectos"
+                className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors
+                  ${isDark
+                    ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border-cyan-700/40 hover:border-cyan-700/70"
+                    : "text-cyan-700 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border-cyan-800/30 hover:border-cyan-800/60"}`}
+              >
+                <ArrowLeft size={16} />
+              </button>
 
-            {/* Toggle tema (icon-only, con color de énfasis) */}
-            <button
-              onClick={toggleDarkMode}
-              aria-label="Cambiar tema"
-              aria-pressed={isDark}
-              className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors
-                ${isDark
-                  ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border-cyan-700/40 hover:border-cyan-700/70"
-                  : "text-cyan-700 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border-cyan-800/30 hover:border-cyan-800/60"}`}
-            >
-              {isDark
-                ? <Sun  size={16} className="fill-current" />
-                : <Moon size={16} className="fill-current" />}
-            </button>
+              {/* Cerrar */}
+              <button
+                onClick={onClose}
+                aria-label="Cerrar detalle"
+                className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors
+                  ${isDark
+                    ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border-cyan-700/40 hover:border-cyan-700/70"
+                    : "text-cyan-700 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border-cyan-800/30 hover:border-cyan-800/60"}`}
+              >
+                <IconX size={16} />
+              </button>
+
+              {/* Toggle tema */}
+              <button
+                onClick={toggleDarkMode}
+                aria-label="Cambiar tema"
+                aria-pressed={isDark}
+                className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors
+                  ${isDark
+                    ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border-cyan-700/40 hover:border-cyan-700/70"
+                    : "text-cyan-700 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border-cyan-800/30 hover:border-cyan-800/60"}`}
+              >
+                {isDark
+                  ? <Sun  size={16} className="fill-current" />
+                  : <Moon size={16} className="fill-current" />}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -170,7 +184,6 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
       {/* Contenido sin “boxes” */}
       <div className="relative max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-12 space-y-12 md:space-y-16">
         <header className="text-center space-y-4 md:space-y-6">
-          {/* Título grande centrado (sin id para no duplicar el aria-labelledby) */}
           <h2 className="title-main mb-2">{project.title}</h2>
           {project.description && (<p className="text-responsive max-w-3xl mx-auto">{project.description}</p>)}
         </header>
