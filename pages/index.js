@@ -2,13 +2,16 @@
 import { useEffect, useMemo, useState, useRef } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
+import dynamic from "next/dynamic"
 import SectionOne from "@/components/SectionOne"
 import SectionTwo from "@/components/SectionTwo"
-import SectionAbout from "@/components/SectionAbout"
-import MenuOverlay from "@/components/MenuOverlay"
-import ProjectDetail from "@/components/ProjectDetail"
-import SectionContact from "@/components/SectionContact"
 import { projectsData } from "@/data/projects"
+
+// Overlays con code-splitting (SSR ON + fallback accesible)
+const SectionAbout   = dynamic(() => import("@/components/SectionAbout"),   { loading: () => <div className="sr-only">Cargando…</div> })
+const MenuOverlay    = dynamic(() => import("@/components/MenuOverlay"),    { loading: () => <div className="sr-only">Cargando…</div> })
+const ProjectDetail  = dynamic(() => import("@/components/ProjectDetail"),  { loading: () => <div className="sr-only">Cargando…</div> })
+const SectionContact = dynamic(() => import("@/components/SectionContact"), { loading: () => <div className="sr-only">Cargando…</div> })
 
 // --- SSR: leer ?view=...&id=... para evitar el "salto" al recargar ---
 export async function getServerSideProps(ctx) {
@@ -142,6 +145,7 @@ export default function Home({ initialView, initialId }) {
       {/* Contenedor principal con scroll horizontal + snap */}
       <main
         ref={scrollerRef}
+        aria-hidden={anyOverlayOpen}
         className={`flex flex-row-reverse w-screen h-dvh min-h-0
           overflow-x-auto overflow-y-hidden overscroll-y-none
           snap-x snap-mandatory scroll-smooth
