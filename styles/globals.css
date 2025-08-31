@@ -127,7 +127,7 @@ html, body {
 
 /* Texto responsivo - AJUSTE FINAL PROFESIONAL */
 .text-responsive {
-  @apply text-black text-xs sm:text-base leading-relaxed  font-sans !important;
+  @apply text-black text-base sm:text-lg leading-relaxed  font-sans !important;
 }
 
 .text-intro {
@@ -212,7 +212,7 @@ html, body {
 }
 
 .dark .text-responsive {
-  @apply text-white text-xs sm:text-base font-sans !important;
+  @apply text-white text-base sm:text-lg font-sans !important;
 }
 .dark .text-intro {
   @apply  font-orbitron text-zinc-200;
@@ -359,7 +359,7 @@ html, body {
 
 /* Textos responsivos: usar color actual (no forzar negro) */
 .text-responsive {
-  @apply text-sm sm:text-sm leading-relaxed font-sans;
+  @apply text-base sm:text-lg leading-relaxed font-sans;
 }
 
 /* Dark-mode tweaks para las nuevas clases */
@@ -380,3 +380,6 @@ html, body {
 .dark .scrollbar-thin::-webkit-scrollbar-track {
   @apply bg-gray-800;
 }
+
+
+
