@@ -137,11 +137,11 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
   )
 
   const FeatureGrid = ({ items }) => (
-    <div className="grid md:grid-cols-2 gap-4  text-responsive">
+    <div className="grid md:grid-cols-2 gap-4 text-responsive">
       {items.map((item, index) => (
-        <div key={index} className="feature-item font-orbitron ">
-          <span className="text-xl ">{item.icon}</span>
-          <p className="text-responsive font-orbitron ">{item.text}</p>
+        <div key={index} className="feature-item font-orbitron">
+          <span className="text-xl">{item.icon}</span>
+          <p className="text-responsive font-orbitron">{item.text}</p>
         </div>
       ))}
     </div>
@@ -283,16 +283,16 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
           </div>
 
           <div className="space-y-12 md:space-y-16">
-            {/* Habilidades y Herramientas */}
-            <div className="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-8">
-              <div className="card-primary">
+            {/* Tecnologías / Herramientas: SIN CAJA, más plano */}
+            <div className="md:grid md:grid-cols-2 md:gap-8">
+              <div className="section-flat">
                 <h3 className="title-section flex items-center gap-3">
                   <span className="text-2xl md:text-4xl">🚀</span> Tecnologías
                 </h3>
                 <TagList items={technologies} className="tag-tech" />
               </div>
 
-              <div className="card-primary">
+              <div className="section-flat">
                 <h3 className="title-section flex items-center gap-3">
                   <span className="text-2xl md:text-3xl">🛠️</span> Herramientas
                 </h3>
@@ -300,8 +300,8 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
               </div>
             </div>
 
-            {/* Experiencia */}
-            <div className="card-primary">
+            {/* Experiencia: SIN CAJA, seccion plana con separador */}
+            <div className="section-flat">
               <h3 className="title-section flex items-center gap-3 mb-6 md:mb-8">
                 <span className="text-2xl md:text-4xl">💼</span> Experiencia
               </h3>
@@ -309,7 +309,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
                 {experiences.map((exp, index) => (
                   <div key={index} className="timeline-item">
                     <h4 className="title-subsection">{exp.title}</h4>
-                    <p className="text-cyan-700  font-medium mb-2">
+                    <p className="text-cyan-700 font-medium mb-2">
                       {exp.company} • {exp.period}
                     </p>
                     <p className="text-responsive">{exp.description}</p>
@@ -318,8 +318,8 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
               </div>
             </div>
 
-            {/* Educación */}
-            <div className="card-primary">
+            {/* Educación: SIN CAJA */}
+            <div className="section-flat">
               <h3 className="title-section flex items-center gap-2">
                 <span>🎓</span> Educación & Certificaciones
               </h3>
@@ -330,13 +330,13 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
                       <h4 className="title-subsection">{edu.title}</h4>
                       <p className="text-cyan-700">{edu.institution}</p>
                     </div>
-                    <span className="text-zinc-500dark:text-white text-sm">{edu.period}</span>
+                    <span className="text-zinc-500 dark:text-white text-sm">{edu.period}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Diplomas - CON MODAL */}
+            {/* Diplomas: AQUÍ SÍ CAJA (mantener visual, modal ya existe) */}
             <div className="card-secondary">
               <h3 className="title-section flex items-center gap-2">
                 <span>📜</span> Mis Diplomas y Cursos
@@ -361,64 +361,55 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
                         <ZoomIn
                           size={32}
-                          className="text-white font-orbitron  opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-orbitron"
+                          className="text-white font-orbitron opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         />
                       </div>
                     </div>
                     <div className="p-3 md:p-4">
-                      <h4 className="text-xs md:text-lg font-orbitron font-semibold text-zinc-800  line-clamp-3">
+                      <h4 className="text-xs md:text-lg font-orbitron font-semibold text-zinc-800 line-clamp-3">
                         {diploma.title}
                       </h4>
                     </div>
                   </div>
                 ))}
               </div>
-              <p className="text-responsive mt-4 text-center font-orbitron text-sm md:text-base">
-                Haz clic en cualquier diploma para verlo en grande.
-              </p>
+              <p className="text-responsive mt-4 text-center font-orbitron text-sm md:text-base">Haz clic en cualquier diploma para verlo en grande.</p>
             </div>
 
-            {/* Características */}
-            <div className="card-primary">
-              <h3 className="title-section   flex items-center gap-2">
+            {/* Características: SIN CAJA */}
+            <div className="section-flat">
+              <h3 className="title-section flex items-center gap-2">
                 <span>⚡</span> Lo que me caracteriza
               </h3>
               <FeatureGrid items={characteristics} />
             </div>
 
-            {/* Intereses */}
-            <div className="card-primary">
+            {/* Intereses: SIN CAJA */}
+            <div className="section-flat">
               <h3 className="title-section flex items-center gap-2">
                 <span>🎮</span> Intereses y Pasatiempos
               </h3>
               <FeatureGrid items={interests} />
             </div>
 
-            {/* Mi Filosofía */}
-            <div className="card-primary">
+            {/* Mi Filosofía: SIN CAJA */}
+            <div className="section-flat">
               <h3 className="title-section flex items-center gap-2">
                 <span>💡</span> Mi Filosofía
               </h3>
-              <div className="card-secondary">
-                <p className="text-responsive">
-                  Creo firmemente que la tecnología debe ser una herramienta que mejore la vida de las personas. Mi
-                  enfoque siempre está en crear soluciones que no solo funcionen bien técnicamente, sino que también
-                  proporcionen una experiencia excepcional al usuario. La simplicidad y la elegancia en el código se
-                  traducen en productos más mantenibles y escalables.
-                </p>
-              </div>
+              <p className="text-responsive font-sans">
+                Creo firmemente que la tecnología debe ser una herramienta que mejore la vida de las personas. Mi
+                enfoque siempre está en crear soluciones que no solo funcionen bien técnicamente, sino que también
+                proporcionen una experiencia excepcional al usuario. La simplicidad y la elegancia en el código se
+                traducen en productos más mantenibles y escalables.
+              </p>
             </div>
 
-            {/* Call to action final */}
             <div className="text-center py-6 md:py-8">
-              <p className="text-responsive mb-4 md:mb-6 font-sans">
-                ¿Listo para trabajar juntos en tu próximo proyecto?
-              </p>
+              <p className="text-responsive mb-4 md:mb-6 font-sans">¿Listo para trabajar juntos en tu próximo proyecto?</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button className="btn-primary">Descargar CV</button>
-                <button onClick={onContactOpen} className="btn-secondary">
-                  Contactar
-                </button>
+                <button onClick={onContactOpen} className="btn-secondary">Contactar</button>
               </div>
             </div>
           </div>

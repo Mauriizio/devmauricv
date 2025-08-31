@@ -14,7 +14,7 @@ export default function CodeParticlesBackground() {
     fullScreen: { enable: false },
     background: { color: "transparent" },
     particles: {
-      number: { value: 100, density: { enable: true, area: 800 } },
+      number: { value: 10, density: { enable: true, area: 800 } },
       color: { value: ["#000000ff", "#ffffffff"] },
       shape: {
         type: ["char"],

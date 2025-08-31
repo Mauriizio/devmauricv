@@ -27,6 +27,13 @@ body {
   }
 }
 
+html, body {
+  height: 100%;
+  overflow-y: hidden;        /* bloquea vertical global cuando todo es horizontal */
+  overscroll-behavior-y: none;
+}
+
+
 /* ===== CLASES REUTILIZABLES ===== */
 
 /* Títulos responsivos - AJUSTE FINAL PROFESIONAL */
@@ -120,7 +127,7 @@ body {
 
 /* Texto responsivo - AJUSTE FINAL PROFESIONAL */
 .text-responsive {
-  @apply text-black text-xs sm:text-sm leading-relaxed  font-orbitron !important;
+  @apply text-black text-xs sm:text-base leading-relaxed  font-sans !important;
 }
 
 .text-intro {
@@ -205,7 +212,7 @@ body {
 }
 
 .dark .text-responsive {
-  @apply text-white font-orbitron !important;
+  @apply text-white text-xs sm:text-base font-sans !important;
 }
 .dark .text-intro {
   @apply  font-orbitron text-zinc-200;
@@ -311,3 +318,65 @@ body {
   100% { transform: translateX(130%); }
 }
 
+
+
+
+
+/* --- FIN GLOBALES --- */
+
+
+
+/* -------------------- OVERRIDES / AJUSTES PARA SECTION ABOUT -------------------- */
+
+/* Nuevo: sections planas - menos cajas visuales */
+.section-flat {
+  @apply bg-transparent p-0 md:p-2 rounded-md border-b border-stone-500/50;
+}
+
+/* Ajuste: feature items más limpios, sin fondo */
+.feature-item {
+  @apply flex items-start gap-3 p-0;
+}
+
+/* Tags más sutiles: menos bloques llamativos */
+.tag-tech {
+  @apply bg-transparent text-cyan-800 px-2 md:px-3 py-1 md:py-1 rounded-full text-xs md:text-sm font-medium border border-transparent;
+}
+
+.tag-tool {
+  @apply bg-transparent text-stone-800 px-2 md:px-3 py-1 md:py-1 rounded-full text-xs md:text-sm font-medium border border-transparent;
+}
+
+/* Mantener diplomas con caja visible */
+.card-secondary {
+  @apply bg-white p-3 md:p-4 rounded-xl border border-stone-200 shadow-sm;
+}
+
+/* Reducir peso visual de card-primary por si la usas en otros lados */
+.card-primary {
+  @apply bg-transparent p-4 md:p-6 rounded-lg border border-transparent shadow-none;
+}
+
+/* Textos responsivos: usar color actual (no forzar negro) */
+.text-responsive {
+  @apply text-sm sm:text-sm leading-relaxed font-sans;
+}
+
+/* Dark-mode tweaks para las nuevas clases */
+/* --- CORRECCIÓN: uso border-white/10 en lugar de border-white/6 (esa no existe en tu build) --- */
+.dark .section-flat {
+  @apply border-white/10;
+}
+
+.dark .tag-tech {
+  @apply text-cyan-300;
+}
+
+.dark .tag-tool {
+  @apply text-gray-200;
+}
+
+/* Pequeño ajuste: scrollbar diplomas para contraste en dark */
+.dark .scrollbar-thin::-webkit-scrollbar-track {
+  @apply bg-gray-800;
+}

@@ -1,19 +1,17 @@
-"use client"
+"use client";
 
-import { useTheme } from "@/context/ThemeContext"
-import ParticlesBackground from "@/components/ParticlesBackground"
-import LogoMCFancy from "@/components/LogoMCFancy" 
-import LogoSplitBg from "@/components/LogoSplitBg"  
-import LogoSplitParticlesBg from "@/components/LogoSplitParticlesBg"  
+import { useTheme } from "@/context/ThemeContext";
+import ParticlesBackground from "@/components/ParticlesBackground";
+import LogoMCFancy from "@/components/LogoMCFancy";
 
 export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
-  const { isDark, toggleDarkMode } = useTheme()
+  const { isDark, toggleDarkMode } = useTheme();
 
   return (
     <section
-      className={`relative w-screen h-dvh snap-start snap-always flex-shrink-0 overflow-hidden overscroll-none transition-colors duration-150 ${
+      className={`relative w-screen h-dvh snap-start snap-always flex-shrink-0 overscroll-none transition-colors duration-150 ${
         isDark ? "bg-black" : "bg-gray-50"
-      }`}
+      } overflow-hidden overflow-y-hidden touch-pan-x`}
     >
       {/* Header */}
       <div
@@ -50,11 +48,10 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
           src="/assets/avatar.png"
           alt="Avatar Maurizio Caballero"
           className="absolute top-0 right-0 h-full w-auto object-cover scale-[1.06] origin-left z-30"
-         
         />
       </div>
 
-      {/* Scrim (degradé de apoyo para texto, afinado por tema) */}
+      {/* Scrim izquierdo */}
       <div
         aria-hidden
         className={`pointer-events-none absolute inset-y-0 left-0 z-[15]
@@ -65,7 +62,7 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
                     }`}
       />
 
-      {/* Overlay unificado con SectionOne (más sutil en claro) */}
+      {/* Overlay general */}
       <div
         className={`absolute inset-0 z-20 transition-colors duration-150 ${
           isDark ? "bg-black/45" : "bg-white/6"
@@ -77,33 +74,26 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
         <div className="h-full min-h-0">
           <div className="flex flex-col items-start gap-3 md:gap-4 max-w-[92%] font-azonix">
             <h1
-              className={`text-[1.6rem] leading-[1.15] md:text-4xl lg:text-5xl font-black
-                          drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)] ${
+              className={`text-[1.6rem] leading-[1.15] md:text-4xl lg:text-5xl font-black drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)] ${
                 isDark ? "text-cyan-400" : "text-cyan-600"
               }`}
             >
               ¡Hola! Soy <br />
-              <span
-                className={`px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)] ${
-                  isDark ? "bg-cyan-200 text-black" : "bg-cyan-100 text-gray-900"
-                }`}
-              >
+              <span className={`${isDark ? "bg-cyan-200 text-black" : "bg-cyan-100 text-gray-900"} px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]`}>
                 Maurizio Caballero
               </span>
               , <br />
               Frontend Developer
             </h1>
 
-            {/* Chips de skills (md+). Si no quieres mostrarlas, comenta este bloque. */}
+            {/* Chips md+ */}
             <div className="hidden md:flex flex-wrap gap-2 mt-1 z-20">
               {["React","Next.js","Tailwind/CSS","AI-Powered Dev","Mobile-First","API Integrations"].map((s) => (
                 <span
                   key={s}
-                  className={`px-3 py-1 rounded-full text-[0.85rem] tracking-tight backdrop-blur-sm ring-1
-                              ${isDark
-                                ? "bg-white/8 ring-white/10 text-white/90"
-                                : "bg-white/60 ring-black/5 text-slate-800"
-                              }`}
+                  className={`px-3 py-1 rounded-full text-[0.85rem] tracking-tight backdrop-blur-sm ring-1 ${
+                    isDark ? "bg-white/8 ring-white/10 text-white/90" : "bg-white/60 ring-black/5 text-slate-800"
+                  }`}
                 >
                   {s}
                 </span>
@@ -113,7 +103,7 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
         </div>
       </div>
 
-      {/* Botones esquina inferior izquierda */}
+      {/* Acciones esquina inferior izquierda */}
       <div
         className="font-azonix absolute z-30 left-4 bottom-4 md:left-8 md:bottom-6"
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
@@ -127,7 +117,6 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
           >
             Descargar CV
           </button>
-
           <button
             type="button"
             onClick={onMenuOpen}
@@ -137,7 +126,6 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
           >
             Ver proyectos
           </button>
-
           <button
             type="button"
             onClick={onVerMas}
@@ -147,7 +135,6 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
           >
             Más sobre mí
           </button>
-
           <button
             type="button"
             onClick={onContactOpen}
@@ -160,5 +147,5 @@ export default function SectionTwo({ onMenuOpen, onVerMas, onContactOpen }) {
         </div>
       </div>
     </section>
-  )
+  );
 }
