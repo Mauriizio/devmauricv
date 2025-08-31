@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import { projectsData } from "@/data/projects"
 import { useTheme } from "@/context/ThemeContext"
 import { useFocusTrap } from "@/components/useFocusTrap"
+import LogoMC from "@/components/LogoMC"
+import { Menu, X as IconX, Sun, Moon } from "lucide-react"
 
 export default function MenuOverlay({ show, onClose, onProjectSelect }) {
   const { isDark, toggleDarkMode } = useTheme()
@@ -93,21 +95,73 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
             className="fixed inset-0 w-screen h-screen font-azonix z-50 overflow-y-auto noise-overlay bg-stone-200 text-zinc-800 dark:bg-gray-900 dark:text-white"
           >
             {/* Header */}
-            <div className="sticky top-0 backdrop-blur-lg border-b p-4 z-20 bg-stone-200/60 border-stone-300/50 dark:bg-gray-900/60 dark:border-white/10">
-              <div className="flex items-center justify-between max-w-6xl mx-auto px-2 gap-2 overflow-hidden">
-                <h1 id="overlay-title" className="title-header mb-0 min-w-0 truncate text-left w-full">
-                  Proyectos
-                </h1>
-                <div className="absolute right-4 top-3 flex items-center gap-3">
-                  <button onClick={toggleDarkMode} className="btn-toggle" aria-label="Cambiar tema">
-                    {isDark ? "☀️" : "🌙"}
-                  </button>
-                  <button onClick={onClose} className="btn-primary">
-                    <span className="text-xl" aria-hidden>✕</span> 
-                  </button>
-                </div>
-              </div>
-            </div>
+           {/* Header */}
+<div className="sticky top-0 backdrop-blur-lg border-b p-4 z-20 bg-stone-200/60 border-stone-300/50 dark:bg-gray-900/60 dark:border-white/10">
+  <div className="max-w-6xl mx-auto px-2 sm:px-4">
+    <div className="flex items-center gap-2 sm:gap-3 min-h-[56px] md:min-h-[64px]">
+      {/* IZQ: Logo */}
+      <div className="flex-1 min-w-0 flex items-center">
+        <div className="h-7 md:h-8 flex items-center">
+          <LogoMC />
+        </div>
+      </div>
+
+      {/* DER: Acciones (derecha → izquierda: Toggle menú, X, tema, WhatsApp) */}
+      <div className="flex-1 min-w-0 flex items-center justify-end gap-2 sm:gap-3">
+        {/* WhatsApp (queda más a la izquierda dentro del grupo para que se vea derecha→izquierda como pediste) */}
+        <a
+          href="https://wa.me/56923927777"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WhatsApp"
+          title="WhatsApp"
+          className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
+            isDark
+              ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border-cyan-700/40 hover:border-cyan-700/70"
+              : "text-cyan-700 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border-cyan-800/30 hover:border-cyan-800/60"
+          }`}
+        >
+          {/* pequeño ícono WA */}
+          <svg viewBox="0 0 256 256" width="16" height="16" fill="currentColor" aria-hidden="true">
+            <path d="M128 24a104 104 0 0 0-89.8 156.3L24 232l52.7-13.7A104 104 0 1 0 128 24Zm0 16a88 88 0 0 1 73 137.5l-3.4 5 2.1 34.8-32.9-8.5-5.2 3A88 88 0 1 1 128 40Zm45.4 115.7c-2.6 7.5-12.8 12.1-20.6 12.5-7.6.4-17.3-1.7-31.6-9.5-18.1-10-29.7-26.4-32.2-31.1-2.6-4.8-7.7-15.6-5.8-26.3 2-10.7 9.8-15.9 13-16.5s6.7-.3 9.6 6.6 7.9 19.3 8.6 20.7c.7 1.3 1.1 2.9.2 4.6-.9 1.6-1.3 2.6-2.6 4.1-1.3 1.6-2.7 3.6-3.8 4.8-1.3 1.3-2.6 2.7-1.1 5.3 1.6 2.6 7.2 11.9 15.5 19.2 10.6 9.3 19.5 12.2 22.4 13.5 2.9 1.3 4.6 1.1 6.3-.7 1.6-1.8 7.4-8.6 9.4-11.6 2-3 4.1-2.4 6.8-1.4 2.8 1 17.5 8.2 20.5 9.9 3 1.6 5 2.4 4.3 4.8Z"/>
+          </svg>
+        </a>
+
+        {/* Tema claro/oscuro */}
+        <button
+          onClick={toggleDarkMode}
+          aria-label="Cambiar tema"
+          aria-pressed={isDark}
+          title={isDark ? "Tema claro" : "Tema oscuro"}
+          className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
+            isDark
+              ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border-cyan-700/40 hover:border-cyan-700/70"
+              : "text-cyan-700 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border-cyan-800/30 hover:border-cyan-800/60"
+          }`}
+        >
+          {isDark ? <Sun size={16} className="fill-current" /> : <Moon size={16} className="fill-current" />}
+        </button>
+
+        {/* Cerrar (X) */}
+        <button
+          onClick={onClose}
+          aria-label="Cerrar"
+          title="Cerrar"
+          className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
+            isDark
+              ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border-cyan-700/40 hover:border-cyan-700/70"
+              : "text-cyan-700 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border-cyan-800/30 hover:border-cyan-800/60"
+          }`}
+        >
+          <IconX size={16} />
+        </button>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+
 
             {/* Intro breve */}
             <div className="text-center space-y-3 md:space-y-4 py-4 md:py-6">

@@ -131,9 +131,7 @@ export default function SectionContact({ show, onClose }) {
                 <a href="https://www.linkedin.com/in/maurizio-caballero-286a56219/?originalSubdomain=cl" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={`${actionBtn} ${actionColor}`} title="LinkedIn">
                   <LinkedinIcon style={{ width: 16, height: 16 }} />
                 </a>
-                <a href="https://github.com/Mauriizio" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className={`${actionBtn} ${actionColor}`} title="GitHub">
-                  <GithubIcon style={{ width: 16, height: 16 }} />
-                </a>
+                
                 <button onClick={toggleDarkMode} aria-label="Cambiar tema" aria-pressed={isDark} className={`${actionBtn} ${actionColor}`} title={isDark ? "Tema claro" : "Tema oscuro"}>
                   {isDark ? <Sun size={16} className="fill-current" /> : <Moon size={16} className="fill-current" />}
                 </button>

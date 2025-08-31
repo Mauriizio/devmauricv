@@ -150,18 +150,6 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
                 <ArrowLeft size={16} />
               </button>
 
-              {/* Cerrar */}
-              <button
-                onClick={onClose}
-                aria-label="Cerrar detalle"
-                className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors
-                  ${isDark
-                    ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border-cyan-700/40 hover:border-cyan-700/70"
-                    : "text-cyan-700 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border-cyan-800/30 hover:border-cyan-800/60"}`}
-              >
-                <IconX size={16} />
-              </button>
-
               {/* Toggle tema */}
               <button
                 onClick={toggleDarkMode}
@@ -176,6 +164,20 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
                   ? <Sun  size={16} className="fill-current" />
                   : <Moon size={16} className="fill-current" />}
               </button>
+
+              {/* Cerrar */}
+              <button
+                onClick={onClose}
+                aria-label="Cerrar detalle"
+                className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors
+                  ${isDark
+                    ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border-cyan-700/40 hover:border-cyan-700/70"
+                    : "text-cyan-700 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border-cyan-800/30 hover:border-cyan-800/60"}`}
+              >
+                <IconX size={16} />
+              </button>
+
+              
             </div>
           </div>
         </div>
