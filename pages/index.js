@@ -10,9 +10,6 @@ import ProjectDetail from "@/components/ProjectDetail"
 import SectionContact from "@/components/SectionContact"
 import { projectsData } from "@/data/projects"
 
-
-
-
 // --- SSR: leer ?view=...&id=... para evitar el "salto" al recargar ---
 export async function getServerSideProps(ctx) {
   const { view = null, id = null } = ctx.query || {}
@@ -22,9 +19,6 @@ export async function getServerSideProps(ctx) {
 export default function Home({ initialView, initialId }) {
   const router = useRouter()
   const scrollerRef = useRef(null)
-
-
-  
 
   // Resolver proyecto inicial en SSR
   const initialProject = useMemo(
@@ -90,11 +84,27 @@ export default function Home({ initialView, initialId }) {
   const handleBackToProjects = () => {
     const nextQuery = { ...router.query, view: "projects" }
     router.push({ pathname: router.pathname, query: nextQuery }, undefined, { shallow: true })
-
   }
 
   const anyOverlayOpen = showAbout || showProject || showMenu || showContact
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+
+  // Mejora UX: rueda → scroll horizontal (sin afectar overlays)
+  useEffect(() => {
+    const el = scrollerRef.current
+    if (!el) return
+
+    const onWheel = (e) => {
+      if (anyOverlayOpen) return
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault()
+        el.scrollLeft += e.deltaY
+      }
+    }
+
+    el.addEventListener("wheel", onWheel, { passive: false })
+    return () => el.removeEventListener("wheel", onWheel)
+  }, [anyOverlayOpen])
 
   return (
     <>
@@ -131,14 +141,17 @@ export default function Home({ initialView, initialId }) {
 
       {/* Contenedor principal con scroll horizontal + snap */}
       <main
-      ref={scrollerRef}
-        className={`flex flex-row-reverse w-screen h-dvh min-h-0 overflow-x-auto overflow-y-hidden overscroll-y-none
-          snap-x snap-mandatory scroll-smooth transition-transform duration-300 ease-out motion-reduce:transition-none
+        ref={scrollerRef}
+        className={`flex flex-row-reverse w-screen h-dvh min-h-0
+          overflow-x-auto overflow-y-hidden overscroll-y-none
+          snap-x snap-mandatory scroll-smooth
+          transition-transform duration-300 ease-out motion-reduce:transition-none
           ${anyOverlayOpen ? "transform -translate-y-full overflow-hidden" : ""}`}
         style={{
           overflowX: anyOverlayOpen ? "hidden" : "auto",
           overscrollBehaviorY: "none",
-           willChange: "transform",
+          touchAction: anyOverlayOpen ? "auto" : "pan-x",
+          willChange: "transform",
         }}
       >
         <SectionOne onMenuOpen={openMenu} onVerMas={handleVerMas} onContactOpen={handleContactOpen} />
