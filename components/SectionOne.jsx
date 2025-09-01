@@ -77,7 +77,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
       style={{ overflowX: "clip" }}
     >
       {/* Header */}
-     {/* Header */}
+     
 <div
   className={`absolute top-0 left-0 right-0 z-50 backdrop-blur-lg border-b p-4 ${
     isDark ? "bg-black/60 border-white/10" : "bg-white/60 border-gray-300/50"
@@ -95,8 +95,22 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
         />
       </div>
 
-      {/* DER: Acciones (derecha → izquierda: X, tema, CV, WhatsApp) */}
+      {/* DER: Acciones */}
       <div className="flex-1 min-w-0 flex items-center justify-end gap-2 sm:gap-3">
+        {/* Descargar CV (mantiene tu `actionColor`) */}
+        <button
+          className={`flex items-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${actionColor} ${
+            isDark
+              ? "border-cyan-700/40 hover:border-cyan-700/70"
+              : "border-cyan-800/30 hover:border-cyan-800/60"
+          }`}
+          aria-label="CV"
+        >
+          <Download size={16} />
+          <span className="hidden sm:inline">CV</span>
+        </button>
+        
+        
         {/* WhatsApp */}
         <a
           href="https://wa.me/56923927777"
@@ -115,18 +129,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
           </svg>
         </a>
 
-        {/* Descargar CV (mantiene tu `actionColor`) */}
-        <button
-          className={`flex items-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${actionColor} ${
-            isDark
-              ? "border-cyan-700/40 hover:border-cyan-700/70"
-              : "border-cyan-800/30 hover:border-cyan-800/60"
-          }`}
-          aria-label="CV"
-        >
-          <Download size={16} />
-          <span className="hidden sm:inline">CV</span>
-        </button>
+        
 
         {/* Tema claro/oscuro */}
         <button

@@ -298,14 +298,14 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
           {/* Tecnologías & Herramientas (chips visibles) */}
           <div className="md:grid md:grid-cols-2 md:gap-8">
             <section className="section-flat">
-              <h3 className="title-section text-center">🚀 Tecnologías</h3>
+              <h3 className="title-section text-center">Tecnologías</h3>
               <div className="flex flex-wrap gap-2 md:gap-3 font-sans">
                 {technologies.map((t) => (<span key={t} className={chipClass}>{t}</span>))}
               </div>
             </section>
             
             <section className="section-flat">
-              <h3 className="title-section text-center">🛠️ Herramientas</h3>
+              <h3 className="title-section text-center">Herramientas</h3>
               <div className="flex flex-wrap gap-2 md:gap-3 font-sans">
                 {tools.map((t) => (<span key={t} className={chipClass}>{t}</span>))}
               </div>
@@ -314,7 +314,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
 
           {/* Experiencia (timeline a la izquierda, con adornos) */}
           <section className="section-flat">
-  <h3 className="title-section text-center mb-6 md:mb-8">💼 Experiencia</h3>
+  <h3 className="title-section text-center mb-6 md:mb-8"> Experiencia</h3>
 
   <div className="space-y-6 md:space-y-8 font-sans">
     {experiences.map((exp, i) => (
@@ -335,7 +335,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
 
           {/* Educación */}
           <section className="section-flat">
-            <h3 className="title-section text-center">🎓 Educación & Certificaciones</h3>
+            <h3 className="title-section text-center"> Educación & Certificaciones</h3>
             <div className="space-y-4 font-sans">
               {education.map((edu, i) => (
                 <div key={i} className="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -353,7 +353,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
           {/* Diplomas: AQUÍ SÍ CAJA (mantener visual, modal ya existe) */}
          <div className="">
   <h3 className="title-section flex items-center gap-2 text-center">
-    <span>📜</span> Mis Diplomas y Cursos
+    Mis Diplomas y Cursos
   </h3>
 
   {/* Wrapper relativo para chevrones y fades */}
@@ -437,7 +437,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
 
           {/* Características */}
           <section className="section-flat">
-            <h3 className="title-section text-center">⚡ Lo que me caracteriza</h3>
+            <h3 className="title-section text-center"> Lo que me caracteriza</h3>
             <div className="grid md:grid-cols-2 gap-4 font-sans">
               {characteristics.map((c, i) => (
                 <div key={i} className="flex items-start gap-3 p-0">
@@ -450,7 +450,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen }) {
 
           {/* Intereses */}
           <section className="section-flat">
-            <h3 className="title-section text-center">🎮 Intereses y Pasatiempos</h3>
+            <h3 className="title-section text-center"> Intereses y Pasatiempos</h3>
             <div className="grid md:grid-cols-2 gap-4 font-sans">
               {interests.map((c, i) => (
                 <div key={i} className="flex items-start gap-3 p-0">
