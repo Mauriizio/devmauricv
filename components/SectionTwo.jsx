@@ -1,3 +1,4 @@
+// components/SectionTwo.jsx
 "use client";
 
 import { useTheme } from "@/context/ThemeContext";
@@ -12,19 +13,24 @@ export default function SectionTwo({
   onMenuOpen,
   onVerMas,
   onContactOpen,
-  onClose,          // opcional
+  onClose,          // usado para volver a Section One con la X
   onDownloadCV,     // opcional
 }) {
   const { isDark, toggleDarkMode } = useTheme();
 
-  // Paletas coherentes con Section One
+  // Paleta de acento (texto principal)
   const accentText = isDark ? "text-cyan-300" : "text-cyan-800";
 
-  // Glass base
+  // Color de texto para CTAs “cristal”
+  const actionColor = isDark
+    ? "text-cyan-300 hover:text-cyan-200"
+    : "text-cyan-800 hover:text-cyan-900";
+
+  // Base de botón “glass” del header (misma altura para todos)
   const glassBase =
     "flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors";
 
-  // CV (igual a Section One)
+  // CV (igual a Section One: transparente suave)
   const btnCV =
     `${glassBase} ` +
     (isDark
@@ -45,20 +51,31 @@ export default function SectionTwo({
       ? "text-blue-300 hover:text-blue-200 bg-blue-900/40 hover:bg-blue-900/55 border-blue-700/40 hover:border-blue-600/70"
       : "text-blue-800 hover:text-blue-900 bg-blue-100/70 hover:bg-blue-100 border-blue-900/30 hover:border-blue-900/50");
 
-  // Toggle (dejamos el look actual)
+  // Toggle tema (como venías)
   const btnToggle =
     `${glassBase} ` +
     (isDark
       ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border-cyan-700/40 hover:border-cyan-700/70"
       : "text-cyan-800 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border-cyan-900/30 hover:border-cyan-900/60");
 
-  // CTA iguales y centradas
-  const ctaBtn =
-    "w-[min(82vw,200px)] mx-auto text-center " +
+  // X (roja suave)
+  const btnX =
+    `${glassBase} ` +
     (isDark
-      ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border border-cyan-700/40 hover:border-cyan-700/70"
-      : "text-cyan-800 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border border-cyan-900/30 hover:border-cyan-900/60") +
-    " rounded-md px-4 py-2 transition-colors";
+      ? "text-rose-300 hover:text-rose-200 bg-rose-900/40 hover:bg-rose-900/55 border-rose-700/40 hover:border-rose-600/70"
+      : "text-rose-700 hover:text-rose-900 bg-rose-100/70 hover:bg-rose-100 border-rose-900/20 hover:border-rose-900/40");
+
+  // CTA iguales (mismo look en mobile y desktop)
+  const ctaBtn = [
+    "inline-flex items-center justify-center gap-1.5",
+    "w-[min(82vw,200px)] mx-auto md:mx-0 px-5 py-2 my-2",
+    "rounded-md border font-azonix font-black transition-colors",
+    "supports-[backdrop-filter]:backdrop-blur-sm",
+    actionColor,
+    isDark
+      ? "bg-black/30 border-cyan-700/40 hover:border-cyan-700/70"
+      : "bg-white/40 border-cyan-800/30 hover:border-cyan-800/60",
+  ].join(" ");
 
   return (
     <section
@@ -84,8 +101,8 @@ export default function SectionTwo({
               />
             </div>
 
-            {/* DER (derecha→izquierda): X, Toggle, LinkedIn, WhatsApp, CV
-                Para lograr el orden visual pedido, ponemos de izquierda a derecha: CV, WA, LI, Toggle, X */}
+            {/* DER (visual de derecha→izquierda): X, Toggle, LinkedIn, WhatsApp, CV
+                Para lograrlo, los renderizamos de izquierda a derecha: CV, WA, LI, Toggle, X */}
             <div className="flex-1 min-w-0 flex items-center justify-end gap-2 sm:gap-3">
               {/* CV */}
               <a
@@ -137,8 +154,8 @@ export default function SectionTwo({
                 {isDark ? <Sun size={16} className="fill-current" /> : <Moon size={16} className="fill-current" />}
               </button>
 
-              {/* X */}
-              <button type="button" onClick={() => onClose?.()} aria-label="Cerrar" className={btnToggle}>
+              {/* X (volver a Section One) */}
+              <button type="button" onClick={() => onClose?.()} aria-label="Cerrar" className={btnX}>
                 <IconX size={16} />
               </button>
             </div>
@@ -184,120 +201,100 @@ export default function SectionTwo({
       <div
         aria-hidden
         className={`pointer-events-none absolute inset-y-0 left-0 z-[15]
-            c        w-[46vw] md:w-[40vw] lg:w-[36vw]
+                    w-[46vw] md:w-[40vw] lg:w-[36vw]
                     ${
                       isDark
                         ? "bg-gradient-to-r from-black/60 via-black/15 to-transparent"
-                        : "bg-gradient-to-r from-white/40 via-white/20 to-transparent"
+                        : "bg-gradient-to-r from-white/25 via-white/10 to-transparent"
                     }`}
       />
 
       {/* Overlay general (más suave) */}
       <div
         className={`absolute inset-0 z-20 transition-colors duration-150 ${
-          isDark ? "bg-black/45 md:bg-black/35" : "bg-white/10 md:bg-white/20"
+          isDark ? "bg-black/45 md:bg-black/35" : "bg-black/30 md:bg-white/20"
         }`}
       />
 
-       {/* Contenido: centrado en mobile / a la IZQUIERDA en desktop */}
-<div className="relative z-20 w-full h-full px-5 md:px-10 pt-24">
-  <div className="h-full min-h-0">
-    <div
-      className="
-        font-azonix flex flex-col gap-3
-        items-center text-center
-        mx-auto max-w-[92%]
-        md:items-start md:text-left md:mx-0 md:max-w-[52%]
-      "
-    >
-      <h1
-        className={`text-[1.6rem] leading-[1.15] md:text-4xl lg:text-5xl font-black drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)] ${accentText}`}
-      >
-        ¡Hola! Soy <br />
-        <span
-          className={`${
-            isDark ? "bg-cyan-200 text-black" : "bg-cyan-100 text-gray-900"
-          } px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]`}
-        >
-          Maurizio Caballero
-        </span>
-        , <br />
-        <span
-          className={`${
-            isDark ? "text-cyan-900 text-base md:text-3xl " : "text-gray-900 text-base md:text-3xl"
-          } px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]`}
-        >
-          Frontend Developer
-        </span>
-      </h1>
-
-      {/* Chips: centrados en mobile / izquierda en desktop */}
-      {/* <div className="mt-[35vh] md:mt-1 flex gap-2 overflow-x-auto md:overflow-visible px-1 md:px-0 w-full justify-center md:justify-start">
-        {["React", "Next.js", "Tailwind/CSS", "AI", "Mobile-First", "APIs"].map((s) => (
-          <span
-            key={s}
-            className={`px-2.5 py-1 rounded-full text-[0.8rem] md:text-[0.85rem] tracking-tight backdrop-blur-sm ring-1 ${
-              isDark ? "bg-white/10 ring-white/15 text-white/90" : "bg-white/70 ring-black/5 text-slate-800"
-            }`}
+      {/* Contenido: centrado en mobile / a la IZQUIERDA en desktop */}
+      <div className="relative z-20 w-full h-full px-5 md:px-10 pt-24">
+        <div className="h-full min-h-0">
+          <div
+            className="
+              font-azonix flex flex-col gap-3
+              items-center text-center
+              mx-auto max-w-[92%]
+              md:items-start md:text-left md:mx-0 md:max-w-[52%]
+            "
           >
-            {s}
-          </span>
-        ))}
-      </div> */}
+            <h1
+              className={`text-[1.6rem] leading-[1.15] md:text-4xl lg:text-5xl font-black drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)] ${accentText}`}
+            >
+              ¡Hola! Soy <br />
+              <span
+                className={`${
+                  isDark ? "bg-cyan-200 text-black" : "bg-cyan-100 text-gray-900"
+                } px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]`}
+              >
+                Maurizio Caballero
+              </span>
+              , <br />
+              <span
+                className={`${
+                  isDark ? "text-cyan-900 text-base md:text-3xl" : "text-gray-900 text-base md:text-3xl"
+                } px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]`}
+              >
+                Frontend Developer
+              </span>
+            </h1>
 
-     {/* Frase resumen: centrada en mobile / izquierda en desktop */}
-<p
-  className={`relative mt-[01vh] font-extrabold md:mt-2 mb-6 md:mb-3
-              text-lg md:text-2xl leading-relaxed md:leading-tight
-              text-slate-900/95 dark:text-white/90
-              max-w-[48ch] text-center md:text-left mx-auto md:mx-0
-              drop-shadow-[0_1px_0.5px_rgba(255,255,255,0.30)]
-              dark:drop-shadow-[0_1px_0.5px_rgba(0,0,0,0.30)]
-              before:content-[''] before:absolute before:inset-[-4px] before:rounded-lg
-              before:bg-white/25 dark:before:bg-black/15
-              supports-[backdrop-filter]:before:backdrop-blur-[3px]
-              before:blur-[1.5px] before:z-[-1]
-              before:ring before:ring-black/5 dark:before:ring-white/10`}
->
-  Frontend con <span className="text-cyan-800 dark:text-cyan-300">React</span>,{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">Next.js</span> y{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">Vite</span>;{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">TypeScript</span>,{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">Tailwind</span> y{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">Framer Motion</span>, estado con{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">Zustand/Redux</span> y técnicas avanzadas
-  (SSR/ISR, code-splitting, accesibilidad). IA y workflows en{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">Make (M8n)</span> conectados a{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">SQL</span>; piezas ligeras en{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">Inkscape</span>. Entrego soluciones digitales
-  completas y efectivas.
-</p>
+            {/* Frase resumen: centrada en mobile / izquierda en desktop */}
+            <p
+              className={`relative mt-[1vh] font-extrabold md:mt-2 mb-6 md:mb-3
+                          text-lg md:text-2xl leading-relaxed md:leading-tight
+                          text-slate-900/95 dark:text-white/90
+                          max-w-[48ch] text-center md:text-left mx-auto md:mx-0
+                          drop-shadow-[0_1px_0.5px_rgba(255,255,255,0.30)]
+                          dark:drop-shadow-[0_1px_0.5px_rgba(0,0,0,0.30)]
+                          before:content-[''] before:absolute before:inset-[-4px] before:rounded-lg
+                          before:bg-white/25 dark:before:bg-black/15
+                          supports-[backdrop-filter]:before:backdrop-blur-[3px]
+                          before:blur-[1.5px] before:z-[-1]
+                          before:ring before:ring-black/5 dark:before:ring-white/10`}
+            >
+              Frontend con <span className="text-cyan-800 dark:text-cyan-300">React</span>,{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">Next.js</span> y{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">Vite</span>;{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">TypeScript</span>,{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">Tailwind</span> y{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">Framer Motion</span>, estado con{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">Zustand/Redux</span> y técnicas avanzadas
+              (SSR/ISR, code-splitting, accesibilidad). IA y workflows en{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">Make (M8n)</span> conectados a{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">SQL</span>; piezas ligeras en{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">Inkscape</span>. Entrego soluciones digitales
+              completas y efectivas.
+            </p>
+          </div>
+        </div>
+      </div>
 
-
-    </div>
-  </div>
-</div>
-
-
-
-      {/* CTAs iguales y centradas */}
+      {/* CTAs iguales y centradas (mobile) / a la izquierda (desktop) */}
       <div
-        className="font-azonix absolute z-30 left-0 right-0 bottom-4 md:bottom-6 flex flex-col items-center gap-3 md:items-start md:left-8 md:right-auto"
+        className="font-azonix absolute z-30 left-0 right-0 bottom-4 md:bottom-6
+                   flex flex-col items-center gap-1 md:items-start md:left-8 md:right-auto"
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
       >
         <a
           href="/cv.pdf"
           download
           onClick={(e) => {
-            if (onDownloadCV) {
-              e.preventDefault();
-              onDownloadCV();
-            }
+            if (onDownloadCV) { e.preventDefault(); onDownloadCV(); }
           }}
           className={ctaBtn}
         >
-          <span className="inline-flex items-center gap-2 justify-center">
-            <Download size={16} />
+          <span className="inline-flex items-center gap-1.5">
+            <Download size={12} />
             Descargar CV
           </span>
         </a>

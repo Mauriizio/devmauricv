@@ -237,10 +237,10 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
               flex-col items-center select-none focus:outline-none ${actionColor}`}
   aria-label="Ir a la sección siguiente"
 >
-   <ChevronsLeft className="mx-8 w-10 h-10 lg:w-12 lg:h-12 transition-transform duration-300 group-hover:-translate-x-1" strokeWidth={2.6} />
+   <ChevronsLeft className="mx-8 w-10 h-10 bg-cyan-700/10 hover:bg-cyan-400/10 border p-0 rounded-md lg:w-12 lg:h-12 transition-transform duration-300 group-hover:-translate-x-1" strokeWidth={2.6} />
   
   
-  <span className="mt-2 text-[11px] tracking-wider uppercase">mas</span>
+  <span className="mt-2 text-[16px] tracking-wider uppercase">Mas</span>
 </button>
 
 <button
@@ -257,7 +257,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
   {/* <span className={`grid place-items-center rounded-full w-16 h-16 lg:w-20 lg:h-20 ${glassCircle}`}>
     
   </span> */}
-  <span className="mt-2 text-[11px] tracking-wider uppercase">portfolio</span>
+  <span className="mt-2 text-[16px] tracking-wider uppercase">Portfolio</span>
 </button>
 
 
