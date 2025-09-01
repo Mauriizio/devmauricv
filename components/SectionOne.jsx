@@ -142,19 +142,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
           {isDark ? <Sun size={16} className="fill-current" /> : <Moon size={16} className="fill-current" />}
         </button>
 
-        {/* X (cerrar) — deja el onClick vacío para que no rompa nada si no hay handler */}
-        <button
-          onClick={() => {}}
-          aria-label="Cerrar"
-          title="Cerrar"
-          className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
-            isDark
-              ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border-cyan-700/40 hover:border-cyan-700/70"
-              : "text-cyan-700 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border-cyan-800/30 hover:border-cyan-800/60"
-          }`}
-        >
-          <IconX size={16} />
-        </button>
+        
       </div>
     </div>
   </div>
@@ -173,107 +161,117 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
         }`}
       />
 
-      {/* Contenido – SIN scroll vertical */}
-      <div
-        className={`relative z-40 h-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8
-                    pt-24 pb-16 grid grid-rows-[auto_auto_minmax(0,1fr)] items-start text-center
-                    font-azonix ${isDark ? "text-white" : "text-gray-900"}
-                    ${contentVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-700 ease-out`}
-      >
-        {/* Nombre */}
-        <div className="flex flex-col gap-0 items-center">
-          <div className={`text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black ${isDark ? "text-white" : "text-gray-900"}`}>
-            Maurizio
-          </div>
-          <div className={`mt-1 inline-block text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black px-1 ${
-            isDark ? "bg-gray-700 text-white" : "bg-gray-200 text-gray-900"
-          }`}>
-            Caballero
-          </div>
-        </div>
+     {/* Contenido – SIN scroll vertical */}
+<div
+  className={`relative z-40 h-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8
+              pt-24 pb-16 grid grid-rows-[auto_auto_minmax(0,1fr)] items-start text-center
+              font-azonix ${isDark ? "text-white" : "text-gray-900"}
+              ${contentVisible ? "opacity-100" : "opacity-0"} transition-opacity duration-700 ease-out`}
+>
+  {/* Nombre */}
+  <div className="flex flex-col items-center gap-1 sm:gap-1.5">
+    <div className={`text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black ${isDark ? "text-white" : "text-gray-900"}`}>
+      Maurizio
+    </div>
+    <div
+      className={`mt-1 inline-block text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black px-1
+                  ${isDark ? "bg-gray-700 text-white" : "bg-gray-200 text-gray-900"}`}
+    >
+      Caballero
+    </div>
+  </div>
 
-        {/* Subtítulo */}
-        <p className={`mt-3 text-base sm:text-lg ${actionColor}`}>
-          Frontend Developer | Tec. Mantenimiento de Equipos Informáticos.
-        </p>
+  {/* Subtítulo (más respiración) */}
+  <p className={`mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg ${actionColor}`}>
+    Frontend Developer | Tec. Mantenimiento de Equipos Informáticos.
+  </p>
 
-        {/* Zona flexible: logo + CTAs móviles (no empuja) */}
-        <div className="mt-2 sm:mt-4 min-h-0 flex flex-col items-center justify-start">
-          {/* >> Tu versión de logo (o LogoMarkShimmer). Mantengo el wrapper; reemplaza el contenido si quieres. */}
-          <div className="flex items-center justify-center">
-            <LogoMarkShimmer
-              isDark={isDark}
-              className={`pointer-events-none w-[70vw] sm:w-[56vw] lg:w-[44vw] xl:w-[38vw] ${
-                isDark ? "opacity-85" : "opacity-90"
-              }`}
-            />
-          </div>
+  {/* Zona flexible: logo + CTAs móviles (no empuja) */}
+  <div className="mt-6 sm:mt-8 md:mt-6 mb-4 min-h-0 flex flex-col items-center justify-start overflow-hidden">
+    {/* Logo SIEMPRE entre subtítulo y botón de contacto, sin solapar */}
+    <div className="flex items-center justify-center flex-none ">
+      <LogoMarkShimmer
+        isDark={isDark}
+        className={` pointer-events-none
+                    w-[90vw] sm:w-[52vw] lg:w-[40vw] xl:w-[30vw] max-w-[680px]
+                    ${isDark ? "opacity-85" : "opacity-90"}`}
+      />
+    </div>
 
-          {/* CTAs móviles bajo el logo */}
-          <div className="md:hidden mt-4 flex items-center justify-center gap-24 md:gap-6">
-            <button
-              type="button"
-              onClick={goSectionTwo}
-              className={`group flex flex-col items-center ${actionColor} focus:outline-none`}
-            >
-              <span className={`grid place-items-center rounded-full w-16 h-16 ${glassCircle}`}>
-                <ChevronsLeft className="w-9 h-9 transition-transform duration-300 group-hover:-translate-x-1" strokeWidth={2.6} />
-              </span>
-              <span className="mt-2 text-xs tracking-wider uppercase">mas</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={onMenuOpen}
-              className={`group flex flex-col items-center ${actionColor} focus:outline-none`}
-            >
-              <span className={`grid place-items-center rounded-full w-16 h-16 ${glassCircle}`}>
-                <ChevronsRight className="w-9 h-9 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.6} />
-              </span>
-              <span className="mt-2 text-xs tracking-wider uppercase">portfolio</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Chevrones laterales (desktop) */}
+    {/* CTAs móviles bajo el logo */}
+    <div className="md:hidden mt-16 flex items-center justify-center gap-36 sm:gap-12">
       <button
         type="button"
         onClick={goSectionTwo}
-        className={`hidden md:flex group absolute left-4 lg:left-6 top-1/2 -translate-y-1/2 z-40 flex-col items-center select-none focus:outline-none ${actionColor}`}
-        aria-label="Ir a la sección siguiente"
-      >
-        <span className={`grid place-items-center rounded-full w-20 h-20 lg:w-24 lg:h-24 ${glassCircle}`}>
-          <ChevronsLeft className="w-12 h-12 lg:w-14 lg:h-14 transition-transform duration-300 group-hover:-translate-x-1" strokeWidth={2.6} />
-        </span>
-        <span className="mt-3 text-sm tracking-wider uppercase">mas</span>
+        className={`group flex flex-col items-center ${actionColor} focus:outline-none`}
+      ><ChevronsLeft className="w-9 h-9 transition-transform duration-300 group-hover:-translate-x-1" strokeWidth={2.6} />
+        {/* <span className={`grid place-items-center rounded-full w-16 h-16 ${glassCircle}`}>
+          
+        </span> */}
+        <span className="mt-2 text-xs tracking-wider uppercase">mas</span>
       </button>
 
       <button
         type="button"
         onClick={onMenuOpen}
-        className={`hidden md:flex group absolute right-4 lg:right-6 top-1/2 -translate-y-1/2 z-40 flex-col items-center select-none focus:outline-none ${actionColor}`}
-        aria-label="Abrir portfolio"
-      >
-        <span className={`grid place-items-center rounded-full w-20 h-20 lg:w-24 lg:h-24 ${glassCircle}`}>
-          <ChevronsRight className="w-12 h-12 lg:w-14 lg:h-14 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.6} />
-        </span>
-        <span className="mt-3 text-sm tracking-wider uppercase">portfolio</span>
+        className={`group flex flex-col items-center ${actionColor} focus:outline-none`}
+      ><ChevronsRight className="w-9 h-9 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.6} />
+        {/* <span className={`grid place-items-center rounded-full w-16 h-16 ${glassCircle}`}>
+          
+        </span> */}
+        <span className="mt-2 text-xs tracking-wider uppercase">portfolio</span>
       </button>
+    </div>
+  </div>
+</div>
 
+
+{/* Chevrones laterales (desktop) */}
+<button
+  type="button"
+  onClick={goSectionTwo}
+  className={`hidden md:flex group absolute left-4 lg:left-12 top-1/2 -translate-y-1/2 z-40
+              flex-col items-center select-none focus:outline-none ${actionColor}`}
+  aria-label="Ir a la sección siguiente"
+>
+   <ChevronsLeft className="mx-8 w-10 h-10 lg:w-12 lg:h-12 transition-transform duration-300 group-hover:-translate-x-1" strokeWidth={2.6} />
+  
+  
+  <span className="mt-2 text-[11px] tracking-wider uppercase">mas</span>
+</button>
+
+<button
+  type="button"
+  onClick={onMenuOpen}
+  className={`hidden md:flex group absolute right-4 lg:right-20 top-1/2 -translate-y-1/2 z-40
+              flex-col items-center select-none focus:outline-none ${actionColor}`}
+  aria-label="Abrir portfolio"
+>
+
+  {/* <div className="absolute left-0 right-0 bottom-3 z-40 pb-[env(safe-area-inset-bottom)] flex justify-center">  </div> */}
+
+  <ChevronsRight className="w-10 h-10 lg:w-12 lg:h-12 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.6} />
+  {/* <span className={`grid place-items-center rounded-full w-16 h-16 lg:w-20 lg:h-20 ${glassCircle}`}>
+    
+  </span> */}
+  <span className="mt-2 text-[11px] tracking-wider uppercase">portfolio</span>
+</button>
+
+
+      
       {/* CONTACTO fijo abajo (Azonix) */}
-      <div className="absolute left-0 right-0 bottom-3 z-40 pb-[env(safe-area-inset-bottom)] flex justify-center">
-        <button
-          onClick={onContactOpen}
-          className={`px-5 py-2 rounded-md border backdrop-blur-sm font-azonix font-black ${actionColor} transition-colors ${
-            isDark
-              ? "bg-black/30 border-cyan-700/40 hover:border-cyan-700/70"
-              : "bg-white/40 border-cyan-800/30 hover:border-cyan-800/60"
-          }`}
-        >
-          Contacto
-        </button>
-      </div>
+<div className="absolute left-0 right-0 bottom-3 z-40 pb-[env(safe-area-inset-bottom)] flex justify-center">
+  <button
+    onClick={onContactOpen}
+    className={`px-5 py-2 my-2 rounded-md border backdrop-blur-sm font-azonix font-black ${actionColor} transition-colors
+                ${isDark
+                  ? "bg-black/30 border-cyan-700/40 hover:border-cyan-700/70"
+                  : "bg-white/40 border-cyan-800/30 hover:border-cyan-800/60"}`}
+  >
+    Contacto
+  </button>
+</div>
+
     </section>
   );
 }
