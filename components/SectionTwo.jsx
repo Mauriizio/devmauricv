@@ -195,7 +195,7 @@ export default function SectionTwo({
       {/* Overlay general (más suave) */}
       <div
         className={`absolute inset-0 z-20 transition-colors duration-150 ${
-          isDark ? "bg-black/45 md:bg-black/35" : "bg-white/22 md:bg-white/12"
+          isDark ? "bg-black/45 md:bg-black/35" : "bg-white/10 md:bg-white/20"
         }`}
       />
 
@@ -247,18 +247,29 @@ export default function SectionTwo({
 
       {/* Frase resumen: centrada en mobile / izquierda en desktop */}
       <p
-  className={`mt-[20vh] font-bold md:mt-2 text-base md:text-3xl leading-snug md:leading-tight
+  className={`relative mt-[20vh] md:mt-2 text-xl md:text-2xl leading-snug md:leading-tight
               text-slate-900/95 dark:text-white/90
-              max-w-[48ch] text-center md:text-left mx-auto md:mx-0`}
+              max-w-[48ch] text-center md:text-left mx-auto md:mx-0
+              drop-shadow-[1px_1px_rgba(255,255,255,0.30)] dark:drop-shadow-[0_9px_1 px_rgba(0,0,0,0.30)]
+              before:content-[''] before:absolute before:inset-[-4px] before:rounded-lg
+              before:bg-white/25 dark:before:bg-black/15
+              supports-[backdrop-filter]:before:backdrop-blur-[3px]
+              before:blur-[1.5px] before:z-[-1] before:ring before:ring-black/5 dark:before:ring-white/10`}
 >
   Frontend con <span className="text-cyan-800 dark:text-cyan-300">React</span>,{" "}
   <span className="text-cyan-800 dark:text-cyan-300">Next.js</span> y{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">Vite</span>; IA aplicada y
-  workflows en <span className="text-cyan-800 dark:text-cyan-300">Make (M8n)</span>
-  conectados a <span className="text-cyan-800 dark:text-cyan-300">SQL</span>;
-  piezas ligeras en <span className="text-cyan-800 dark:text-cyan-300">Inkscape</span> e <span className="text-cyan-800 dark:text-cyan-300">Illustrator</span>.
-  Entrego soluciones digitales completas y efectivas.
+  <span className="text-cyan-800 dark:text-cyan-300">Vite</span>;{" "}
+  <span className="text-cyan-800 dark:text-cyan-300">TypeScript</span>,{" "}
+  <span className="text-cyan-800 dark:text-cyan-300">Tailwind</span> y{" "}
+  <span className="text-cyan-800 dark:text-cyan-300">Framer Motion</span>, estado con{" "}
+  <span className="text-cyan-800 dark:text-cyan-300">Zustand/Redux</span> y técnicas avanzadas
+  (SSR/ISR, code-splitting, accesibilidad). IA y workflows en{" "}
+  <span className="text-cyan-800 dark:text-cyan-300">Make (M8n)</span> conectados a{" "}
+  <span className="text-cyan-800 dark:text-cyan-300">SQL</span>; piezas ligeras en{" "}
+  <span className="text-cyan-800 dark:text-cyan-300">Inkscape</span>. Entrego soluciones digitales
+  completas y efectivas.
 </p>
+
 
     </div>
   </div>
