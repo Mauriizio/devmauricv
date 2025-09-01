@@ -232,7 +232,7 @@ export default function SectionTwo({
       </h1>
 
       {/* Chips: centrados en mobile / izquierda en desktop */}
-      <div className="mt-[35vh] md:mt-1 flex gap-2 overflow-x-auto md:overflow-visible px-1 md:px-0 w-full justify-center md:justify-start">
+      {/* <div className="mt-[35vh] md:mt-1 flex gap-2 overflow-x-auto md:overflow-visible px-1 md:px-0 w-full justify-center md:justify-start">
         {["React", "Next.js", "Tailwind/CSS", "AI", "Mobile-First", "APIs"].map((s) => (
           <span
             key={s}
@@ -243,22 +243,21 @@ export default function SectionTwo({
             {s}
           </span>
         ))}
-      </div>
+      </div> */}
 
       {/* Frase resumen: centrada en mobile / izquierda en desktop */}
       <p
-  className={`mt-1 md:mt-2 text-sm md:text-3xl ${
-    isDark ? "text-white/90" : "text-slate-800/95"
-  } max-w-[48ch] text-center md:text-left mx-auto md:mx-0`}
+  className={`mt-[35vh] font-bold md:mt-2 text-sm md:text-3xl leading-snug md:leading-tight
+              text-slate-900/95 dark:text-white/90
+              max-w-[48ch] text-center md:text-left mx-auto md:mx-0`}
 >
-  Construyo frontends con <span className={accentText}>React</span>,{" "}
-  <span className={accentText}>Next.js</span> y{" "}
-  <span className={accentText}>Vite</span>. Integro{" "}
-  <span className={accentText}>IA</span>, workflows en{" "}
-  <span className={accentText}>Make (M8n)</span> y bases de datos{" "}
-  <span className={accentText}>SQL</span>; y preparo piezas simples en{" "}
-  <span className={accentText}>Inkscape</span>. Entrego soluciones digitales
-  completas y efectivas.
+  Frontend con <span className="text-cyan-800 dark:text-cyan-300">React</span>,{" "}
+  <span className="text-cyan-800 dark:text-cyan-300">Next.js</span> y{" "}
+  <span className="text-cyan-800 dark:text-cyan-300">Vite</span>; IA aplicada y
+  workflows en <span className="text-cyan-800 dark:text-cyan-300">Make (M8n)</span>
+  conectados a <span className="text-cyan-800 dark:text-cyan-300">SQL</span>;
+  piezas ligeras en <span className="text-cyan-800 dark:text-cyan-300">Inkscape</span> e <span className="text-cyan-800 dark:text-cyan-300">Illustrator</span>.
+  Entrego soluciones digitales completas y efectivas.
 </p>
 
     </div>
