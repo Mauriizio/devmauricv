@@ -247,7 +247,7 @@ export default function SectionTwo({
 
      {/* Frase resumen: centrada en mobile / izquierda en desktop */}
 <p
-  className={`relative mt-[05vh] font-extrabold md:mt-2 mb-6 md:mb-3
+  className={`relative mt-[01vh] font-extrabold md:mt-2 mb-6 md:mb-3
               text-lg md:text-2xl leading-relaxed md:leading-tight
               text-slate-900/95 dark:text-white/90
               max-w-[48ch] text-center md:text-left mx-auto md:mx-0
