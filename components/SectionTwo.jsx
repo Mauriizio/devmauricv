@@ -73,7 +73,7 @@ export default function SectionTwo({
     "supports-[backdrop-filter]:backdrop-blur-sm",
     actionColor,
     isDark
-      ? "bg-black/30 border-cyan-700/40 hover:border-cyan-700/70 text-cyan-700"
+      ? "bg-black/30 border-cyan-700/40 hover:border-cyan-700/70 text-cyan-800"
       : "bg-transparent border-cyan-800/30 hover:border-cyan-800/60 text-cyan-700",
   ].join(" ");
 
