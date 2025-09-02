@@ -68,6 +68,19 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
 
   const actionColor = isDark ? "text-cyan-700" : "text-cyan-800";
 
+
+  // CTA iguales (mismo look en mobile y desktop)
+  const ctaBtn = [
+    "inline-flex items-center justify-center gap-1.5",
+    "w-[min(82vw,200px)] mx-auto md:mx-0 px-5 py-2 my-2",
+    "rounded-md border font-azonix font-black transition-colors",
+    "supports-[backdrop-filter]:backdrop-blur-sm",
+    actionColor,
+    isDark
+      ? "bg-black/30 border-cyan-700/40 hover:border-cyan-700/70"
+      : "bg-white/40 border-cyan-800/30 hover:border-cyan-800/60",
+  ].join(" ");
+
   return (
     <section
       ref={rootRef}

@@ -73,8 +73,8 @@ export default function SectionTwo({
     "supports-[backdrop-filter]:backdrop-blur-sm",
     actionColor,
     isDark
-      ? "bg-black/30 border-cyan-700/40 hover:border-cyan-700/70"
-      : "bg-white/40 border-cyan-800/30 hover:border-cyan-800/60",
+      ? "bg-black/30 border-cyan-700/40 hover:border-cyan-700/70 text-cyan-700"
+      : "bg-white/40 border-cyan-800/30 hover:border-cyan-800/60 text-cyan-800",
   ].join(" ");
 
   return (
@@ -239,17 +239,17 @@ export default function SectionTwo({
                 Maurizio Caballero
               </span>
               , <br />
-              <span
+              {/* <span
                 className={`${
                   isDark ? "text-cyan-900 text-base md:text-3xl" : "text-gray-900 text-base md:text-3xl"
                 } px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]`}
               >
                 Frontend Developer
-              </span>
+              </span> */}
             </h1>
 
             <p
-  className={`relative mt-[1vh] md:mt-2 mb-6 md:mb-3
+  className={`relative mt-[2vh] md:mt-8 mb-2 md:mb-3
               font-extrabold text-lg md:text-2xl leading-relaxed md:leading-tight
               text-slate-900/95 dark:text-white/90
               max-w-[48ch] text-center md:text-left mx-auto md:mx-0
