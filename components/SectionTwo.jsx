@@ -19,7 +19,7 @@ export default function SectionTwo({
   const { isDark, toggleDarkMode } = useTheme();
 
   // Paleta de acento (texto principal)
-  const accentText = isDark ? "text-cyan-300" : "text-cyan-800";
+  const accentText = isDark ? "text-cyan-600" : "text-cyan-800";
 
   // Color de texto para CTAs “cristal”
   const actionColor = isDark
@@ -181,7 +181,7 @@ export default function SectionTwo({
             fill
             priority
             sizes="100vw"
-            className="object-cover object-center"
+            className="object-cover object-center z-10"
           />
         </div>
         {/* Desktop */}
@@ -192,7 +192,7 @@ export default function SectionTwo({
             fill
             priority
             sizes="(min-width: 1024px) 60vw, 80vw"
-            className="object-contain object-right"
+            className="object-contain object-right z-10"
           />
         </div>
       </div>
@@ -212,7 +212,7 @@ export default function SectionTwo({
       {/* Overlay general (más suave) */}
       <div
         className={`absolute inset-0 z-20 transition-colors duration-150 ${
-          isDark ? "bg-black/45 md:bg-black/35" : "bg-black/30 md:bg-white/20"
+          isDark ? "bg-black/65 md:bg-black/70" : "bg-black/30 md:bg-white/20"
         }`}
       />
 
@@ -233,7 +233,7 @@ export default function SectionTwo({
               ¡Hola! Soy <br />
               <span
                 className={`${
-                  isDark ? "bg-cyan-200 text-black" : "bg-cyan-100 text-gray-900"
+                  isDark ? "bg-cyan-200/10 text-black" : "bg-cyan-100 text-gray-900"
                 } px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]`}
               >
                 Maurizio Caballero

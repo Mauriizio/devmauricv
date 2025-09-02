@@ -71,14 +71,14 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
 
   // CTA iguales (mismo look en mobile y desktop)
   const ctaBtn = [
-    "inline-flex items-center justify-center gap-1.5",
+    " inline-flex items-center justify-center gap-1.5",
     "w-[min(82vw,200px)] mx-auto md:mx-0 px-5 py-2 my-2",
     "rounded-md border font-azonix font-black transition-colors",
     "supports-[backdrop-filter]:backdrop-blur-sm",
     actionColor,
     isDark
-      ? "bg-black/30 border-cyan-700/40 hover:border-cyan-700/70"
-      : "bg-white/40 border-cyan-800/30 hover:border-cyan-800/60",
+      ? "bg-black/30 border-cyan-700/40 hover:border-cyan-700/70  hover:text-cyan-200"
+      : "bg-white/40 border-cyan-800/30 hover:border-cyan-800/60  hover:text-cyan-200",
   ].join(" ");
 
   return (
@@ -199,7 +199,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
 
   {/* Subtítulo (más respiración) */}
   <p className={`mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg ${actionColor}`}>
-    Frontend Developer | Tec. Mantenimiento de Equipos Informáticos.
+    Frontend Developer | Analista de Datos.
   </p>
 
   {/* Zona flexible: logo + CTAs móviles (no empuja) */}
@@ -250,10 +250,10 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
               flex-col items-center select-none focus:outline-none ${actionColor}`}
   aria-label="Ir a la sección siguiente"
 >
-   <ChevronsLeft className="mx-8 w-10 h-10 bg-cyan-700/10 hover:bg-cyan-400/10 border p-0 rounded-md lg:w-12 lg:h-12 transition-transform duration-300 group-hover:-translate-x-1" strokeWidth={2.6} />
+   <ChevronsLeft className="mx-8 w-10 h-10 lg:w-12 lg:h-12 transition-transform duration-300 group-hover:translate-x-1 text-cyan-200  hover:text-cyan-400  " strokeWidth={2.6} />
   
   
-  <span className="mt-2 text-[16px] tracking-wider uppercase">Mas</span>
+  <span className="mt-2 text-[24px] tracking-wider uppercase hover:text-cyan-200">Mas</span>
 </button>
 
 <button
@@ -266,11 +266,11 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
 
   {/* <div className="absolute left-0 right-0 bottom-3 z-40 pb-[env(safe-area-inset-bottom)] flex justify-center">  </div> */}
 
-  <ChevronsRight className="w-10 h-10 lg:w-12 lg:h-12 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.6} />
+  <ChevronsRight className="w-10 h-10 lg:w-12 lg:h-12 transition-transform duration-300 group-hover:translate-x-1 text-cyan-200  hover:text-cyan-400  " strokeWidth={2.6} />
   {/* <span className={`grid place-items-center rounded-full w-16 h-16 lg:w-20 lg:h-20 ${glassCircle}`}>
     
   </span> */}
-  <span className="mt-2 text-[16px] tracking-wider uppercase">Portfolio</span>
+  <span className="mt-2 text-[24px] tracking-wider uppercase hover:text-cyan-200">Portfolio</span>
 </button>
 
 
@@ -281,8 +281,8 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
     onClick={onContactOpen}
     className={`w-[min(82vw,200px)]  px-5 py-2 my-2 rounded-md border backdrop-blur-sm font-azonix font-black ${actionColor} transition-colors
                 ${isDark
-                  ? "bg-black/30 border-cyan-700/40 hover:border-cyan-700/70"
-                  : "bg-white/40 border-cyan-800/30 hover:border-cyan-800/60"}`}
+                  ? "bg-black/30 border-cyan-700/40 hover:border-cyan-700/70  hover:text-cyan-200"
+                  : "bg-white/40 border-cyan-800/30 hover:border-cyan-800/60  hover:text-cyan-200"}`}
   >
     Contacto
   </button>
