@@ -266,7 +266,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
 <div className="absolute left-0 right-0 bottom-3 z-40 pb-[env(safe-area-inset-bottom)] flex justify-center">
   <button
     onClick={onContactOpen}
-    className={`px-5 py-2 my-2 rounded-md border backdrop-blur-sm font-azonix font-black ${actionColor} transition-colors
+    className={`w-[min(82vw,200px)]  px-5 py-2 my-2 rounded-md border backdrop-blur-sm font-azonix font-black ${actionColor} transition-colors
                 ${isDark
                   ? "bg-black/30 border-cyan-700/40 hover:border-cyan-700/70"
                   : "bg-white/40 border-cyan-800/30 hover:border-cyan-800/60"}`}
