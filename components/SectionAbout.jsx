@@ -191,7 +191,7 @@ const scrollToSectionOne = () => {
 
   // ✅ MISMA ctaBtn que en Section Two
 const ctaBtn = [
-  "inline-flex items-center justify-center gap-1.5",
+  "inline-flex text-sm items-center justify-center gap-1.5",
   "w-[min(82vw,200px)] mx-auto sm:mx-0 px-5 py-2 my-1",
   "rounded-md border font-azonix font-extrabold transition-colors",
   "supports-[backdrop-filter]:backdrop-blur-sm",
@@ -476,16 +476,18 @@ const ctaBtn = [
 
 
                 {/* Toggle — extremo derecho */}
-                <button
-                  type="button"
-                  onClick={toggleDarkMode}
-                  aria-label="Cambiar tema"
-                  aria-pressed={isDark}
-                  className={switchBtn}
-                  title={isDark ? "Tema claro" : "Tema oscuro"}
-                >
-                  <span className={switchKnob} />
-                </button>
+                 <button
+          type="button"
+          onClick={toggleDarkMode}
+          aria-label="Cambiar tema"
+          aria-pressed={isDark}
+          className={`relative shrink-0 inline-flex items-center rounded-full border
+                      h-6 w-[2.50rem] min-w-[2.50rem] md:w-min-[2.50rem] md:max-w-[2.50rem]
+                      ${isDark ? "bg-cyan-700 border-cyan-400/60 justify-end" : "bg-cyan-200 border-cyan-900/50 justify-start"}
+                      shadow-[0_2px_10px_rgba(0,0,0,0.10)] transition-colors duration-200`}
+        >
+          <span className="h-5 w-5 mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] transition-transform duration-200" />
+        </button>
               </div>
             </div>
           </div>
@@ -675,12 +677,12 @@ const ctaBtn = [
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <a href="/cv.pdf" download className={ctaBtn}>
-                <span className="inline-flex items-center gap-1.5">
-                  <Download size={14} />
+                <span className="inline-flex items-center gap-1 text-sm">
+                  <Download size={20} />
                   Descargar CV
                 </span>
               </a>
-              <button onClick={onContactOpen} className={ctaBtn}>
+              <button onClick={onContactOpen} className={ctaBtn} >
                 Contactar
               </button>
             </div>

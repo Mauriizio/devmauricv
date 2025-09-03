@@ -83,7 +83,20 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
         style={{ cursor: zoomed ? "zoom-out" : "zoom-in" }}
       />
     </div>
-  ) : null
+  ) : null;
+
+  // ✅ MISMA ctaBtn que en Section Two (con estados disabled)
+const ctaBtn = [
+  "inline-flex items-center justify-center gap-1.5",
+  "w-[min(82vw,300px)] mx-auto sm:mx-0 px-5 py-2 my-1",
+  "rounded-md border font-azonix font-extrabold transition-colors",
+  "supports-[backdrop-filter]:backdrop-blur-sm",
+  "disabled:opacity-60 disabled:pointer-events-none",
+  isDark
+    ? "text-cyan-300 hover:text-cyan-200 bg-black/30 border-cyan-700/40 hover:border-cyan-700/70"
+    : "text-cyan-900 hover:text-cyan-700 bg-white/40 border-cyan-800/30 hover:border-cyan-800/60",
+].join(" ");
+
 
   return (
     <section
@@ -146,7 +159,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
           title="CV"
         >
           <Download size={16} />
-          <span className="hidden sm:inline text-xs">CV</span>
+          <span className="hidden sm:inline font-sans font-extrabold  text-xs">CV</span>
         </a>
 
         {/* Instagram — solo desktop */}
@@ -254,21 +267,20 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
           }`}
         >
           <IconX size={16} />
+        
+        
         </button>
-
-        {/* Toggle — extremo derecho, palanquita (un toque más chica en desktop) */}
-        <button
+ <button
           type="button"
           onClick={toggleDarkMode}
           aria-label="Cambiar tema"
           aria-pressed={isDark}
           className={`relative shrink-0 inline-flex items-center rounded-full border
-                      h-6 w-[3.1rem] min-w-[3.1rem] md:h-[22px] md:w-10 md:min-w-10
+                      h-6 w-[2.50rem] min-w-[2.50rem] md:w-min-[2.50rem] md:max-w-[2.50rem]
                       ${isDark ? "bg-cyan-700 border-cyan-400/60 justify-end" : "bg-cyan-200 border-cyan-900/50 justify-start"}
                       shadow-[0_2px_10px_rgba(0,0,0,0.10)] transition-colors duration-200`}
-          title={isDark ? "Tema claro" : "Tema oscuro"}
         >
-          <span className="h-5 w-5 md:h-[18px] md:w-[18px] mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] transition-transform duration-200" />
+          <span className="h-5 w-5 mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] transition-transform duration-200" />
         </button>
       </div>
     </div>
@@ -334,12 +346,12 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
             <h3 className="title-section">Enlaces del Proyecto</h3>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               {project.githubUrl && (
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn-github inline-flex items-center justify-center gap-2">
+                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className={ctaBtn}>
                   <span aria-hidden>📂</span> Ver Código en GitHub
                 </a>
               )}
               {project.liveUrl && (
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex items-center justify-center gap-2">
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className={ctaBtn}>
                   <span aria-hidden>🌐</span> Ver Proyecto en Vivo
                 </a>
               )}

@@ -81,7 +81,7 @@ const switchTrackBase = isDark
 
 const switchBtn =
   `relative shrink-0 inline-flex items-center rounded-full border
-   h-6 w-[3.25rem] min-w-[3.25rem]       /* móvil: más ancho */
+   h-6 w-[2.50rem] min-w-[2.50rem]       /* móvil: más ancho */
    md:w-11 md:min-w-[2.75rem]             /* desktop: un pelín más pequeño */
    ${switchTrackBase}
    ${isDark ? "justify-end" : "justify-start"}
@@ -102,6 +102,23 @@ const switchKnob =
     : "!text-cyan-900 hover:!text-cyan-900 bg-white/40 border-cyan-800/30 hover:border-cyan-800/60";
   // fuerza absoluta en mobile claro
   const ctaLightInline = !isDark ? { color: "#164e63", fontWeight: 800 } : undefined; // cyan-900
+
+
+
+  // ✅ CTAs unificados (mismo estilo que About/Contact)
+const ctaBtn = [
+  "inline-flex items-center justify-center gap-1.5",
+  "w-[min(82vw,200px)] mx-auto sm:mx-0 px-5 py-2 my-1",
+  "rounded-md border font-azonix font-extrabold transition-colors",
+  "supports-[backdrop-filter]:backdrop-blur-sm",
+  "disabled:opacity-60 disabled:pointer-events-none",
+  isDark
+    ? "text-cyan-300 hover:text-cyan-200 bg-black/30 border-cyan-700/40 hover:border-cyan-700/70"
+    : "text-cyan-900 hover:text-cyan-700 bg-white/70 border-cyan-800/30 hover:border-cyan-800/60",
+].join(" ");
+
+
+
 
   return (
     <section
@@ -287,22 +304,24 @@ const switchKnob =
         </div>
       </div>
 
-      {/* CTAs */}
-      <div
-        className="font-azonix absolute z-30 left-0 right-0 bottom-4 md:bottom-6
-                   flex flex-col items-center gap-1 md:items-start md:left-8 md:right-auto"
-        style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
-      >
-        <button type="button" onClick={onMenuOpen} className={`${ctaBase} ${ctaTheme}`} style={ctaLightInline}>
-          Ver proyectos
-        </button>
-        <button type="button" onClick={onVerMas} className={`${ctaBase} ${ctaTheme}`} style={ctaLightInline}>
-          Más sobre mí
-        </button>
-        <button type="button" onClick={onContactOpen} className={`${ctaBase} ${ctaTheme}`} style={ctaLightInline}>
-          Contacto
-        </button>
-      </div>
+        {/* CTAs */}
+<div
+  className="font-azonix absolute z-30 left-0 right-0 bottom-4 md:bottom-6
+             flex flex-col items-center gap-1 md:items-start md:left-8 md:right-auto"
+  style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+>
+  <button type="button" onClick={onMenuOpen} className={ctaBtn}>
+    Ver proyectos
+  </button>
+  <button type="button" onClick={onVerMas} className={ctaBtn}>
+    Más sobre mí
+  </button>
+  <button type="button" onClick={onContactOpen} className={ctaBtn}>
+    Contacto
+  </button>
+</div>
+
+      
     </section>
   );
 }

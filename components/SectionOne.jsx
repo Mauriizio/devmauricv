@@ -224,7 +224,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
           aria-label="Cambiar tema"
           aria-pressed={isDark}
           className={`relative shrink-0 inline-flex items-center rounded-full border
-                      h-6 w-[3.25rem] min-w-[3.25rem] md:w-11 md:min-w-[2.75rem]
+                      h-6 w-[2.50rem] min-w-[2.50rem] md:w-min-[2.50rem] md:max-w-[2.50rem]
                       ${isDark ? "bg-cyan-700 border-cyan-400/60 justify-end" : "bg-cyan-200 border-cyan-900/50 justify-start"}
                       shadow-[0_2px_10px_rgba(0,0,0,0.10)] transition-colors duration-200`}
         >

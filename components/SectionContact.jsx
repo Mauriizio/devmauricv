@@ -33,6 +33,10 @@ const GithubIcon = (props) => (
   </svg>
 )
 
+
+
+
+
 export default function SectionContact({ show, onClose }) {
   const { isDark, toggleDarkMode } = useTheme()
   const dialogRef = useRef(null)
@@ -77,6 +81,17 @@ export default function SectionContact({ show, onClose }) {
   const actionColor = isDark
     ? "text-cyan-300 hover:text-cyan-200 bg-cyan-950/30 hover:bg-cyan-900/50 border-cyan-700/40 hover:border-cyan-700/70"
     : "text-cyan-700 hover:text-cyan-900 bg-cyan-100/60 hover:bg-cyan-100 border-cyan-800/30 hover:border-cyan-800/60"
+
+    const ctaBtn = [
+  "inline-flex items-center justify-center gap-1.5",
+  "w-[min(82vw,200px)] mx-auto sm:mx-0 px-5 py-2 my-1",
+  "rounded-md border font-azonix font-extrabold transition-colors",
+  "supports-[backdrop-filter]:backdrop-blur-sm",
+  "disabled:opacity-60 disabled:pointer-events-none",
+  isDark
+    ? "text-cyan-300 hover:text-cyan-200 bg-black/30 border-cyan-700/40 hover:border-cyan-700/70"
+    : "text-cyan-900 hover:text-cyan-700 bg-white/40 border-cyan-800/30 hover:border-cyan-800/60",
+].join(" ");
 
   return (
     <>
@@ -250,18 +265,17 @@ export default function SectionContact({ show, onClose }) {
         </button>
 
         {/* Toggle — extremo derecho, palanquita (un toque más chica en desktop) */}
-        <button
+         <button
           type="button"
           onClick={toggleDarkMode}
           aria-label="Cambiar tema"
           aria-pressed={isDark}
           className={`relative shrink-0 inline-flex items-center rounded-full border
-                      h-6 w-[3.1rem] min-w-[3.1rem] md:h-[22px] md:w-10 md:min-w-10
+                      h-6 w-[2.50rem] min-w-[2.50rem] md:w-min-[2.50rem] md:max-w-[2.50rem]
                       ${isDark ? "bg-cyan-700 border-cyan-400/60 justify-end" : "bg-cyan-200 border-cyan-900/50 justify-start"}
                       shadow-[0_2px_10px_rgba(0,0,0,0.10)] transition-colors duration-200`}
-          title={isDark ? "Tema claro" : "Tema oscuro"}
         >
-          <span className="h-5 w-5 md:h-[18px] md:w-[18px] mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] transition-transform duration-200" />
+          <span className="h-5 w-5 mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] transition-transform duration-200" />
         </button>
       </div>
     </div>
@@ -293,12 +307,15 @@ export default function SectionContact({ show, onClose }) {
             <label className="form-label" htmlFor="message">Mensaje</label>
             <textarea id="message" name="message" required rows={5} value={formData.message} onChange={onChange} className="form-textarea" placeholder="Cuéntame brevemente tu idea o necesidad…" />
 
-            <div className="flex justify-center gap-3 pt-2">
-              <button type="submit" disabled={status === "submitting"} className="btn-primary">
-                {status === "submitting" ? "Enviando…" : "Enviar mensaje"}
-              </button>
-              <button type="button" onClick={onClose} className="btn-secondary">Cancelar</button>
-            </div>
+            <div className="flex flex-col sm:flex-row justify-center gap-3 pt-2">
+  <button type="submit" disabled={status === "submitting"} className={ctaBtn}>
+    {status === "submitting" ? "Enviando…" : "Enviar"}
+  </button>
+  <button type="button" onClick={onClose} className={ctaBtn}>
+    Cancelar
+  </button>
+</div>
+
 
             {status === "success" && <p className="form-success mt-3">¡Gracias! Tu mensaje fue enviado correctamente.</p>}
             {status === "error" && <p className="form-error mt-3">{errorMsg}</p>}
