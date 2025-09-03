@@ -13,24 +13,27 @@ export default function SectionTwo({
   onMenuOpen,
   onVerMas,
   onContactOpen,
-  onClose,          // usado para volver a Section One con la X
-  onDownloadCV,     // opcional
+  onClose,        // opcional: si el padre quiere interceptar el close
+  onDownloadCV,   // opcional
 }) {
   const { isDark, toggleDarkMode } = useTheme();
 
-  // Paleta de acento (texto principal)
-  const accentText = isDark ? "text-cyan-600" : "text-cyan-800";
+  // --- helpers ---
+  const scrollToSectionOne = () => {
+    // vuelve a Section One desplazando el contenedor horizontal
+    const main = document.querySelector("main");
+    if (main) main.scrollTo({ left: main.scrollWidth, behavior: "smooth" });
+    onClose?.();
+  };
 
-  // Color de texto para CTAs “cristal”
-  const actionColor = isDark
-    ? " text-cyan-300 hover:text-cyan-200"
-    : " text-cyan-900 hover:text-cyan-900";
+  // acentos coherentes
+  const accentText = isDark ? "text-cyan-600" : "text-cyan-900";
 
-  // Base de botón “glass” del header (misma altura para todos)
+  // base estilo "glass" del header
   const glassBase =
     "flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors";
 
-  // CV (igual a Section One: transparente suave)
+  // CV (transparente suave al estilo Section One)
   const btnCV =
     `${glassBase} ` +
     (isDark
@@ -44,14 +47,35 @@ export default function SectionTwo({
       ? "text-emerald-300 hover:text-emerald-200 bg-emerald-900/40 hover:bg-emerald-900/55 border-emerald-700/40 hover:border-emerald-600/70"
       : "text-emerald-800 hover:text-emerald-900 bg-emerald-100/70 hover:bg-emerald-100 border-emerald-900/30 hover:border-emerald-900/50");
 
-  // LinkedIn (azul suave)
+  // LinkedIn (solo desktop)
   const btnLI =
-    `${glassBase} ` +
+    `${glassBase} hidden md:flex ` +
     (isDark
       ? "text-blue-300 hover:text-blue-200 bg-blue-900/40 hover:bg-blue-900/55 border-blue-700/40 hover:border-blue-600/70"
       : "text-blue-800 hover:text-blue-900 bg-blue-100/70 hover:bg-blue-100 border-blue-900/30 hover:border-blue-900/50");
 
-  // Toggle tema (como venías)
+  // Instagram (solo desktop)
+  const btnIG =
+    `${glassBase} hidden md:flex ` +
+    (isDark
+      ? "text-pink-300 hover:text-pink-200 bg-pink-900/40 hover:bg-pink-900/55 border-pink-700/40 hover:border-pink-600/70"
+      : "text-pink-700 hover:text-pink-800 bg-pink-100/70 hover:bg-pink-100 border-pink-900/20 hover:border-pink-900/40");
+
+  // Facebook (solo desktop)
+  const btnFB =
+    `${glassBase} hidden md:flex ` +
+    (isDark
+      ? "text-blue-300 hover:text-blue-200 bg-blue-900/40 hover:bg-blue-900/55 border-blue-700/40 hover:border-blue-600/70"
+      : "text-blue-700 hover:text-blue-900 bg-blue-100/70 hover:bg-blue-100 border-blue-900/20 hover:border-blue-900/40");
+
+  // GitHub (solo desktop)
+  const btnGH =
+    `${glassBase} hidden md:flex ` +
+    (isDark
+      ? "text-zinc-200 hover:text-white bg-zinc-800/60 hover:bg-zinc-800 border-zinc-600/50 hover:border-zinc-500/70"
+      : "text-zinc-800 hover:text-black bg-zinc-100/70 hover:bg-zinc-100 border-zinc-900/20 hover:border-zinc-900/40");
+
+  // Toggle tema
   const btnToggle =
     `${glassBase} ` +
     (isDark
@@ -65,16 +89,16 @@ export default function SectionTwo({
       ? "text-rose-300 hover:text-rose-200 bg-rose-900/40 hover:bg-rose-900/55 border-rose-700/40 hover:border-rose-600/70"
       : "text-rose-700 hover:text-rose-900 bg-rose-100/70 hover:bg-rose-100 border-rose-900/20 hover:border-rose-900/40");
 
-  // CTA iguales (mismo look en mobile y desktop)
+  // CTA iguales (misma apariencia en mobile & desktop).
+  // Mobile (tema claro): forzamos cian oscuro + extrabold como pediste.
   const ctaBtn = [
     "inline-flex items-center justify-center gap-1.5",
     "w-[min(82vw,200px)] mx-auto md:mx-0 px-5 py-2 my-2",
     "rounded-md border font-azonix font-extrabold transition-colors",
     "supports-[backdrop-filter]:backdrop-blur-sm",
-    actionColor,
     isDark
-      ? "bg-black/30 border-cyan-700/40 hover:border-cyan-700/70 text-cyan-800 hover:text-cyan-300"
-      : "bg-transparent border-cyan-800/30 hover:border-cyan-800/60 text-cyan-900 hover:text-cyan-500",
+      ? "text-cyan-300 hover:text-cyan-200 bg-black/30 border-cyan-700/40 hover:border-cyan-700/70"
+      : "text-cyan-900 hover:text-cyan-700 bg-white/40 border-cyan-800/30 hover:border-cyan-800/60",
   ].join(" ");
 
   return (
@@ -101,11 +125,10 @@ export default function SectionTwo({
               />
             </div>
 
-            {/* DER (visual de derecha→izquierda): X, Toggle, LinkedIn, WhatsApp, CV
-                Para lograrlo, los renderizamos de izquierda a derecha: CV, WA, LI, Toggle, X */}
+            {/* DER (vista derecha→izquierda). Render: CV, WA, FB, GH, IG, LI, Toggle, X */}
             <div className="flex-1 min-w-0 flex items-center justify-end gap-2 sm:gap-3">
               {/* CV */}
-              {/* <a
+              <a
                 href="/cv.pdf"
                 download
                 aria-label="Descargar CV"
@@ -119,7 +142,7 @@ export default function SectionTwo({
               >
                 <Download size={16} />
                 <span className="hidden sm:inline">CV</span>
-              </a> */}
+              </a>
 
               {/* WhatsApp */}
               <a
@@ -135,7 +158,50 @@ export default function SectionTwo({
                 </svg>
               </a>
 
-              {/* LinkedIn */}
+              {/* Desktop only extras */}
+              <a
+                href="https://facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                title="Facebook"
+                className={btnFB}
+              >
+                {/* FB icon */}
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                  <path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12Z" />
+                </svg>
+              </a>
+
+              <a
+                href="https://github.com/Mauriizio"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                title="GitHub"
+                className={btnGH}
+              >
+                {/* GitHub icon */}
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                  <path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.6-1.3-5.6-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0C17 5 18 5.3 18 5.3c.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.7-2.9 5.7-5.6 6 .4.3.8 1 .8 2v3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z" />
+                </svg>
+              </a>
+
+              <a
+                href="https://www.instagram.com/devmauriz/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                title="Instagram"
+                className={btnIG}
+              >
+                {/* IG icon */}
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                  <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2.2a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Zm5.6-.9a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z" />
+                </svg>
+              </a>
+
+              {/* LinkedIn (desktop) */}
               <a
                 href="https://www.linkedin.com/in/maurizio-caballero-286a56219/?originalSubdomain=cl"
                 target="_blank"
@@ -154,8 +220,8 @@ export default function SectionTwo({
                 {isDark ? <Sun size={16} className="fill-current" /> : <Moon size={16} className="fill-current" />}
               </button>
 
-              {/* X (volver a Section One) */}
-              <button type="button" onClick={() => onClose?.()} aria-label="Cerrar" className={btnX}>
+              {/* X → vuelve a Section One */}
+              <button type="button" onClick={scrollToSectionOne} aria-label="Cerrar" className={btnX}>
                 <IconX size={16} />
               </button>
             </div>
@@ -197,7 +263,7 @@ export default function SectionTwo({
         </div>
       </div>
 
-      {/* Scrim izquierdo (más tenue) */}
+      {/* Scrim izquierdo (tenue) */}
       <div
         aria-hidden
         className={`pointer-events-none absolute inset-y-0 left-0 z-[15]
@@ -209,14 +275,14 @@ export default function SectionTwo({
                     }`}
       />
 
-      {/* Overlay general (más suave) */}
+      {/* Overlay general */}
       <div
         className={`absolute inset-0 z-20 transition-colors duration-150 ${
           isDark ? "bg-black/65 md:bg-black/70" : "bg-black/30 md:bg-white/20"
         }`}
       />
 
-      {/* Contenido: centrado en mobile / a la IZQUIERDA en desktop */}
+      {/* Contenido */}
       <div className="relative z-20 w-full h-full px-5 md:px-10 pt-24">
         <div className="h-full min-h-0">
           <div
@@ -239,73 +305,52 @@ export default function SectionTwo({
                 Maurizio Caballero
               </span>
               , <br />
-              {/* <span
-                className={`${
-                  isDark ? "text-cyan-900 text-base md:text-3xl" : "text-gray-900 text-base md:text-3xl"
-                } px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]`}
-              >
-                Frontend Developer
-              </span> */}
             </h1>
 
+            {/* Frase resumen: más arriba y MÁS ANGOSTA en desktop */}
             <p
-  className={`relative mt-[2vh] md:mt-8 mb-2 md:mb-3
-              font-extrabold text-lg md:text-2xl leading-relaxed md:leading-tight
-              text-slate-900/95 dark:text-white/90
-              max-w-[48ch] text-center md:text-left mx-auto md:mx-0
-              drop-shadow-[0_1px_0.5px_rgba(255,255,255,0.30)]
-              dark:drop-shadow-[0_1px_0.5px_rgba(0,0,0,0.30)]
-              before:content-[''] before:absolute before:inset-[-8px] before:rounded-2xl
-              before:bg-white/30 dark:before:bg-black/20
-              before:bg-gradient-to-br
-              before:from-white/70 before:to-white/20
-              dark:before:from-black/55 dark:before:to-black/15
-              supports-[backdrop-filter]:before:backdrop-blur-xl
-              before:shadow-[0_10px_30px_rgba(0,0,0,0.10)]
-              dark:before:shadow-[0_10px_30px_rgba(0,0,0,0.35)]
-              before:ring before:ring-black/10 dark:before:ring-white/10
-              before:border before:border-white/30 dark:before:border-white/10
-              before:z-[-1]`}
->
-  Frontend con <span className="text-cyan-800 dark:text-cyan-300">React</span>,{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">Next.js</span> y{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">Vite</span>;{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">TypeScript</span>,{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">Tailwind</span> y{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">Framer Motion</span>, estado con{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">Zustand/Redux</span> y técnicas avanzadas
-  (SSR/ISR, code-splitting, accesibilidad). IA y workflows en{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">Make (n8n)</span> conectados a{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">SQL</span>; piezas ligeras en{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">Inkscape</span>. Entrego soluciones digitales
-  completas y efectivas.
-</p>
-
-
+              className={`relative mt-[2vh] md:mt-2 mb-2 md:mb-1
+                          font-extrabold text-lg md:text-2xl leading-relaxed md:leading-tight
+                          text-slate-900/95 dark:text-white/90
+                          max-w-[48ch] md:max-w-[40ch] lg:max-w-[36ch]
+                          text-center md:text-left mx-auto md:mx-0
+                          drop-shadow-[0_1px_0.5px_rgba(255,255,255,0.30)]
+                          dark:drop-shadow-[0_1px_0.5px_rgba(0,0,0,0.30)]
+                          before:content-[''] before:absolute before:inset-[-8px] before:rounded-2xl
+                          before:bg-white/30 dark:before:bg-black/20
+                          before:bg-gradient-to-br
+                          before:from-white/70 before:to-white/20
+                          dark:before:from-black/55 dark:before:to-black/15
+                          supports-[backdrop-filter]:before:backdrop-blur-xl
+                          before:shadow-[0_10px_30px_rgba(0,0,0,0.10)]
+                          dark:before:shadow-[0_10px_30px_rgba(0,0,0,0.35)]
+                          before:ring before:ring-black/10 dark:before:ring-white/10
+                          before:border before:border-white/30 dark:before:border-white/10
+                          before:z-[-1]`}
+            >
+              Frontend con <span className="text-cyan-800 dark:text-cyan-300">React</span>,{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">Next.js</span> y{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">Vite</span>;{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">TypeScript</span>,{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">Tailwind</span> y{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">Framer Motion</span>, estado con{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">Zustand/Redux</span> y técnicas avanzadas
+              (SSR/ISR, code-splitting, accesibilidad). IA y workflows en{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">Make (n8n)</span> conectados a{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">SQL</span>; piezas ligeras en{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">Inkscape</span>. Entrego soluciones digitales
+              completas y efectivas.
+            </p>
           </div>
         </div>
       </div>
 
-      {/* CTAs iguales y centradas (mobile) / a la izquierda (desktop) */}
+      {/* CTAs: centradas en mobile / izquierda en desktop. (Mobile claro: cian-900 + extrabold) */}
       <div
         className="font-azonix absolute z-30 left-0 right-0 bottom-4 md:bottom-6
                    flex flex-col items-center gap-1 md:items-start md:left-8 md:right-auto"
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
       >
-        <a
-          href="/cv.pdf"
-          download
-          onClick={(e) => {
-            if (onDownloadCV) { e.preventDefault(); onDownloadCV(); }
-          }}
-          className={ctaBtn}
-        >
-          <span className="inline-flex items-center gap-1">
-            <Download size={12} />
-            Descargar CV
-          </span>
-        </a>
-
         <button type="button" onClick={onMenuOpen} className={ctaBtn}>
           Ver proyectos
         </button>
