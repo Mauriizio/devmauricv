@@ -23,8 +23,8 @@ export default function SectionTwo({
 
   // Color de texto para CTAs “cristal”
   const actionColor = isDark
-    ? "text-cyan-300 hover:text-cyan-200"
-    : "text-cyan-800 hover:text-cyan-900";
+    ? " text-cyan-300 hover:text-cyan-200"
+    : " text-cyan-900 hover:text-cyan-900";
 
   // Base de botón “glass” del header (misma altura para todos)
   const glassBase =
@@ -69,12 +69,12 @@ export default function SectionTwo({
   const ctaBtn = [
     "inline-flex items-center justify-center gap-1.5",
     "w-[min(82vw,200px)] mx-auto md:mx-0 px-5 py-2 my-2",
-    "rounded-md border font-azonix font-black transition-colors",
+    "rounded-md border font-azonix font-extrabold transition-colors",
     "supports-[backdrop-filter]:backdrop-blur-sm",
     actionColor,
     isDark
-      ? "bg-black/30 border-cyan-700/40 hover:border-cyan-700/70 text-cyan-800"
-      : "bg-transparent border-cyan-800/30 hover:border-cyan-800/60 text-cyan-700",
+      ? "bg-black/30 border-cyan-700/40 hover:border-cyan-700/70 text-cyan-800 hover:text-cyan-300"
+      : "bg-transparent border-cyan-800/30 hover:border-cyan-800/60 text-cyan-900 hover:text-cyan-500",
   ].join(" ");
 
   return (
@@ -105,7 +105,7 @@ export default function SectionTwo({
                 Para lograrlo, los renderizamos de izquierda a derecha: CV, WA, LI, Toggle, X */}
             <div className="flex-1 min-w-0 flex items-center justify-end gap-2 sm:gap-3">
               {/* CV */}
-              <a
+              {/* <a
                 href="/cv.pdf"
                 download
                 aria-label="Descargar CV"
@@ -119,7 +119,7 @@ export default function SectionTwo({
               >
                 <Download size={16} />
                 <span className="hidden sm:inline">CV</span>
-              </a>
+              </a> */}
 
               {/* WhatsApp */}
               <a

@@ -250,7 +250,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
               flex-col items-center select-none focus:outline-none ${actionColor}`}
   aria-label="Ir a la sección siguiente"
 >
-   <ChevronsLeft className="mx-8 w-10 h-10 lg:w-12 lg:h-12 transition-transform duration-300 group-hover:translate-x-1 text-cyan-200  hover:text-cyan-400  " strokeWidth={2.6} />
+   <ChevronsLeft className="mx-8 w-10 h-10 lg:w-12 lg:h-12 transition-transform duration-300 group-hover:translate-x-1 text-cyan-900  hover:text-cyan-500 " strokeWidth={2.6} />
   
   
   <span className="mt-2 text-[24px] tracking-wider uppercase hover:text-cyan-200">Mas</span>
@@ -266,11 +266,11 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
 
   {/* <div className="absolute left-0 right-0 bottom-3 z-40 pb-[env(safe-area-inset-bottom)] flex justify-center">  </div> */}
 
-  <ChevronsRight className="w-10 h-10 lg:w-12 lg:h-12 transition-transform duration-300 group-hover:translate-x-1 text-cyan-200  hover:text-cyan-400  " strokeWidth={2.6} />
+  <ChevronsRight className="w-10 h-10 lg:w-12 lg:h-12 transition-transform  duration-300 group-hover:translate-x-1 text-cyan-900  hover:text-cyan-500  " strokeWidth={2.6} />
   {/* <span className={`grid place-items-center rounded-full w-16 h-16 lg:w-20 lg:h-20 ${glassCircle}`}>
     
   </span> */}
-  <span className="mt-2 text-[24px] tracking-wider uppercase hover:text-cyan-200">Portfolio</span>
+  <span className="mt-2 text-[24px] font-bold tracking-wider uppercase hover:text-cyan-500 ">Portfolio</span>
 </button>
 
 
@@ -282,7 +282,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
     className={`w-[min(82vw,200px)]  px-5 py-2 my-2 rounded-md border backdrop-blur-sm font-azonix font-black ${actionColor} transition-colors
                 ${isDark
                   ? "bg-black/30 border-cyan-700/40 hover:border-cyan-700/70  hover:text-cyan-200"
-                  : "bg-white/40 border-cyan-800/30 hover:border-cyan-800/60  hover:text-cyan-200"}`}
+                  : "bg-white/40 border-cyan-800/30 hover:border-cyan-800/60  hover:text-cyan-500"}`}
   >
     Contacto
   </button>
