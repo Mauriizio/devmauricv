@@ -252,7 +252,7 @@ const switchKnob =
 
             {/* Frase resumen – más CERCA de los CTAs en mobile (mt grande) y ANGOSTA en desktop */}
             <p
-              className={`relative mt-[12vh] md:mt-8 mb-2 md:mb-1
+              className={`relative mt-[10vh] md:mt-8 mb-2 md:mb-1
                           font-black text-lg md:text-2xl leading-relaxed md:leading-tight
                           text-slate-900/95 dark:text-white/90
                           max-w-[48ch] md:max-w-[38ch] lg:max-w-[34ch]
