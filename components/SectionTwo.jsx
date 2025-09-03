@@ -74,16 +74,24 @@ export default function SectionTwo({
       ? "text-rose-300 hover:text-rose-200 bg-rose-900/40 hover:bg-rose-900/55 border-rose-700/40 hover:border-rose-600/70"
       : "text-rose-700 hover:text-rose-900 bg-rose-100/70 hover:bg-rose-100 border-rose-900/20 hover:border-rose-900/40");
 
-  // 🔀 Toggle tipo palanquita (ancho normal, más contraste)
-  const switchTrack =
-    (isDark
-      ? "bg-cyan-700 border-cyan-400/60"
-      : "bg-cyan-200 border-cyan-900/50") +
-    " shadow-[0_2px_10px_rgba(0,0,0,0.10)]";
-  const switchBtn = `relative self-center inline-flex h-6 w-12 items-center rounded-full border ${switchTrack} transition-all duration-200`;
-  const switchKnob = `inline-block h-5 w-5 rounded-full bg-white transform transition-transform duration-200 ${
-    isDark ? "translate-x-6" : "translate-x-1"
-  }`;
+  // Toggle tipo palanquita (mejor contraste + tamaños responsivos)
+const switchTrackBase = isDark
+  ? "bg-cyan-700 border-cyan-400/60"
+  : "bg-cyan-200 border-cyan-900/50";
+
+const switchBtn =
+  `relative shrink-0 inline-flex items-center rounded-full border
+   h-5 min-w-[2.8rem] max-w-[2.8rem]        /* móvil: más ancho */
+   md:w-11 md:min-w-[2.75rem]             /* desktop: un pelín más pequeño */
+   ${switchTrackBase}
+   ${isDark ? "justify-end" : "justify-start"}
+   shadow-[0_2px_10px_rgba(0,0,0,0.10)]
+   transition-colors duration-200`;
+
+const switchKnob =
+  "h-5 w-5 mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] " +
+  "transition-transform duration-200";
+
 
   // ✅ CTAs: MISMO color/peso que Section One en mobile claro (forzado)
   const ctaBase =
@@ -131,7 +139,7 @@ export default function SectionTwo({
                 }}
                 className={btnCV}
               >
-                <Download size={16} />
+                <Download size={12} />
                 <span className="hidden sm:inline">CV</span>
               </a>
 
@@ -184,14 +192,15 @@ export default function SectionTwo({
 
               {/* Toggle extremo derecho */}
               <button
-                type="button"
-                onClick={toggleDarkMode}
-                aria-label="Cambiar tema"
-                aria-pressed={isDark}
-                className={switchBtn}
-              >
-                <span className={switchKnob} />
-              </button>
+  type="button"
+  onClick={toggleDarkMode}
+  aria-label="Cambiar tema"
+  aria-pressed={isDark}
+  className={switchBtn}
+>
+  <span className={switchKnob} />
+</button>
+
             </div>
           </div>
         </div>
@@ -241,7 +250,7 @@ export default function SectionTwo({
 
             {/* Frase resumen – más CERCA de los CTAs en mobile (mt grande) y ANGOSTA en desktop */}
             <p
-              className={`relative mt-[18vh] md:mt-2 mb-2 md:mb-1
+              className={`relative mt-[14vh] md:mt-2 mb-2 md:mb-1
                           font-black text-lg md:text-2xl leading-relaxed md:leading-tight
                           text-slate-900/95 dark:text-white/90
                           max-w-[48ch] md:max-w-[38ch] lg:max-w-[34ch]
