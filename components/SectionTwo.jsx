@@ -81,7 +81,7 @@ const switchTrackBase = isDark
 
 const switchBtn =
   `relative shrink-0 inline-flex items-center rounded-full border
-   h-5 min-w-[2.8rem] max-w-[2.8rem]        /* móvil: más ancho */
+   h-6 w-[3.25rem] min-w-[3.25rem]       /* móvil: más ancho */
    md:w-11 md:min-w-[2.75rem]             /* desktop: un pelín más pequeño */
    ${switchTrackBase}
    ${isDark ? "justify-end" : "justify-start"}
@@ -139,8 +139,8 @@ const switchKnob =
                 }}
                 className={btnCV}
               >
-                <Download size={12} />
-                <span className="hidden sm:inline">CV</span>
+                <Download size={16} />
+                <span className="hidden sm:inline text-xs font-sans font-bold">CV</span>
               </a>
 
               {/* WhatsApp */}
@@ -214,15 +214,7 @@ const switchKnob =
         <ParticlesBackground />
       </div>
 
-      {/* Avatar */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
-        <div className="absolute inset-0 md:hidden">
-          <Image src="/assets/avatar.png" alt="Avatar Maurizio Caballero" fill priority sizes="100vw" className="object-cover object-center z-10" />
-        </div>
-        <div className="hidden md:block absolute top-0 right-0 bottom-0 w-[60vw] max-w-[900px]">
-          <Image src="/assets/avatar.png" alt="Avatar Maurizio Caballero" fill priority sizes="(min-width: 1024px) 60vw, 80vw" className="object-contain object-right z-10" />
-        </div>
-      </div>
+      
 
       {/* Scrim izquierdo */}
       <div
@@ -234,7 +226,17 @@ const switchKnob =
       />
 
       {/* Overlay general */}
-      <div className={`absolute inset-0 z-20 transition-colors duration-150 ${isDark ? "bg-black/65 md:bg-black/70" : "bg-black/30 md:bg-white/20"}`} />
+      <div className={`absolute inset-0 z-10 transition-colors duration-150 ${isDark ? "bg-black/65 md:bg-black/70" : "bg-black/30 md:bg-white/40 z-10"}`} />
+
+      {/* Avatar */}
+      <div className="absolute inset-0 z-10 pointer-events-none">
+        <div className="absolute inset-0 md:hidden">
+          <Image src="/assets/avatar.png" alt="Avatar Maurizio Caballero" fill priority sizes="100vw" className="object-cover object-center z-20" />
+        </div>
+        <div className="hidden md:block absolute top-0 right-0 bottom-0 w-[60vw] max-w-[900px]">
+          <Image src="/assets/avatar.png" alt="Avatar Maurizio Caballero" fill priority sizes="(min-width: 1024px) 60vw, 80vw" className="object-contain object-right z-20" />
+        </div>
+      </div>
 
       {/* Contenido */}
       <div className="relative z-20 w-full h-full px-5 md:px-10 pt-24">
@@ -250,7 +252,7 @@ const switchKnob =
 
             {/* Frase resumen – más CERCA de los CTAs en mobile (mt grande) y ANGOSTA en desktop */}
             <p
-              className={`relative mt-[14vh] md:mt-2 mb-2 md:mb-1
+              className={`relative mt-[12vh] md:mt-8 mb-2 md:mb-1
                           font-black text-lg md:text-2xl leading-relaxed md:leading-tight
                           text-slate-900/95 dark:text-white/90
                           max-w-[48ch] md:max-w-[38ch] lg:max-w-[34ch]
