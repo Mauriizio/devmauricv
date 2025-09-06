@@ -4,7 +4,7 @@ export const projectsData = [
 {
   "id": "mecanica-int",
   "slug": "mecanica-intercontinental",
-  "category": "Sitio web para taller mecánico",
+  "category": "Servicios/Landing page",
   "title": "El Intercontinental",
   "icon": "/assets/mec/icon-mec.webp",
   "detailImage": "/assets/mec/mec-1.webp",
@@ -53,7 +53,7 @@ export const projectsData = [
 {
     id: "coriolis",
     slug: "coriolis-accesorios",
-    category: "Sitio web para tienda online",
+    category: "e-comerce/Tienda online",
     title: "Coriolis Accesorios",
 
     // Miniatura del menú
@@ -88,7 +88,7 @@ export const projectsData = [
     
     id: "dulcessecretos",
     slug: "duleces-secretos",
-    category: "Sitio web/App para tienda online",
+    category: "e-comerce/App tienda online",
     title: "Dulces Secretos",
 
     // Miniatura del menú
@@ -153,6 +153,40 @@ export const projectsData = [
     githubUrl: "https://github.com/Mauriizio/sturdy-rotary-phone",
     liveUrl: "https://www.dulcessecretos.online/",
   },
+
+  {
+    id: "ghformacion",
+    slug: "gh-formacion",
+    category: "Sitio web para academia online",
+    title: "GH Formación",
+
+    // Miniatura del menú
+    icon: "/assets/gh/gh.jpg",
+
+    // Imágenes del detalle
+    detailImage: "/assets/coriolisacc/hero.webp",     // HERO inicial
+    contentImage: "/assets/coriolisacc/cor-2.webp", // grande tras la descripción
+    extraImage: "/assets/coriolisacc/cor-3.webp",     // grande tras retos/soluciones
+
+    // (Opcional) Imagen para Open Graph/Twitter
+    ogImage: "/assets/coriolisacc/og.webp",
+
+    // Fallback (compatibilidad con código previo)
+    image: "/assets/coriolisacc/cover.webp",
+
+    description: "Página web para emprendimiento local, con tienda online.",
+    technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
+    challenges:
+      "Crear colecciones por temporada y categorizar productos, yendo más allá del desarrollo hacia la creación visual de assets con IA.",
+    features: [
+      "Animaciones CSS complejas",
+      "Layouts avanzados con Grid y Flexbox",
+      "Efectos visuales modernos",
+      "Optimización de rendimiento",
+    ],
+    githubUrl: "https://github.com/Mauriizio/coriolis",
+    liveUrl: "https://www.coriolisaccesorios.store/",
+},
 
 ]
 // --- End of code ---
