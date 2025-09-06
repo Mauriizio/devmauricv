@@ -264,7 +264,7 @@ const ctaBtn = [
               <span className={`${isDark ? "bg-cyan-200/10 text-black" : "bg-cyan-100 text-gray-900"} px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]`}>
                 Maurizio Caballero
               </span>
-              , <br />
+              
             </h1>
 
             {/* Frase resumen – más CERCA de los CTAs en mobile (mt grande) y ANGOSTA en desktop */}

@@ -103,7 +103,7 @@ body {
 
 /* Texto responsivo (UNICA definición) */
 .text-responsive { @apply text-base sm:text-lg leading-relaxed font-sans; }
-.text-intro { @apply font-orbitron text-sm sm:text-base md:text-lg leading-relaxed; }
+.text-intro { @apply font-sans text-sm sm:text-lg md:text-2xl leading-relaxed; }
 
 /* Formularios */
 .form-label { @apply block text-sm sm:text-base font-orbitron font-semibold mb-2 text-zinc-700; }

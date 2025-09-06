@@ -356,19 +356,19 @@ const ctaBtn = [
               <div className="flex-1 min-w-0 flex items-center justify-end gap-2 sm:gap-3">
                 {/* CV — solo desktop */}
                 <a
-                  href="/cv.pdf"
-                  download
-                  aria-label="Descargar CV"
-                  className={`hidden md:flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
-                    isDark
-                      ? "text-cyan-300 hover:text-cyan-200 bg-white/0 hover:bg-white/5 border-cyan-700/40 hover:border-cyan-700/70"
-                      : "text-cyan-800 hover:text-cyan-900 bg-white/40 hover:bg-white/60 border-cyan-900/30 hover:border-cyan-900/60"
-                  }`}
-                  title="CV"
-                >
-                  <Download size={16} />
-                  <span className="hidden sm:inline text-xs md:text-base font-sans font-bold">CV</span>
-                </a>
+          href="/cv.pdf"
+          download
+          aria-label="Descargar CV"
+          className={`hidden md:flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
+            isDark
+              ? "text-cyan-300 hover:text-cyan-200 bg-white/0 hover:bg-white/5 border-cyan-700/40 hover:border-cyan-700/70"
+              : "text-cyan-800 hover:text-cyan-900 bg-white/40 hover:bg-white/60 border-cyan-900/30 hover:border-cyan-900/60"
+          }`}
+          title="CV"
+        >
+          <Download size={16} />
+          <span className="hidden sm:inline text-xs font-sans font-bold">CV</span>
+        </a>
 
                 {/* Instagram — solo desktop */}
                 <a
@@ -497,15 +497,57 @@ const ctaBtn = [
         {/* Contenido */}
         <div className="relative max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12 space-y-12 md:space-y-16">
           {/* Intro */}
-          <div className="text-center space-y-4 md:space-y-6">
-            <h1 id="about-title" className="title-main mb-2">Sobre mí</h1>
-            <h2 className="title-section text-center">Maurizio Caballero</h2>
-            <ul className="text-intro max-w-4xl mx-auto font-sans space-y-2">
-              <li>Desarrollador Frontend especializado en React y Next.js</li>
-              <li>Apasionado por crear experiencias web intuitivas y atractivas</li>
-              <li>Siempre aprendiendo y explorando nuevas tecnologías</li>
-            </ul>
-          </div>
+         
+         {/* Intro — portada + avatar superpuesto + datos debajo */}
+<div className="relative mb-14 sm:mb-16">
+  {/* Foto de portada */}
+  <div className="relative h-36 sm:h-44 md:h-56 rounded-2xl overflow-hidden">
+    <img
+      src="/assets/about-cover.jpg"
+      alt="Portada del perfil"
+      className="absolute inset-0 h-full w-full object-cover"
+      loading="eager"
+      decoding="async"
+      fetchPriority="high"
+      onError={(e) => { e.currentTarget.src = "/assets/cover.jpg" }}
+    />
+    {/* Scrim para contraste */}
+    <div className={isDark ? "absolute inset-0 bg-black/35" : "absolute inset-0 bg-white/25"} />
+  </div>
+
+  {/* Avatar circular montado sobre la portada */}
+  <div className="absolute left-1/2 -bottom-12 -translate-x-1/2">
+    <div
+      className={`h-24 w-24 sm:h-28 sm:w-28 md:h-32 md:w-32 rounded-full overflow-hidden ring-4 shadow-xl
+        ${isDark ? "ring-gray-900 bg-gray-800" : "ring-white bg-white"}`}
+    >
+      <img
+        src="/assets/avatar-right2.png"
+        alt="Foto de Maurizio Caballero"
+        className="h-full w-full object-cover"
+        onError={(e) => { e.currentTarget.src = "/placeholder.svg" }}
+      />
+    </div>
+  </div>
+</div>
+
+{/* Datos debajo del avatar */}
+<div className="text-center space-y-2 md:space-y-3 pt-2">
+  {/* <h1 id="about-title" className="title-main !mb-0">Sobre mí</h1> */}
+  <h2 className="title-section !mb-1"> Hola, Soy Maurizio Caballero</h2>
+
+  <p className="text-responsive max-w-3xl mx-auto font-sans leading-relaxed">
+    Analista de Sistemas · Desarrollador de Software ·<br/>
+    Universidad Pedagógica Experimental Libertador · <br/> Instituto Nacional de Capacitación y Educación Socialista (INCES) · <br/>
+    Frontend Developer con experiencia en creación de interfaces web atractivas y funcionales.
+  </p>
+
+  {/* Extra opcional — borra o ajusta si no lo quieres */}
+  <p className="text-sm md:text-base text-zinc-600 dark:text-white/70">
+    Santiago, Chile · Disponibilidad: Remoto / Hibrido· Idiomas: Español / Inglés A1
+  </p>
+</div>
+
 
           {/* Tecnologías & Herramientas (chips visibles) */}
           <div className="md:grid md:grid-cols-2 md:gap-8">
