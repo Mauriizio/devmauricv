@@ -66,7 +66,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
     ? "bg-white/8 ring-1 ring-white/15 shadow-[0_10px_30px_rgba(0,0,0,0.25)] backdrop-blur-xl"
     : "bg-white/20 supports-[backdrop-filter]:bg-white/15 ring-1 ring-black/10 shadow-[0_10px_25px_rgba(0,0,0,0.15)] backdrop-blur-xl";
 
-  const actionColor = isDark ? "text-cyan-700" : "text-cyan-800";
+  const actionColor = isDark ? "text-cyan-300" : "text-cyan-900";
 
 
   // CTA iguales (mismo look en mobile y desktop)
@@ -307,7 +307,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
         {/* <span className={`grid place-items-center rounded-full w-16 h-16 ${glassCircle}`}>
           
         </span> */}
-        <span className="mt-2 text-xs tracking-wider uppercase">portfolio</span>
+        <span className="mt-2 text-xs tracking-wider uppercase">Portfolio</span>
       </button>
     </div>
   </div>
