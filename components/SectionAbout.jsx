@@ -14,7 +14,7 @@ import {
 } from "lucide-react"
 import { useTheme } from "@/context/ThemeContext"
 import LogoMC from "@/components/LogoMC"
-
+import TechCoverSVG from "@/components/TechCoverSVG"
 
 export default function SectionAbout({ show, onVolverArriba, onContactOpen, onClose }) {
   const { isDark, toggleDarkMode } = useTheme()
@@ -135,7 +135,6 @@ const scrollToSectionOne = () => {
   else if (typeof onVolverArriba === "function") onVolverArriba();
 };
 
-
   const glassBase =
     "flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors";
 
@@ -199,7 +198,6 @@ const ctaBtn = [
     ? "text-cyan-300 hover:text-cyan-200 bg-black/30 border-cyan-700/40 hover:border-cyan-700/70"
     : "text-cyan-900 hover:text-cyan-700 bg-white/40 border-cyan-800/30 hover:border-cyan-800/60",
 ].join(" ");
-
 
   // Chips visibles también en tema claro
   const chipClass = useMemo(
@@ -474,7 +472,6 @@ const ctaBtn = [
   <IconX size={16} />
 </button>
 
-
                 {/* Toggle — extremo derecho */}
                  <button
           type="button"
@@ -493,26 +490,17 @@ const ctaBtn = [
           </div>
         </div>
 
-
         {/* Contenido */}
         <div className="relative max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12 space-y-12 md:space-y-16">
           {/* Intro */}
          
-         {/* Intro — portada + avatar superpuesto + datos debajo */}
+         {/* Intro — portada SVG + avatar superpuesto + datos debajo */}
 <div className="relative mb-14 sm:mb-16">
-  {/* Foto de portada */}
+  {/* Portada SVG animada */}
   <div className="relative h-36 sm:h-44 md:h-56 rounded-2xl overflow-hidden">
-    <img
-      src="/assets/portada.jpg"
-      alt="Portada del perfil"
-      className="absolute inset-0 h-full w-full object-cover object-center"
-      loading="eager"
-      decoding="async"
-      fetchPriority="high"
-      onError={(e) => { e.currentTarget.src = "/assets/cover.jpg" }}
-    />
+    <TechCoverSVG dark={isDark} className="absolute inset-0 h-full w-full" />
     {/* Scrim para contraste */}
-    <div className={isDark ? "absolute inset-0 bg-black/35" : "absolute inset-0 bg-white/25"} />
+    <div className={isDark ? "absolute inset-0 bg-black/25" : "absolute inset-0 bg-white/20"} />
   </div>
 
   {/* Avatar circular montado sobre la portada */}
@@ -547,7 +535,6 @@ const ctaBtn = [
     Santiago, Chile · Disponibilidad: Remoto / Hibrido· Idiomas: Español / Inglés A1
   </p>
 </div>
-
 
           {/* Tecnologías & Herramientas (chips visibles) */}
           <div className="md:grid md:grid-cols-2 md:gap-8">
