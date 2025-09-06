@@ -188,5 +188,39 @@ export const projectsData = [
     liveUrl: "https://www.coriolisaccesorios.store/",
 },
 
+  {
+    id: "daniyer",
+    slug: "daniyer",
+    category: "Portafolio personal",
+    title: "Portafolio Daniyer",
+
+    // Miniatura del menú
+    icon: "/assets/daniyer/dani.jpg",
+
+    // Imágenes del detalle
+    detailImage: "/assets/coriolisacc/hero.webp",     // HERO inicial
+    contentImage: "/assets/coriolisacc/cor-2.webp", // grande tras la descripción
+    extraImage: "/assets/coriolisacc/cor-3.webp",     // grande tras retos/soluciones
+
+    // (Opcional) Imagen para Open Graph/Twitter
+    ogImage: "/assets/coriolisacc/og.webp",
+
+    // Fallback (compatibilidad con código previo)
+    image: "/assets/coriolisacc/cover.webp",
+
+    description: "Página web para emprendimiento local, con tienda online.",
+    technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
+    challenges:
+      "Crear colecciones por temporada y categorizar productos, yendo más allá del desarrollo hacia la creación visual de assets con IA.",
+    features: [
+      "Animaciones CSS complejas",
+      "Layouts avanzados con Grid y Flexbox",
+      "Efectos visuales modernos",
+      "Optimización de rendimiento",
+    ],
+    githubUrl: "https://github.com/Mauriizio/coriolis",
+    liveUrl: "https://www.coriolisaccesorios.store/",
+},
+
 ]
 // --- End of code ---
