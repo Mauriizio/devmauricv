@@ -503,9 +503,9 @@ const ctaBtn = [
   {/* Foto de portada */}
   <div className="relative h-36 sm:h-44 md:h-56 rounded-2xl overflow-hidden">
     <img
-      src="/assets/about-cover.jpg"
+      src="/assets/portada.jpg"
       alt="Portada del perfil"
-      className="absolute inset-0 h-full w-full object-cover"
+      className="absolute inset-0 h-full w-full object-cover object-center"
       loading="eager"
       decoding="async"
       fetchPriority="high"
@@ -522,9 +522,9 @@ const ctaBtn = [
         ${isDark ? "ring-gray-900 bg-gray-800" : "ring-white bg-white"}`}
     >
       <img
-        src="/assets/avatar-right2.png"
+        src="/assets/perfil.jpg"
         alt="Foto de Maurizio Caballero"
-        className="h-full w-full object-cover"
+        className="h-full w-full object-cover object-top"
         onError={(e) => { e.currentTarget.src = "/placeholder.svg" }}
       />
     </div>
@@ -537,7 +537,7 @@ const ctaBtn = [
   <h2 className="title-section !mb-1"> Hola, Soy Maurizio Caballero</h2>
 
   <p className="text-responsive max-w-3xl mx-auto font-sans leading-relaxed">
-    Analista de Sistemas · Desarrollador de Software ·<br/>
+    <span className="font-bold">Analista de Sistemas · Desarrollador de Software ·</span><br/>
     Universidad Pedagógica Experimental Libertador · <br/> Instituto Nacional de Capacitación y Educación Socialista (INCES) · <br/>
     Frontend Developer con experiencia en creación de interfaces web atractivas y funcionales.
   </p>
