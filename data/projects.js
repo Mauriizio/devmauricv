@@ -1,6 +1,6 @@
 // data/projects.js
 export const projectsData = [
-
+//Mecanica El Intercontinental
 {
   "id": "mecanica-int",
   "slug": "mecanica-intercontinental",
@@ -49,7 +49,7 @@ export const projectsData = [
   "liveUrl": "https://www.mecanicaelintercontinental.com/"
 },
   
-
+//Coriolis Accesorios
 {
     id: "coriolis",
     slug: "coriolis-accesorios",
@@ -70,10 +70,10 @@ export const projectsData = [
     // Fallback (compatibilidad con código previo)
     image: "/assets/coriolisacc/cover.webp",
 
-    description: "Página web para emprendimiento local, con tienda online.",
+    description: "Página web para emprendimiento local, con tienda online. Esta web es un emprendimiento de una estudiante de Biologia marina, que queria vender accesorios hechos a mano, y expresar su escencia en la web como en cada producto  por lo cual me encarge de diseñar y desarrollar la web desde cero en React/Next.js, desde el diseño de logo, paleta de colores y todo el branding de la marca.",
     technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
     challenges:
-      "Crear colecciones por temporada y categorizar productos, yendo más allá del desarrollo hacia la creación visual de assets con IA.",
+      "Crear colecciones por temporada y categorizar productos, yendo más allá del desarrollo hacia la creación visual de assets con IA. Editar cada foto de producto para mantener una estética coherente en toda la tienda.",
     features: [
       "Animaciones CSS complejas",
       "Layouts avanzados con Grid y Flexbox",
@@ -83,7 +83,7 @@ export const projectsData = [
     githubUrl: "https://github.com/Mauriizio/coriolis",
     liveUrl: "https://www.coriolisaccesorios.store/",
 },
-
+//Dulces Secretos
 {
     
     id: "dulcessecretos",
@@ -95,20 +95,20 @@ export const projectsData = [
     icon: "/assets/dulces/icon-dul.webp",
 
     // Imágenes del detalle
-    detailImage: "/assets/coriolisacc/hero.webp",     // HERO inicial
-    contentImage: "/assets/coriolisacc/cor-2.webp", // grande tras la descripción
-    extraImage: "/assets/coriolisacc/cor-3.webp",     // grande tras retos/soluciones
+    detailImage: "/assets/dulces/dulces (3).png",     // HERO inicial
+    contentImage: "/assets/dulces/dulces (2).png", // grande tras la descripción
+    extraImage: "/assets/dulces/dulces (1).png",     // grande tras retos/soluciones
 
     // (Opcional) Imagen para Open Graph/Twitter
-    ogImage: "/assets/coriolisacc/og.webp",
+    ogImage: "/assets/dulces/icon-dul.webp",
 
     // Fallback (compatibilidad con código previo)
-    image: "/assets/coriolisacc/cover.webp",
+    image: "/assets/dulces/icon-dul.webp",
 
-    description: "Página web para emprendimiento local, con tienda online.",
-    technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
+    description: "Página web para emprendimiento local, con tienda online y app mobile. Esta web la habia realizado anteriormente en Wordpress, pero la cliente queria una web mas rapida y con mejor experiencia de usuario, por lo cual decidi rediseñarla y desarrollarla desde cero en React/Next.js.",
+    technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "Grid", "TypeScript"],
     challenges:
-      "Crear colecciones por temporada y categorizar productos, yendo más allá del desarrollo hacia la creación visual de assets con IA.",
+      "Aparte de crear la tienda de reposteria, la cliente queria comenzar con la venta de cursos, el reto fue ayudarla a organizar sus ideas y plantearle posibles metodos de ventas de los cursos, creando categorias, metodologias de entrega y llevandolo a la realidad.",
     features: [
       "Animaciones CSS complejas",
       "Layouts avanzados con Grid y Flexbox",
@@ -118,7 +118,7 @@ export const projectsData = [
     githubUrl: "https://github.com/Mauriizio/sturdy-rotary-phone",
     liveUrl: "https://www.dulcessecretos.online/",
   },
-
+//Los Chamitos Locos
   {
     
     id: "lcl",
@@ -153,7 +153,7 @@ export const projectsData = [
     githubUrl: "https://github.com/Mauriizio/sturdy-rotary-phone",
     liveUrl: "https://www.dulcessecretos.online/",
   },
-
+//GH Formación
   {
     id: "ghformacion",
     slug: "gh-formacion",
@@ -187,7 +187,7 @@ export const projectsData = [
     githubUrl: "https://github.com/Mauriizio/coriolis",
     liveUrl: "https://www.coriolisaccesorios.store/",
 },
-
+//Portafolio Daniyer
   {
     id: "daniyer",
     slug: "daniyer",
