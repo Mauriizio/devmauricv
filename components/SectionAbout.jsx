@@ -51,10 +51,9 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen, onCl
   ]
 
   const technologies = [
-    "React.js","Next.js","JavaScript ES6+","TypeScript",
-    "Tailwind CSS","HTML5 & CSS3","Framer Motion","React Hooks",
+     "JavaScript ES6+","TypeScript", "React.js","Next.js", "Vite", "MySQL", "SupaBase", "Tailwind CSS", "Astro", "HTML5 & CSS3","Framer Motion",  "Git", "SEO", "Canvas API", "Accesibilidad", "Optimización Web", "Responsive Design", "UI/UX Basics", "AI Powered Development"
   ]
-  const tools = ["Git & GitHub","VS Code","Figma","Cubase","Deploy","Chrome DevTools","Google ADS","GIMP"]
+  const tools = ["GitHub","VS Code","Figma","Deploy/Vercel/Netlify","Chrome DevTools","Google ADS","GIMP", "Inkscape", "TexturePackerGUI", "AI Tools", "Cubase", ]
 
   const experiences = [
     {
@@ -526,15 +525,17 @@ const ctaBtn = [
 
   <p className="text-responsive max-w-3xl mx-auto font-sans leading-relaxed">
     <span className="font-bold">Analista de Sistemas · Desarrollador de Software ·</span><br/>
-    Universidad Pedagógica Experimental Libertador · <br/> Instituto Nacional de Capacitación y Educación Socialista (INCES) · <br/>
-    Frontend Developer con experiencia en creación de interfaces web atractivas y funcionales.
+    ·Universidad Pedagógica Experimental Libertador · <br/> ·Instituto Nacional de Capacitación y Educación (INCE) · <br/>
+    {/* Frontend Developer con experiencia en creación de interfaces web atractivas y funcionales. */}
   </p>
 
-  {/* Extra opcional — borra o ajusta si no lo quieres */}
-  <p className="text-sm md:text-base text-zinc-600 dark:text-white/70">
+  {/* Extra */}
+  <p className="text-sm md:text-base text-zinc-600 dark:text-white/70 font-bold">
     Santiago, Chile · Disponibilidad: Remoto / Hibrido· Idiomas: Español / Inglés A1
   </p>
 </div>
+
+
 
           {/* Tecnologías & Herramientas (chips visibles) */}
           <div className="md:grid md:grid-cols-2 md:gap-8">

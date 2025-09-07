@@ -8,7 +8,7 @@ export default function TechCoverSVG({ dark = false, className = "" }) {
     "Vite", "Accesibilidad", "Optimización", "Git/GitHub",
   ];
 
-  const ticker = " React · Next.js · TypeScript · Tailwind CSS · Optimización · Vite · Git · ";
+  const ticker = "Desarrollar sistemas de información · crear, administrar y proteger bases de datos · crear aplicaciones web y móviles · gestionar proyectos tecnológicos · brindar soporte técnico · capacitar usuarios · optimizar procesos TI · implementar soluciones en la nube · asegurar la ciberseguridad · innovar con nuevas tecnologías";
 
   const vars = {
     "--fadeColor": dark ? "rgba(0,0,0,1)" : "rgba(255,255,255,1)",
