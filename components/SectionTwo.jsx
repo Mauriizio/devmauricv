@@ -5,7 +5,7 @@ import { useTheme } from "@/context/ThemeContext";
 import LogoMCFancy from "@/components/LogoMCFancy";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { X as IconX, Download } from "lucide-react";
+import { X as IconX, Sun, Moon, Download } from "lucide-react";
 
 const ParticlesBackground = dynamic(() => import("@/components/ParticlesBackground"), { ssr: false });
 
@@ -193,15 +193,26 @@ export default function SectionTwo({
               </button>
 
               {/* Toggle extremo derecho */}
-              <button
-                type="button"
-                onClick={toggleDarkMode}
-                aria-label="Cambiar tema"
-                aria-pressed={isDark}
-                className={switchBtn}
-              >
-                <span className={switchKnob} />
-              </button>
+              {/* Toggle — extremo derecho, con icono contextual (luna en claro / sol en oscuro) */}
+<button
+  type="button"
+  onClick={toggleDarkMode}
+  aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+  aria-pressed={isDark}
+  className={`relative shrink-0 inline-flex items-center rounded-full border
+              h-6 w-[2.50rem] min-w-[2.50rem] md:w-min-[2.50rem] md:max-w-[2.50rem]
+              ${isDark ? "bg-cyan-700 border-cyan-400/60 justify-end" : "bg-cyan-200 border-cyan-900/50 justify-start"}
+              shadow-[0_2px_10px_rgba(0,0,0,0.10)] transition-colors duration-200`}
+>
+  <span className="h-5 w-5 mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] relative grid place-items-center">
+    {isDark ? (
+      <Sun size={12} className="text-amber-500" aria-hidden="true" />
+    ) : (
+      <Moon size={12} className="text-cyan-700" aria-hidden="true" />
+    )}
+  </span>
+</button>
+
             </div>
           </div>
         </div>

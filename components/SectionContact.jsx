@@ -264,19 +264,26 @@ export default function SectionContact({ show, onClose }) {
           <IconX size={16} />
         </button>
 
-        {/* Toggle — extremo derecho, palanquita (un toque más chica en desktop) */}
-         <button
-          type="button"
-          onClick={toggleDarkMode}
-          aria-label="Cambiar tema"
-          aria-pressed={isDark}
-          className={`relative shrink-0 inline-flex items-center rounded-full border
-                      h-6 w-[2.50rem] min-w-[2.50rem] md:w-min-[2.50rem] md:max-w-[2.50rem]
-                      ${isDark ? "bg-cyan-700 border-cyan-400/60 justify-end" : "bg-cyan-200 border-cyan-900/50 justify-start"}
-                      shadow-[0_2px_10px_rgba(0,0,0,0.10)] transition-colors duration-200`}
-        >
-          <span className="h-5 w-5 mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] transition-transform duration-200" />
-        </button>
+        {/* Toggle — extremo derecho, con icono contextual (luna en claro / sol en oscuro) */}
+<button
+  type="button"
+  onClick={toggleDarkMode}
+  aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+  aria-pressed={isDark}
+  className={`relative shrink-0 inline-flex items-center rounded-full border
+              h-6 w-[2.50rem] min-w-[2.50rem] md:w-min-[2.50rem] md:max-w-[2.50rem]
+              ${isDark ? "bg-cyan-700 border-cyan-400/60 justify-end" : "bg-cyan-200 border-cyan-900/50 justify-start"}
+              shadow-[0_2px_10px_rgba(0,0,0,0.10)] transition-colors duration-200`}
+>
+  <span className="h-5 w-5 mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] relative grid place-items-center">
+    {isDark ? (
+      <Sun size={12} className="text-amber-500" aria-hidden="true" />
+    ) : (
+      <Moon size={12} className="text-cyan-700" aria-hidden="true" />
+    )}
+  </span>
+</button>
+
       </div>
     </div>
   </div>

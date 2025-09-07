@@ -95,6 +95,8 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
     isDark ? "bg-black/60 border-white/10" : "bg-white/60 border-gray-300/50"
   }`}
 >
+
+
   <div className="max-w-6xl mx-auto px-4">
     <div className="flex items-center gap-2 sm:gap-3 min-h-[56px] md:min-h-[64px]">
       {/* IZQ: Logo */}
@@ -217,19 +219,27 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
           </svg>
         </a>
 
-        {/* Toggle — extremo derecho, palanquita */}
-        <button
-          type="button"
-          onClick={toggleDarkMode}
-          aria-label="Cambiar tema"
-          aria-pressed={isDark}
-          className={`relative shrink-0 inline-flex items-center rounded-full border
-                      h-6 w-[2.50rem] min-w-[2.50rem] md:w-min-[2.50rem] md:max-w-[2.50rem]
-                      ${isDark ? "bg-cyan-700 border-cyan-400/60 justify-end" : "bg-cyan-200 border-cyan-900/50 justify-start"}
-                      shadow-[0_2px_10px_rgba(0,0,0,0.10)] transition-colors duration-200`}
-        >
-          <span className="h-5 w-5 mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] transition-transform duration-200" />
-        </button>
+        {/* Toggle — extremo derecho, con icono contextual (luna en claro / sol en oscuro) */}
+<button
+  type="button"
+  onClick={toggleDarkMode}
+  aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+  aria-pressed={isDark}
+  className={`relative shrink-0 inline-flex items-center rounded-full border
+              h-6 w-[2.50rem] min-w-[2.50rem] md:w-min-[2.50rem] md:max-w-[2.50rem]
+              ${isDark ? "bg-cyan-700 border-cyan-400/60 justify-end" : "bg-cyan-200 border-cyan-900/50 justify-start"}
+              shadow-[0_2px_10px_rgba(0,0,0,0.10)] transition-colors duration-200`}
+>
+  <span className="h-5 w-5 mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] relative grid place-items-center">
+    {isDark ? (
+      <Sun size={12} className="text-amber-500" aria-hidden="true" />
+    ) : (
+      <Moon size={12} className="text-cyan-700" aria-hidden="true" />
+    )}
+  </span>
+</button>
+
+
       </div>
     </div>
   </div>
