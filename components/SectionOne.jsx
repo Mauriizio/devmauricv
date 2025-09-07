@@ -287,7 +287,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
     </div>
 
     {/* CTAs móviles bajo el logo */}
-    <div className="md:hidden mt-16 flex items-center justify-center gap-36 sm:gap-12">
+    <div className="md:hidden mt-10 flex items-center justify-center gap-36 sm:gap-12">
       <button
         type="button"
         onClick={goSectionTwo}

@@ -48,7 +48,6 @@ export const projectsData = [
   "githubUrl": "https://github.com/Mauriizio/webmecanic",
   "liveUrl": "https://www.mecanicaelintercontinental.com/"
 },
-  
 //Coriolis Accesorios
 {
     id: "coriolis",
@@ -140,17 +139,17 @@ export const projectsData = [
     // Fallback (compatibilidad con código previo)
     image: "/assets/lcl/icon-lcl.webp",
 
-    description: "Página web para grupo musical venezolano.",
+    description: "Página web para grupo musical venezolano. Para mi lo principal fue capturar la energía y el espíritu vibrante de la banda a través del diseño web. Trabajé en estrecha colaboración con los miembros para entender su visión y traducirla en una experiencia digital que reflejara su estilo único. Implementé secciones dinámicas para biografías, galería multimedia y un calendario de eventos interactivo. Además, optimicé la web para SEO local y redes sociales, asegurando que los fans pudieran encontrar fácilmente información sobre próximos conciertos y lanzamientos.",
     technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
     challenges:
-      "Crear Tours Date y categorizar eventos, yendo más allá del desarrollo hacia la creación visual de assets con IA.",
+      "Crear una experiencia inmersiva que transmitiera la energía de la banda, integrando multimedia y manteniendo tiempos de carga rápidos. También fue un reto organizar el contenido para que fuera accesible y atractivo tanto para fans nuevos como para seguidores leales.",
     features: [
       "Animaciones CSS complejas",
       "Layouts avanzados con Grid y Flexbox",
       "Efectos visuales modernos",
       "Optimización de rendimiento",
     ],
-    githubUrl: "https://github.com/Mauriizio/sturdy-rotary-phone",
+    githubUrl: "https://github.com/Mauriizio/lcl",
     liveUrl: "https://www.dulcessecretos.online/",
   },
 //GH Formación
@@ -164,20 +163,20 @@ export const projectsData = [
     icon: "/assets/gh/gh.jpg",
 
     // Imágenes del detalle
-    detailImage: "/assets/coriolisacc/hero.webp",     // HERO inicial
-    contentImage: "/assets/coriolisacc/cor-2.webp", // grande tras la descripción
-    extraImage: "/assets/coriolisacc/cor-3.webp",     // grande tras retos/soluciones
+    detailImage: "/assets/gh/gh (2).png",     // HERO inicial
+    contentImage: "/assets/gh/gh (1).png",  // grande tras la descripción
+    extraImage: "/assets/gh/gh (3).png",     // grande tras retos/soluciones
 
     // (Opcional) Imagen para Open Graph/Twitter
-    ogImage: "/assets/coriolisacc/og.webp",
+    ogImage: "/assets/gh/gh.jpg",
 
     // Fallback (compatibilidad con código previo)
-    image: "/assets/coriolisacc/cover.webp",
+    image: "/assets/gh/gh.jpg",
 
-    description: "Página web para emprendimiento local, con tienda online.",
+    description: "Página web para academia de formación online. Este proyecto fue especialmente gratificante ya que me permitió combinar mi pasión por la educación y la tecnología. Trabajé en estrecha colaboración con el equipo de GH Formación y el Profesor Gabriel Hernandez para diseñar una plataforma que no solo fuera visualmente atractiva, sino también funcional y fácil de navegar para estudiantes e instituciones que deseen instruir a su personal. Además, optimicé la web para SEO y rendimiento, asegurando que los futuros visitantes pudieran encontrar fácilmente la academia en línea.",
     technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
     challenges:
-      "Crear colecciones por temporada y categorizar productos, yendo más allá del desarrollo hacia la creación visual de assets con IA.",
+      "Crear una experiencia de usuario intuitiva que facilitara la navegación entre los recursos educativos. También fue un reto integrar funcionalidades específicas para la espera de la introduccion de material academico a futuro de manera que sea escalable y poder comenzar a publicar cursos en texto Plano y recursos de texto descargables. Se dejo la opcion a futuro para introducir clases grabadas y en vivo.",
     features: [
       "Animaciones CSS complejas",
       "Layouts avanzados con Grid y Flexbox",

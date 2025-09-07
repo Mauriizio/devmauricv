@@ -61,6 +61,15 @@ const ctaBtn = [
 ].join(" ");
 
 
+  // Ir SIEMPRE a Section One sin depender del padre ni del historial.
+const goHome = () => {
+  try { document.activeElement?.blur?.() } catch {}
+  // Navegación directa al inicio (evita history.back del padre)
+  window.location.replace("/");
+};
+
+
+
   return (
     <AnimatePresence>
       {show && (
@@ -108,7 +117,7 @@ const ctaBtn = [
             className="fixed inset-0 w-screen h-screen font-azonix z-50 overflow-y-auto noise-overlay bg-stone-200 text-zinc-800 dark:bg-gray-900 dark:text-white"
           >
           
-          {/* Header (Menu Overlay) */}
+         {/* Header (Menu Overlay) */}
 <div
   className={`sticky top-0 z-20 backdrop-blur-lg border-b p-4 ${
     isDark ? "bg-gray-900/60 border-white/10" : "bg-stone-200/60 border-stone-300/50"
@@ -123,9 +132,9 @@ const ctaBtn = [
         </div>
       </div>
 
-      {/* DER (visual derecha→izquierda). Render: CV, IG, FB, WA, GH, LI, X, Toggle */}
+      {/* DER (ordenado derecha→izquierda en desktop) */}
       <div className="flex-1 min-w-0 flex items-center justify-end gap-2 sm:gap-3">
-        {/* CV — solo desktop */}
+        {/* CV — solo desktop, queda más a la izquierda */}
         <a
           href="/cv.pdf"
           download
@@ -141,12 +150,28 @@ const ctaBtn = [
           <span className="hidden sm:inline font-sans font-extrabold text-xs">CV</span>
         </a>
 
+        {/* WhatsApp — visible en mobile y desktop */}
+        <a
+          href="https://wa.me/56923927777"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WhatsApp"
+          title="WhatsApp"
+          className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
+            isDark
+              ? "text-emerald-300 hover:text-emerald-200 bg-emerald-900/40 hover:bg-emerald-900/55 border-emerald-700/40 hover:border-emerald-600/70"
+              : "text-emerald-800 hover:text-emerald-900 bg-emerald-100/70 hover:bg-emerald-100 border-emerald-900/30 hover:border-emerald-900/50"
+          }`}
+        >
+          <svg viewBox="0 0 256 256" width="16" height="16" fill="currentColor" aria-hidden="true">
+            <path d="M128 24a104 104 0 0 0-89.8 156.3L24 232l52.7-13.7A104 104 0 1 0 128 24Zm0 16a88 88 0 0 1 73 137.5l-3.4 5 2.1 34.8-32.9-8.5-5.2 3A88 88 0 1 1 128 40Zm45.4 115.7c-2.6 7.5-12.8 12.1-20.6 12.5-7.6.4-17.3-1.7-31.6-9.5-18.1-10-29.7-26.4-32.2-31.1-2.6-4.8-7.7-15.6-5.8-26.3 2-10.7 9.8-15.9 13-16.5s6.7-.3 9.6 6.6 7.9 19.3 8.6 20.7c.7 1.3 1.1 2.9.2 4.6-.9 1.6-1.3 2.6-2.6 4.1-1.3 1.6-2.7 3.6-3.8 4.8-1.3 1.3-2.6 2.7-1.1 5.3 1.6 2.6 7.2 11.9 15.5 19.2 10.6 9.3 19.5 12.2 22.4 13.5 2.9 1.3 4.6 1.1 6.3-.7 1.6-1.8 7.4-8.6 9.4-11.6 2-3 4.1-2.4 6.8-1.4 2.8 1 17.5 8.2 20.5 9.9 3 1.6 5 2.4 4.3 4.8Z" />
+          </svg>
+        </a>
+
         {/* Instagram — solo desktop */}
         <a
           href="https://www.instagram.com/devmauriz/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram"
+          target="_blank" rel="noopener noreferrer" aria-label="Instagram"
           className={`hidden md:flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
             isDark
               ? "text-pink-300 hover:text-pink-200 bg-pink-900/40 hover:bg-pink-900/55 border-pink-700/40 hover:border-pink-600/70"
@@ -154,7 +179,6 @@ const ctaBtn = [
           }`}
           title="Instagram"
         >
-          {/* outline para que no sea bloque sólido */}
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
             <rect x="3" y="3" width="18" height="18" rx="5" ry="5" />
             <circle cx="12" cy="12" r="4" />
@@ -180,25 +204,7 @@ const ctaBtn = [
           </svg>
         </a>
 
-        {/* WhatsApp — visible en mobile y desktop */}
-        <a
-          href="https://wa.me/56923927777"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="WhatsApp"
-          title="WhatsApp"
-          className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
-            isDark
-              ? "text-emerald-300 hover:text-emerald-200 bg-emerald-900/40 hover:bg-emerald-900/55 border-emerald-700/40 hover:border-emerald-600/70"
-              : "text-emerald-800 hover:text-emerald-900 bg-emerald-100/70 hover:bg-emerald-100 border-emerald-900/30 hover:border-emerald-900/50"
-          }`}
-        >
-          <svg viewBox="0 0 256 256" width="16" height="16" fill="currentColor" aria-hidden="true">
-            <path d="M128 24a104 104 0 0 0-89.8 156.3L24 232l52.7-13.7A104 104 0 1 0 128 24Zm0 16a88 88 0 0 1 73 137.5l-3.4 5 2.1 34.8-32.9-8.5-5.2 3A88 88 0 1 1 128 40Zm45.4 115.7c-2.6 7.5-12.8 12.1-20.6 12.5-7.6.4-17.3-1.7-31.6-9.5-18.1-10-29.7-26.4-32.2-31.1-2.6-4.8-7.7-15.6-5.8-26.3 2-10.7 9.8-15.9 13-16.5s6.7-.3 9.6 6.6 7.9 19.3 8.6 20.7c.7 1.3 1.1 2.9.2 4.6-.9 1.6-1.3 2.6-2.6 4.1-1.3 1.6-2.7 3.6-3.8 4.8-1.3 1.3-2.6 2.7-1.1 5.3 1.6 2.6 7.2 11.9 15.5 19.2 10.6 9.3 19.5 12.2 22.4 13.5 2.9 1.3 4.6 1.1 6.3-.7 1.6-1.8 7.4-8.6 9.4-11.6 2-3 4.1-2.4 6.8-1.4 2.8 1 17.5 8.2 20.5 9.9 3 1.6 5 2.4 4.3 4.8Z" />
-          </svg>
-        </a>
-
-        {/* GitHub — visible en mobile y desktop */}
+        {/* GitHub — solo desktop (visible también en mobile según necesidad) */}
         <a
           href="https://github.com/Mauriizio"
           target="_blank"
@@ -231,12 +237,12 @@ const ctaBtn = [
         >
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
             <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0zM8 8h4.8v2.2h.07c.67-1.2 2.3-2.47 4.73-2.47C21.4 7.73 24 10 24 14.3V24h-5v-8.6c0-2.05-.04-4.68-2.85-4.68-2.86 0-3.3 2.23-3.3 4.53V24H8V8z" />
-          </svg>
+        </svg>
         </a>
 
-        {/* X — visible en mobile y desktop */}
+        {/* X — SIEMPRE va a Section 1 */}
         <button
-          onClick={onClose}
+          onClick={goHome}
           aria-label="Cerrar"
           title="Cerrar"
           className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
@@ -248,22 +254,30 @@ const ctaBtn = [
           <IconX size={16} />
         </button>
 
-         <button
+        {/* Toggle — extremo derecho, luna en claro / sol en oscuro */}
+        <button
           type="button"
           onClick={toggleDarkMode}
-          aria-label="Cambiar tema"
+          aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
           aria-pressed={isDark}
           className={`relative shrink-0 inline-flex items-center rounded-full border
                       h-6 w-[2.50rem] min-w-[2.50rem] md:w-min-[2.50rem] md:max-w-[2.50rem]
                       ${isDark ? "bg-cyan-700 border-cyan-400/60 justify-end" : "bg-cyan-200 border-cyan-900/50 justify-start"}
                       shadow-[0_2px_10px_rgba(0,0,0,0.10)] transition-colors duration-200`}
         >
-          <span className="h-5 w-5 mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] transition-transform duration-200" />
+          <span className="h-5 w-5 mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] relative grid place-items-center">
+            {isDark ? (
+              <Sun size={12} className="text-amber-500" aria-hidden="true" />
+            ) : (
+              <Moon size={12} className="text-cyan-700" aria-hidden="true" />
+            )}
+          </span>
         </button>
       </div>
     </div>
   </div>
 </div>
+
 
 
             {/* Intro breve */}
@@ -333,7 +347,7 @@ const ctaBtn = [
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <button className={ctaBtn}>Contactar</button>
-                  <button onClick={onClose} className={ctaBtn}>
+                  <button onClick={goHome} className={ctaBtn}>
                     Volver al inicio
                   </button>
                 </div>
