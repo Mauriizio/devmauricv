@@ -254,27 +254,27 @@ export default function SectionTwo({
 
             {/* Frase resumen */}
             <p
-              className={`relative mt-[15vh] md:mt-8 mb-2 md:mb-1
-                          font-black text-base md:text-2xl leading-relaxed md:leading-tight
+              className={`relative mt-[15vh] md:mt-7 mb-2 md:mb-1
+                          font-black text-base md:text-xl leading-relaxed md:leading-tight
                           text-slate-900/95 dark:text-white/90
                           max-w-[48ch] md:max-w-[38ch] lg:max-w-[34ch]
                           text-center md:text-left mx-auto md:mx-0
                           drop-shadow-[0_1px_0.5px_rgba(255,255,255,0.30)]
                           dark:drop-shadow-[0_1px_0.5px_rgba(0,0,0,0.30)]
                           before:content-[''] before:absolute before:inset-[-8px] before:rounded-2xl
-                          before:bg-white/30 dark:before:bg-black/20
+                          before:bg-white/45 dark:before:bg-black/20
                           before:bg-gradient-to-br before:from-white/70 before:to-white/20
                           dark:before:from-black/55 dark:before:to-black/15
                           supports-[backdrop-filter]:before:backdrop-blur-xl
                           before:shadow-[0_10px_30px_rgba(0,0,0,0.10)]
                           dark:before:shadow-[0_10px_30px_rgba(0,0,0,0.35)]
                           before:ring before:ring-black/10 dark:before:ring-white/10
-                          before:border before:border-white/30 dark:before:border-white/10
+                          before:border before:border-white/20 dark:before:border-white/10
                           before:z-[-1]`}
             >
-              En pocas palabras, puedo:{" "}
-              <span className="text-cyan-900 dark:text-cyan-300">desarrollar sistemas de información</span>,{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">diseñar bases de datos</span>,{" "}
+              En pocas palabras, puedo: desarrollar {" "}
+              <span className="text-cyan-800 dark:text-cyan-300">sistemas de información</span>, diseñar{" "}
+              <span className="text-cyan-800 dark:text-cyan-300"> bases de datos</span>,{" "}
               <span className="text-cyan-800 dark:text-cyan-300">crear aplicaciones web y móviles</span>,{" "}
               <span className="text-cyan-800 dark:text-cyan-300">gestionar proyectos tecnológicos</span>,{" "}
               <span className="text-cyan-800 dark:text-cyan-300">brindar soporte técnico</span> y{" "}
