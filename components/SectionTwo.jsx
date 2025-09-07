@@ -254,7 +254,7 @@ export default function SectionTwo({
 
             {/* Frase resumen */}
             <p
-              className={`relative mt-[30vh] md:mt-8 mb-2 md:mb-1
+              className={`relative mt-[15vh] md:mt-8 mb-2 md:mb-1
                           font-black text-base md:text-2xl leading-relaxed md:leading-tight
                           text-slate-900/95 dark:text-white/90
                           max-w-[48ch] md:max-w-[38ch] lg:max-w-[34ch]
