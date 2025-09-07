@@ -270,7 +270,7 @@ const ctaBtn = [
             {/* Frase resumen – más CERCA de los CTAs en mobile (mt grande) y ANGOSTA en desktop */}
             <p
               className={`relative mt-[10vh] md:mt-8 mb-2 md:mb-1
-                          font-black text-lg md:text-2xl leading-relaxed md:leading-tight
+                          font-black text-sm md:text-xl leading-relaxed md:leading-tight
                           text-slate-900/95 dark:text-white/90
                           max-w-[48ch] md:max-w-[38ch] lg:max-w-[34ch]
                           text-center md:text-left mx-auto md:mx-0
@@ -287,18 +287,14 @@ const ctaBtn = [
                           before:border before:border-white/30 dark:before:border-white/10
                           before:z-[-1]`}
             >
-              Frontend con <span className="text-cyan-800 dark:text-cyan-300">React</span>,{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">Next.js</span> y{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">Vite</span>;{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">TypeScript</span>,{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">Tailwind</span> y{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">Framer Motion</span>, estado con{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">Zustand/Redux</span> y técnicas avanzadas
-              (SSR/ISR, code-splitting, accesibilidad). IA y workflows en{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">Make (n8n)</span> conectados a{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">SQL</span>; piezas ligeras en{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">Inkscape</span>. Entrego soluciones digitales
-              completas y efectivas.
+              En pocas palabras, puedo: <span className="text-cyan-900 dark:text-cyan-300">Desarrollar sistemas de información</span>,{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">diseñar bases de datos</span>,{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">crear aplicaciones web y móviles </span>,{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">gestionar proyectos tecnológicos</span>,{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">brindar soporte técnico</span> y{" "}
+              <span className="text-cyan-800 dark:text-cyan-300"> capacitar usuarios.</span>{" "}
+              Ultimamente tambien me eh estado especializando en {" "}
+              <span className="text-cyan-800 dark:text-cyan-300">Automatizacion de procesos con Inteligencia Artificial,</span> con un enfoque en mejorar la productividad empresarial.
             </p>
           </div>
         </div>

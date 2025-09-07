@@ -53,7 +53,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen, onCl
   const technologies = [
      "JavaScript ES6+","TypeScript", "React.js","Next.js", "Vite", "MySQL", "SupaBase", "Tailwind CSS", "Astro", "HTML5 & CSS3","Framer Motion",  "Git", "SEO", "Canvas API", "Accesibilidad", "Optimización Web", "Responsive Design", "UI/UX Basics", "AI Powered Development"
   ]
-  const tools = ["GitHub","VS Code","Figma","Deploy/Vercel/Netlify","Chrome DevTools","Google ADS","GIMP", "Inkscape", "TexturePackerGUI", "AI Tools", "Cubase", ]
+  const tools = ["GitHub","VS Code","Figma","Deploy/Vercel/Netlify","Chrome DevTools","Google ADS","GIMP", "Inkscape", "CapCut", "TexturePackerGUI", "AI Tools", "Cubase", ]
 
   const experiences = [
     {
@@ -524,8 +524,8 @@ const ctaBtn = [
   <h2 className="title-section !mb-1"> Hola, Soy Maurizio Caballero</h2>
 
   <p className="text-responsive max-w-3xl mx-auto font-sans leading-relaxed">
-    <span className="font-bold">Analista de Sistemas · Desarrollador de Software ·</span><br/>
-    ·Universidad Pedagógica Experimental Libertador · <br/> ·Instituto Nacional de Capacitación y Educación (INCE) · <br/>
+    <span className="font-bold">Analista de Sistemas - Desarrollador de Software </span><br/>
+    ·Universidad Pedagógica Experimental Libertador <br/> ·Instituto Nacional de Capacitación y Educación (INCE)<br/>
     {/* Frontend Developer con experiencia en creación de interfaces web atractivas y funcionales. */}
   </p>
 
