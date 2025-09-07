@@ -183,8 +183,8 @@ export const projectsData = [
       "Efectos visuales modernos",
       "Optimización de rendimiento",
     ],
-    githubUrl: "https://github.com/Mauriizio/coriolis",
-    liveUrl: "https://www.coriolisaccesorios.store/",
+    githubUrl: "https://github.com/Mauriizio/cvgabriel",
+    liveUrl: "https://www.ghformacion.com/",
 },
 //Portafolio Daniyer
   {
@@ -197,28 +197,28 @@ export const projectsData = [
     icon: "/assets/daniyer/dani.jpg",
 
     // Imágenes del detalle
-    detailImage: "/assets/coriolisacc/hero.webp",     // HERO inicial
-    contentImage: "/assets/coriolisacc/cor-2.webp", // grande tras la descripción
-    extraImage: "/assets/coriolisacc/cor-3.webp",     // grande tras retos/soluciones
+    detailImage: "/assets/daniyer/dani (3).png",     // HERO inicial
+    contentImage: "/assets/daniyer/dani (2).png", // grande tras la descripción
+    extraImage: "/assets/daniyer/dani (1).png",     // grande tras retos/soluciones
 
     // (Opcional) Imagen para Open Graph/Twitter
-    ogImage: "/assets/coriolisacc/og.webp",
+    ogImage: "/assets/daniyer/dani.jpg",
 
     // Fallback (compatibilidad con código previo)
-    image: "/assets/coriolisacc/cover.webp",
+    image: "/assets/daniyer/dani.jpg",
 
-    description: "Página web para emprendimiento local, con tienda online.",
+    description: "Página web para portafolio personal de ex-militar y escolta profesional venezolano. Este proyecto fue especialmente significativo ya que me permitió ayudar a un profesional con una carrera única a destacar sus habilidades y experiencia en un formato digital moderno. Trabajé en estrecha colaboración con Daniyer para entender su trayectoria y diseñar una plataforma que reflejara su profesionalismo y versatilidad. Implementé secciones detalladas para su experiencia laboral, certificaciones y servicios ofrecidos, asegurando que la información fuera accesible y atractiva para potenciales clientes e instituciones.",
     technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
     challenges:
-      "Crear colecciones por temporada y categorizar productos, yendo más allá del desarrollo hacia la creación visual de assets con IA.",
+      "Crear una experiencia de usuario que transmitiera confianza y profesionalismo, integrando multimedia y manteniendo tiempos de carga rápidos. También fue un reto organizar el contenido para que fuera accesible y atractivo tanto para clientes potenciales como para instituciones que buscan contratar servicios de seguridad.",
     features: [
       "Animaciones CSS complejas",
       "Layouts avanzados con Grid y Flexbox",
       "Efectos visuales modernos",
       "Optimización de rendimiento",
     ],
-    githubUrl: "https://github.com/Mauriizio/coriolis",
-    liveUrl: "https://www.coriolisaccesorios.store/",
+    githubUrl: "https://github.com/Mauriizio/cvdaniyer",
+    liveUrl: "https://daniyer.online/",
 },
 
 ]
