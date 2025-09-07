@@ -5,10 +5,12 @@ export default function TechCoverSVG({ dark = false, className = "" }) {
   const chips = [
     "React", "Next.js", "TypeScript", "JavaScript ES6+",
     "Tailwind", "Framer Motion", "SSR/ISR",
-    "Vite", "Accesibilidad", "Optimización", "Git/GitHub",
+    "Vite", "Accesibilidad", "Optimización", "Git/GitHub", "n8n",
+    "Node.js", "Express", "REST APIs", "GraphQL", "Apollo",
+    "MongoDB", "PostgreSQL", "MySQL", "SQLite",
   ];
 
-  const ticker = "Desarrollar sistemas de información · crear, administrar y proteger bases de datos · crear aplicaciones web y móviles · gestionar proyectos tecnológicos · brindar soporte técnico · capacitar usuarios · optimizar procesos TI · implementar soluciones en la nube · asegurar la ciberseguridad · innovar con nuevas tecnologías";
+  const ticker = "Desarrollar sistemas de información · crear, administrar y proteger bases de datos · crear aplicaciones web y móviles · gestionar proyectos tecnológicos · brindar soporte técnico · capacitar usuarios · optimizar procesos TI · implementar soluciones en la nube . Automatización · APIs · Microservicios · SEO · Redes y Seguridad Informática · innovar con nuevas tecnologías ";
 
   const vars = {
     "--fadeColor": dark ? "rgba(0,0,0,1)" : "rgba(255,255,255,1)",
@@ -86,7 +88,7 @@ export default function TechCoverSVG({ dark = false, className = "" }) {
         /* Pista = ancho real del contenido → sin solapes */
         .track { display: flex; width: max-content; will-change: transform; }
         .track.fast { animation: slide 20s linear infinite; }   /* un poco más lento para legibilidad */
-        .track.slow { animation: slide 32s linear infinite; }
+        .track.slow { animation: slide 52s linear infinite; }
         @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
         /* Bloques auto, con más aire entre chips */
