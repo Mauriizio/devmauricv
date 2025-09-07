@@ -253,38 +253,37 @@ export default function SectionTwo({
             </h1>
 
             {/* Frase resumen */}
-           <p
-  className={`relative mt-[clamp(8px,7vh,56px)] md:mt-8 mb-2 md:mb-1
-              font-black text-sm md:text-xl leading-relaxed md:leading-tight
-              text-slate-900 dark:text-white/90
-              max-w-[48ch] md:max-w-[38ch] lg:max-w-[34ch]
-              text-center md:text-left mx-auto md:mx-0
-              drop-shadow-[0_1px_0.5px_rgba(255,255,255,0.30)]
-              dark:drop-shadow-[0_1px_0.5px_rgba(0,0,0,0.30)]
-              /* —— glass mejor contrastado en modo claro —— */
-              before:content-[''] before:absolute before:inset-[-10px] before:rounded-2xl
-              before:bg-white/80 dark:before:bg-black/20
-              before:bg-gradient-to-br before:from-white/95 before:to-white/70
-              dark:before:from-black/55 dark:before:to-black/15
-              supports-[backdrop-filter]:before:backdrop-blur-xl before:backdrop-saturate-150
-              before:shadow-[0_8px_24px_rgba(15,23,42,0.12)]
-              dark:before:shadow-[0_10px_30px_rgba(0,0,0,0.35)]
-              before:ring before:ring-black/15 dark:before:ring-white/10
-              before:border before:border-black/5 dark:before:border-white/10
-              before:z-[-1]`}
->
-  En pocas palabras, puedo:{" "}
-  <span className="text-cyan-900 dark:text-cyan-300">desarrollar sistemas de información</span>,{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">diseñar bases de datos</span>,{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">crear aplicaciones web y móviles</span>,{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">gestionar proyectos tecnológicos</span>,{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">brindar soporte técnico</span> y{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">capacitar usuarios</span>.{" "}
-  Últimamente también me he estado especializando en{" "}
-  <span className="text-cyan-800 dark:text-cyan-300">automatización de procesos con Inteligencia Artificial</span>,
-  con un enfoque en mejorar la productividad empresarial.
-</p>
-
+            <p
+              className={`relative mt-[30vh] md:mt-8 mb-2 md:mb-1
+                          font-black text-base md:text-2xl leading-relaxed md:leading-tight
+                          text-slate-900/95 dark:text-white/90
+                          max-w-[48ch] md:max-w-[38ch] lg:max-w-[34ch]
+                          text-center md:text-left mx-auto md:mx-0
+                          drop-shadow-[0_1px_0.5px_rgba(255,255,255,0.30)]
+                          dark:drop-shadow-[0_1px_0.5px_rgba(0,0,0,0.30)]
+                          before:content-[''] before:absolute before:inset-[-8px] before:rounded-2xl
+                          before:bg-white/30 dark:before:bg-black/20
+                          before:bg-gradient-to-br before:from-white/70 before:to-white/20
+                          dark:before:from-black/55 dark:before:to-black/15
+                          supports-[backdrop-filter]:before:backdrop-blur-xl
+                          before:shadow-[0_10px_30px_rgba(0,0,0,0.10)]
+                          dark:before:shadow-[0_10px_30px_rgba(0,0,0,0.35)]
+                          before:ring before:ring-black/10 dark:before:ring-white/10
+                          before:border before:border-white/30 dark:before:border-white/10
+                          before:z-[-1]`}
+            >
+              En pocas palabras, puedo:{" "}
+              <span className="text-cyan-900 dark:text-cyan-300">desarrollar sistemas de información</span>,{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">diseñar bases de datos</span>,{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">crear aplicaciones web y móviles</span>,{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">gestionar proyectos tecnológicos</span>,{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">brindar soporte técnico</span> y{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">capacitar usuarios</span>.{" "}
+              {/* ***** Corrección ortográfica ***** */}
+              Últimamente también me he estado especializando en{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">automatización de procesos con Inteligencia Artificial</span>,
+              con un enfoque en mejorar la productividad empresarial.
+            </p>
           </div>
         </div>
       </div>
