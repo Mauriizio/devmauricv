@@ -87,7 +87,7 @@ export default function TechCoverSVG({ dark = false, className = "" }) {
 
         /* Pista = ancho real del contenido → sin solapes */
         .track { display: flex; width: max-content; will-change: transform; }
-        .track.fast { animation: slide 20s linear infinite; }   /* un poco más lento para legibilidad */
+        .track.fast { animation: slide 32s linear infinite; }   /* un poco más lento para legibilidad */
         .track.slow { animation: slide 52s linear infinite; }
         @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 

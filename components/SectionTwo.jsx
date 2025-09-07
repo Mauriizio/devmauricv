@@ -75,50 +75,33 @@ export default function SectionTwo({
       : "text-rose-700 hover:text-rose-900 bg-rose-100/70 hover:bg-rose-100 border-rose-900/20 hover:border-rose-900/40");
 
   // Toggle tipo palanquita (mejor contraste + tamaños responsivos)
-const switchTrackBase = isDark
-  ? "bg-cyan-700 border-cyan-400/60"
-  : "bg-cyan-200 border-cyan-900/50";
+  const switchTrackBase = isDark
+    ? "bg-cyan-700 border-cyan-400/60"
+    : "bg-cyan-200 border-cyan-900/50";
 
-const switchBtn =
-  `relative shrink-0 inline-flex items-center rounded-full border
-   h-6 w-[2.50rem] min-w-[2.50rem]       /* móvil: más ancho */
-   md:w-11 md:min-w-[2.75rem]             /* desktop: un pelín más pequeño */
-   ${switchTrackBase}
-   ${isDark ? "justify-end" : "justify-start"}
-   shadow-[0_2px_10px_rgba(0,0,0,0.10)]
-   transition-colors duration-200`;
+  const switchBtn =
+    `relative shrink-0 inline-flex items-center rounded-full border
+     h-6 w-[2.50rem] min-w-[2.50rem]       /* móvil: más ancho */
+     md:w-11 md:min-w-[2.75rem]            /* desktop: un pelín más pequeño */
+     ${switchTrackBase}
+     ${isDark ? "justify-end" : "justify-start"}
+     shadow-[0_2px_10px_rgba(0,0,0,0.10)]
+     transition-colors duration-200`;
 
-const switchKnob =
-  "h-5 w-5 mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] " +
-  "transition-transform duration-200";
-
-
-  // ✅ CTAs: MISMO color/peso que Section One en mobile claro (forzado)
-  const ctaBase =
-    "inline-flex items-center justify-center gap-1.5 w-[min(82vw,200px)] mx-auto md:mx-0 px-5 py-2 my-2 " +
-    "rounded-md border font-azonix !font-black subpixel-antialiased transition-colors supports-[backdrop-filter]:backdrop-blur-sm leading-none";
-  const ctaTheme = isDark
-    ? "text-cyan-300 hover:text-cyan-200 bg-black/30 border-cyan-700/40 hover:border-cyan-700/70"
-    : "!text-cyan-900 hover:!text-cyan-900 bg-white/40 border-cyan-800/30 hover:border-cyan-800/60";
-  // fuerza absoluta en mobile claro
-  const ctaLightInline = !isDark ? { color: "#164e63", fontWeight: 800 } : undefined; // cyan-900
-
-
+  const switchKnob =
+    "h-5 w-5 mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] transition-transform duration-200";
 
   // ✅ CTAs unificados (mismo estilo que About/Contact)
-const ctaBtn = [
-  "inline-flex items-center justify-center gap-1.5",
-  "w-[min(82vw,200px)] mx-auto sm:mx-0 px-5 py-2 my-1",
-  "rounded-md border font-azonix font-extrabold transition-colors",
-  "supports-[backdrop-filter]:backdrop-blur-sm",
-  "disabled:opacity-60 disabled:pointer-events-none",
-  isDark
-    ? "text-cyan-300 hover:text-cyan-200 bg-black/30 border-cyan-700/40 hover:border-cyan-700/70"
-    : "text-cyan-900 hover:text-cyan-700 bg-white/70 border-cyan-800/30 hover:border-cyan-800/60",
-].join(" ");
-
-
-
+  const ctaBtn = [
+    "inline-flex items-center justify-center gap-1.5",
+    "w-[min(82vw,200px)] mx-auto sm:mx-0 px-5 py-2 my-1",
+    "rounded-md border font-azonix font-extrabold transition-colors",
+    "supports-[backdrop-filter]:backdrop-blur-sm",
+    "disabled:opacity-60 disabled:pointer-events-none",
+    isDark
+      ? "text-cyan-300 hover:text-cyan-200 bg-black/30 border-cyan-700/40 hover:border-cyan-700/70"
+      : "text-cyan-900 hover:text-cyan-700 bg-white/70 border-cyan-800/30 hover:border-cyan-800/60",
+  ].join(" ");
 
   return (
     <section
@@ -154,7 +137,9 @@ const ctaBtn = [
                 onClick={(e) => {
                   if (onDownloadCV) { e.preventDefault(); onDownloadCV(); }
                 }}
-                className={btnCV}
+                className={glassBase + " " + (isDark
+                  ? "text-cyan-300 hover:text-cyan-200 bg-white/0 hover:bg-white/5 border-cyan-700/40 hover:border-cyan-700/70"
+                  : "text-cyan-800 hover:text-cyan-900 bg-white/40 hover:bg-white/60 border-cyan-900/30 hover:border-cyan-900/60")}
               >
                 <Download size={16} />
                 <span className="hidden sm:inline text-xs font-sans font-bold">CV</span>
@@ -209,15 +194,14 @@ const ctaBtn = [
 
               {/* Toggle extremo derecho */}
               <button
-  type="button"
-  onClick={toggleDarkMode}
-  aria-label="Cambiar tema"
-  aria-pressed={isDark}
-  className={switchBtn}
->
-  <span className={switchKnob} />
-</button>
-
+                type="button"
+                onClick={toggleDarkMode}
+                aria-label="Cambiar tema"
+                aria-pressed={isDark}
+                className={switchBtn}
+              >
+                <span className={switchKnob} />
+              </button>
             </div>
           </div>
         </div>
@@ -230,8 +214,6 @@ const ctaBtn = [
       <div className="absolute inset-0 z-[6] pointer-events-none">
         <ParticlesBackground />
       </div>
-
-      
 
       {/* Scrim izquierdo */}
       <div
@@ -256,7 +238,11 @@ const ctaBtn = [
       </div>
 
       {/* Contenido */}
-      <div className="relative z-20 w-full h-full px-5 md:px-10 pt-24">
+      {/* ***** RESERVA para CTA en móvil (no afecta desktop) ***** */}
+      <div
+        className="relative z-20 w-full h-full px-5 md:px-10 pt-24 md:pb-0 pb-[136px]"
+        style={{ paddingBottom: "calc(136px + env(safe-area-inset-bottom))" }}
+      >
         <div className="h-full min-h-0">
           <div className="font-azonix flex flex-col gap-3 items-center text-center mx-auto max-w-[92%] md:items-start md:text-left md:mx-0 md:max-w-[52%]">
             <h1 className={`text-[1.6rem] leading-[1.15] md:text-4xl lg:text-5xl font-black drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)] ${accentText}`}>
@@ -264,10 +250,9 @@ const ctaBtn = [
               <span className={`${isDark ? "bg-cyan-200/10 text-black" : "bg-cyan-100 text-gray-900"} px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]`}>
                 Maurizio Caballero
               </span>
-              
             </h1>
 
-            {/* Frase resumen – más CERCA de los CTAs en mobile (mt grande) y ANGOSTA en desktop */}
+            {/* Frase resumen */}
             <p
               className={`relative mt-[10vh] md:mt-8 mb-2 md:mb-1
                           font-black text-sm md:text-xl leading-relaxed md:leading-tight
@@ -287,37 +272,38 @@ const ctaBtn = [
                           before:border before:border-white/30 dark:before:border-white/10
                           before:z-[-1]`}
             >
-              En pocas palabras, puedo: <span className="text-cyan-900 dark:text-cyan-300">Desarrollar sistemas de información</span>,{" "}
+              En pocas palabras, puedo:{" "}
+              <span className="text-cyan-900 dark:text-cyan-300">desarrollar sistemas de información</span>,{" "}
               <span className="text-cyan-800 dark:text-cyan-300">diseñar bases de datos</span>,{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">crear aplicaciones web y móviles </span>,{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">crear aplicaciones web y móviles</span>,{" "}
               <span className="text-cyan-800 dark:text-cyan-300">gestionar proyectos tecnológicos</span>,{" "}
               <span className="text-cyan-800 dark:text-cyan-300">brindar soporte técnico</span> y{" "}
-              <span className="text-cyan-800 dark:text-cyan-300"> capacitar usuarios.</span>{" "}
-              Ultimamente tambien me eh estado especializando en {" "}
-              <span className="text-cyan-800 dark:text-cyan-300">Automatizacion de procesos con Inteligencia Artificial,</span> con un enfoque en mejorar la productividad empresarial.
+              <span className="text-cyan-800 dark:text-cyan-300">capacitar usuarios</span>.{" "}
+              {/* ***** Corrección ortográfica ***** */}
+              Últimamente también me he estado especializando en{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">automatización de procesos con Inteligencia Artificial</span>,
+              con un enfoque en mejorar la productividad empresarial.
             </p>
           </div>
         </div>
       </div>
 
-        {/* CTAs */}
-<div
-  className="font-azonix absolute z-30 left-0 right-0 bottom-4 md:bottom-6
-             flex flex-col items-center gap-1 md:items-start md:left-8 md:right-auto"
-  style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
->
-  <button type="button" onClick={onMenuOpen} className={ctaBtn}>
-    Ver proyectos
-  </button>
-  <button type="button" onClick={onVerMas} className={ctaBtn}>
-    Más sobre mí
-  </button>
-  <button type="button" onClick={onContactOpen} className={ctaBtn}>
-    Contacto
-  </button>
-</div>
-
-      
+      {/* CTAs (absolutos) */}
+      <div
+        className="font-azonix absolute z-30 left-0 right-0 bottom-4 md:bottom-6
+                   flex flex-col items-center gap-1 md:items-start md:left-8 md:right-auto"
+        style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+      >
+        <button type="button" onClick={onMenuOpen} className={ctaBtn}>
+          Ver proyectos
+        </button>
+        <button type="button" onClick={onVerMas} className={ctaBtn}>
+          Más sobre mí
+        </button>
+        <button type="button" onClick={onContactOpen} className={ctaBtn}>
+          Contacto
+        </button>
+      </div>
     </section>
   );
 }
