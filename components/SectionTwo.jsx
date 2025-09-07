@@ -240,8 +240,8 @@ export default function SectionTwo({
       {/* Contenido */}
       {/* ***** RESERVA para CTA en móvil (no afecta desktop) ***** */}
       <div
-        className="relative z-20 w-full h-full px-5 md:px-10 pt-24 md:pb-0 pb-[136px]"
-        style={{ paddingBottom: "calc(136px + env(safe-area-inset-bottom))" }}
+        className="relative z-20 w-full h-full px-5 md:px-10 pt-24 md:pb-0 pb-[80px]"
+        style={{ paddingBottom: "calc(80px + env(safe-area-inset-bottom))" }}
       >
         <div className="h-full min-h-0">
           <div className="font-azonix flex flex-col gap-3 items-center text-center mx-auto max-w-[92%] md:items-start md:text-left md:mx-0 md:max-w-[52%]">
