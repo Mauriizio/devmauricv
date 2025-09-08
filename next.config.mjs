@@ -1,3 +1,5 @@
+const allowIndexing = process.env.ALLOW_INDEXING === "true";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -11,6 +13,8 @@ const nextConfig = {
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
+          // Solo indexa si ALLOW_INDEXING=true en producción
+          ...(allowIndexing ? [] : [{ key: 'X-Robots-Tag', value: 'noindex' }]),
         ],
       },
     ]

@@ -304,24 +304,11 @@ const ctaBtn = [
   return (
     <>
       {show && (
-        <Head>
-          <title>{aboutTitle}</title>
-          <meta name="description" content={aboutDesc} />
-          <meta name="author" content="Maurizio Caballero" />
-          <meta name="robots" content="index,follow" />
-          <meta name="theme-color" content={isDark ? "#0b0b0b" : "#f5f5f4"} />
-          <meta property="og:type" content="profile" />
-          <meta property="og:site_name" content="devMauriz" />
-          <meta property="og:title" content={aboutTitle} />
-          <meta property="og:description" content={aboutDesc} />
-          <meta property="og:image" content="/assets/avatar-right2.png" />
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content={aboutTitle} />
-          <meta name="twitter:description" content={aboutDesc} />
-          <meta name="twitter:image" content="/assets/avatar-right2.png" />
-          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPerson) }} />
-        </Head>
-      )}
+  <Head>
+    <meta name="robots" content="noindex,nofollow" />
+  </Head>
+)}
+
 
       <section
         ref={scrollContainerRef}

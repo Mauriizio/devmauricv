@@ -99,26 +99,12 @@ export default function SectionContact({ show, onClose }) {
 
   return (
     <>
-      {show && (
-        <Head>
-          <title>{contactTitle}</title>
-          <meta name="description" content={contactDesc} />
-          <meta name="author" content="Maurizio Caballero" />
-          <meta name="robots" content="index,follow" />
-          <meta name="theme-color" content={isDark ? "#0b0b0b" : "#f5f5f4"} />
-          {canonical ? <link rel="canonical" href={canonical} /> : null}
+     {show && (
+  <Head>
+    <meta name="robots" content="noindex,nofollow" />
+  </Head>
+)}
 
-          <meta property="og:type" content="website" />
-          <meta property="og:site_name" content="devMauriz" />
-          <meta property="og:title" content={contactTitle} />
-          <meta property="og:description" content={contactDesc} />
-          {canonical ? <meta property="og:url" content={canonical} /> : null}
-
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:title" content={contactTitle} />
-          <meta name="twitter:description" content={contactDesc} />
-        </Head>
-      )}
 
       <section
         ref={dialogRef}

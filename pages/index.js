@@ -164,8 +164,7 @@ export default function Home({ initialView, initialId }) {
         name: "devMauriz",
         url: siteUrl || "",
         inLanguage: "es-CL",
-        description:
-          "Portafolio de Maurizio Caballero: proyectos, stack y contacto.",
+        description: "Portafolio de Maurizio Caballero: proyectos, stack y contacto.",
         potentialAction: {
           "@type": "SearchAction",
           target: `${siteUrl || ""}/?q={search_term_string}`,
@@ -183,9 +182,7 @@ export default function Home({ initialView, initialId }) {
         name: "Maurizio Caballero",
         jobTitle: "Frontend Developer",
         url: siteUrl || "",
-        image: siteUrl
-          ? `${siteUrl.replace(/\/$/, "")}/og/og-1200x630.png`
-          : "/og/og-1200x630.png",
+        image: siteUrl ? `${siteUrl.replace(/\/$/, "")}/og/og-1200x630.png` : "/og/og-1200x630.png",
         sameAs: [
           "https://github.com/Mauriizio",
           "https://www.linkedin.com/in/maurizio-caballero-286a56219/",
@@ -196,6 +193,7 @@ export default function Home({ initialView, initialId }) {
     }}
   />
 </Head>
+
 
 
       {/* Overlays */}

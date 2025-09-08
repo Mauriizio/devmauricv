@@ -74,31 +74,9 @@ const goHome = () => {
     <AnimatePresence>
       {show && (
         <>
-          <Head>
-            <title>Proyectos — devMauriz</title>
-            <meta name="description" content={seoDescription} />
-            <meta name="robots" content="index,follow" />
-            <meta name="author" content="Maurizio Caballero" />
-            <meta name="theme-color" content={isDark ? "#0b0b0b" : "#f5f5f4"} />
-            {canonical ? <link rel="canonical" href={canonical} /> : null}
-
-            <meta property="og:type" content="website" />
-            <meta property="og:site_name" content="devMauriz" />
-            <meta property="og:title" content="Proyectos — devMauriz" />
-            <meta property="og:description" content={seoDescription} />
-            {canonical ? <meta property="og:url" content={canonical} /> : null}
-            <meta property="og:image" content="/assets/avatar-right2.png" />
-
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content="Proyectos — devMauriz" />
-            <meta name="twitter:description" content={seoDescription} />
-
-            <script
-              type="application/ld+json"
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
-          </Head>
+           <Head>
+    <meta name="robots" content="noindex,nofollow" />
+  </Head>
 
           <motion.section
             ref={(node) => {

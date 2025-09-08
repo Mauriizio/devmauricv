@@ -142,28 +142,11 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
         ${show ? "translate-y-0" : "translate-y-full"} ${isDark ? "dark bg-gray-900 text-white" : "bg-stone-200 text-zinc-800"}`}
     >
       {show && (
-        <Head>
-          <title>{project.title ? `${project.title} — Proyecto` : "Proyecto — devMauriz"}</title>
-          <meta name="description" content={description} />
-          <meta name="author" content="Maurizio Caballero" />
-          <meta name="robots" content="index,follow" />
-          <meta name="theme-color" content={isDark ? "#0b0b0b" : "#f5f5f4"} />
-          {canonical ? <link rel="canonical" href={canonical} /> : null}
-          <meta property="og:type" content="article" />
-          <meta property="og:site_name" content="devMauriz" />
-          <meta property="og:title" content={project.title || "Proyecto"} />
-          <meta property="og:description" content={description} />
-          {ogImage && <meta property="og:image" content={ogImage} />}
-          {canonical ? <meta property="og:url" content={canonical} /> : null}
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content={project.title || "Proyecto"} />
-          <meta name="twitter:description" content={description} />
-          {ogImage && <meta name="twitter:image" content={ogImage} />}
-          <link rel="preload" as="font" href="/fonts/Azonix.otf" type="font/otf" crossOrigin="anonymous" />
-          {preconnectHosts.map((origin) => (<link key={origin} rel="preconnect" href={origin} crossOrigin="anonymous" />))}
-          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        </Head>
-      )}
+  <Head>
+    <meta name="robots" content="noindex,nofollow" />
+  </Head>
+)}
+
 
      {/* Header (Menu Overlay) */}
 <div
