@@ -112,24 +112,91 @@ export default function Home({ initialView, initialId }) {
   return (
     <>
       <Head>
-        <title>Portafolio — Maurizio Caballero (Frontend)</title>
-        <meta
-          name="description"
-          content="Portafolio de Maurizio Caballero: proyectos, experiencia y contacto. Frontend Developer con React y Next.js."
-        />
-        <meta name="author" content="Maurizio Caballero" />
-        <meta name="robots" content="index,follow" />
-        <meta property="og:site_name" content="devMauriz" />
-        <meta property="og:title" content="Portafolio — Maurizio Caballero" />
-        <meta
-          property="og:description"
-          content="Proyectos, experiencia y contacto. Frontend con React/Next.js."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="/assets/avatar-right2.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        {siteUrl ? <link rel="canonical" href={siteUrl} /> : null}
-      </Head>
+  {/* Título + descripción */}
+  <title>Maurizio Caballero — Frontend Developer (Portafolio)</title>
+  <meta
+    name="description"
+    content="Portafolio de Maurizio Caballero: proyectos reales, stack (React/Next.js, Tailwind, Framer Motion) y contacto."
+  />
+  <meta name="author" content="Maurizio Caballero" />
+  <meta name="application-name" content="devMauriz" />
+  <meta name="robots" content="index,follow" />
+
+  {/* Canonical (sin query params) */}
+  {siteUrl ? <link rel="canonical" href={siteUrl} /> : null}
+
+  {/* Open Graph */}
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="devMauriz · Maurizio Caballero" />
+  <meta property="og:title" content="Maurizio Caballero — Frontend Developer" />
+  <meta
+    property="og:description"
+    content="Proyectos, experiencia y contacto. Especialista en React y Next.js."
+  />
+  {siteUrl ? <meta property="og:url" content={siteUrl} /> : null}
+  <meta
+    property="og:image"
+    content={siteUrl ? `${siteUrl.replace(/\/$/, "")}/og/og-1200x630.png` : "/og/og-1200x630.png"}
+  />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="es_CL" />
+
+  {/* Twitter Card */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Maurizio Caballero — Frontend Developer" />
+  <meta
+    name="twitter:description"
+    content="Proyectos, experiencia y contacto. Especialista en React y Next.js."
+  />
+  <meta
+    name="twitter:image"
+    content={siteUrl ? `${siteUrl.replace(/\/$/, "")}/og/og-1200x630.png` : "/og/og-1200x630.png"}
+  />
+
+  {/* Schema.org (JSON-LD) — WebSite + Person */}
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "devMauriz",
+        url: siteUrl || "",
+        inLanguage: "es-CL",
+        description:
+          "Portafolio de Maurizio Caballero: proyectos, stack y contacto.",
+        potentialAction: {
+          "@type": "SearchAction",
+          target: `${siteUrl || ""}/?q={search_term_string}`,
+          "query-input": "required name=search_term_string",
+        },
+      }),
+    }}
+  />
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: "Maurizio Caballero",
+        jobTitle: "Frontend Developer",
+        url: siteUrl || "",
+        image: siteUrl
+          ? `${siteUrl.replace(/\/$/, "")}/og/og-1200x630.png`
+          : "/og/og-1200x630.png",
+        sameAs: [
+          "https://github.com/Mauriizio",
+          "https://www.linkedin.com/in/maurizio-caballero-286a56219/",
+          "https://www.instagram.com/devmauriz/",
+          "https://x.com/devmauriz"
+        ],
+      }),
+    }}
+  />
+</Head>
+
 
       {/* Overlays */}
       <MenuOverlay show={showMenu} onClose={closeMenu} onProjectSelect={handleProjectSelect} />
