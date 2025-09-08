@@ -17,6 +17,14 @@ export default function Document() {
           crossOrigin="anonymous"
         />
 
+        <link rel="icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png" />
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon-180.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#ffffffff" />
+
+
         {/* Precarga de fuente local (si la usas en <body>) */}
         {/* <link
           rel="preload"
