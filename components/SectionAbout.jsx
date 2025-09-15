@@ -51,9 +51,9 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen, onCl
   ]
 
   const technologies = [
-     "JavaScript ES6+","TypeScript", "React.js","Next.js", "Vite", "MySQL", "SupaBase", "Tailwind CSS", "Astro", "HTML5 & CSS3","Framer Motion",  "Git", "SEO", "Canvas API", "Accesibilidad", "Optimización Web", "Responsive Design", "UI/UX Basics", "AI Powered Development"
+     "JavaScript ES6+","TypeScript", "React.js","Next.js", "Vite", "MySQL", "SupaBase", "Tailwind CSS", "Astro", "HTML5 & CSS3","Framer Motion",  "Git", "SEO", "Accesibilidad", "Optimización Web", "Responsive Design", 
   ]
-  const tools = ["GitHub","VS Code","Figma","Deploy/Vercel/Netlify","Chrome DevTools","Google ADS","GIMP", "Inkscape", "CapCut", "TexturePackerGUI", "AI Tools", "Cubase", ]
+  const tools = ["GitHub","VS Code","Figma","Deploy/Vercel/Netlify","Chrome DevTools","Google ADS","GIMP", "Inkscape", "CapCut", "TexturePackerGUI", "AI Tools", "Cubase", "AI Powered Development", "Bash", "PowerShell", ]
 
   const experiences = [
     {
@@ -87,29 +87,32 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen, onCl
   ]
 
   const characteristics = [
-    { icon: "🔧", text: "Adaptación rápida a nuevas herramientas y entornos" },
-    { icon: "🚀", text: "Proactivo para aprender, proponer y ejecutar soluciones" },
-    { icon: "🧠", text: "Aprovecho la IA para ser más eficiente sin depender de ella" },
-    { icon: "🎯", text: "Enfocado en resultados reales y productividad sostenible" },
-    { icon: "🤝", text: "Trabajo bien en equipo y asumo liderazgo cuando hace falta" },
-    { icon: "🛠️", text: "Resuelvo problemas con criterio técnico y pensamiento estratégico" },
+    { icon: "🔧", text: "Adaptación rápida a nuevas herramientas y entornos." },
+    { icon: "🚀", text: "Proactivo para aprender, proponer y ejecutar soluciones." },
+    { icon: "🧠", text: "Aprovecho la IA para ser más eficiente sin depender de ella." },
+    { icon: "🎯", text: "Enfocado en resultados reales y productividad sostenible." },
+    { icon: "🤝", text: "Trabajo bien en equipo y asumo liderazgo cuando hace falta." },
+    { icon: "🛠️", text: "Resuelvo problemas con criterio técnico y pensamiento estratégico." },
+    { icon: "👁️", text: "Me fijo mucho en los detalles, busco la excelencia." },
   ]
 
   const interests = [
-    { icon: "👪", text: "Tiempo de calidad con mi familia" },
+    { icon: "👪", text: "Tiempo de calidad con mi familia." },
+    { icon: "📖", text: "El conocimiento cientifico." },
     { icon: "🏍️", text: "Salir a motoquear a la periferia." },
-    { icon: "💪", text: "Ir al Gym o hacer deporte. Me gusta el Baseball, Team MLB Atlanta Braves." },
+    { icon: "💪", text: "Ir al Gym o salir a trotar." },
+    { icon: "⚾", text: "Me gusta el Baseball, Team MLB Atlanta Braves / Team LVBP Leones de CCS." },
     { icon: "🎞️", text: "Me gusta ver series y peliculas de historias basadas en hechos reales." },
-    { icon: "🎤", text: "Me apasiona la musica, a veces puedo rapear bien." },
+    { icon: "🎤", text: "Me apasiona la musica, a veces puedo escribir canciones." },
     {
       icon: "🗣️",
-      text: "Me gustan las conversaciones profundas con personas cultas sobre temas como historia, geopolitica, religiones, el bien el mal, etc",
+      text: "Me gustan las conversaciones profundas con personas cultas sobre temas como historia, geopolitica, religiones, el bien el mal, filosofia, etc.",
     },
   ]
 
   const education = [
     { title: "Desarrollo Web Frontend", institution: "Autodidacta • Diversos Cursos Online", period: "2020 - Presente" },
-    { title: "Octavo Semestre aprobados en Pedagogia en Lenguaje", institution: "Universidad Pedagogica Experimental Libertador UPEL", period: "2013-2016" },
+    { title: "Pedagogia en Lenguajes", institution: "Universidad Pedagogica Experimental Libertador UPEL", period: "2013-2016" },
     { title: "Técnico en Mantenimiento de Equipos Informáticos", institution: "Instituto Nacional de Capacitación y Educación INCE", period: "2010-2013" },
   ]
 
@@ -230,13 +233,13 @@ const ctaBtn = [
   }
 
   // --------- SEO (solo cuando está visible) ----------
-  const aboutTitle = "Sobre mí — Maurizio Caballero"
+  const aboutTitle = "Sobre mí — Maurizio Hernández"
   const aboutDesc =
-    "Conoce a Maurizio Caballero: Frontend Developer (React, Next.js). Experiencia, habilidades, educación y diplomas."
+    "Conoce a Maurizio Hernández: Frontend Developer (React, Next.js). Experiencia, habilidades, educación y diplomas."
   const jsonLdPerson = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Maurizio Caballero",
+    name: "Maurizio Hernández",
     jobTitle: "Frontend Developer",
     description: aboutDesc,
     knowsAbout: [...technologies, ...tools],
@@ -505,7 +508,7 @@ const ctaBtn = [
     >
       <img
         src="/assets/perfil.jpg"
-        alt="Foto de Maurizio Caballero"
+        alt="Foto de Maurizio Hernández"
         className="h-full w-full object-cover object-top"
         onError={(e) => { e.currentTarget.src = "/placeholder.svg" }}
       />
@@ -516,11 +519,11 @@ const ctaBtn = [
 {/* Datos debajo del avatar */}
 <div className="text-center space-y-2 md:space-y-3 pt-2">
   {/* <h1 id="about-title" className="title-main !mb-0">Sobre mí</h1> */}
-  <h2 className="title-section !mb-1"> Hola, Soy Maurizio Caballero</h2>
+  <h2 className="title-section !mb-1"> Hola, Soy Maurizio Hernández</h2>
 
   <p className="text-responsive max-w-3xl mx-auto font-sans leading-relaxed">
     <span className="font-bold">Analista de Sistemas - Desarrollador de Software </span><br/>
-    ·Universidad Pedagógica Experimental Libertador <br/> ·Instituto Nacional de Capacitación y Educación (INCE)<br/>
+    ·Universidad Pedagógica Experimental Libertador (UPEL) <br/> ·Instituto Nacional de Capacitación y Educación (INCE)<br/>
     {/* Frontend Developer con experiencia en creación de interfaces web atractivas y funcionales. */}
   </p>
 
@@ -551,7 +554,7 @@ const ctaBtn = [
 
           {/* Experiencia */}
           <section className="section-flat">
-            <h3 className="title-section text-center mb-6 md:mb-8"> Experiencia</h3>
+            <h3 className="title-section text-center mb-6 md:mb-8"> Experiencia Laboral</h3>
 
             <div className="space-y-6 md:space-y-8 font-sans">
               {experiences.map((exp, i) => (
@@ -571,20 +574,33 @@ const ctaBtn = [
           </section>
 
           {/* Educación */}
-          <section className="section-flat">
-            <h3 className="title-section text-center"> Educación & Certificaciones</h3>
-            <div className="space-y-4 font-sans">
-              {education.map((edu, i) => (
-                <div key={i} className="flex flex-col md:flex-row md:items-center md:justify-between">
-                  <div>
-                    <h4 className="title-subsection">{edu.title}</h4>
-                    <p className="text-cyan-700 dark:text-cyan-300">{edu.institution}</p>
-                  </div>
-                  <span className="text-zinc-600 dark:text-white/80 text-sm">{edu.period}</span>
-                </div>
-              ))}
-            </div>
-          </section>
+         {/* Educación & Certificaciones */}
+<section className="section-flat">
+  <h3 className="title-section text-center mb-6 md:mb-8">Educación & Certificaciones</h3>
+
+  <div className="space-y-6 md:space-y-8 font-sans">
+    {education.map((edu, i) => (
+      <div key={i} className="relative pl-6 md:pl-7 text-left">
+        {/* línea y punto igual que en Experiencia */}
+        <span className="absolute left-0 top-2 h-full w-px bg-gradient-to-b from-cyan-400/70 to-transparent" />
+        <span className="absolute -left-1 top-1.5 h-2.5 w-2.5 rounded-full bg-cyan-500 shadow-[0_0_0_3px_rgba(34,211,238,0.25)]" />
+
+        <h4 className="title-subsection !text-left">{edu.title}</h4>
+        <p className="text-cyan-700 dark:text-cyan-300 font-medium mb-1 !text-left">
+          {edu.institution}
+        </p>
+
+        {/* fecha en su propia línea, con el mismo estilo pequeño de antes */}
+        <span className="text-zinc-600 dark:text-white/80 text-sm block !text-left">
+          {edu.period}
+        </span>
+
+        {edu.details && <p className="text-responsive !text-left mt-2">{edu.details}</p>}
+      </div>
+    ))}
+  </div>
+</section>
+
 
           {/* Diplomas – carrusel */}
           <div className="">

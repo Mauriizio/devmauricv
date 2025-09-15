@@ -113,12 +113,12 @@ export default function Home({ initialView, initialId }) {
     <>
       <Head>
   {/* Título + descripción */}
-  <title>Maurizio Caballero — Frontend Developer (Portafolio)</title>
+  <title>Maurizio Hernández — Frontend Developer (Portafolio)</title>
   <meta
     name="description"
-    content="Portafolio de Maurizio Caballero: proyectos reales, stack (React/Next.js, Tailwind, Framer Motion) y contacto."
+    content="Portafolio de Maurizio Hernández: proyectos reales, stack (React/Next.js, Tailwind, Framer Motion) y contacto."
   />
-  <meta name="author" content="Maurizio Caballero" />
+  <meta name="author" content="Maurizio Hernández" />
   <meta name="application-name" content="devMauriz" />
   <meta name="robots" content="index,follow" />
 
@@ -127,8 +127,8 @@ export default function Home({ initialView, initialId }) {
 
   {/* Open Graph */}
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="devMauriz · Maurizio Caballero" />
-  <meta property="og:title" content="Maurizio Caballero — Frontend Developer" />
+  <meta property="og:site_name" content="devMauriz · Maurizio Hernández" />
+  <meta property="og:title" content="Maurizio Hernández — Frontend Developer" />
   <meta
     property="og:description"
     content="Proyectos, experiencia y contacto. Especialista en React y Next.js."
@@ -144,7 +144,7 @@ export default function Home({ initialView, initialId }) {
 
   {/* Twitter Card */}
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Maurizio Caballero — Frontend Developer" />
+  <meta name="twitter:title" content="Maurizio Hernández — Frontend Developer" />
   <meta
     name="twitter:description"
     content="Proyectos, experiencia y contacto. Especialista en React y Next.js."
@@ -164,7 +164,7 @@ export default function Home({ initialView, initialId }) {
         name: "devMauriz",
         url: siteUrl || "",
         inLanguage: "es-CL",
-        description: "Portafolio de Maurizio Caballero: proyectos, stack y contacto.",
+        description: "Portafolio de Maurizio Hernández: proyectos, stack y contacto.",
         potentialAction: {
           "@type": "SearchAction",
           target: `${siteUrl || ""}/?q={search_term_string}`,
@@ -179,7 +179,7 @@ export default function Home({ initialView, initialId }) {
       __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "Person",
-        name: "Maurizio Caballero",
+        name: "Maurizio Hernández",
         jobTitle: "Frontend Developer",
         url: siteUrl || "",
         image: siteUrl ? `${siteUrl.replace(/\/$/, "")}/og/og-1200x630.png` : "/og/og-1200x630.png",
@@ -197,7 +197,7 @@ export default function Home({ initialView, initialId }) {
 
 
       {/* Overlays */}
-      <MenuOverlay show={showMenu} onClose={closeMenu} onProjectSelect={handleProjectSelect} />
+      <MenuOverlay show={showMenu} onClose={closeMenu} onProjectSelect={handleProjectSelect} onContactOpen={handleContactOpen} />
       <ProjectDetail
         show={showProject}
         project={selectedProject}
@@ -205,6 +205,7 @@ export default function Home({ initialView, initialId }) {
         onBackToProjects={handleBackToProjects}
       />
       <SectionAbout show={showAbout} onVolverArriba={handleVolverArriba} onContactOpen={handleContactOpen} />
+
       <SectionContact show={showContact} onClose={handleContactClose} />
 
       {/* Contenedor principal con scroll horizontal + snap */}

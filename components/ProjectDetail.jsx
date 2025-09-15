@@ -68,7 +68,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
 
   // SEO
   const description =
-    project.seoDescription || project.description || `Proyecto "${project.title}" de Maurizio Caballero.`
+    project.seoDescription || project.description || `Proyecto "${project.title}" de Maurizio Hernández.`
   const ogImage = project.ogImage || heroImage
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   const canonical = siteUrl && project?.id ? `${siteUrl}?view=project&id=${project.id}` : undefined
@@ -85,7 +85,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
     "@type": "SoftwareSourceCode",
     name: project.title || "Proyecto",
     description,
-    author: { "@type": "Person", name: "Maurizio Caballero" },
+    author: { "@type": "Person", name: "Maurizio Hernández" },
     programmingLanguage: project.technologies || [],
     codeRepository: project.githubUrl || undefined,
     url: project.liveUrl || undefined,

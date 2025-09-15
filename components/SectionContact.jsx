@@ -53,7 +53,7 @@ export default function SectionContact({ show, onClose }) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   const canonical = siteUrl ? `${siteUrl}?view=contact` : undefined
   const contactTitle = "Contacto — devMauriz"
-  const contactDesc = "Ponte en contacto con Maurizio Caballero. Consultas, colaboraciones y oportunidades."
+  const contactDesc = "Ponte en contacto con Maurizio Hernández. Consultas, colaboraciones y oportunidades."
 
   const onChange = (e) => {
     const { name, value } = e.target

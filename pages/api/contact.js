@@ -7,7 +7,7 @@ const resend = resendApiKey ? new Resend(resendApiKey) : null;
 // Reemplaza por tu correo real o usa CONTACT_TO en .env.local
 const CONTACT_TO = process.env.CONTACT_TO || "livemauriz@gmail.com";
 // Cambia a tu dominio verificado cuando lo tengas (p.ej. noreply@tudominio.com)
-const MAIL_FROM = process.env.MAIL_FROM || "Maurizio Caballero <onboarding@resend.dev>";
+const MAIL_FROM = process.env.MAIL_FROM || "Maurizio Hernández <onboarding@resend.dev>";
 
 // Opcional: fallback a Web3Forms si lo configuras
 const WEB3FORMS_KEY =

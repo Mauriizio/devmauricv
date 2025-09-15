@@ -10,7 +10,7 @@ import { useFocusTrap } from "@/components/useFocusTrap"
 import LogoMC from "@/components/LogoMC"
 import { Menu, X as IconX, Sun, Moon, Download } from "lucide-react"
 
-export default function MenuOverlay({ show, onClose, onProjectSelect }) {
+export default function MenuOverlay({ show, onClose, onProjectSelect, onContactOpen }) {
   const { isDark, toggleDarkMode } = useTheme()
   const scrollContainerRef = useRef(null)
   const dialogRef = useRef(null)
@@ -35,11 +35,11 @@ export default function MenuOverlay({ show, onClose, onProjectSelect }) {
 
   // SEO sólo cuando se muestra el overlay
   const seoDescription =
-    "Explora el portafolio de proyectos de Maurizio Caballero: React, Next.js, Tailwind y más."
+    "Explora el portafolio de proyectos de Maurizio Hernández: React, Next.js, Tailwind y más."
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Proyectos de Maurizio Caballero",
+    name: "Proyectos de Maurizio Hernández",
     itemListElement: menuProjects.map((p, idx) => ({
       "@type": "ListItem",
       position: idx + 1,
@@ -324,7 +324,7 @@ const goHome = () => {
                   ¿Te interesa algún proyecto? ¡Hablemos!
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <button className={ctaBtn}>Contactar</button>
+                  <button onClick={onContactOpen} className={ctaBtn}>Contactar</button>
                   <button onClick={goHome} className={ctaBtn}>
                     Volver al inicio
                   </button>

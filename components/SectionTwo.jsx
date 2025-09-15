@@ -241,10 +241,10 @@ export default function SectionTwo({
       {/* Avatar */}
       <div className="absolute inset-0 z-10 pointer-events-none">
         <div className="absolute inset-0 md:hidden">
-          <Image src="/assets/avatar.png" alt="Avatar Maurizio Caballero" fill priority sizes="100vw" className="object-cover object-center z-20" />
+          <Image src="/assets/avatar.png" alt="Avatar Maurizio Hernandez" fill priority sizes="100vw" className="object-cover object-center z-20" />
         </div>
         <div className="hidden md:block absolute top-0 right-0 bottom-0 w-[60vw] max-w-[900px]">
-          <Image src="/assets/avatar.png" alt="Avatar Maurizio Caballero" fill priority sizes="(min-width: 1024px) 60vw, 80vw" className="object-contain object-right z-20" />
+          <Image src="/assets/avatar.png" alt="Avatar Maurizio Hernandez" fill priority sizes="(min-width: 1024px) 60vw, 80vw" className="object-contain object-right z-20" />
         </div>
       </div>
 
@@ -259,7 +259,7 @@ export default function SectionTwo({
             <h1 className={`text-[1.6rem] leading-[1.15] md:text-4xl lg:text-5xl font-black drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)] ${accentText}`}>
               ¡Hola! Soy <br />
               <span className={`${isDark ? "bg-cyan-200/10 text-black" : "bg-cyan-100 text-gray-900"} px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]`}>
-                Maurizio Caballero
+                Maurizio Hernández
               </span>
             </h1>
 
