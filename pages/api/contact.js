@@ -40,7 +40,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Mensaje demasiado largo (máx. 2000 caracteres)." });
     }
 
-    const subject = `Nuevo mensaje desde devmauricv: ${name}`;
+    const subject = `Nuevo mensaje desde maurizio.dev: ${name}`;
     const text = `Nombre: ${name}\nEmail: ${email}\n\n${message}`;
     const html = `
       <h2>Nuevo contacto</h2>
