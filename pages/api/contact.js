@@ -1,6 +1,7 @@
 // pages/api/contact.js
 import { Resend } from "resend";
-export const config = { runtime: "nodejs" };
+export const config = { runtime: "nodejs", api: { bodyParser: true } };
+
 
 
 const resendApiKey = process.env.RESEND_API_KEY || "";
