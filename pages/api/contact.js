@@ -2,15 +2,16 @@
 import { Resend } from "resend";
 export const config = { runtime: "nodejs", api: { bodyParser: true } };
 
-
-
 const resendApiKey = process.env.RESEND_API_KEY || "";
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
-// Reemplaza por tu correo real o usa CONTACT_TO en .env.local
-const CONTACT_TO = process.env.CONTACT_TO || "livemauriz@gmail.com";
+// Reemplaza por tu correo real o usa CONTACT_TO en .env.local (acepta CONTACTO_CON también)
+const CONTACT_TO =
+  process.env.CONTACT_TO || process.env.CONTACTO_CON || "livemauriz@gmail.com";
+
 // Cambia a tu dominio verificado cuando lo tengas (p.ej. noreply@tudominio.com)
-const MAIL_FROM = process.env.MAIL_FROM || "Maurizio Hernández <onboarding@resend.dev>";
+const MAIL_FROM =
+  process.env.MAIL_FROM || "Maurizio Hernández <onboarding@resend.dev>";
 
 // Opcional: fallback a Web3Forms si lo configuras
 const WEB3FORMS_KEY =
@@ -56,8 +57,8 @@ export default async function handler(req, res) {
       try {
         const { data, error } = await resend.emails.send({
           from: MAIL_FROM,
-          to: [CONTACT_TO],     // <-- tu correo
-          replyTo: email,       // <-- responde directo al remitente
+          to: [CONTACT_TO],   // tu correo destino
+          reply_to: email,    // <-- FIX: Resend usa reply_to (no replyTo)
           subject,
           text,
           html,
@@ -115,5 +116,8 @@ export default async function handler(req, res) {
 }
 
 function escapeHtml(s = "") {
-  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 }
