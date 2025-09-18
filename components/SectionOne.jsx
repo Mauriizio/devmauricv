@@ -149,7 +149,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
 
         {/* Facebook — solo desktop */}
         <a
-          href="https://facebook.com/"
+          href="https://web.facebook.com/profile.php?id=61580753613645"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Facebook"

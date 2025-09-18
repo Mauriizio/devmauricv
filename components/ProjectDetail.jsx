@@ -220,7 +220,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
 
         {/* Facebook — solo desktop */}
         <a
-          href="https://facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+          href="https://web.facebook.com/profile.php?id=61580753613645" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
           className={`hidden md:flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
             isDark
               ? "text-blue-300 hover:text-blue-200 bg-blue-900/40 hover:bg-blue-900/55 border-blue-700/40 hover:border-blue-600/70"
