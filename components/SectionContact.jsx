@@ -43,6 +43,7 @@ export default function SectionContact({ show, onClose }) {
     if (show && dialogRef.current) {
       // Volver al inicio del contenedor scrollable
       dialogRef.current.scrollTo({ top: 0, behavior: "auto" })
+      dialogRef.current.focus()
     }
   }, [show])
 
@@ -105,15 +106,15 @@ export default function SectionContact({ show, onClose }) {
   </Head>
 )}
 
-
-      <section
-        ref={dialogRef}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="contact-title"
-        className={`fixed inset-0 w-screen h-screen font-azonix z-50 overflow-y-auto transition-transform duration-500 ease-in-out
-          ${show ? "translate-y-0" : "translate-y-full"} ${isDark ? "dark bg-gray-900 text-white" : "bg-stone-200 text-zinc-800"}`}
-      >
+        <section
+  ref={dialogRef}
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="contact-title"
+  className={`fixed inset-0 w-screen h-screen font-azonix z-50 overflow-y-auto transition-transform duration-500 ease-in-out
+    ${show ? "translate-y-0" : "translate-y-full"} ${isDark ? "dark bg-gray-900 text-white" : "bg-stone-200 text-zinc-800"}`}
+>
+      
         {/* Header (Menu Overlay) */}
         <div
           className={`sticky top-0 z-20 backdrop-blur-lg border-b p-4 ${
@@ -279,7 +280,8 @@ export default function SectionContact({ show, onClose }) {
         </div>
 
         {/* Contenido */}
-        <div className="max-w-3xl mx-auto px-4 md:px-6 py-10 md:py-14">
+       <div className="max-w-3xl mx-auto px-4 md:px-6 py-10 md:py-14 pb-[calc(env(safe-area-inset-bottom,0px)+16px)]">
+
           <header className="text-center space-y-4">
             <h2 id="contact-title" className="title-main">Contacto</h2>
             <p className="text-responsive max-w-2xl mx-auto">
