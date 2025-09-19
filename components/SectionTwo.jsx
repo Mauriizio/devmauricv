@@ -194,25 +194,24 @@ export default function SectionTwo({
 
               {/* Toggle extremo derecho */}
               {/* Toggle — extremo derecho, con icono contextual (luna en claro / sol en oscuro) */}
-<button
-  type="button"
-  onClick={toggleDarkMode}
-  aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
-  aria-pressed={isDark}
-  className={`relative shrink-0 inline-flex items-center rounded-full border
-              h-6 w-[2.50rem] min-w-[2.50rem] md:w-min-[2.50rem] md:max-w-[2.50rem]
-              ${isDark ? "bg-cyan-700 border-cyan-400/60 justify-end" : "bg-cyan-200 border-cyan-900/50 justify-start"}
-              shadow-[0_2px_10px_rgba(0,0,0,0.10)] transition-colors duration-200`}
->
-  <span className="h-5 w-5 mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] relative grid place-items-center">
-    {isDark ? (
-      <Sun size={12} className="text-amber-500" aria-hidden="true" />
-    ) : (
-      <Moon size={12} className="text-cyan-700" aria-hidden="true" />
-    )}
-  </span>
-</button>
-
+              <button
+                type="button"
+                onClick={toggleDarkMode}
+                aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+                aria-pressed={isDark}
+                className={`relative shrink-0 inline-flex items-center rounded-full border
+                            h-6 w-[2.50rem] min-w-[2.50rem] md:w-[2.50rem]
+                            ${isDark ? "bg-cyan-700 border-cyan-400/60 justify-end" : "bg-cyan-200 border-cyan-900/50 justify-start"}
+                            shadow-[0_2px_10px_rgba(0,0,0,0.10)] transition-colors duration-200`}
+              >
+                <span className="h-5 w-5 mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] relative grid place-items-center">
+                  {isDark ? (
+                    <Sun size={12} className="text-amber-500" aria-hidden="true" />
+                  ) : (
+                    <Moon size={12} className="text-cyan-700" aria-hidden="true" />
+                  )}
+                </span>
+              </button>
             </div>
           </div>
         </div>
@@ -251,10 +250,19 @@ export default function SectionTwo({
       {/* Contenido */}
       {/* ***** RESERVA para CTA en móvil (no afecta desktop) ***** */}
       <div
-        className="relative z-20 w-full h-full px-5 md:px-10 pt-24 md:pb-0 pb-[80px]"
-        style={{ paddingBottom: "calc(80px + env(safe-area-inset-bottom))" }}
+        className="relative z-20 w-full h-full px-5 md:px-10 pt-24"
+        style={{
+          // colchón para no invadir CTAs absolutos + safe area
+          paddingBottom: "calc(132px + env(safe-area-inset-bottom))",
+        }}
       >
-        <div className="h-full min-h-0">
+        {/* Área útil: centrada entre header y CTAs */}
+        <div
+          className="h-full min-h-0 flex items-center md:items-start"
+          style={{
+            height: "calc(100% - (132px + env(safe-area-inset-bottom)))",
+          }}
+        >
           <div className="font-azonix flex flex-col gap-3 items-center text-center mx-auto max-w-[92%] md:items-start md:text-left md:mx-0 md:max-w-[52%]">
             <h1 className={`text-[1.6rem] leading-[1.15] md:text-4xl lg:text-5xl font-black drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)] ${accentText}`}>
               ¡Hola! Soy <br />
@@ -263,9 +271,9 @@ export default function SectionTwo({
               </span>
             </h1>
 
-            {/* Frase resumen */}
+            {/* Frase resumen (márgenes suaves, sin 15vh) */}
             <p
-              className={`relative mt-[15vh] md:mt-7 mb-2 md:mb-1
+              className={`relative mt-3 md:mt-6 lg:mt-8 mb-2 md:mb-1
                           font-black text-base md:text-xl leading-relaxed md:leading-tight
                           text-slate-900/95 dark:text-white/90
                           max-w-[48ch] md:max-w-[38ch] lg:max-w-[34ch]
@@ -283,7 +291,7 @@ export default function SectionTwo({
                           before:border before:border-white/20 dark:before:border-white/10
                           before:z-[-1]`}
             >
-              En pocas palabras, puedo: desarrollar {" "}
+              En pocas palabras, puedo: desarrollar{" "}
               <span className="text-cyan-800 dark:text-cyan-300">sistemas de información</span>, diseñar{" "}
               <span className="text-cyan-800 dark:text-cyan-300"> bases de datos</span>,{" "}
               <span className="text-cyan-800 dark:text-cyan-300">crear aplicaciones web y móviles</span>,{" "}
@@ -291,9 +299,9 @@ export default function SectionTwo({
               <span className="text-cyan-800 dark:text-cyan-300">brindar soporte técnico</span> y{" "}
               <span className="text-cyan-800 dark:text-cyan-300">capacitar usuarios</span>.{" "}
               {/* ***** Corrección ortográfica ***** */}
-              {/* Últimamente también me he estado especializando en{" "}
+              Últimamente también me he estado especializando en{" "}
               <span className="text-cyan-800 dark:text-cyan-300">automatización de procesos con Inteligencia Artificial</span>,
-              con un enfoque en mejorar la productividad empresarial. */}
+              con un enfoque en mejorar la productividad empresarial.
             </p>
           </div>
         </div>
