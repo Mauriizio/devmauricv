@@ -2,7 +2,7 @@
 import Head from "next/head"
 
 export default function CV() {
-  // === Datos (copiados desde SectionAbout, edítalos si cambian) ===
+  
   const technologies = [
     "JavaScript ES6+","TypeScript","React.js","Next.js","Vite","MySQL","SupaBase",
     "Tailwind CSS","Astro","HTML5 & CSS3","Framer Motion","Git","SEO","Accesibilidad",
@@ -96,6 +96,8 @@ export default function CV() {
             <a href={`https://${github}`} target="_blank" rel="noreferrer">{github}</a> ·{" "}
             <a href={`https://${linkedin}`} target="_blank" rel="noreferrer">{linkedin}</a>
           </p>
+          <p className="cv-meta">Telefono: +569 23927777</p>
+          
         </header>
 
         {/* Bloque 2 columnas: Tecnologías / Herramientas */}
