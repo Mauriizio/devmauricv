@@ -291,9 +291,9 @@ export default function SectionTwo({
               <span className="text-cyan-800 dark:text-cyan-300">brindar soporte técnico</span> y{" "}
               <span className="text-cyan-800 dark:text-cyan-300">capacitar usuarios</span>.{" "}
               {/* ***** Corrección ortográfica ***** */}
-              Últimamente también me he estado especializando en{" "}
+              {/* Últimamente también me he estado especializando en{" "}
               <span className="text-cyan-800 dark:text-cyan-300">automatización de procesos con Inteligencia Artificial</span>,
-              con un enfoque en mejorar la productividad empresarial.
+              con un enfoque en mejorar la productividad empresarial. */}
             </p>
           </div>
         </div>
