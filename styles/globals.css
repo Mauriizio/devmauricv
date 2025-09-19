@@ -224,25 +224,29 @@ body {
 
 
 
-/* ====== CV A4 imprimible (page /cv) ====== */
+/* ====== CV A4 imprimible (ajuste anti-recorte) ====== */
 .cv-page{
-  /* A4: 210 x 297mm. Usamos ancho fijo y márgenes para que quede de una página. */
-  width: 210mm; min-height: 297mm;
-  margin: 12mm auto; padding: 12mm 14mm;
-  background: white; color: #0f172a; /* slate-900 */
+  /* Usa un ancho seguro ligeramente menor a A4 para que NUNCA se corte */
+  width: 190mm;                 /* antes tenías 210mm */
+  max-width: 100%;
+  margin: 0 auto;               /* sin margen extra alrededor */
+  padding: 10mm 12mm;           /* relleno interno */
+  box-sizing: border-box;       /* padding dentro del ancho */
+  background: white; color: #0f172a;
   box-shadow: 0 0 0.5mm rgba(0,0,0,.12);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
   line-height: 1.35;
 }
+
 .cv-header{ text-align: center; margin-bottom: 8mm; }
 .cv-name{ font-size: 26pt; font-weight: 900; letter-spacing: .2px; margin: 0; }
-.cv-role{ font-size: 12pt; font-weight: 700; color:#0891b2; margin: 2mm 0 1mm; } /* cyan-700-ish */
+.cv-role{ font-size: 12pt; font-weight: 700; color:#0891b2; margin: 2mm 0 1mm; }
 .cv-meta{ margin: 0.5mm 0; font-size: 9.5pt; color:#334155; }
 .cv-meta a{ color:#0ea5e9; text-decoration: none; }
 .cv-meta a:hover{ text-decoration: underline; }
 
 .cv-h2{
-  font-size: 12pt; font-weight: 800; color:#0e7490; /* cyan-800 */
+  font-size: 12pt; font-weight: 800; color:#0e7490;
   margin: 0 0 3mm; border-bottom: 0.6pt solid rgba(14,116,144,.35); padding-bottom: 1.5mm;
 }
 .cv-h3{ font-size: 11pt; font-weight: 800; margin: 0; color:#0f172a; }
@@ -251,17 +255,13 @@ body {
 
 .cv-section{ margin: 6mm 0; }
 .cv-item{ break-inside: avoid; margin-bottom: 4mm; }
-.cv-item-head{
-  display: flex; justify-content: space-between; align-items: baseline; gap: 8mm;
-}
+.cv-item-head{ display: flex; justify-content: space-between; align-items: baseline; gap: 8mm; }
 .cv-ul{ margin: 0; padding-left: 4mm; }
 .cv-ul li{ margin: 0.8mm 0; }
 .cv-ul.tight li{ margin: 0.6mm 0; }
 
-.cv-grid-2{
-  display: grid; grid-template-columns: 1fr 1fr; gap: 8mm;
-  margin: 6mm 0;
-}
+/* un poco menos de gap para caber cómodo */
+.cv-grid-2{ display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; margin: 6mm 0; }
 .cv-item-slim{ break-inside: avoid; margin-bottom: 3mm; }
 
 .cv-chips{
@@ -270,7 +270,7 @@ body {
 }
 .cv-chip{
   font-size: 9pt; padding: 1.2mm 2.6mm; border-radius: 999px;
-  background: #ecfeff; color:#155e75; border: 0.5pt solid rgba(8,145,178,.35); /* cyan-50/700 */
+  background: #ecfeff; color:#155e75; border: 0.5pt solid rgba(8,145,178,.35);
 }
 
 .cv-actions{ margin-top: 8mm; text-align: center; }
@@ -282,14 +282,23 @@ body {
 
 /* ---- Print rules ---- */
 @media print {
-  @page { size: A4; margin: 10mm; }
+  /* elimino márgenes del navegador/driver y dejo que los márgenes salgan del padding de .cv-page */
+  @page { size: A4; margin: 0; }
+
   :root { color-scheme: light; }
+  html, body { height: auto; }
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
   .no-print { display: none !important; }
+
   .cv-page{
-    box-shadow: none; margin: 0; width: auto; min-height: auto; padding: 0;
+    width: 100%;            /* que ocupe todo el ancho “printable” */
+    max-width: 100%;
+    margin: 0;
+    padding: 10mm 12mm;     /* margen interno real de la hoja */
+    box-shadow: none;
   }
+
   /* evita cortes feos */
   .cv-item, .cv-item-slim, .cv-grid-2, .cv-section { break-inside: avoid; }
 }
