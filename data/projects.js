@@ -225,8 +225,8 @@ export const projectsData = [
 {
   id: "iconforge",
   slug: "iconforge",
-  category: "Herramienta web / Generador de assets",
-  title: "IconForge — All-in-one icon & OG generator",
+  category: "Web App/Herramienta online",
+  title: "IconForge Generator ",
 
   // Miniatura del menú
   icon: "/assets/iconforge/3.png",
@@ -234,7 +234,7 @@ export const projectsData = [
   // Imágenes del detalle
   detailImage: "/assets/iconforge/1.png",        // HERO inicial
   contentImage: "/assets/iconforge/2.png",     // grande tras la descripción
-  extraImage: "/assets/iconforge/2.png", // grande tras retos/soluciones
+  extraImage: "/assets/iconforge/4.png", // grande tras retos/soluciones
 
   // (Opcional) Imagen para Open Graph/Twitter
   ogImage: "/assets/iconforge/og-1200x630.png",
