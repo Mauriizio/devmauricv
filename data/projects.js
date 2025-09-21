@@ -221,5 +221,56 @@ export const projectsData = [
     liveUrl: "https://daniyer.online/",
 },
 
+// IconForge
+{
+  id: "iconforge",
+  slug: "iconforge",
+  category: "Herramienta web / Generador de assets",
+  title: "IconForge — All-in-one icon & OG generator",
+
+  // Miniatura del menú
+  icon: "/assets/iconforge/3.png",
+
+  // Imágenes del detalle
+  detailImage: "/assets/iconforge/1.png",        // HERO inicial
+  contentImage: "/assets/iconforge/2.png",     // grande tras la descripción
+  extraImage: "/assets/iconforge/2.png", // grande tras retos/soluciones
+
+  // (Opcional) Imagen para Open Graph/Twitter
+  ogImage: "/assets/iconforge/og-1200x630.png",
+
+  // Fallback (compatibilidad con código previo)
+  image: "/assets/iconforge/3.png",
+
+  description:
+    "IconForge es un studio web 100% cliente (Next.js + React + Tailwind) para generar todos los assets de marca de un sitio desde un único logo: favicons .ico/.png, iconos PWA (16–512, maskable), Open Graph 1200×630 con título/subtítulo, site.webmanifest y un ZIP final. Todo sucede en el navegador (Canvas API, canvg, client-zip, png2icojs), sin backend y con foco en accesibilidad y UX clara.",
+
+  technologies: [
+    "React 19",
+    "Next.js 15 (App Router)",
+    "Tailwind CSS 3",
+    "Canvas API",
+    "canvg",
+    "client-zip",
+    "png2icojs"
+  ],
+
+  challenges:
+    "Procesar SVG/PNG/JPG íntegramente en el cliente garantizando nitidez en múltiples tamaños y formatos, mantener la UI responsiva sin solapes en móvil (h-dvh + safe-areas), y generar ZIP/manifest/OG de forma consistente. Además, asegurar feedback de estado (spinners/disabled), validación de archivos (≤5MB) y accesibilidad de controles.",
+
+  features: [
+    "Exportes PNG 16–512 y favicon.ico multi-tamaño",
+    "OG 1200×630 con título/subtítulo y fondo auto cuando es transparente",
+    "site.webmanifest con purpose 'any maskable' y colores configurables",
+    "ZIP final con icons/, og/, manifest y README con snippets listo para copiar",
+    "100% local: sin backend, privacidad por diseño"
+  ],
+
+  githubUrl: "https://github.com/Mauriizio/icon-forget",
+  liveUrl: "https://icon-forget.vercel.app/" // ← reemplaza con tu URL de producción
+}
+
+
+
 ]
 // --- End of code ---
