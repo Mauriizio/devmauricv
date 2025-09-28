@@ -234,7 +234,7 @@ export const projectsData = [
   // Imágenes del detalle
   detailImage: "/assets/iconforge/1.png",        // HERO inicial
   contentImage: "/assets/iconforge/2.png",     // grande tras la descripción
-  extraImage: "/assets/iconforge/4.png", // grande tras retos/soluciones
+  extraImage: "/assets/iconforge/33.png", // grande tras retos/soluciones
 
   // (Opcional) Imagen para Open Graph/Twitter
   ogImage: "/assets/iconforge/og-1200x630.png",
