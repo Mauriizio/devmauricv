@@ -131,10 +131,10 @@ export const projectsData = [
     // Imágenes del detalle
     detailImage: "/assets/lcl/lcl (2).webp",     // HERO inicial
     contentImage: "/assets/lcl/lcl (3).webp", // grande tras la descripción
-    extraImage: "/assets/lcl/lcl (1).webp",     // grande tras retos/soluciones
+    extraImage: "/assets/lcl/lcl (4).webp",     // grande tras retos/soluciones
 
     // (Opcional) Imagen para Open Graph/Twitter
-    ogImage: "/assets/coriolisacc/og.webp",
+    ogImage: "/assets/lcl/og-1200x630.png",
 
     // Fallback (compatibilidad con código previo)
     image: "/assets/lcl/icon-lcl.webp",
@@ -150,7 +150,7 @@ export const projectsData = [
       "Optimización de rendimiento",
     ],
     githubUrl: "https://github.com/Mauriizio/lcl",
-    liveUrl: "https://www.dulcessecretos.online/",
+    liveUrl: "https://lcl-git-main-caballeromaurizio-gmailcoms-projects.vercel.app/",
   },
 //GH Formación
   {
