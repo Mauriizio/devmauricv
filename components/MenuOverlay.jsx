@@ -35,11 +35,11 @@ export default function MenuOverlay({ show, onClose, onProjectSelect, onContactO
 
   // SEO sólo cuando se muestra el overlay
   const seoDescription =
-    "Explora el portafolio de proyectos de Maurizio Hernández: React, Next.js, Tailwind y más."
+    "Explora el portafolio de proyectos de Maurizio Caballero: React, Next.js, Tailwind y más."
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Proyectos de Maurizio Hernández",
+    name: "Proyectos de Maurizio Caballero",
     itemListElement: menuProjects.map((p, idx) => ({
       "@type": "ListItem",
       position: idx + 1,

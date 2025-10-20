@@ -233,13 +233,13 @@ const ctaBtn = [
   }
 
   // --------- SEO (solo cuando está visible) ----------
-  const aboutTitle = "Sobre mí — Maurizio Hernández"
+  const aboutTitle = "Sobre mí — Maurizio Caballero"
   const aboutDesc =
-    "Conoce a Maurizio Hernández: Frontend Developer (React, Next.js). Experiencia, habilidades, educación y diplomas."
+    "Conoce a Maurizio Caballero: Frontend Developer (React, Next.js). Experiencia, habilidades, educación y diplomas."
   const jsonLdPerson = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Maurizio Hernández",
+    name: "Maurizio Caballero",
     jobTitle: "Frontend Developer",
     description: aboutDesc,
     knowsAbout: [...technologies, ...tools],
@@ -508,7 +508,7 @@ const ctaBtn = [
     >
       <img
         src="/assets/perfil.jpg"
-        alt="Foto de Maurizio Hernández"
+        alt="Foto de Maurizio Caballero"
         className="h-full w-full object-cover object-top"
         onError={(e) => { e.currentTarget.src = "/placeholder.svg" }}
       />
@@ -519,7 +519,7 @@ const ctaBtn = [
 {/* Datos debajo del avatar */}
 <div className="text-center space-y-2 md:space-y-3 pt-2">
   {/* <h1 id="about-title" className="title-main !mb-0">Sobre mí</h1> */}
-  <h2 className="title-section !mb-1"> Hola, Soy Maurizio Hernández</h2>
+  <h2 className="title-section !mb-1"> Hola, Soy Maurizio Caballero</h2>
 
   <p className="text-responsive max-w-3xl mx-auto font-sans leading-relaxed">
     <span className="font-bold">Analista de Sistemas - Desarrollador de Software </span><br/>

@@ -1,7 +1,7 @@
 // components/LogoMC.jsx
 export default function LogoMC({
   className = "h-10 w-auto text-cyan-600",
-  title = "Maurizio Hernández",
+  title = "Maurizio Caballero",
 }) {
   return (
   <svg

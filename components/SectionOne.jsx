@@ -275,7 +275,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
       className={`mt-1 inline-block text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black px-1
                   ${isDark ? "bg-gray-700 text-white" : "bg-gray-200 text-gray-900"}`}
     >
-      Hernández
+      Caballero
     </div>
   </div>
 

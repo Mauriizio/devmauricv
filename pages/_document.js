@@ -24,8 +24,8 @@ export default function Document() {
 
         {/* Open Graph (global por defecto) */}
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Maurizio Hernandez · Frontend Developer" />
-        <meta property="og:title" content="Maurizio Hernández — Frontend Developer" />
+        <meta property="og:site_name" content="Maurizio Caballero · Frontend Developer" />
+        <meta property="og:title" content="Maurizio Caballero — Frontend Developer" />
         <meta
           property="og:description"
           content="Portafolio de desarrollo frontend: proyectos, stack y contacto."
@@ -41,7 +41,7 @@ export default function Document() {
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Maurizio Hernández — Frontend Developer" />
+        <meta name="twitter:title" content="Maurizio Caballero — Frontend Developer" />
         <meta
           name="twitter:description"
           content="Portafolio de desarrollo frontend: proyectos, stack y contacto."
