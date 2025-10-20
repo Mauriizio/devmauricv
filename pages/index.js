@@ -6,6 +6,7 @@ import dynamic from "next/dynamic"
 import SectionOne from "@/components/SectionOne"
 import SectionTwo from "@/components/SectionTwo"
 import { projectsData } from "@/data/projects"
+import CV from "./cv/cv"
 
 // Overlays con code-splitting (SSR ON + fallback accesible)
 const SectionAbout   = dynamic(() => import("@/components/SectionAbout"),   { loading: () => <div className="sr-only">Cargando…</div> })
@@ -193,8 +194,6 @@ export default function Home({ initialView, initialId }) {
     }}
   />
 </Head>
-
-
 
       {/* Overlays */}
       <MenuOverlay show={showMenu} onClose={closeMenu} onProjectSelect={handleProjectSelect} onContactOpen={handleContactOpen} />
