@@ -19,7 +19,7 @@ const CONTACT_TO = process.env.CONTACT_TO || "livemauriz@gmail.com";
  */
 const MAIL_FROM =
   process.env.MAIL_FROM ||
-  "Maurizio Hernandez <onboarding@resend.dev>"; // (sin acentos para evitar encoding raro en algunos MTAs)
+  "Maurizio Caballero <onboarding@resend.dev>"; // (sin acentos para evitar encoding raro en algunos MTAs)
 
 const WEB3FORMS_KEY =
   process.env.WEB3FORMS_ACCESS_KEY || process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "";
