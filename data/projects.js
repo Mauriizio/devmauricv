@@ -302,6 +302,39 @@ export const projectsData = [
     ],
     githubUrl: "https://github.com/Mauriizio/moralescv",
     liveUrl: "https://www.paolamorales.online/",
+},
+
+//Portafolio Gladys Pabon Estudiante de Geologia
+  {
+    id: "Gladys_Pabon",
+    slug: "Gladys",
+    category: "Curriculum Web",
+    title: "Curriculum Gladys Pabon",
+
+    // Miniatura del menú
+    icon: "/assets/gp/ico.png",
+
+    // Imágenes del detalle
+    detailImage: "/assets/gp/gp1.webp",     // HERO inicial
+    contentImage: "/assets/gp/gp2.webp", // grande tras la descripción
+    extraImage: "/assets/gp/gp3.webp",     // grande tras retos/soluciones
+
+    // (Opcional) Imagen para Open Graph/Twitter
+    ogImage: "/assets/gp/ico.png",
+
+    // Fallback (compatibilidad con código previo)
+    image: "/assets/gp/ico.png",
+
+    description: "Página web para portafolio personal de estudiante de Geología. Este proyecto fue especialmente significativo ya que me permitió ayudar a una estudiante con una carrera única a destacar sus habilidades y experiencia en un formato digital moderno con enfoque en coseguir practicas profesionales.",
+    technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
+    challenges:
+      "Hacerlo visualmente atractivo y profesional, integrando multimedia y manteniendo tiempos de carga rápidos. También fue un reto organizar el contenido para que fuera accesible y atractivo tanto para empleadores potenciales como para instituciones que buscan contratar sus servicios.",
+    features: [
+      "Creacion de Logo personalizado","minimalismo y profesionalismo","Layouts avanzados con Grid y Flexbox",
+      "Optimización de rendimiento",
+    ],
+    githubUrl: "https://github.com/Mauriizio/cvgladys",
+    liveUrl: "https://www.dacorpa.online/",
 }
 
 
