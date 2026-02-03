@@ -268,7 +268,42 @@ export const projectsData = [
 
   githubUrl: "https://github.com/Mauriizio/icon-forget",
   liveUrl: "https://icon-forget.vercel.app/" // ← reemplaza con tu URL de producción
+},
+
+//Portafolio Paola Morales
+  {
+    id: "Paola_Morales",
+    slug: "Paola",
+    category: "Curriculum Web",
+    title: "Curriculum Paola Morales",
+
+    // Miniatura del menú
+    icon: "/assets/pm/ico.png",
+
+    // Imágenes del detalle
+    detailImage: "/assets/pm/pm1.webp",     // HERO inicial
+    contentImage: "/assets/pm/pm2.webp", // grande tras la descripción
+    extraImage: "/assets/pm/pm3.webp",     // grande tras retos/soluciones
+
+    // (Opcional) Imagen para Open Graph/Twitter
+    ogImage: "/assets/pm/ico.png",
+
+    // Fallback (compatibilidad con código previo)
+    image: "/assets/pm/ico.png",
+
+    description: "Página web para portafolio personal Ingeniera de Procesos Quimicos venezolana. Este proyecto fue especialmente significativo ya que me permitió ayudar a una profesional con una carrera única a destacar sus habilidades y experiencia en un formato digital moderno. Trabajé en estrecha colaboración con Paola para entender su trayectoria y diseñar una plataforma que reflejara su profesionalismo y versatilidad. Implementé secciones detalladas para su experiencia laboral, certificaciones y servicios ofrecidos, asegurando que la información fuera accesible y atractiva para potenciales empleadores e instituciones.",
+    technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
+    challenges:
+      "Crear una experiencia de usuario que transmitiera confianza y profesionalismo, integrando multimedia y manteniendo tiempos de carga rápidos. También fue un reto organizar el contenido para que fuera accesible y atractivo tanto para empleadores potenciales como para instituciones que buscan contratar sus servicios.",
+    features: [
+      "Creacion de Logo personalizado","minimalismo y profesionalismo",
+      "Layouts avanzados con Grid y Flexbox",
+      "Optimización de rendimiento",
+    ],
+    githubUrl: "https://github.com/Mauriizio/moralescv",
+    liveUrl: "https://www.paolamorales.online/",
 }
+
 
 
 
