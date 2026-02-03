@@ -326,7 +326,7 @@ export const projectsData = [
     image: "/assets/gp/ico.png",
 
     description: "Página web para portafolio personal de estudiante de Geología. Este proyecto fue especialmente significativo ya que me permitió ayudar a una estudiante con una carrera única a destacar sus habilidades y experiencia en un formato digital moderno con enfoque en coseguir practicas profesionales.",
-    technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
+    technologies: ["React", "Tailwind CSS", "Flexbox"],
     challenges:
       "Hacerlo visualmente atractivo y profesional, integrando multimedia y manteniendo tiempos de carga rápidos. También fue un reto organizar el contenido para que fuera accesible y atractivo tanto para empleadores potenciales como para instituciones que buscan contratar sus servicios.",
     features: [
