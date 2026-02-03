@@ -46,7 +46,7 @@ export const projectsData = [
   "learnings": "Aprendí a priorizar recursos gráficos sin sacrificar la experiencia móvil y a montar una estructura de landing que responde bien a anuncios pagados; pequeñas optimizaciones en la carga marcaron la diferencia en la tasa de conversión.",
   "notes": "Si quieres que redacte esta misma entrada en inglés, en formato para Behance, o que añada un testimonio real del cliente y métricas, pásame los textos y cifras y lo dejo listo.",
   "githubUrl": "https://github.com/Mauriizio/webmecanic",
-  "liveUrl": "https://www.mecanicaelintercontinental.com/"
+  "liveUrl": "https://webmecanic-lme7-caballeromaurizio-gmailcoms-projects.vercel.app/"
 },
 //Coriolis Accesorios
 {
