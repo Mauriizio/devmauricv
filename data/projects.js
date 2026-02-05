@@ -221,12 +221,12 @@ export const projectsData = [
     liveUrl: "https://daniyer.online/",
 },
 
-// IconForge
+// IconFull Generator
 {
-  id: "iconforge",
-  slug: "iconforge",
-  category: "Web App/Herramienta online",
-  title: "IconForge Generator ",
+  id: "iconfull",
+  slug: "iconfull",
+  category: "Herramienta Web + CLI",
+  title: "IconFull (Studio + CLI) ",
 
   // Miniatura del menú
   icon: "/assets/iconforge/3.png",
@@ -243,20 +243,20 @@ export const projectsData = [
   image: "/assets/iconforge/3.png",
 
   description:
-    "IconForge es un studio web 100% cliente (Next.js + React + Tailwind) para generar todos los assets de marca de un sitio desde un único logo: favicons .ico/.png, iconos PWA (16–512, maskable), Open Graph 1200×630 con título/subtítulo, site.webmanifest y un ZIP final. Todo sucede en el navegador (Canvas API, canvg, client-zip, png2icojs), sin backend y con foco en accesibilidad y UX clara.",
+    "Herramienta para generar, desde una sola imagen, todos los assets esenciales de una app/web: favicons, Apple Touch, Android Chrome icons, imagen Open Graph y manifest.webmanifest, con flujo visual en web y automatización por CLI. Ideal para desarrolladores y diseñadores que buscan optimizar su flujo de trabajo y garantizar consistencia en sus proyectos. La aplicación web permite a los usuarios subir una imagen (SVG, PNG o JPG) y personalizar opciones como colores de fondo, textos para OG, y tamaños específicos. Luego, genera un paquete ZIP listo para usar con todos los assets necesarios. La versión CLI facilita la integración en pipelines de desarrollo, permitiendo generar los mismos assets directamente desde la terminal con comandos simples.",
 
   technologies: [
-    "React 19",
-    "Next.js 15 (App Router)",
-    "Tailwind CSS 3",
-    "Canvas API",
-    "canvg",
-    "client-zip",
-    "png2icojs"
+    "React",
+    "Next.js (Studio web)",
+    "Tailwind CSS",
+    "Node.js",
+    "CLI con Commander",
+    "Sharp (procesamiento de imágenes)",
+    "Archiver (export ZIP)"
   ],
 
   challenges:
-    "Procesar SVG/PNG/JPG íntegramente en el cliente garantizando nitidez en múltiples tamaños y formatos, mantener la UI responsiva sin solapes en móvil (h-dvh + safe-areas), y generar ZIP/manifest/OG de forma consistente. Además, asegurar feedback de estado (spinners/disabled), validación de archivos (≤5MB) y accesibilidad de controles.",
+    "Al tener dos vías de uso (Studio y terminal), era clave mantener el mismo estándar de archivos para evitar diferencias en producción. Solución: se definió un set consistente de salidas (favicon, apple-touch-icon, android-chrome, og, manifest) y se documentó para ambos flujos. muchos usuarios necesitan interfaz gráfica, pero equipos técnicos requieren ejecución en pipelines/CI. Solución: arquitectura monorepo con dos productos complementarios: apps/web (Studio) y packages/cli (automatización por comandos).  Procesar SVG/PNG/JPG íntegramente en el cliente garantizando nitidez en múltiples tamaños y formatos, mantener la UI responsiva sin solapes en móvil (h-dvh + safe-areas), y generar ZIP/manifest/OG de forma consistente. Además, asegurar feedback de estado (spinners/disabled), validación de archivos (≤5MB) y accesibilidad de controles.",
 
   features: [
     "Exportes PNG 16–512 y favicon.ico multi-tamaño",
@@ -266,8 +266,8 @@ export const projectsData = [
     "100% local: sin backend, privacidad por diseño"
   ],
 
-  githubUrl: "https://github.com/Mauriizio/icon-forget",
-  liveUrl: "https://icon-forget.vercel.app/" // ← reemplaza con tu URL de producción
+  githubUrl: "https://github.com/Mauriizio/icon-full",
+  liveUrl: "https://icon-full.vercel.app/" 
 },
 
 //Portafolio Paola Morales
