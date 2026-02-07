@@ -1,5 +1,183 @@
 // data/projects.js
 export const projectsData = [
+
+  // IconFull Generator
+{
+  id: "iconfull",
+  slug: "iconfull",
+  category: "Herramienta Web + CLI",
+  title: "IconFull (Studio + CLI) ",
+
+  // Miniatura del menú
+  icon: "/assets/iconforge/3.png",
+
+  // Imágenes del detalle
+  detailImage: "/assets/iconforge/1.png",        // HERO inicial
+  contentImage: "/assets/iconforge/2.png",     // grande tras la descripción
+  extraImage: "/assets/iconforge/33.png", // grande tras retos/soluciones
+
+  // (Opcional) Imagen para Open Graph/Twitter
+  ogImage: "/assets/iconforge/og-1200x630.png",
+
+  // Fallback (compatibilidad con código previo)
+  image: "/assets/iconforge/3.png",
+
+  description:
+    "Herramienta para generar, desde una sola imagen, todos los assets esenciales de una app/web: favicons, Apple Touch, Android Chrome icons, imagen Open Graph y manifest.webmanifest, con flujo visual en web y automatización por CLI. Ideal para desarrolladores y diseñadores que buscan optimizar su flujo de trabajo y garantizar consistencia en sus proyectos. La aplicación web permite a los usuarios subir una imagen (SVG, PNG o JPG) y personalizar opciones como colores de fondo, textos para OG, y tamaños específicos. Luego, genera un paquete ZIP listo para usar con todos los assets necesarios. La versión CLI facilita la integración en pipelines de desarrollo, permitiendo generar los mismos assets directamente desde la terminal con comandos simples.",
+
+  technologies: [
+    "React",
+    "Next.js (Studio web)",
+    "Tailwind CSS",
+    "Node.js",
+    "CLI con Commander",
+    "Sharp (procesamiento de imágenes)",
+    "Archiver (export ZIP)"
+  ],
+
+  challenges:
+    "Al tener dos vías de uso (Studio y terminal), era clave mantener el mismo estándar de archivos para evitar diferencias en producción. Solución: se definió un set consistente de salidas (favicon, apple-touch-icon, android-chrome, og, manifest) y se documentó para ambos flujos. muchos usuarios necesitan interfaz gráfica, pero equipos técnicos requieren ejecución en pipelines/CI. Solución: arquitectura monorepo con dos productos complementarios: apps/web (Studio) y packages/cli (automatización por comandos).  Procesar SVG/PNG/JPG íntegramente en el cliente garantizando nitidez en múltiples tamaños y formatos, mantener la UI responsiva sin solapes en móvil (h-dvh + safe-areas), y generar ZIP/manifest/OG de forma consistente. Además, asegurar feedback de estado (spinners/disabled), validación de archivos (≤5MB) y accesibilidad de controles.",
+
+  features: [
+    "Exportes PNG 16–512 y favicon.ico multi-tamaño",
+    "OG 1200×630 con título/subtítulo y fondo auto cuando es transparente",
+    "site.webmanifest con purpose 'any maskable' y colores configurables",
+    "ZIP final con icons/, og/, manifest y README con snippets listo para copiar",
+    "100% local: sin backend, privacidad por diseño"
+  ],
+
+  githubUrl: "https://github.com/Mauriizio/icon-full",
+  liveUrl: "https://icon-full.vercel.app/" 
+},
+
+  // Space Marine Club de Boxeo y Gym
+{
+  id: "spacemarine",
+  slug: "spacemarine",
+  category: "Sitio Web para Gimnasio/Boxeo",
+  title: "Space Marine Club de Box",
+
+  // Miniatura del menú
+  icon: "/assets/spacemarine/3.png",
+
+  // Imágenes del detalle
+  detailImage: "/assets/spacemarine/1.png",        // HERO inicial
+  contentImage: "/assets/spacemarine/2.png",     // grande tras la descripción
+  extraImage: "/assets/spacemarine/33.png", // grande tras retos/soluciones
+
+  // (Opcional) Imagen para Open Graph/Twitter
+
+  // Miniatura del menú
+  icon: "/assets/gym/logo.png",
+
+  // Imágenes del detalle
+  detailImage: "/assets/gym/1.png",        // HERO inicial
+  contentImage: "/assets/gym/2.png",     // grande tras la descripción
+  extraImage: "/assets/gym/3.png", // grande tras retos/soluciones
+
+  // (Opcional) Imagen para Open Graph/Twitter
+  ogImage: "/assets/gym/og.png",
+
+  // Fallback (compatibilidad con código previo)
+  image: "/assets/gym/logo.png",
+
+  description:
+    "Sitio web para gimnasio y club de boxeo, con diseño moderno y funcionalidad completa. El objetivo principal era crear una plataforma que no solo presentara la información de manera clara, sino que también facilitara la interacción con los usuarios potenciales. Implementé secciones detalladas para horarios, entrenadores, servicios ofrecidos y una galería multimedia para mostrar las instalaciones y eventos del gimnasio. Además, optimicé la web para SEO local y redes sociales, asegurando que los interesados pudieran encontrar fácilmente el gimnasio en línea.",
+
+  technologies: [
+    "React",
+    "Next.js (Studio web)",
+    "Tailwind CSS",
+   "SEO local y optimización para redes sociales",
+   "Integración de formularios de contacto y suscripción"
+  ],
+
+  challenges: //Gym mas club de boxeo mas la venta del  producto oficial del gym Creatina Monohidrato Space Marine y tener que promocionarla y a la vez pormocionar el gym sin quiarse protagonismo entre ambos
+    "El principal desafío fue equilibrar la promoción del gimnasio y el club de boxeo con la venta del producto oficial (Creatina Monohidrato Space Marine) sin que uno opacara al otro. Para resolver esto, diseñé una estructura de navegación clara que destacaba ambos aspectos por igual, utilizando secciones dedicadas para cada uno. Además, implementé estrategias de SEO local para el gimnasio y optimización de contenido para la tienda online, asegurando que ambos elementos tuvieran visibilidad adecuada en los motores de búsqueda y redes sociales.",
+
+  features: [
+    "Diseño moderno y responsivo con Tailwind CSS",
+    "Secciones detalladas para horarios, productos y servicios",
+    "Galería multimedia para mostrar instalaciones y eventos",
+    "Optimización SEO local y para redes sociales",
+    "Formularios de contacto y suscripción integrados"
+  ],
+
+  githubUrl: "https://github.com/Mauriizio/Gym-Space-Marin",
+  liveUrl: "https://www.spacemarinegym.cl/" 
+},
+
+//Los Chamitos Locos
+  {
+    
+    id: "lcl",
+    slug: "chamitos-locos",
+    title: "Los Chamitos Locos",
+    category: "Sitio web de Banda Musical",
+
+    // Miniatura del menú
+    icon: "/assets/lcl/icon-lcl.webp",
+
+    // Imágenes del detalle
+    detailImage: "/assets/lcl/lcl (2).webp",     // HERO inicial
+    contentImage: "/assets/lcl/lcl (3).webp", // grande tras la descripción
+    extraImage: "/assets/lcl/lcl (4).webp",     // grande tras retos/soluciones
+
+    // (Opcional) Imagen para Open Graph/Twitter
+    ogImage: "/assets/lcl/og-1200x630.png",
+
+    // Fallback (compatibilidad con código previo)
+    image: "/assets/lcl/icon-lcl.webp",
+
+    description: "Página web para grupo musical venezolano. Para mi lo principal fue capturar la energía y el espíritu vibrante de la banda a través del diseño web. Trabajé en estrecha colaboración con los miembros para entender su visión y traducirla en una experiencia digital que reflejara su estilo único. Implementé secciones dinámicas para biografías, galería multimedia y un calendario de eventos interactivo. Además, optimicé la web para SEO local y redes sociales, asegurando que los fans pudieran encontrar fácilmente información sobre próximos conciertos y lanzamientos.",
+    technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
+    challenges:
+      "Crear una experiencia inmersiva que transmitiera la energía de la banda, integrando multimedia y manteniendo tiempos de carga rápidos. También fue un reto organizar el contenido para que fuera accesible y atractivo tanto para fans nuevos como para seguidores leales.",
+    features: [
+      "Animaciones CSS complejas",
+      "Layouts avanzados con Grid y Flexbox",
+      "Efectos visuales modernos",
+      "Optimización de rendimiento",
+    ],
+    githubUrl: "https://github.com/Mauriizio/lcl",
+    liveUrl: "https://lcl-sepia-nine.vercel.app/",
+  },
+
+  //Coriolis Accesorios
+{
+    id: "coriolis",
+    slug: "coriolis-accesorios",
+    category: "e-comerce/Tienda online",
+    title: "Coriolis Accesorios",
+
+    // Miniatura del menú
+    icon: "/assets/coriolisacc/cover.webp",
+
+    // Imágenes del detalle
+    detailImage: "/assets/coriolisacc/hero.webp",     // HERO inicial
+    contentImage: "/assets/coriolisacc/cor-2.webp", // grande tras la descripción
+    extraImage: "/assets/coriolisacc/cor-3.webp",     // grande tras retos/soluciones
+
+    // (Opcional) Imagen para Open Graph/Twitter
+    ogImage: "/assets/coriolisacc/og.webp",
+
+    // Fallback (compatibilidad con código previo)
+    image: "/assets/coriolisacc/cover.webp",
+
+    description: "Página web para emprendimiento local, con tienda online. Esta web es un emprendimiento de una estudiante de Biologia marina, que queria vender accesorios hechos a mano, y expresar su escencia en la web como en cada producto  por lo cual me encarge de diseñar y desarrollar la web desde cero en React/Next.js, desde el diseño de logo, paleta de colores y todo el branding de la marca.",
+    technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
+    challenges:
+      "Crear colecciones por temporada y categorizar productos, yendo más allá del desarrollo hacia la creación visual de assets con IA. Editar cada foto de producto para mantener una estética coherente en toda la tienda.",
+    features: [
+      "Animaciones CSS complejas",
+      "Layouts avanzados con Grid y Flexbox",
+      "Efectos visuales modernos",
+      "Optimización de rendimiento",
+    ],
+    githubUrl: "https://github.com/Mauriizio/coriolis",
+    liveUrl: "https://www.coriolisaccesorios.store/",
+},
+
 //Mecanica El Intercontinental
 {
   "id": "mecanica-int",
@@ -48,40 +226,7 @@ export const projectsData = [
   "githubUrl": "https://github.com/Mauriizio/webmecanic",
   "liveUrl": "https://webmecanic-lme7-caballeromaurizio-gmailcoms-projects.vercel.app/"
 },
-//Coriolis Accesorios
-{
-    id: "coriolis",
-    slug: "coriolis-accesorios",
-    category: "e-comerce/Tienda online",
-    title: "Coriolis Accesorios",
 
-    // Miniatura del menú
-    icon: "/assets/coriolisacc/cover.webp",
-
-    // Imágenes del detalle
-    detailImage: "/assets/coriolisacc/hero.webp",     // HERO inicial
-    contentImage: "/assets/coriolisacc/cor-2.webp", // grande tras la descripción
-    extraImage: "/assets/coriolisacc/cor-3.webp",     // grande tras retos/soluciones
-
-    // (Opcional) Imagen para Open Graph/Twitter
-    ogImage: "/assets/coriolisacc/og.webp",
-
-    // Fallback (compatibilidad con código previo)
-    image: "/assets/coriolisacc/cover.webp",
-
-    description: "Página web para emprendimiento local, con tienda online. Esta web es un emprendimiento de una estudiante de Biologia marina, que queria vender accesorios hechos a mano, y expresar su escencia en la web como en cada producto  por lo cual me encarge de diseñar y desarrollar la web desde cero en React/Next.js, desde el diseño de logo, paleta de colores y todo el branding de la marca.",
-    technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
-    challenges:
-      "Crear colecciones por temporada y categorizar productos, yendo más allá del desarrollo hacia la creación visual de assets con IA. Editar cada foto de producto para mantener una estética coherente en toda la tienda.",
-    features: [
-      "Animaciones CSS complejas",
-      "Layouts avanzados con Grid y Flexbox",
-      "Efectos visuales modernos",
-      "Optimización de rendimiento",
-    ],
-    githubUrl: "https://github.com/Mauriizio/coriolis",
-    liveUrl: "https://www.coriolisaccesorios.store/",
-},
 //Dulces Secretos
 {
     
@@ -117,41 +262,7 @@ export const projectsData = [
     githubUrl: "https://github.com/Mauriizio/sturdy-rotary-phone",
     liveUrl: "https://www.dulcessecretos.online/",
   },
-//Los Chamitos Locos
-  {
-    
-    id: "lcl",
-    slug: "chamitos-locos",
-    title: "Los Chamitos Locos",
-    category: "Sitio web de Banda Musical",
 
-    // Miniatura del menú
-    icon: "/assets/lcl/icon-lcl.webp",
-
-    // Imágenes del detalle
-    detailImage: "/assets/lcl/lcl (2).webp",     // HERO inicial
-    contentImage: "/assets/lcl/lcl (3).webp", // grande tras la descripción
-    extraImage: "/assets/lcl/lcl (4).webp",     // grande tras retos/soluciones
-
-    // (Opcional) Imagen para Open Graph/Twitter
-    ogImage: "/assets/lcl/og-1200x630.png",
-
-    // Fallback (compatibilidad con código previo)
-    image: "/assets/lcl/icon-lcl.webp",
-
-    description: "Página web para grupo musical venezolano. Para mi lo principal fue capturar la energía y el espíritu vibrante de la banda a través del diseño web. Trabajé en estrecha colaboración con los miembros para entender su visión y traducirla en una experiencia digital que reflejara su estilo único. Implementé secciones dinámicas para biografías, galería multimedia y un calendario de eventos interactivo. Además, optimicé la web para SEO local y redes sociales, asegurando que los fans pudieran encontrar fácilmente información sobre próximos conciertos y lanzamientos.",
-    technologies: ["React", "Next.js", "Tailwind CSS", "Flexbox", "TypeScript"],
-    challenges:
-      "Crear una experiencia inmersiva que transmitiera la energía de la banda, integrando multimedia y manteniendo tiempos de carga rápidos. También fue un reto organizar el contenido para que fuera accesible y atractivo tanto para fans nuevos como para seguidores leales.",
-    features: [
-      "Animaciones CSS complejas",
-      "Layouts avanzados con Grid y Flexbox",
-      "Efectos visuales modernos",
-      "Optimización de rendimiento",
-    ],
-    githubUrl: "https://github.com/Mauriizio/lcl",
-    liveUrl: "https://lcl-git-main-caballeromaurizio-gmailcoms-projects.vercel.app/",
-  },
 //GH Formación
   {
     id: "ghformacion",
@@ -221,54 +332,7 @@ export const projectsData = [
     liveUrl: "https://daniyer.online/",
 },
 
-// IconFull Generator
-{
-  id: "iconfull",
-  slug: "iconfull",
-  category: "Herramienta Web + CLI",
-  title: "IconFull (Studio + CLI) ",
 
-  // Miniatura del menú
-  icon: "/assets/iconforge/3.png",
-
-  // Imágenes del detalle
-  detailImage: "/assets/iconforge/1.png",        // HERO inicial
-  contentImage: "/assets/iconforge/2.png",     // grande tras la descripción
-  extraImage: "/assets/iconforge/33.png", // grande tras retos/soluciones
-
-  // (Opcional) Imagen para Open Graph/Twitter
-  ogImage: "/assets/iconforge/og-1200x630.png",
-
-  // Fallback (compatibilidad con código previo)
-  image: "/assets/iconforge/3.png",
-
-  description:
-    "Herramienta para generar, desde una sola imagen, todos los assets esenciales de una app/web: favicons, Apple Touch, Android Chrome icons, imagen Open Graph y manifest.webmanifest, con flujo visual en web y automatización por CLI. Ideal para desarrolladores y diseñadores que buscan optimizar su flujo de trabajo y garantizar consistencia en sus proyectos. La aplicación web permite a los usuarios subir una imagen (SVG, PNG o JPG) y personalizar opciones como colores de fondo, textos para OG, y tamaños específicos. Luego, genera un paquete ZIP listo para usar con todos los assets necesarios. La versión CLI facilita la integración en pipelines de desarrollo, permitiendo generar los mismos assets directamente desde la terminal con comandos simples.",
-
-  technologies: [
-    "React",
-    "Next.js (Studio web)",
-    "Tailwind CSS",
-    "Node.js",
-    "CLI con Commander",
-    "Sharp (procesamiento de imágenes)",
-    "Archiver (export ZIP)"
-  ],
-
-  challenges:
-    "Al tener dos vías de uso (Studio y terminal), era clave mantener el mismo estándar de archivos para evitar diferencias en producción. Solución: se definió un set consistente de salidas (favicon, apple-touch-icon, android-chrome, og, manifest) y se documentó para ambos flujos. muchos usuarios necesitan interfaz gráfica, pero equipos técnicos requieren ejecución en pipelines/CI. Solución: arquitectura monorepo con dos productos complementarios: apps/web (Studio) y packages/cli (automatización por comandos).  Procesar SVG/PNG/JPG íntegramente en el cliente garantizando nitidez en múltiples tamaños y formatos, mantener la UI responsiva sin solapes en móvil (h-dvh + safe-areas), y generar ZIP/manifest/OG de forma consistente. Además, asegurar feedback de estado (spinners/disabled), validación de archivos (≤5MB) y accesibilidad de controles.",
-
-  features: [
-    "Exportes PNG 16–512 y favicon.ico multi-tamaño",
-    "OG 1200×630 con título/subtítulo y fondo auto cuando es transparente",
-    "site.webmanifest con purpose 'any maskable' y colores configurables",
-    "ZIP final con icons/, og/, manifest y README con snippets listo para copiar",
-    "100% local: sin backend, privacidad por diseño"
-  ],
-
-  githubUrl: "https://github.com/Mauriizio/icon-full",
-  liveUrl: "https://icon-full.vercel.app/" 
-},
 
 //Portafolio Paola Morales
   {
