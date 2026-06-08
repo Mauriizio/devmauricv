@@ -9,6 +9,7 @@ import { useTheme } from "@/context/ThemeContext"
 import { useFocusTrap } from "@/components/useFocusTrap"
 import { ArrowLeft, X as IconX, Sun, Moon, Download } from "lucide-react"
 import LogoMC from "@/components/LogoMC"
+import { getProjectLinks, getProjectSections, getProjectSeo, normalizeProject } from "@/data/contentHelpers"
 
 export default function ProjectDetail({ show, project, onClose, onBackToProjects }) {
   const dialogRef = useRef(null)
@@ -58,39 +59,61 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
 
   if (!project) return null
 
+  const normalizedProject = normalizeProject(project)
+  const projectSections = getProjectSections(project)
+  const projectLinks = getProjectLinks(project)
+  const projectSeo = getProjectSeo(project)
+  const media = normalizedProject.media || {}
+  const projectTitle = normalizedProject.title || project.title || "Proyecto"
+  const projectDescription =
+    normalizedProject.description || normalizedProject.summary || project.description || ""
+  const hasExplicitSections = Array.isArray(project.sections) && projectSections.length > 0
+  const technologies = Array.isArray(normalizedProject.tools)
+    ? normalizedProject.tools
+    : Array.isArray(project.technologies)
+      ? project.technologies
+      : []
+
   // Imágenes con fallbacks
   const heroImage =
-    project.detailImage || project.images?.hero || project.image || "/placeholder.svg?height=400&width=800"
+    media.detailImage || media.hero || project.detailImage || project.images?.hero || media.image || project.image || "/placeholder.svg?height=400&width=800"
   const contentImage =
-    project.contentImage || project.images?.content || project.images?.section || project.image || heroImage
+    media.contentImage || media.content || media.section || project.contentImage || project.images?.content || project.images?.section || media.image || project.image || heroImage
   const extraImage =
-    project.extraImage || project.images?.extra || project.images?.afterChallenges || project.image || heroImage
+    media.extraImage || media.extra || media.afterChallenges || project.extraImage || project.images?.extra || project.images?.afterChallenges || media.image || project.image || heroImage
+
+  const primaryGithubLink = projectLinks.find((link) => link.type === "github" || link.id === "github")
+  const primaryLiveLink = projectLinks.find((link) => link.type === "live" || link.id === "live" || link.type === "demo")
+  const additionalLinks = projectLinks.filter((link) => link !== primaryGithubLink && link !== primaryLiveLink)
+  const projectDownloads = Array.isArray(normalizedProject.downloads) ? normalizedProject.downloads.filter(Boolean) : []
 
   // SEO
   const description =
-    project.seoDescription || project.description || `Proyecto "${project.title}" de Maurizio Caballero.`
-  const ogImage = project.ogImage || heroImage
+    projectSeo.description || project.seoDescription || projectDescription || `Proyecto "${projectTitle}" de Maurizio Caballero.`
+  const ogImage = projectSeo.image || project.ogImage || heroImage
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
-  const canonical = siteUrl && project?.id ? `${siteUrl}?view=project&id=${project.id}` : undefined
+  const canonical = siteUrl && normalizedProject.id ? `${siteUrl}?view=project&id=${normalizedProject.id}` : undefined
+  const seoKeywords = Array.isArray(projectSeo.keywords) ? projectSeo.keywords : []
 
   const preconnectHosts = (() => {
     const hosts = []
-    try { if (project.liveUrl) hosts.push(new URL(project.liveUrl).origin) } catch {}
-    try { if (project.githubUrl) hosts.push(new URL(project.githubUrl).origin) } catch {}
+    projectLinks.forEach((link) => {
+      try { if (link.url) hosts.push(new URL(link.url).origin) } catch {}
+    })
     return Array.from(new Set(hosts))
   })()
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "SoftwareSourceCode",
-    name: project.title || "Proyecto",
+    "@type": projectSeo.schemaType || "CreativeWork",
+    name: projectSeo.title || projectTitle,
     description,
     author: { "@type": "Person", name: "Maurizio Caballero" },
-    programmingLanguage: project.technologies || [],
-    codeRepository: project.githubUrl || undefined,
-    url: project.liveUrl || undefined,
+    programmingLanguage: technologies,
+    codeRepository: primaryGithubLink?.url || project.githubUrl || undefined,
+    url: primaryLiveLink?.url || project.liveUrl || canonical,
     image: ogImage,
-    keywords: Array.isArray(project.technologies) ? project.technologies.join(", ") : undefined,
+    keywords: seoKeywords.length > 0 ? seoKeywords.join(", ") : undefined,
   }
 
   const openLightbox = (src) => { setLightboxSrc(src); setZoomed(false) }
@@ -142,10 +165,24 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
         ${show ? "translate-y-0" : "translate-y-full"} ${isDark ? "dark bg-gray-900 text-white" : "bg-stone-200 text-zinc-800"}`}
     >
       {show && (
-  <Head>
-    <meta name="robots" content="noindex,nofollow" />
-  </Head>
-)}
+        <Head>
+          <title>{projectSeo.title || projectTitle}</title>
+          <meta name="description" content={description} />
+          <meta name="robots" content="noindex,nofollow" />
+          {canonical && <link rel="canonical" href={canonical} />}
+          {preconnectHosts.map((host) => (
+            <link key={host} rel="preconnect" href={host} />
+          ))}
+          <meta property="og:title" content={projectSeo.title || projectTitle} />
+          <meta property="og:description" content={description} />
+          {ogImage && <meta property="og:image" content={ogImage} />}
+          {seoKeywords.length > 0 && <meta name="keywords" content={seoKeywords.join(", ")} />}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+        </Head>
+      )}
 
 
      {/* Header (Menu Overlay) */}
@@ -322,25 +359,25 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
       {/* Contenido sin “boxes” */}
       <div className="relative max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-12 space-y-12 md:space-y-16">
         <header className="text-center space-y-4 md:space-y-6">
-          <h2 className="title-main mb-2" id="project-detail-title">{project.title}</h2>
-          {project.description && (<p className="text-responsive max-w-3xl mx-auto">{project.description}</p>)}
+          <h2 className="title-main mb-2" id="project-detail-title">{projectTitle}</h2>
+          {projectDescription && (<p className="text-responsive max-w-3xl mx-auto">{projectDescription}</p>)}
         </header>
 
         {/* Hero */}
         <figure className="mx-auto max-w-4xl">
           <button type="button" onClick={() => openLightbox(heroImage)}
             className="relative block w-full h-64 md:h-96 overflow-hidden rounded-2xl cursor-zoom-in" aria-label="Abrir imagen en grande">
-            <Image src={heroImage} alt={`${project.title} — Hero`} fill sizes="(max-width: 768px) 100vw, 960px" className="object-cover object-center" />
+            <Image src={heroImage} alt={`${projectTitle} — Hero`} fill sizes="(max-width: 768px) 100vw, 960px" className="object-cover object-center" />
           </button>
           <figcaption className="sr-only">Vista previa principal del proyecto</figcaption>
         </figure>
 
         {/* Tecnologías */}
-        {Array.isArray(project.technologies) && project.technologies.length > 0 && (
+        {technologies.length > 0 && (
           <section className="text-center space-y-4">
             <h3 className="title-section">Tecnologías Utilizadas</h3>
             <div className="flex flex-wrap justify-center gap-2 md:gap-3">
-              {project.technologies.map((tech, idx) => (<span key={idx} className="tag-tech tag-solid">{tech}</span>))}
+              {technologies.map((tech, idx) => (<span key={idx} className="tag-tech tag-solid">{tech}</span>))}
             </div>
           </section>
         )}
@@ -349,43 +386,87 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
         <figure className="mx-auto max-w-4xl">
           <button type="button" onClick={() => openLightbox(contentImage)}
             className="relative block w-full h-64 md:h-96 overflow-hidden rounded-2xl cursor-zoom-in" aria-label="Abrir imagen en grande">
-            <Image src={contentImage} alt={`${project.title} — Contenido`} fill sizes="(max-width: 768px) 100vw, 960px" className="object-cover object-center" />
+            <Image src={contentImage} alt={`${projectTitle} — Contenido`} fill sizes="(max-width: 768px) 100vw, 960px" className="object-cover object-center" />
           </button>
           <figcaption className="sr-only">Vista de contenido del proyecto</figcaption>
         </figure>
 
-        {/* Retos */}
-        {project.challenges && (
-          <section className="text-center space-y-4">
-            <h3 className="title-section">Retos y Soluciones</h3>
-            <p className="text-responsive max-w-3xl mx-auto">{project.challenges}</p>
-          </section>
-        )}
+        {/* Secciones */}
+        {hasExplicitSections
+          ? projectSections.map((section, index) => {
+              const sectionBody = section.raw?.body || section.body || section.content
+              const sectionItems = Array.isArray(section.raw?.items)
+                ? section.raw.items
+                : Array.isArray(section.items)
+                  ? section.items
+                  : Array.isArray(section.content)
+                    ? section.content
+                    : []
+              const hasBody = typeof sectionBody === "string" && sectionBody.trim().length > 0
+              const hasItems = sectionItems.length > 0
+
+              if (!section.title && !hasBody && !hasItems) return null
+
+              return (
+                <section key={section.id || index} className="text-center space-y-4">
+                  {section.title && <h3 className="title-section">{section.title}</h3>}
+                  {hasBody && <p className="text-responsive max-w-3xl mx-auto">{sectionBody}</p>}
+                  {hasItems && (
+                    <ul className="text-responsive max-w-3xl mx-auto space-y-2 list-disc list-inside">
+                      {sectionItems.map((item, itemIndex) => (
+                        <li key={`${section.id || index}-${itemIndex}`}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
+                </section>
+              )
+            })
+          : project.challenges && (
+              <section className="text-center space-y-4">
+                <h3 className="title-section">Retos y Soluciones</h3>
+                <p className="text-responsive max-w-3xl mx-auto">{project.challenges}</p>
+              </section>
+            )}
 
         {/* Imagen extra */}
         <figure className="mx-auto max-w-4xl">
           <button type="button" onClick={() => openLightbox(extraImage)}
             className="relative block w-full h-64 md:h-96 overflow-hidden rounded-2xl cursor-zoom-in" aria-label="Abrir imagen en grande">
-            <Image src={extraImage} alt={`${project.title} — Vista adicional`} fill sizes="(max-width: 768px) 100vw, 960px" className="object-cover object-center" />
+            <Image src={extraImage} alt={`${projectTitle} — Vista adicional`} fill sizes="(max-width: 768px) 100vw, 960px" className="object-cover object-center" />
           </button>
           <figcaption className="sr-only">Vista adicional del proyecto</figcaption>
         </figure>
 
         {/* Enlaces */}
-        {(project.githubUrl || project.liveUrl) && (
+        {(projectLinks.length > 0 || projectDownloads.length > 0) && (
           <section className="text-center space-y-4">
             <h3 className="title-section">Enlaces del Proyecto</h3>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              {project.githubUrl && (
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className={ctaBtn}>
+              {primaryGithubLink && (
+                <a href={primaryGithubLink.url} target="_blank" rel="noopener noreferrer" className={ctaBtn}>
                   <span aria-hidden>📂</span> Ver Código en GitHub
                 </a>
               )}
-              {project.liveUrl && (
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className={ctaBtn}>
+              {primaryLiveLink && (
+                <a href={primaryLiveLink.url} target="_blank" rel="noopener noreferrer" className={ctaBtn}>
                   <span aria-hidden>🌐</span> Ver Proyecto en Vivo
                 </a>
               )}
+              {additionalLinks.map((link) => (
+                <a key={link.id || link.url} href={link.url} target="_blank" rel="noopener noreferrer" className={ctaBtn}>
+                  <span aria-hidden>🔗</span> {link.label || "Ver enlace"}
+                </a>
+              ))}
+              {projectDownloads.map((download, index) => {
+                const url = download.url || download.href
+                if (!url) return null
+
+                return (
+                  <a key={download.id || url || index} href={url} target="_blank" rel="noopener noreferrer" className={ctaBtn}>
+                    <Download size={16} aria-hidden="true" /> {download.label || download.title || "Descargar recurso"}
+                  </a>
+                )
+              })}
             </div>
             <p className="text-responsive mt-4">Explora el código fuente y la implementación en vivo.</p>
           </section>
