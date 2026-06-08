@@ -1,10 +1,16 @@
 import "@/styles/globals.css"
 import { ThemeProvider } from "@/context/ThemeContext"
+import Head from "next/head"
 
 export default function App({ Component, pageProps }) {
   return (
-    <ThemeProvider>
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+      </Head>
+      <ThemeProvider>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </>
   )
 }

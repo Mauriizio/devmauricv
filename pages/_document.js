@@ -5,10 +5,6 @@ export default function Document() {
   return (
     <Html lang="es">
       <Head>
-
-      <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-
-
         {/* Preconnect a Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />

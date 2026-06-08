@@ -189,7 +189,7 @@ export const projectsData = [
   "contentImage": "/assets/mec/mec-2.webp",
   "extraImage": "/assets/mec/mec-3.webp",
   "ogImage": "/assets/coriolisacc/og.webp",
-  "image": "/assets/coriolisacc/icon-mec.webp",
+  "image": "/assets/mec/icon-mec.webp",
   "description": "Diseñé y desarrollé el sitio web para Mecánica El Intercontinental partiendo de un objetivo claro: que el taller dejara de depender solo del boca a boca y empezara a captar clientes de forma constante por canales digitales. Me encargué desde el wireframe hasta la implementación final: arquitectura de la información, diseño mobile-first, animaciones sutiles para mejorar la percepción de profesionalismo y los llamados a la acción que convierten (WhatsApp directo, formulario rápido y mapa de ubicación). Además optimicé imágenes, configuré SEO local básico y preparé la landing para una campaña de Google Ads enfocada en servicios clave. El resultado fue una presencia digital mucho más clara y un aumento visible en las solicitudes de servicio y llamadas en las semanas posteriores.",
   "technologies": [
     "React",
