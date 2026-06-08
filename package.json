@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint pages components data context next.config.mjs postcss.config.mjs tailwind.config.js eslint.config.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
