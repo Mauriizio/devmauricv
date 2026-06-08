@@ -401,6 +401,535 @@ export const projectsData = [
     liveUrl: "https://www.dacorpa.online/",
 }
 
+,
+
+// Hip Hop Don’t Stop
+{
+  id: "hip-hop-dont-stop",
+  slug: "hip-hop-dont-stop",
+  type: "creative",
+  contentKind: "music-production",
+  title: "Hip Hop Don’t Stop",
+  category: "Música / Producción",
+  categories: ["Música / Producción", "Producción musical"],
+  tags: ["Rap", "Producción musical", "Mezcla", "Mastering", "Composición", "Interpretación"],
+  tools: [
+    "Cubase 5",
+    "Cubase Elements",
+    "Cubase 15",
+    "Photoshop",
+    "Auto-Tune",
+    "Waves Plugins",
+    "FabFilter Bundle",
+    "Blue Cat's Bundle",
+    "Plugins de procesamiento vocal y mezcla",
+  ],
+  summary:
+    "Proyecto musical de rap realizado con United Rappers y colaboración con Misterio MC, con producción musical, mezcla y mastering.",
+  description:
+    "Muestra seleccionada de una etapa musical profesional vinculada a producción, mezcla, mastering, composición e interpretación. El proyecto se presenta como antecedente creativo y técnico, útil para evidenciar disciplina de producción, criterio audiovisual y capacidad para cerrar piezas publicables.",
+  status: "completed",
+  featured: false,
+  visibility: "public",
+  year: 2016,
+  role: "Productor musical, mezcla, mastering, composición e interpretación rap.",
+  image: "/assets/projects/hip-hop-dont-stop/cover.webp",
+  icon: "/assets/projects/hip-hop-dont-stop/logo-united-rappers.webp",
+  detailImage: "/assets/projects/hip-hop-dont-stop/cover.webp",
+  contentImage: "/assets/projects/hip-hop-dont-stop/tracklist.webp",
+  extraImage: "/assets/projects/hip-hop-dont-stop/mockup-disco.webp",
+  ogImage: "/assets/projects/hip-hop-dont-stop/cover.webp",
+  media: {
+    cover: "/assets/projects/hip-hop-dont-stop/cover.webp",
+    tracklist: "/assets/projects/hip-hop-dont-stop/tracklist.webp",
+    logo: "/assets/projects/hip-hop-dont-stop/logo-united-rappers.webp",
+    mockup: "/assets/projects/hip-hop-dont-stop/mockup-disco.webp",
+    caminoFrame: "/assets/projects/hip-hop-dont-stop/camino-del-mal-frame.webp",
+  },
+  links: [
+    {
+      id: "hip-hop-dont-stop-youtube",
+      label: "Hip Hop Don’t Stop",
+      url: "https://www.youtube.com/watch?v=ZPHE3eiXVBw&list=RDZPHE3eiXVBw&start_radio=1",
+      type: "youtube",
+    },
+    {
+      id: "camino-del-mal-youtube",
+      label: "Camino del Mal",
+      url: "https://www.youtube.com/watch?v=SvYkUlRW_wY",
+      type: "youtube",
+    },
+  ],
+  sections: [
+    {
+      id: "contexto",
+      title: "Contexto",
+      content:
+        "Proyecto de rap desarrollado junto a United Rappers y con colaboración de Misterio MC. Se registra como una experiencia creativa anterior, enfocada en producción musical y publicación de piezas terminadas.",
+    },
+    {
+      id: "rol-y-responsabilidades",
+      title: "Rol y responsabilidades",
+      content:
+        "Participé en la producción musical, mezcla, mastering, composición e interpretación, cuidando tanto la construcción sonora como el cierre técnico de las piezas.",
+    },
+    {
+      id: "herramientas-de-produccion",
+      title: "Herramientas de producción",
+      content:
+        "El flujo combinó Cubase en distintas versiones, edición visual en Photoshop y plugins de procesamiento vocal y mezcla para ajustar voces, dinámica, ecualización y acabado final.",
+    },
+    {
+      id: "piezas-destacadas",
+      title: "Piezas destacadas",
+      content:
+        "La selección incluye Hip Hop Don’t Stop y Camino del Mal como referencias públicas del trabajo musical realizado en esa etapa.",
+    },
+    {
+      id: "aprendizajes-transferibles",
+      title: "Aprendizajes transferibles al perfil actual",
+      content:
+        "La experiencia aporta criterio audiovisual, atención al detalle, disciplina creativa y capacidad para iterar hasta obtener una entrega coherente y publicable.",
+    },
+  ],
+  seo: {
+    title: "Hip Hop Don’t Stop | Producción musical",
+    description:
+      "Proyecto musical de rap con producción, mezcla, mastering, composición e interpretación junto a United Rappers.",
+    image: "/assets/projects/hip-hop-dont-stop/cover.webp",
+    keywords: ["rap", "producción musical", "mezcla", "mastering", "United Rappers"],
+  },
+},
+
+// Aseo Market
+{
+  id: "aseo-market",
+  slug: "aseo-market",
+  type: "web-project",
+  contentKind: "client-website",
+  title: "Aseo Market",
+  category: "Desarrollo Web",
+  categories: ["Desarrollo Web", "Sitio para cliente"],
+  tags: ["Landing", "Sitio web", "React", "TypeScript", "Next.js", "Vercel", "Responsive"],
+  tools: ["TypeScript", "React", "Next.js/Vercel", "Diseño responsive"],
+  summary:
+    "Sitio web para una empresa de mantenimiento industrial, orientado a presentar servicios y facilitar contacto comercial.",
+  description:
+    "Proyecto sencillo tipo landing extendida, con estructura de páginas y secciones para comunicar servicios de una empresa real de manera clara, profesional y directa.",
+  status: "completed",
+  featured: false,
+  visibility: "public",
+  role: "Desarrollo frontend y publicación web.",
+  image: "/assets/projects/aseo-market/cover.webp",
+  icon: "/assets/projects/aseo-market/logo.webp",
+  detailImage: "/assets/projects/aseo-market/cover.webp",
+  contentImage: "/assets/projects/aseo-market/home-desktop.webp",
+  extraImage: "/assets/projects/aseo-market/servicios.webp",
+  ogImage: "/assets/projects/aseo-market/cover.webp",
+  media: {
+    cover: "/assets/projects/aseo-market/cover.webp",
+    home: "/assets/projects/aseo-market/home-desktop.webp",
+    servicios: "/assets/projects/aseo-market/servicios.webp",
+    contacto: "/assets/projects/aseo-market/contacto.webp",
+    logo: "/assets/projects/aseo-market/logo.webp",
+  },
+  links: [
+    {
+      id: "demo",
+      label: "Demo",
+      url: "https://aseo-web.vercel.app/",
+      type: "live",
+    },
+    {
+      id: "github",
+      label: "GitHub",
+      url: "https://github.com/Mauriizio/aseo-web",
+      type: "github",
+    },
+  ],
+  sections: [
+    {
+      id: "objetivo",
+      title: "Objetivo",
+      content:
+        "Crear una presencia web simple para presentar servicios de mantenimiento industrial y facilitar el contacto comercial desde una interfaz ordenada.",
+    },
+    {
+      id: "alcance",
+      title: "Alcance",
+      content:
+        "El alcance se mantuvo acotado: comunicar información relevante, mostrar servicios principales y orientar al usuario hacia canales de contacto.",
+    },
+    {
+      id: "implementacion",
+      title: "Implementación",
+      content:
+        "Se trabajó una estructura responsive publicada en Vercel, con secciones claras para inicio, servicios e información de contacto.",
+    },
+    {
+      id: "resultado",
+      title: "Resultado",
+      content:
+        "El resultado es un sitio profesional y directo, adecuado para una empresa que necesita explicar qué ofrece sin sumar complejidad innecesaria.",
+    },
+    {
+      id: "aprendizaje",
+      title: "Aprendizaje",
+      content:
+        "El proyecto reforzó la importancia de priorizar claridad, jerarquía visual y llamados a la acción en sitios de servicios.",
+    },
+  ],
+  seo: {
+    title: "Aseo Market | Sitio web de mantenimiento industrial",
+    description:
+      "Sitio web para empresa de mantenimiento industrial, orientado a servicios y contacto comercial.",
+    image: "/assets/projects/aseo-market/cover.webp",
+    keywords: ["desarrollo web", "landing", "mantenimiento industrial", "React", "Next.js"],
+  },
+},
+
+// Ferox BARF
+{
+  id: "ferox-barf",
+  slug: "ferox-barf",
+  type: "web-project",
+  contentKind: "fullstack-client-project",
+  title: "Ferox BARF",
+  category: "Desarrollo Web / Base de Datos",
+  categories: ["Desarrollo Web / Base de Datos", "Proyecto fullstack"],
+  tags: ["TypeScript", "React", "Next.js", "Supabase", "SQL", "Usuarios", "Calculadora", "Responsive"],
+  tools: ["TypeScript", "React/Next.js", "Supabase", "SQL", "Autenticación/usuarios", "Diseño responsive"],
+  summary:
+    "Proyecto web para marca de alimentación BARF con registro de usuarios, registro de perros, calculadora de porciones y base de datos.",
+  description:
+    "Primer proyecto mostrable con base de datos y funcionalidades más complejas, integrando experiencia de usuario, registros relacionados y una calculadora útil para estimar porciones.",
+  status: "completed",
+  featured: false,
+  visibility: "public",
+  role: "Desarrollo web, modelado de datos y funcionalidades interactivas.",
+  image: "/assets/projects/ferox-barf/cover.webp",
+  icon: "/assets/projects/ferox-barf/cover.webp",
+  detailImage: "/assets/projects/ferox-barf/cover.webp",
+  contentImage: "/assets/projects/ferox-barf/home-desktop.webp",
+  extraImage: "/assets/projects/ferox-barf/calculadora-porciones.webp",
+  ogImage: "/assets/projects/ferox-barf/cover.webp",
+  media: {
+    cover: "/assets/projects/ferox-barf/cover.webp",
+    home: "/assets/projects/ferox-barf/home-desktop.webp",
+    calculadora: "/assets/projects/ferox-barf/calculadora-porciones.webp",
+    registroPerro: "/assets/projects/ferox-barf/registro-perro.webp",
+    dashboardUsuario: "/assets/projects/ferox-barf/dashboard-usuario.webp",
+  },
+  links: [
+    {
+      id: "demo",
+      label: "Demo",
+      url: "https://feroxbarf.com/",
+      type: "live",
+    },
+    {
+      id: "github",
+      label: "GitHub",
+      url: "https://github.com/Mauriizio/ferox",
+      type: "github",
+    },
+  ],
+  sections: [
+    {
+      id: "objetivo",
+      title: "Objetivo",
+      content:
+        "Construir una experiencia web para una marca de alimentación BARF, combinando presentación comercial con herramientas útiles para usuarios registrados.",
+    },
+    {
+      id: "funcionalidades-principales",
+      title: "Funcionalidades principales",
+      content:
+        "El proyecto incluye registro de usuarios, registro de perros, dashboard de usuario y una calculadora de porciones orientada a apoyar decisiones de alimentación.",
+    },
+    {
+      id: "base-de-datos",
+      title: "Base de datos",
+      content:
+        "La solución incorpora Supabase y SQL para organizar usuarios, perros y datos necesarios para las funcionalidades interactivas.",
+    },
+    {
+      id: "retos",
+      title: "Retos",
+      content:
+        "El principal reto fue conectar datos reales de usuarios y perros con una interfaz clara, manteniendo una experiencia entendible para personas no técnicas.",
+    },
+    {
+      id: "resultado",
+      title: "Resultado",
+      content:
+        "El resultado es una aplicación web publicable que combina landing, base de datos y herramientas funcionales para el uso cotidiano de la marca.",
+    },
+    {
+      id: "aprendizaje",
+      title: "Aprendizaje",
+      content:
+        "El proyecto consolidó aprendizajes sobre modelado de datos, autenticación, flujos de usuario y comunicación entre frontend y backend gestionado.",
+    },
+  ],
+  seo: {
+    title: "Ferox BARF | Proyecto web con Supabase",
+    description:
+      "Proyecto web con usuarios, registro de perros, calculadora de porciones y base de datos Supabase.",
+    image: "/assets/projects/ferox-barf/cover.webp",
+    keywords: ["Ferox BARF", "Supabase", "SQL", "usuarios", "calculadora", "Next.js"],
+  },
+},
+
+// Física Aplicada: vagón sobre rieles en extracción de litio
+{
+  id: "fisica-vagon-litio",
+  slug: "fisica-vagon-litio",
+  type: "academic",
+  contentKind: "engineering-note",
+  title: "Caso de Física Aplicada: vagón sobre rieles en extracción de litio",
+  category: "Bitácora Académica",
+  categories: ["Bitácora Académica", "Física aplicada"],
+  tags: ["Física aplicada", "Segunda Ley de Newton", "Fricción cinética", "Diagramas de cuerpo libre", "Litio"],
+  tools: ["GIMP", "Inkscape", "Análisis físico", "Diagramas de cuerpo libre", "Redacción técnica"],
+  summary:
+    "Informe técnico sobre un sistema transportador de vagones en extracción de litio, aplicando Segunda Ley de Newton, fricción cinética y equilibrio vertical.",
+  description:
+    "Entrada de bitácora académica orientada a documentar resolución de problemas físicos en contexto industrial como material de apoyo y registro de aprendizaje.",
+  status: "completed",
+  featured: false,
+  visibility: "public",
+  semester: "1er semestre",
+  course: "Física Aplicada a Procesos Industriales",
+  image: "/assets/bitacora/fisica-vagon-litio/cover.webp",
+  icon: "/assets/bitacora/fisica-vagon-litio/cover.webp",
+  detailImage: "/assets/bitacora/fisica-vagon-litio/cover.webp",
+  contentImage: "/assets/bitacora/fisica-vagon-litio/diagrama-sistema.webp",
+  extraImage: "/assets/bitacora/fisica-vagon-litio/diagrama-cuerpo-libre.webp",
+  ogImage: "/assets/bitacora/fisica-vagon-litio/cover.webp",
+  media: {
+    cover: "/assets/bitacora/fisica-vagon-litio/cover.webp",
+    sistema: "/assets/bitacora/fisica-vagon-litio/diagrama-sistema.webp",
+    dcl: "/assets/bitacora/fisica-vagon-litio/diagrama-cuerpo-libre.webp",
+  },
+  downloads: [
+    {
+      id: "pdf",
+      label: "PDF",
+      url: "/docs/bitacora/fisica-vagon-litio/caso-vagon-litio.pdf",
+      type: "pdf",
+    },
+  ],
+  sections: [
+    {
+      id: "contexto-industrial",
+      title: "Contexto industrial",
+      content:
+        "El caso se plantea sobre un sistema transportador de vagones usado como referencia para analizar fuerzas en un proceso asociado a extracción de litio.",
+    },
+    {
+      id: "principios-fisicos-aplicados",
+      title: "Principios físicos aplicados",
+      content:
+        "El análisis considera Segunda Ley de Newton, fricción cinética y equilibrio vertical para organizar las fuerzas relevantes del sistema.",
+    },
+    {
+      id: "desarrollo-del-analisis",
+      title: "Desarrollo del análisis",
+      content:
+        "Se documenta el planteamiento mediante diagramas, identificación de variables y resolución paso a paso del problema físico.",
+    },
+    {
+      id: "resultado",
+      title: "Resultado",
+      content:
+        "La entrada deja registro del procedimiento y de los resultados del informe, priorizando claridad antes que espectacularidad.",
+    },
+    {
+      id: "aprendizaje",
+      title: "Aprendizaje",
+      content:
+        "El ejercicio refuerza la conexión entre modelos físicos básicos y situaciones industriales representadas de forma simplificada.",
+    },
+  ],
+  seo: {
+    title: "Caso de Física Aplicada | Vagón sobre rieles en extracción de litio",
+    description:
+      "Informe académico sobre un vagón en rieles aplicado a Segunda Ley de Newton, fricción cinética y equilibrio vertical.",
+    image: "/assets/bitacora/fisica-vagon-litio/cover.webp",
+    keywords: ["física aplicada", "litio", "vagón", "Newton", "fricción"],
+  },
+},
+
+// Electrotecnia: análisis de mallas y tabla de valores
+{
+  id: "electrotecnia-mallas",
+  slug: "electrotecnia-mallas",
+  type: "academic",
+  contentKind: "engineering-note",
+  title: "Electrotecnia: análisis de mallas y tabla de valores",
+  category: "Bitácora Académica",
+  categories: ["Bitácora Académica", "Electrotecnia"],
+  tags: ["Electrotecnia", "Análisis de mallas", "Kirchhoff", "AutoCAD", "Circuitos eléctricos"],
+  tools: [
+    "AutoCAD",
+    "Análisis de mallas",
+    "Ley de Voltajes de Kirchhoff",
+    "Cálculo de corrientes",
+    "Cálculo de voltajes",
+    "Cálculo de potencia",
+  ],
+  summary:
+    "Tarea de electrotecnia con dibujo de circuito, ecuaciones de malla, resolución de corrientes, voltajes y potencia total.",
+  description:
+    "Entrada de bitácora académica para documentar análisis de circuitos eléctricos mediante Ley de Voltajes de Kirchhoff, con apoyo visual y tabla de valores.",
+  status: "completed",
+  featured: false,
+  visibility: "public",
+  semester: "1er semestre",
+  course: "Electrotecnia",
+  image: "/assets/bitacora/electrotecnia-mallas/cover.webp",
+  icon: "/assets/bitacora/electrotecnia-mallas/cover.webp",
+  detailImage: "/assets/bitacora/electrotecnia-mallas/cover.webp",
+  contentImage: "/assets/bitacora/electrotecnia-mallas/circuito-autocad.webp",
+  extraImage: "/assets/bitacora/electrotecnia-mallas/tabla-valores.webp",
+  ogImage: "/assets/bitacora/electrotecnia-mallas/cover.webp",
+  media: {
+    cover: "/assets/bitacora/electrotecnia-mallas/cover.webp",
+    circuito: "/assets/bitacora/electrotecnia-mallas/circuito-autocad.webp",
+    tabla: "/assets/bitacora/electrotecnia-mallas/tabla-valores.webp",
+  },
+  downloads: [
+    {
+      id: "pdf",
+      label: "PDF",
+      url: "/docs/bitacora/electrotecnia-mallas/tarea-mallas-electrotecnia.pdf",
+      type: "pdf",
+    },
+  ],
+  sections: [
+    {
+      id: "objetivo",
+      title: "Objetivo",
+      content:
+        "Documentar una tarea de análisis de circuitos mediante mallas, integrando dibujo técnico, ecuaciones y verificación de valores.",
+    },
+    {
+      id: "desarrollo",
+      title: "Desarrollo",
+      content:
+        "Se representa el circuito en AutoCAD, se plantean ecuaciones con la Ley de Voltajes de Kirchhoff y se calculan corrientes y voltajes.",
+    },
+    {
+      id: "resultados",
+      title: "Resultados",
+      content:
+        "La tabla de valores resume corrientes, voltajes y potencia total como apoyo para revisar el procedimiento y detectar inconsistencias.",
+    },
+    {
+      id: "aprendizaje",
+      title: "Aprendizaje",
+      content:
+        "El ejercicio fortalece la traducción entre esquema eléctrico, ecuaciones matemáticas y resultados tabulados.",
+    },
+  ],
+  seo: {
+    title: "Electrotecnia | Análisis de mallas y tabla de valores",
+    description:
+      "Tarea académica de electrotecnia con análisis de mallas, Kirchhoff, corrientes, voltajes y potencia.",
+    image: "/assets/bitacora/electrotecnia-mallas/cover.webp",
+    keywords: ["electrotecnia", "mallas", "Kirchhoff", "AutoCAD", "circuitos"],
+  },
+},
+
+// Plano eléctrico casa dos plantas
+{
+  id: "plano-casa-dos-plantas",
+  slug: "plano-casa-dos-plantas",
+  type: "academic",
+  contentKind: "technical-drawing",
+  title: "Plano eléctrico de casa de dos plantas en AutoCAD",
+  category: "Bitácora Académica",
+  categories: ["Bitácora Académica", "Dibujo de planos eléctricos"],
+  tags: ["AutoCAD", "Plano eléctrico", "Alumbrado", "Enchufes", "Cuadro de distribución", "Circuitos"],
+  tools: [
+    "AutoCAD",
+    "Simbología eléctrica",
+    "Circuitos de alumbrado",
+    "Circuitos de enchufes",
+    "Cuadro de distribución",
+  ],
+  summary:
+    "Plano eléctrico desarrollado en AutoCAD para una vivienda de dos plantas, con circuitos de alumbrado, enchufes y cuadro de distribución.",
+  description:
+    "Entrada de bitácora académica sobre diseño de planos eléctricos, uso de comandos AutoCAD, circuitos y documentación técnica para una vivienda de dos plantas.",
+  status: "completed",
+  featured: false,
+  visibility: "public",
+  semester: "1er semestre",
+  course: "Dibujo de Planos Eléctricos",
+  image: "/assets/bitacora/plano-casa-dos-plantas/cover.webp",
+  icon: "/assets/bitacora/plano-casa-dos-plantas/cover.webp",
+  detailImage: "/assets/bitacora/plano-casa-dos-plantas/cover.webp",
+  contentImage: "/assets/bitacora/plano-casa-dos-plantas/planta-alumbrado.webp",
+  extraImage: "/assets/bitacora/plano-casa-dos-plantas/planta-enchufes.webp",
+  ogImage: "/assets/bitacora/plano-casa-dos-plantas/cover.webp",
+  media: {
+    cover: "/assets/bitacora/plano-casa-dos-plantas/cover.webp",
+    plantaAlumbrado: "/assets/bitacora/plano-casa-dos-plantas/planta-alumbrado.webp",
+    plantaEnchufes: "/assets/bitacora/plano-casa-dos-plantas/planta-enchufes.webp",
+    cuadroDistribucion: "/assets/bitacora/plano-casa-dos-plantas/cuadro-distribucion-alumbrado.webp",
+    detalleCircuitos: "/assets/bitacora/plano-casa-dos-plantas/detalle-circuitos.webp",
+  },
+  downloads: [
+    {
+      id: "dwg",
+      label: "DWG",
+      url: "/docs/bitacora/plano-casa-dos-plantas/casa-dos-plantas.dwg",
+      type: "dwg",
+    },
+  ],
+  sections: [
+    {
+      id: "objetivo",
+      title: "Objetivo",
+      content:
+        "Registrar un plano eléctrico académico para una vivienda de dos plantas, organizando alumbrado, enchufes y documentación asociada.",
+    },
+    {
+      id: "desarrollo-en-autocad",
+      title: "Desarrollo en AutoCAD",
+      content:
+        "El desarrollo se realizó en AutoCAD, aplicando simbología eléctrica y organización por plantas para mantener legible la información técnica.",
+    },
+    {
+      id: "circuitos-y-distribucion",
+      title: "Circuitos y distribución",
+      content:
+        "La documentación separa circuitos de alumbrado y enchufes, facilitando la revisión de distribución y trazado por nivel.",
+    },
+    {
+      id: "cuadro-de-cargas",
+      title: "Cuadro de cargas",
+      content:
+        "El cuadro de distribución complementa el plano y permite relacionar circuitos con su organización eléctrica general.",
+    },
+    {
+      id: "aprendizaje",
+      title: "Aprendizaje",
+      content:
+        "El ejercicio refuerza lectura de planos, uso de capas y orden documental para presentar información eléctrica de forma clara.",
+    },
+  ],
+  seo: {
+    title: "Plano eléctrico de casa de dos plantas | AutoCAD",
+    description:
+      "Plano eléctrico académico en AutoCAD con alumbrado, enchufes, cuadro de distribución y detalle de circuitos.",
+    image: "/assets/bitacora/plano-casa-dos-plantas/cover.webp",
+    keywords: ["AutoCAD", "plano eléctrico", "casa dos plantas", "alumbrado", "enchufes"],
+  },
+}
+
 
 
 
