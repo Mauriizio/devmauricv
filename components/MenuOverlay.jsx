@@ -4,6 +4,7 @@
 import { useEffect, useRef } from "react"
 import Head from "next/head"
 import { motion, AnimatePresence } from "framer-motion"
+import { getProjectCardData, normalizeProjects } from "@/data/contentHelpers"
 import { projectsData } from "@/data/projects"
 import { useTheme } from "@/context/ThemeContext"
 import { useFocusTrap } from "@/components/useFocusTrap"
@@ -31,7 +32,22 @@ export default function MenuOverlay({ show, onClose, onProjectSelect, onContactO
     if (e.key === "Escape") onClose?.()
   }
 
-  const menuProjects = Array.isArray(projectsData) ? projectsData : []
+  const normalizedProjects = normalizeProjects(projectsData)
+  const menuProjects = normalizedProjects.map((project, index) => {
+    const cardData = getProjectCardData(project.raw || project)
+    const safeId = cardData.id || cardData.slug || `project-${index + 1}`
+    const safeTitle = cardData.title || safeId || `Proyecto ${index + 1}`
+
+    return {
+      ...cardData,
+      id: safeId,
+      title: safeTitle,
+      categoryLabel: cardData.categoryLabel || "",
+      coverImage: cardData.coverImage || "/placeholder.svg",
+      coverAlt: cardData.coverAlt || safeTitle,
+      raw: cardData.raw || project.raw || project,
+    }
+  })
 
   // SEO sólo cuando se muestra el overlay
   const seoDescription =
@@ -269,34 +285,34 @@ const goHome = () => {
             {/* GRID de proyectos — sin “box” alrededor */}
             <div className="relative max-w-6xl mx-auto px-4 md:px-6 pb-8 md:pb-12">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                {menuProjects.map((proj, index) => (
+                {menuProjects.map((project, index) => (
                   <motion.button
                     type="button"
-                    key={proj.id}
-                    id={`project-${proj.id}`}
+                    key={project.id}
+                    id={`project-${project.id}`}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05, duration: 0.22 }}
                     whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    onClick={() => onProjectSelect(proj)}
-                    aria-label={`Abrir proyecto: ${proj.title || proj.id}`}
+                    onClick={() => onProjectSelect(project.raw)}
+                    aria-label={`Abrir proyecto: ${project.title}`}
                     className="group project-card text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
                   >
                     {/* Miniatura */}
                     <div className="relative w-full aspect-video overflow-hidden bg-white">
-                      {proj.category && (
+                      {project.categoryLabel && (
                         <span
                           className="absolute top-2 left-2 z-10 inline-flex items-center px-2 py-1 rounded-md bg-white/80 text-gray-900 text-[10px] md:text-xs uppercase tracking-wide ring-1 ring-black/10 shadow-sm max-w-[70%] truncate"
-                          title={proj.category}
+                          title={project.categoryLabel}
                         >
-                          {proj.category}
+                          {project.categoryLabel}
                         </span>
                       )}
 
                       <img
-                        src={proj.icon || proj.image || "/placeholder.svg"}
-                        alt={proj.title || proj.id}
+                        src={project.coverImage}
+                        alt={project.coverAlt}
                         loading="lazy"
                         decoding="async"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -311,7 +327,7 @@ const goHome = () => {
                     {/* Título */}
                     <div className="px-4 py-3 bg-white dark:bg-gray-900">
                       <h4 className="font-azonix text-gray-900 dark:text-white text-center text-sm sm:text-base md:text-lg truncate">
-                        {proj.title || proj.id}
+                        {project.title}
                       </h4>
                     </div>
                   </motion.button>
