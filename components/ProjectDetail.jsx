@@ -11,14 +11,21 @@ import { ArrowLeft, X as IconX, Sun, Moon, Download } from "lucide-react"
 import LogoMC from "@/components/LogoMC"
 import { getProjectLinks, getProjectSections, getProjectSeo, normalizeProject } from "@/data/contentHelpers"
 
-function ProjectImageFrame({ src, alt, ariaLabel, sizes, fit = "contain", onOpen }) {
+function ProjectImageFrame({ src, alt, ariaLabel, sizes, fit = "contain", variant = "content", onOpen }) {
   const shouldCover = fit === "cover"
+  const isHero = variant === "hero"
+  const frameSizing = shouldCover
+    ? "aspect-[4/3] min-h-[17rem] max-h-[34rem] sm:aspect-video md:min-h-[25rem]"
+    : isHero
+      ? "aspect-[16/11] min-h-[14rem] max-h-[24rem] sm:aspect-[16/10] md:min-h-[21rem] md:max-h-[34rem]"
+      : "aspect-[16/10] min-h-[13rem] max-h-[22rem] sm:aspect-video md:min-h-[19rem] md:max-h-[32rem]"
+  const imageFitClass = shouldCover ? "object-cover p-0" : "object-contain p-1.5 md:p-3"
 
   return (
     <button
       type="button"
       onClick={() => onOpen(src)}
-      className="group relative block w-full min-h-[18rem] overflow-hidden rounded-2xl bg-zinc-950/5 cursor-zoom-in shadow-lg shadow-black/10 transition-transform duration-300 hover:scale-[1.01] dark:bg-white/5 md:min-h-[28rem]"
+      className={`group relative block w-full ${frameSizing} overflow-hidden rounded-2xl bg-zinc-950/5 cursor-zoom-in shadow-lg shadow-black/10 transition-transform duration-300 hover:scale-[1.01] dark:bg-white/5`}
       aria-label={ariaLabel}
     >
       <Image
@@ -26,7 +33,7 @@ function ProjectImageFrame({ src, alt, ariaLabel, sizes, fit = "contain", onOpen
         alt=""
         fill
         sizes={sizes}
-        className="object-cover object-center opacity-20 blur-2xl scale-110 transition-transform duration-500 group-hover:scale-[1.15]"
+        className="object-cover object-center opacity-15 blur-xl scale-105 transition-transform duration-500 group-hover:scale-110"
         aria-hidden="true"
       />
       <span className="absolute inset-0 bg-gradient-to-br from-white/45 via-white/15 to-black/10 dark:from-white/10 dark:via-slate-950/10 dark:to-black/35" aria-hidden="true" />
@@ -35,7 +42,7 @@ function ProjectImageFrame({ src, alt, ariaLabel, sizes, fit = "contain", onOpen
         alt={alt}
         fill
         sizes={sizes}
-        className={`${shouldCover ? "object-cover" : "object-contain"} object-center p-2 transition-transform duration-500 group-hover:scale-[1.015] md:p-4`}
+        className={`${imageFitClass} object-center transition-transform duration-500 group-hover:scale-[1.015]`}
       />
     </button>
   )
@@ -404,6 +411,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
             ariaLabel="Abrir imagen en grande"
             sizes="(max-width: 768px) 100vw, 960px"
             fit={heroImageFit}
+            variant="hero"
             onOpen={openLightbox}
           />
           <figcaption className="sr-only">Vista previa principal del proyecto</figcaption>
