@@ -12,6 +12,9 @@ import LogoMC from "@/components/LogoMC"
 import { Menu, X as IconX, Sun, Moon, Download } from "lucide-react"
 
 const PROJECT_FILTERS = ["Todos", "Tecnológicos", "Académicos", "Artísticos"]
+const MOBILE_PROJECT_FILTERS = PROJECT_FILTERS.filter((filter) => filter !== "Todos")
+const MOBILE_DEFAULT_PROJECT_FILTER = "Tecnológicos"
+const MOBILE_FILTER_MEDIA_QUERY = "(max-width: 639px)"
 
 const PROJECT_FILTER_RULES = {
   Tecnológicos: {
@@ -112,12 +115,32 @@ const projectMatchesFilter = (project, filter) => {
 export default function MenuOverlay({ show, onClose, onProjectSelect, onContactOpen }) {
   const { isDark, toggleDarkMode } = useTheme()
   const [activeFilter, setActiveFilter] = useState("Todos")
+  const [isMobileFilterView, setIsMobileFilterView] = useState(false)
   const scrollContainerRef = useRef(null)
   const dialogRef = useRef(null)
   useFocusTrap(dialogRef, show)
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   const canonical = siteUrl ? `${siteUrl}?view=projects` : undefined
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(MOBILE_FILTER_MEDIA_QUERY)
+
+    const syncFilterViewport = () => {
+      const isMobile = mediaQuery.matches
+      setIsMobileFilterView(isMobile)
+      setActiveFilter((currentFilter) =>
+        isMobile && currentFilter === "Todos" ? MOBILE_DEFAULT_PROJECT_FILTER : currentFilter,
+      )
+    }
+
+    syncFilterViewport()
+    mediaQuery.addEventListener("change", syncFilterViewport)
+
+    return () => mediaQuery.removeEventListener("change", syncFilterViewport)
+  }, [])
+
+  const visibleProjectFilters = isMobileFilterView ? MOBILE_PROJECT_FILTERS : PROJECT_FILTERS
 
   // Reset scroll al abrir
   useEffect(() => {
@@ -403,7 +426,7 @@ const goHome = () => {
                   }`}
                   aria-label="Filtrar proyectos por categoría"
                 >
-                  {PROJECT_FILTERS.map((filter) => {
+                  {visibleProjectFilters.map((filter) => {
                     const isActive = activeFilter === filter
 
                     return (
@@ -412,7 +435,7 @@ const goHome = () => {
                         type="button"
                         onClick={() => setActiveFilter(filter)}
                         aria-pressed={isActive}
-                        className={`min-h-11 shrink-0 rounded-xl border px-4 py-2 text-xs font-extrabold uppercase tracking-[0.08em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent sm:text-sm ${
+                        className={`min-h-11 shrink-0 rounded-xl border px-3 py-2 text-[0.68rem] font-extrabold uppercase tracking-[0.055em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-[390px]:px-4 min-[390px]:text-xs sm:text-sm sm:tracking-[0.08em] ${
                           isActive
                             ? isDark
                               ? "border-cyan-300/70 bg-cyan-300/15 text-cyan-100 shadow-[0_0_22px_rgba(34,211,238,0.16)]"
