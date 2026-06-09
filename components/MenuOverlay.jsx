@@ -417,9 +417,9 @@ const goHome = () => {
 
             {/* GRID de proyectos — sin “box” alrededor */}
             <div className="relative max-w-6xl mx-auto px-4 md:px-6 pb-[calc(96px+env(safe-area-inset-bottom,0px))] md:pb-12">
-              <div className="mb-5 md:mb-7 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="mb-5 md:mb-7 sm:overflow-x-auto sm:overscroll-x-contain sm:[-ms-overflow-style:none] sm:[scrollbar-width:none] sm:[&::-webkit-scrollbar]:hidden">
                 <div
-                  className={`mx-auto flex w-max min-w-full items-center gap-2 rounded-2xl border p-1.5 backdrop-blur-md sm:w-fit sm:min-w-0 ${
+                  className={`mx-auto grid w-full grid-cols-3 items-center gap-1 rounded-2xl border p-1 backdrop-blur-md sm:flex sm:w-fit sm:min-w-0 sm:gap-2 sm:p-1.5 ${
                     isDark
                       ? "border-white/10 bg-white/5 shadow-[0_16px_45px_rgba(0,0,0,0.22)]"
                       : "border-white/60 bg-white/35 shadow-[0_16px_45px_rgba(15,23,42,0.08)]"
@@ -435,7 +435,7 @@ const goHome = () => {
                         type="button"
                         onClick={() => setActiveFilter(filter)}
                         aria-pressed={isActive}
-                        className={`min-h-11 shrink-0 rounded-xl border px-3 py-2 text-[0.68rem] font-extrabold uppercase tracking-[0.055em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-[390px]:px-4 min-[390px]:text-xs sm:text-sm sm:tracking-[0.08em] ${
+                        className={`min-h-10 min-w-0 rounded-xl border px-1.5 py-2 text-[0.56rem] font-extrabold uppercase tracking-[0.02em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-[375px]:text-[0.6rem] min-[390px]:px-2 min-[390px]:text-[0.66rem] sm:min-h-11 sm:shrink-0 sm:px-3 sm:text-sm sm:tracking-[0.08em] ${
                           isActive
                             ? isDark
                               ? "border-cyan-300/70 bg-cyan-300/15 text-cyan-100 shadow-[0_0_22px_rgba(34,211,238,0.16)]"
