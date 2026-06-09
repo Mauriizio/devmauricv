@@ -108,7 +108,7 @@ const goHome = () => {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.35, ease: "easeInOut" }}
-            className="fixed inset-0 w-screen h-screen font-azonix z-50 overflow-y-auto noise-overlay bg-stone-200 text-zinc-800 dark:bg-gray-900 dark:text-white"
+            className="fixed inset-0 w-screen h-dvh font-azonix z-50 overflow-y-auto scroll-pb-[calc(96px+env(safe-area-inset-bottom,0px))] noise-overlay bg-stone-200 text-zinc-800 dark:bg-gray-900 dark:text-white"
           >
           
          {/* Header (Menu Overlay) */}
@@ -283,7 +283,7 @@ const goHome = () => {
             </div>
 
             {/* GRID de proyectos — sin “box” alrededor */}
-            <div className="relative max-w-6xl mx-auto px-4 md:px-6 pb-8 md:pb-12">
+            <div className="relative max-w-6xl mx-auto px-4 md:px-6 pb-[calc(96px+env(safe-area-inset-bottom,0px))] md:pb-12">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {menuProjects.map((project, index) => (
                   <motion.button

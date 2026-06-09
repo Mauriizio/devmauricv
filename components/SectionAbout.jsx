@@ -320,7 +320,7 @@ const ctaBtn = [
         aria-labelledby="about-title"
         tabIndex={-1}
         onKeyDown={handleKeyDown}
-        className={`fixed inset-0 w-screen h-screen font-azonix z-40 transition-all duration-1000 ease-in-out overflow-y-auto noise-overlay ${
+        className={`fixed inset-0 w-screen h-dvh font-azonix z-40 transition-all duration-1000 ease-in-out overflow-y-auto scroll-pb-[calc(96px+env(safe-area-inset-bottom,0px))] noise-overlay ${
           show ? "translate-y-0" : "translate-y-full"
         } ${isDark ? "dark bg-gray-900 text-white" : "bg-stone-200 text-zinc-800"}`}
       >
@@ -488,7 +488,7 @@ const ctaBtn = [
         </div>
 
         {/* Contenido */}
-        <div className="relative max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12 space-y-12 md:space-y-16">
+        <div className="relative max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12 pb-[calc(96px+env(safe-area-inset-bottom,0px))] md:pb-12 space-y-12 md:space-y-16">
           {/* Intro */}
          
          {/* Intro — portada SVG + avatar superpuesto + datos debajo */}

@@ -161,7 +161,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
     <section
       ref={(node) => { scrollContainerRef.current = node; dialogRef.current = node }}
       role="dialog" aria-modal="true" aria-labelledby="project-detail-title"
-      className={`fixed inset-0 w-screen h-screen font-azonix z-50 overflow-y-auto transition-transform duration-500 ease-in-out
+      className={`fixed inset-0 w-screen h-dvh font-azonix z-50 overflow-y-auto scroll-pb-[calc(96px+env(safe-area-inset-bottom,0px))] transition-transform duration-500 ease-in-out
         ${show ? "translate-y-0" : "translate-y-full"} ${isDark ? "dark bg-gray-900 text-white" : "bg-stone-200 text-zinc-800"}`}
     >
       {show && (
@@ -357,7 +357,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
 
 
       {/* Contenido sin “boxes” */}
-      <div className="relative max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-12 space-y-12 md:space-y-16">
+      <div className="relative max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-12 pb-[calc(96px+env(safe-area-inset-bottom,0px))] md:pb-12 space-y-12 md:space-y-16">
         <header className="text-center space-y-4 md:space-y-6">
           <h2 className="title-main mb-2" id="project-detail-title">{projectTitle}</h2>
           {projectDescription && (<p className="text-responsive max-w-3xl mx-auto">{projectDescription}</p>)}
