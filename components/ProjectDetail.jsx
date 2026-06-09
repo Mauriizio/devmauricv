@@ -17,8 +17,8 @@ function ProjectImageFrame({ src, alt, ariaLabel, sizes, fit = "contain", varian
   const frameSizing = shouldCover
     ? "aspect-[4/3] min-h-[17rem] max-h-[34rem] sm:aspect-video md:min-h-[25rem]"
     : isHero
-      ? "aspect-video min-h-[11rem] max-h-[19rem] sm:aspect-[16/10] sm:min-h-[16rem] md:min-h-[21rem] md:max-h-[34rem]"
-      : "aspect-video min-h-[9.5rem] max-h-[17rem] sm:min-h-[14rem] md:min-h-[19rem] md:max-h-[32rem]"
+      ? "aspect-video min-h-[10.5rem] max-h-[18rem] sm:aspect-[16/10] sm:min-h-[16rem] md:min-h-[21rem] md:max-h-[34rem]"
+      : "aspect-video min-h-[9rem] max-h-[15.5rem] sm:min-h-[14rem] md:min-h-[19rem] md:max-h-[32rem]"
   const imageFitClass = shouldCover ? "object-cover p-0" : "object-contain p-0.5 sm:p-1.5 md:p-3"
 
   return (
