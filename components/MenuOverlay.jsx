@@ -1,7 +1,7 @@
 // components/MenuOverlay.jsx
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import Head from "next/head"
 import { motion, AnimatePresence } from "framer-motion"
 import { getProjectCardData, normalizeProjects } from "@/data/contentHelpers"
@@ -11,8 +11,107 @@ import { useFocusTrap } from "@/components/useFocusTrap"
 import LogoMC from "@/components/LogoMC"
 import { Menu, X as IconX, Sun, Moon, Download } from "lucide-react"
 
+const PROJECT_FILTERS = ["Todos", "Tecnológicos", "Académicos", "Artísticos"]
+
+const PROJECT_FILTER_RULES = {
+  Tecnológicos: {
+    types: ["web-project"],
+    contentKinds: [
+      "client-website",
+      "fullstack-client-project",
+      "web",
+      "frontend",
+      "database",
+      "software",
+      "tool",
+    ],
+    terms: ["web", "desarrollo", "frontend", "base de datos", "sistema", "tecnología", "tecnologia"],
+  },
+  Académicos: {
+    types: ["academic"],
+    contentKinds: ["engineering-note", "technical-drawing", "academic", "bitacora", "bitácora"],
+    terms: [
+      "académico",
+      "academico",
+      "bitácora",
+      "bitacora",
+      "física",
+      "fisica",
+      "electrotecnia",
+      "autocad",
+      "plano",
+      "universidad",
+    ],
+  },
+  Artísticos: {
+    types: ["creative"],
+    contentKinds: ["music-production", "music", "creative", "audiovisual", "design"],
+    terms: ["música", "musica", "producción", "produccion", "artístico", "artistico", "creativo", "audiovisual"],
+  },
+}
+
+const normalizeText = (value) =>
+  String(value || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+
+const toFilterText = (value) => {
+  if (Array.isArray(value)) {
+    return value.join(" ")
+  }
+
+  return value || ""
+}
+
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+
+const includesFilterTerm = (text, term) => {
+  const normalizedTerm = normalizeText(term)
+
+  if (normalizedTerm.includes(" ")) {
+    return text.includes(normalizedTerm)
+  }
+
+  return new RegExp(`(^|[^a-z0-9])${escapeRegExp(normalizedTerm)}([^a-z0-9]|$)`).test(text)
+}
+
+const projectMatchesFilter = (project, filter) => {
+  if (filter === "Todos") {
+    return true
+  }
+
+  const rules = PROJECT_FILTER_RULES[filter]
+
+  if (!rules) {
+    return true
+  }
+
+  const raw = project.raw || {}
+  const type = normalizeText(project.type || raw.type)
+  const contentKind = normalizeText(project.contentKind || raw.contentKind)
+  const searchableText = normalizeText(
+    [
+      project.categoryLabel,
+      toFilterText(project.categories),
+      toFilterText(project.tags),
+      raw.category,
+      toFilterText(raw.categories),
+      toFilterText(raw.tags),
+      toFilterText(raw.technologies),
+    ].join(" "),
+  )
+
+  return (
+    rules.types.some((ruleType) => normalizeText(ruleType) === type) ||
+    rules.contentKinds.some((ruleKind) => contentKind.includes(normalizeText(ruleKind))) ||
+    rules.terms.some((term) => includesFilterTerm(searchableText, term))
+  )
+}
+
 export default function MenuOverlay({ show, onClose, onProjectSelect, onContactOpen }) {
   const { isDark, toggleDarkMode } = useTheme()
+  const [activeFilter, setActiveFilter] = useState("Todos")
   const scrollContainerRef = useRef(null)
   const dialogRef = useRef(null)
   useFocusTrap(dialogRef, show)
@@ -32,22 +131,33 @@ export default function MenuOverlay({ show, onClose, onProjectSelect, onContactO
     if (e.key === "Escape") onClose?.()
   }
 
-  const normalizedProjects = normalizeProjects(projectsData)
-  const menuProjects = normalizedProjects.map((project, index) => {
-    const cardData = getProjectCardData(project.raw || project)
-    const safeId = cardData.id || cardData.slug || `project-${index + 1}`
-    const safeTitle = cardData.title || safeId || `Proyecto ${index + 1}`
+  const menuProjects = useMemo(() => {
+    const normalizedProjects = normalizeProjects(projectsData)
 
-    return {
-      ...cardData,
-      id: safeId,
-      title: safeTitle,
-      categoryLabel: cardData.categoryLabel || "",
-      coverImage: cardData.coverImage || "/placeholder.svg",
-      coverAlt: cardData.coverAlt || safeTitle,
-      raw: cardData.raw || project.raw || project,
-    }
-  })
+    return normalizedProjects.map((project, index) => {
+      const cardData = getProjectCardData(project.raw || project)
+      const safeId = cardData.id || cardData.slug || `project-${index + 1}`
+      const safeTitle = cardData.title || safeId || `Proyecto ${index + 1}`
+
+      return {
+        ...cardData,
+        id: safeId,
+        title: safeTitle,
+        categoryLabel: cardData.categoryLabel || "",
+        coverImage: cardData.coverImage || "/placeholder.svg",
+        coverAlt: cardData.coverAlt || safeTitle,
+        contentKind: project.contentKind || cardData.raw?.contentKind || "",
+        categories: cardData.categories || project.categories || [],
+        tags: project.tags || cardData.raw?.tags || [],
+        raw: cardData.raw || project.raw || project,
+      }
+    })
+  }, [])
+
+  const filteredProjects = useMemo(
+    () => menuProjects.filter((project) => projectMatchesFilter(project, activeFilter)),
+    [activeFilter, menuProjects],
+  )
 
   // SEO sólo cuando se muestra el overlay
   const seoDescription =
@@ -284,8 +394,54 @@ const goHome = () => {
 
             {/* GRID de proyectos — sin “box” alrededor */}
             <div className="relative max-w-6xl mx-auto px-4 md:px-6 pb-[calc(96px+env(safe-area-inset-bottom,0px))] md:pb-12">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                {menuProjects.map((project, index) => (
+              <div className="mb-5 md:mb-7 overflow-x-auto overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <div
+                  className={`mx-auto flex w-max min-w-full items-center gap-2 rounded-2xl border p-1.5 backdrop-blur-md sm:w-fit sm:min-w-0 ${
+                    isDark
+                      ? "border-white/10 bg-white/5 shadow-[0_16px_45px_rgba(0,0,0,0.22)]"
+                      : "border-white/60 bg-white/35 shadow-[0_16px_45px_rgba(15,23,42,0.08)]"
+                  }`}
+                  aria-label="Filtrar proyectos por categoría"
+                >
+                  {PROJECT_FILTERS.map((filter) => {
+                    const isActive = activeFilter === filter
+
+                    return (
+                      <button
+                        key={filter}
+                        type="button"
+                        onClick={() => setActiveFilter(filter)}
+                        aria-pressed={isActive}
+                        className={`min-h-11 shrink-0 rounded-xl border px-4 py-2 text-xs font-extrabold uppercase tracking-[0.08em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent sm:text-sm ${
+                          isActive
+                            ? isDark
+                              ? "border-cyan-300/70 bg-cyan-300/15 text-cyan-100 shadow-[0_0_22px_rgba(34,211,238,0.16)]"
+                              : "border-cyan-800/40 bg-cyan-100/80 text-cyan-950 shadow-[0_10px_24px_rgba(8,145,178,0.12)]"
+                            : isDark
+                              ? "border-white/10 bg-black/10 text-white/70 hover:border-cyan-300/35 hover:bg-cyan-300/10 hover:text-cyan-100"
+                              : "border-stone-900/10 bg-white/35 text-stone-700 hover:border-cyan-900/25 hover:bg-white/65 hover:text-cyan-900"
+                        }`}
+                      >
+                        {filter}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {filteredProjects.length === 0 ? (
+                <div
+                  className={`rounded-2xl border px-4 py-8 text-center text-sm ${
+                    isDark
+                      ? "border-white/10 bg-white/5 text-white/70"
+                      : "border-stone-300/60 bg-white/40 text-stone-700"
+                  }`}
+                >
+                  No hay proyectos disponibles para este filtro.
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                {filteredProjects.map((project, index) => (
                   <motion.button
                     type="button"
                     key={project.id}
@@ -332,7 +488,8 @@ const goHome = () => {
                     </div>
                   </motion.button>
                 ))}
-              </div>
+                </div>
+              )}
 
               {/* CTA final */}
               <div className="text-center pt-8 md:pt-10">
