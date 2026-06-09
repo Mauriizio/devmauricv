@@ -11,6 +11,36 @@ import { ArrowLeft, X as IconX, Sun, Moon, Download } from "lucide-react"
 import LogoMC from "@/components/LogoMC"
 import { getProjectLinks, getProjectSections, getProjectSeo, normalizeProject } from "@/data/contentHelpers"
 
+function ProjectImageFrame({ src, alt, ariaLabel, sizes, fit = "contain", onOpen }) {
+  const shouldCover = fit === "cover"
+
+  return (
+    <button
+      type="button"
+      onClick={() => onOpen(src)}
+      className="group relative block w-full min-h-[18rem] overflow-hidden rounded-2xl bg-zinc-950/5 cursor-zoom-in shadow-lg shadow-black/10 transition-transform duration-300 hover:scale-[1.01] dark:bg-white/5 md:min-h-[28rem]"
+      aria-label={ariaLabel}
+    >
+      <Image
+        src={src}
+        alt=""
+        fill
+        sizes={sizes}
+        className="object-cover object-center opacity-20 blur-2xl scale-110 transition-transform duration-500 group-hover:scale-[1.15]"
+        aria-hidden="true"
+      />
+      <span className="absolute inset-0 bg-gradient-to-br from-white/45 via-white/15 to-black/10 dark:from-white/10 dark:via-slate-950/10 dark:to-black/35" aria-hidden="true" />
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes={sizes}
+        className={`${shouldCover ? "object-cover" : "object-contain"} object-center p-2 transition-transform duration-500 group-hover:scale-[1.015] md:p-4`}
+      />
+    </button>
+  )
+}
+
 export default function ProjectDetail({ show, project, onClose, onBackToProjects }) {
   const dialogRef = useRef(null)
   const scrollContainerRef = useRef(null)
@@ -115,6 +145,9 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
     image: ogImage,
     keywords: seoKeywords.length > 0 ? seoKeywords.join(", ") : undefined,
   }
+
+  const shouldUseCoverHero = !normalizedProject.type || normalizedProject.type === "creative"
+  const heroImageFit = shouldUseCoverHero ? "cover" : "contain"
 
   const openLightbox = (src) => { setLightboxSrc(src); setZoomed(false) }
   const closeLightbox = () => { setLightboxSrc(null); setZoomed(false) }
@@ -365,10 +398,14 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
 
         {/* Hero */}
         <figure className="mx-auto max-w-4xl">
-          <button type="button" onClick={() => openLightbox(heroImage)}
-            className="relative block w-full h-64 md:h-96 overflow-hidden rounded-2xl cursor-zoom-in" aria-label="Abrir imagen en grande">
-            <Image src={heroImage} alt={`${projectTitle} — Hero`} fill sizes="(max-width: 768px) 100vw, 960px" className="object-cover object-center" />
-          </button>
+          <ProjectImageFrame
+            src={heroImage}
+            alt={`${projectTitle} — Hero`}
+            ariaLabel="Abrir imagen en grande"
+            sizes="(max-width: 768px) 100vw, 960px"
+            fit={heroImageFit}
+            onOpen={openLightbox}
+          />
           <figcaption className="sr-only">Vista previa principal del proyecto</figcaption>
         </figure>
 
@@ -384,10 +421,13 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
 
         {/* Imagen de contenido */}
         <figure className="mx-auto max-w-4xl">
-          <button type="button" onClick={() => openLightbox(contentImage)}
-            className="relative block w-full h-64 md:h-96 overflow-hidden rounded-2xl cursor-zoom-in" aria-label="Abrir imagen en grande">
-            <Image src={contentImage} alt={`${projectTitle} — Contenido`} fill sizes="(max-width: 768px) 100vw, 960px" className="object-cover object-center" />
-          </button>
+          <ProjectImageFrame
+            src={contentImage}
+            alt={`${projectTitle} — Contenido`}
+            ariaLabel="Abrir imagen en grande"
+            sizes="(max-width: 768px) 100vw, 960px"
+            onOpen={openLightbox}
+          />
           <figcaption className="sr-only">Vista de contenido del proyecto</figcaption>
         </figure>
 
@@ -430,10 +470,13 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
 
         {/* Imagen extra */}
         <figure className="mx-auto max-w-4xl">
-          <button type="button" onClick={() => openLightbox(extraImage)}
-            className="relative block w-full h-64 md:h-96 overflow-hidden rounded-2xl cursor-zoom-in" aria-label="Abrir imagen en grande">
-            <Image src={extraImage} alt={`${projectTitle} — Vista adicional`} fill sizes="(max-width: 768px) 100vw, 960px" className="object-cover object-center" />
-          </button>
+          <ProjectImageFrame
+            src={extraImage}
+            alt={`${projectTitle} — Vista adicional`}
+            ariaLabel="Abrir imagen en grande"
+            sizes="(max-width: 768px) 100vw, 960px"
+            onOpen={openLightbox}
+          />
           <figcaption className="sr-only">Vista adicional del proyecto</figcaption>
         </figure>
 
