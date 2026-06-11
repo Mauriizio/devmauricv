@@ -122,7 +122,7 @@ Para agregar o editar un proyecto:
 3. Mantener un `id` único y estable.
 4. Completar campos como `title`, `category`, `description`, `technologies`, `challenges`, `features`, `githubUrl` y `liveUrl` cuando apliquen.
 5. Referenciar imágenes usando rutas existentes bajo `public/`.
-6. Si se requieren imágenes, PDFs, videos, fuentes, favicons o assets nuevos, agregarlos manualmente fuera de Codex y revisar que las rutas coincidan.
+6. Si se requieren imágenes, PDFs, videos, fuentes, favicons o assets nuevos, agregarlos manualmente y revisar que las rutas coincidan.
 7. Validar con:
 
    ```bash
@@ -155,7 +155,7 @@ Antes de activar indexación, verificar que el contenido, metadatos, enlaces, fo
 
 ## Política de assets/binarios
 
-No agregar, editar, reemplazar, borrar ni mover archivos binarios desde Codex.
+No agregar, editar, reemplazar, borrar ni mover archivos binarios sin una tarea explícita y verificación previa.
 
 Esto incluye, entre otros:
 
