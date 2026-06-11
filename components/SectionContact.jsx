@@ -285,7 +285,7 @@ export default function SectionContact({ show, onClose }) {
           <header className="text-center space-y-4">
             <h2 id="contact-title" className="title-main">Contacto</h2>
             <p className="text-responsive max-w-2xl mx-auto">
-              ¿Tienes un proyecto o propuesta? Escríbeme y te respondo a la brevedad.
+              ¿Tienes un proyecto tecnológico, documentación técnica, automatización o desarrollo web aplicado? Escríbeme y conversemos.
             </p>
           </header>
 

@@ -184,7 +184,7 @@ export default function MenuOverlay({ show, onClose, onProjectSelect, onContactO
 
   // SEO sólo cuando se muestra el overlay
   const seoDescription =
-    "Explora el portafolio de proyectos de Maurizio Caballero: React, Next.js, Tailwind y más."
+    "Explora proyectos tecnológicos, académicos y creativos de Maurizio Caballero."
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -411,7 +411,7 @@ const goHome = () => {
             <div className="text-center space-y-3 md:space-y-4 py-4 md:py-6">
               <h2 className="title-main mb-2">Mis Proyectos</h2>
               <p className="text-responsive max-w-3xl mx-auto">
-                Una selección curada de trabajos con tecnologías modernas.
+                Una selección de proyectos tecnológicos, académicos y creativos con enfoque aplicado.
               </p>
             </div>
 

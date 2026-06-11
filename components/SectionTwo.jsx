@@ -291,11 +291,12 @@ export default function SectionTwo({
                           before:border before:border-white/20 dark:before:border-white/10
                           before:z-[-1]`}
             >
-              En pocas palabras, puedo: desarrollar{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">sistemas de información</span>, diseñar{" "}
+              Construyo proyectos donde la ingeniería, el software y la documentación se conectan: desarrollar{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">sistemas de información</span>, apoyar{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">documentación técnica</span>, diseñar{" "}
               <span className="text-cyan-800 dark:text-cyan-300"> bases de datos</span>,{" "}
               <span className="text-cyan-800 dark:text-cyan-300">crear aplicaciones web y móviles</span>,{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">gestionar proyectos tecnológicos</span>,{" "}
+              <span className="text-cyan-800 dark:text-cyan-300">gestionar proyectos tecnológicos y académicos</span>,{" "}
               <span className="text-cyan-800 dark:text-cyan-300">brindar soporte técnico</span> y{" "}
               <span className="text-cyan-800 dark:text-cyan-300">capacitar usuarios</span>.{" "}
               {/* ***** Corrección ortográfica ***** */}

@@ -2,9 +2,9 @@
 
 ## Descripción del proyecto
 
-`devmauricv` es el portafolio profesional de Maurizio Caballero desarrollado con Next.js, React, Tailwind CSS y Framer Motion.
+`devmauricv` es el portafolio profesional de Maurizio Caballero, orientado a ingeniería aplicada, automatización, programación, documentación técnica y proyectos multidisciplinarios.
 
-El objetivo del proyecto es presentar experiencia, proyectos, stack técnico y canales de contacto en una interfaz web cuidada, responsive y mantenible. Además, funciona como base evolutiva para una futura bitácora técnica/académica relacionada con ingeniería, automatización, programación y proyectos multidisciplinarios.
+El objetivo del proyecto es presentar experiencia, proyectos técnicos, bitácora académica, stack de desarrollo y canales de contacto en una interfaz web cuidada, responsive y mantenible.
 
 > Este proyecto usa **Next.js Pages Router**. No usa App Router ni directorio `app/`.
 

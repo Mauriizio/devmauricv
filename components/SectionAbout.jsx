@@ -51,24 +51,24 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen, onCl
   ]
 
   const technologies = [
-     "JavaScript ES6+","TypeScript", "React.js","Next.js", "Vite", "MySQL", "SupaBase", "Tailwind CSS", "Astro", "HTML5 & CSS3","Framer Motion",  "Git", "SEO", "Accesibilidad", "Optimización Web", "Responsive Design", 
+     "JavaScript ES6+","TypeScript", "React.js","Next.js", "Vite", "MySQL", "SupaBase", "Tailwind CSS", "Astro", "HTML5 & CSS3","Framer Motion",  "Git", "SEO", "Accesibilidad", "Optimización Web", "Responsive Design", "Documentación técnica", "Electrotecnia", "Automatización",
   ]
-  const tools = ["GitHub","VS Code","Figma","Deploy/Vercel/Netlify","Chrome DevTools","Google ADS","GIMP", "Inkscape", "CapCut", "TexturePackerGUI", "AI Tools", "Cubase", "AI Powered Development", "Bash", "PowerShell", ]
+  const tools = ["GitHub","VS Code","Figma","Deploy/Vercel/Netlify","Chrome DevTools","Google ADS","GIMP", "Inkscape", "CapCut", "TexturePackerGUI", "AI Tools", "Cubase", "AI Powered Development", "Bash", "PowerShell", "AutoCAD", ]
 
   const experiences = [
     {
-      title: "Frontend Developer",
+      title: "Desarrollo web aplicado",
       company: "Proyectos Freelance",
       period: "2023 - Presente",
       description:
-        "Desarrollo de aplicaciones web modernas con React y Next.js. Implementación de interfaces responsivas y optimización de rendimiento.",
+        "Desarrollo de aplicaciones web modernas con React y Next.js, integrando interfaces responsivas, documentación clara y criterios técnicos para proyectos reales.",
     },
     {
-      title: "Desarrollador Web - Freelance",
-      company: "Proyectos Personales",
+      title: "Proyectos tecnológicos y académicos",
+      company: "Portafolio personal",
       period: "2022 - Presente",
       description:
-        "Creación de portfolios interactivos, landing pages y aplicaciones web con enfoque en UX/UI y tecnologías modernas. Sitios web para resolver problemas específicos de clientes.",
+        "Creación de sitios web, herramientas digitales y bitácoras académicas que conectan programación, documentación técnica, electricidad y aprendizaje aplicado.",
     },
     {
       title: "Técnico de Software & Producción Digital",
@@ -111,6 +111,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen, onCl
   ]
 
   const education = [
+    { title: "Ingeniería en Electricidad y Automatización Industrial", institution: "Formación técnica superior", period: "Actualidad" },
     { title: "Desarrollo Web Frontend", institution: "Autodidacta • Diversos Cursos Online", period: "2020 - Presente" },
     { title: "Pedagogia en Lenguajes", institution: "Universidad Pedagogica Experimental Libertador UPEL", period: "2013-2016" },
     { title: "Técnico en Mantenimiento de Equipos Informáticos", institution: "Instituto Nacional de Capacitación y Educación INCE", period: "2010-2013" },
@@ -235,12 +236,12 @@ const ctaBtn = [
   // --------- SEO (solo cuando está visible) ----------
   const aboutTitle = "Sobre mí — Maurizio Caballero"
   const aboutDesc =
-    "Conoce a Maurizio Caballero: Frontend Developer (React, Next.js). Experiencia, habilidades, educación y diplomas."
+    "Conoce a Maurizio Caballero: estudiante de Ingeniería en Electricidad y Automatización Industrial, con experiencia en programación, documentación técnica y proyectos web."
   const jsonLdPerson = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Maurizio Caballero",
-    jobTitle: "Frontend Developer",
+    jobTitle: "Estudiante de Ingeniería en Electricidad y Automatización Industrial",
     description: aboutDesc,
     knowsAbout: [...technologies, ...tools],
     skills: technologies,
@@ -522,9 +523,9 @@ const ctaBtn = [
   <h2 className="title-section !mb-1"> Hola, Soy Maurizio Caballero</h2>
 
   <p className="text-responsive max-w-3xl mx-auto font-sans leading-relaxed">
-    <span className="font-bold">Analista de Sistemas - Desarrollador de Software </span><br/>
-    ·Universidad Pedagógica Experimental Libertador (UPEL) <br/> ·Instituto Nacional de Capacitación y Educación (INCE)<br/>
-    {/* Frontend Developer con experiencia en creación de interfaces web atractivas y funcionales. */}
+    <span className="font-bold">Estudiante de Ingeniería en Electricidad y Automatización Industrial</span><br/>
+    Programación web/móvil · Automatización · Documentación técnica · Proyectos multidisciplinarios<br/>
+    Bitácora académica y proyectos aplicados en electricidad, software y sistemas.<br/>
   </p>
 
   {/* Extra */}
@@ -714,7 +715,7 @@ const ctaBtn = [
           {/* CTA final — ✅ mismo estilo que Section Two */}
           <div className="text-center py-6 md:py-8">
             <p className="text-responsive mb-4 md:mb-6 font-sans">
-              ¿Listo para trabajar juntos en tu próximo proyecto?
+              ¿Conversemos sobre un proyecto técnico, académico o web aplicado?
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <a href="/cv.pdf" download className={ctaBtn}>

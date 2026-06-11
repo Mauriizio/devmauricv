@@ -114,10 +114,10 @@ export default function Home({ initialView, initialId }) {
     <>
       <Head>
   {/* Título + descripción */}
-  <title>Maurizio Caballero — Frontend Developer (Portafolio)</title>
+  <title>Maurizio Caballero — Ingeniería, automatización y programación</title>
   <meta
     name="description"
-    content="Portafolio de Maurizio Caballero: proyectos reales, stack (React/Next.js, Tailwind, Framer Motion) y contacto."
+    content="Portafolio de Maurizio Caballero: ingeniería, automatización, programación, documentación técnica y proyectos web."
   />
   <meta name="author" content="Maurizio Caballero" />
   <meta name="application-name" content="devMauriz" />
@@ -129,10 +129,10 @@ export default function Home({ initialView, initialId }) {
   {/* Open Graph */}
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="devMauriz · Maurizio Caballero" />
-  <meta property="og:title" content="Maurizio Caballero — Frontend Developer" />
+  <meta property="og:title" content="Maurizio Caballero — Ingeniería y automatización" />
   <meta
     property="og:description"
-    content="Proyectos, experiencia y contacto. Especialista en React y Next.js."
+    content="Proyectos técnicos, académicos y web con enfoque en ingeniería aplicada, automatización y documentación."
   />
   {siteUrl ? <meta property="og:url" content={siteUrl} /> : null}
   <meta
@@ -145,10 +145,10 @@ export default function Home({ initialView, initialId }) {
 
   {/* Twitter Card */}
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Maurizio Caballero — Frontend Developer" />
+  <meta name="twitter:title" content="Maurizio Caballero — Ingeniería y automatización" />
   <meta
     name="twitter:description"
-    content="Proyectos, experiencia y contacto. Especialista en React y Next.js."
+    content="Proyectos técnicos, académicos y web con enfoque en ingeniería aplicada, automatización y documentación."
   />
   <meta
     name="twitter:image"
@@ -165,7 +165,7 @@ export default function Home({ initialView, initialId }) {
         name: "devMauriz",
         url: siteUrl || "",
         inLanguage: "es-CL",
-        description: "Portafolio de Maurizio Caballero: proyectos, stack y contacto.",
+        description: "Portafolio de Maurizio Caballero: proyectos técnicos, académicos y creativos.",
         potentialAction: {
           "@type": "SearchAction",
           target: `${siteUrl || ""}/?q={search_term_string}`,
@@ -181,7 +181,7 @@ export default function Home({ initialView, initialId }) {
         "@context": "https://schema.org",
         "@type": "Person",
         name: "Maurizio Caballero",
-        jobTitle: "Frontend Developer",
+        jobTitle: "Estudiante de Ingeniería en Electricidad y Automatización Industrial",
         url: siteUrl || "",
         image: siteUrl ? `${siteUrl.replace(/\/$/, "")}/og/og-1200x630.png` : "/og/og-1200x630.png",
         sameAs: [

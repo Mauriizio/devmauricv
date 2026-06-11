@@ -281,7 +281,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
 
   {/* Subtítulo (más respiración) */}
   <p className={`mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg ${actionColor}`}>
-    Frontend Developer | Analista de Datos.
+    Ingeniería en Electricidad y Automatización Industrial.
   </p>
 
   {/* Zona flexible: logo + CTAs móviles (no empuja) */}
