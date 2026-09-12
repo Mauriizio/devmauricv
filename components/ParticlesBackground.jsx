@@ -7,13 +7,13 @@ const PARTICLES = [
   { image: "/logos/lhtml.png", x: 18, y: 74, size: 24, duration: 29, delay: -18 },
   { text: "let", x: 27, y: 38, color: "#f0abfc", duration: 26, delay: -12 },
   { image: "/logos/lcss.png", x: 36, y: 86, size: 23, duration: 31, delay: -8 },
-  { text: "24 V", x: 43, y: 13, color: "#67e8f9", duration: 28, delay: -21 },
+  { text: "24 V", mobileText: "return", x: 43, y: 13, color: "#67e8f9", duration: 28, delay: -21 },
   { image: "/logos/ljs.png", x: 51, y: 57, size: 24, duration: 25, delay: -6 },
   { text: "PLC", x: 59, y: 28, color: "#86efac", duration: 30, delay: -15 },
   { image: "/logos/loff.png", x: 68, y: 79, size: 25, duration: 27, delay: -2 },
   { text: "Ω", x: 76, y: 12, color: "#ffffff", duration: 32, delay: -24 },
   { image: "/logos/lcuba.png", x: 84, y: 48, size: 25, duration: 28, delay: -10 },
-  { text: "I/O", x: 91, y: 88, color: "#22d3ee", duration: 25, delay: -19 },
+  { text: "I/O", mobileText: "=>", x: 91, y: 88, color: "#22d3ee", duration: 25, delay: -19 },
   { image: "/logos/lwor.png", x: 95, y: 24, size: 24, duration: 30, delay: -7 },
   { text: "if", x: 13, y: 52, color: "#86efac", duration: 27, delay: -22, mobileHidden: true },
   { text: "LAD", x: 32, y: 66, color: "#ffffff", duration: 31, delay: -13, mobileHidden: true },
@@ -50,6 +50,11 @@ export default function ParticlesBackground() {
               sizes={`${particle.size}px`}
               className="h-auto w-auto object-contain"
             />
+          ) : particle.mobileText ? (
+            <>
+              <span className="md:hidden">{particle.mobileText}</span>
+              <span className="hidden md:inline">{particle.text}</span>
+            </>
           ) : (
             particle.text
           )}
@@ -58,8 +63,9 @@ export default function ParticlesBackground() {
 
       <style jsx>{`
         .tech-particle {
-          opacity: 0.62;
-          filter: drop-shadow(0 0 4px currentColor);
+          --particle-opacity: 0.78;
+          opacity: var(--particle-opacity);
+          filter: drop-shadow(0 0 5px currentColor);
           will-change: transform, opacity;
           animation-name: tech-particle-drift;
           animation-timing-function: linear;
@@ -72,14 +78,22 @@ export default function ParticlesBackground() {
             opacity: 0;
           }
           12% {
-            opacity: 0.62;
+            opacity: var(--particle-opacity);
           }
           88% {
-            opacity: 0.62;
+            opacity: var(--particle-opacity);
           }
           100% {
             transform: translate3d(-86px, -86px, 0) rotate(-8deg);
             opacity: 0;
+          }
+        }
+
+        @media (min-width: 768px) {
+          .tech-particle {
+            --particle-opacity: 0.62;
+            opacity: var(--particle-opacity);
+            filter: drop-shadow(0 0 4px currentColor);
           }
         }
 
