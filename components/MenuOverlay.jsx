@@ -9,7 +9,7 @@ import { getProjectCardData, normalizeProjects } from "@/data/contentHelpers"
 import { projectsData } from "@/data/projects"
 import { useTheme } from "@/context/ThemeContext"
 import { useFocusTrap } from "@/components/useFocusTrap"
-import LogoMC from "@/components/LogoMC"
+import LogoMarkShimmer from "@/components/LogoMarkShimmer"
 import { Menu, X as IconX, Sun, Moon, Download } from "lucide-react"
 
 const PROJECT_FILTERS = ["Todos", "Tecnológicos", "Académicos", "Artísticos"]
@@ -254,8 +254,8 @@ const goHome = () => {
     <div className="flex items-center gap-2 sm:gap-3 min-h-[56px] md:min-h-[64px]">
       {/* IZQ: Logo */}
       <div className="flex-1 min-w-0 flex items-center">
-        <div className="h-7 md:h-8 flex items-center">
-          <LogoMC />
+        <div className="flex h-10 items-center md:h-11">
+          <LogoMarkShimmer isDark={isDark} animated={show} className="h-10 w-auto md:h-11" />
         </div>
       </div>
 

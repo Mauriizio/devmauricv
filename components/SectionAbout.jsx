@@ -13,7 +13,7 @@ import {
   Download
 } from "lucide-react"
 import { useTheme } from "@/context/ThemeContext"
-import LogoMC from "@/components/LogoMC"
+import LogoMarkShimmer from "@/components/LogoMarkShimmer"
 import TechCoverSVG from "@/components/TechCoverSVG"
 
 export default function SectionAbout({ show, onVolverArriba, onContactOpen, onClose }) {
@@ -324,8 +324,8 @@ const ctaBtn = [
             <div className="flex items-center gap-2 sm:gap-3 min-h-[56px] md:min-h-[64px]">
               {/* IZQ: Logo */}
               <div className="flex-1 min-w-0 flex items-center">
-                <div className="h-7 md:h-8 flex items-center">
-                  <LogoMC />
+                <div className="flex h-10 items-center md:h-11">
+                  <LogoMarkShimmer isDark={isDark} animated={show} className="h-10 w-auto md:h-11" />
                 </div>
               </div>
 
