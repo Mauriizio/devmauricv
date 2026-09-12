@@ -6,15 +6,13 @@ import {
   BookOpen,
   Calculator,
   CircuitBoard,
-  Download,
   ExternalLink,
-  Github,
   GraduationCap,
-  Linkedin,
   MonitorPlay,
   Moon,
   PlayCircle,
   Sun,
+  Youtube,
   X as CloseIcon,
 } from "lucide-react"
 import LogoMarkShimmer from "@/components/LogoMarkShimmer"
@@ -89,16 +87,13 @@ export default function SectionTutoring({ show, onClose }) {
           <div className="mx-auto flex min-h-14 max-w-6xl items-center gap-2 px-2 sm:px-4">
             <LogoMarkShimmer isDark={isDark} animated={show} className="mr-auto h-10 w-auto md:h-11" />
 
-            <a href="/cv.pdf" download aria-label="Descargar CV" title="CV" className={`hidden rounded-md border p-2 transition-colors sm:grid ${headerButton}`}>
-              <Download size={17} />
+            <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" aria-label="Ir al canal de YouTube" title="YouTube" className={`grid h-9 w-9 place-items-center rounded-md border p-0 transition-colors ${headerButton}`}>
+              <Youtube size={17} />
             </a>
-            <a href="https://github.com/Mauriizio" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub" className={`hidden rounded-md border p-2 transition-colors md:grid ${headerButton}`}>
-              <Github size={17} />
+            <a href={SUPERPROF_URL} target="_blank" rel="noopener noreferrer" aria-label="Ir al perfil de Superprof" title="Superprof" className={`grid h-9 w-9 place-items-center rounded-md border p-0 transition-colors ${headerButton}`}>
+              <GraduationCap size={17} />
             </a>
-            <a href="https://www.linkedin.com/in/maurizio-caballero-286a56219/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn" className={`hidden rounded-md border p-2 transition-colors md:grid ${headerButton}`}>
-              <Linkedin size={17} />
-            </a>
-            <button type="button" onClick={onClose} aria-label="Cerrar tutorías" title="Cerrar" className={`grid rounded-md border p-2 transition-colors ${headerButton}`}>
+            <button type="button" onClick={onClose} aria-label="Cerrar tutorías" title="Cerrar" className={`grid h-9 w-9 place-items-center rounded-md border p-0 transition-colors ${headerButton}`}>
               <CloseIcon size={17} />
             </button>
             <button

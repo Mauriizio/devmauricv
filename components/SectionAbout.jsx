@@ -10,7 +10,8 @@ import {
   Moon,
   MessageCircle,
   ZoomIn,
-  Download
+  Download,
+  Youtube
 } from "lucide-react"
 import { useTheme } from "@/context/ThemeContext"
 import LogoMarkShimmer from "@/components/LogoMarkShimmer"
@@ -128,7 +129,7 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen, onCl
   }
 
   const glassBase =
-    "flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors";
+    "flex h-9 w-9 shrink-0 items-center justify-center rounded-md border p-0 text-sm transition-colors";
 
   /* Botones */
   const btnCV =
@@ -321,7 +322,7 @@ const ctaBtn = [
           }`}
         >
           <div className="max-w-6xl mx-auto px-2 sm:px-4">
-            <div className="flex items-center gap-2 sm:gap-3 min-h-[56px] md:min-h-[64px]">
+            <div className="grid min-h-[56px] grid-cols-[1fr_auto] items-center gap-2 md:flex md:min-h-[64px]">
               {/* IZQ: Logo */}
               <div className="flex-1 min-w-0 flex items-center">
                 <div className="flex h-10 items-center md:h-11">
@@ -329,14 +330,14 @@ const ctaBtn = [
                 </div>
               </div>
 
-              {/* DER (visual derecha→izquierda). Render: CV, IG, FB, WA, GH, LI, X, Toggle */}
-              <div className="flex-1 min-w-0 flex items-center justify-end gap-2 sm:gap-3">
-                {/* CV — solo desktop */}
+              {/* Acciones contextuales: CV, GitHub, LinkedIn, YouTube, cerrar y tema */}
+              <div className="col-span-2 flex min-w-0 items-center justify-end gap-2 border-t border-current/10 pt-2 md:col-span-1 md:ml-auto md:border-0 md:pt-0">
+                {/* CV */}
                 <a
           href="/cv.pdf"
           download
           aria-label="Descargar CV"
-          className={`hidden md:flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
+          className={`flex h-9 w-9 items-center justify-center rounded-md border p-0 text-sm transition-colors ${
             isDark
               ? "text-cyan-300 hover:text-cyan-200 bg-white/0 hover:bg-white/5 border-cyan-700/40 hover:border-cyan-700/70"
               : "text-cyan-800 hover:text-cyan-900 bg-white/40 hover:bg-white/60 border-cyan-900/30 hover:border-cyan-900/60"
@@ -344,47 +345,8 @@ const ctaBtn = [
           title="CV"
         >
           <Download size={16} />
-          <span className="hidden sm:inline text-xs font-sans font-bold">CV</span>
+          <span className="sr-only">CV</span>
         </a>
-
-                {/* Instagram — solo desktop */}
-                <a
-                  href="https://www.instagram.com/devmauriz/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className={`hidden md:flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
-                    isDark
-                      ? "text-pink-300 hover:text-pink-200 bg-pink-900/40 hover:bg-pink-900/55 border-pink-700/40 hover:border-pink-600/70"
-                      : "text-pink-700 hover:text-pink-800 bg-pink-100/70 hover:bg-pink-100 border-pink-900/20 hover:border-pink-900/40"
-                  }`}
-                  title="Instagram"
-                >
-                  {/* outline para que no sea bloque sólido */}
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                    <rect x="3" y="3" width="18" height="18" rx="5" ry="5" />
-                    <circle cx="12" cy="12" r="4" />
-                    <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
-                  </svg>
-                </a>
-
-                {/* Facebook — solo desktop */}
-                <a
-                  href="https://web.facebook.com/profile.php?id=61565151473870"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  className={`hidden md:flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
-                    isDark
-                      ? "text-blue-300 hover:text-blue-200 bg-blue-900/40 hover:bg-blue-900/55 border-blue-700/40 hover:border-blue-600/70"
-                      : "text-blue-700 hover:text-blue-900 bg-blue-100/70 hover:bg-blue-100 border-blue-900/20 hover:border-blue-900/40"
-                  }`}
-                  title="Facebook"
-                >
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
-                    <path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12Z" />
-                  </svg>
-                </a>
 
                 {/* GitHub — visible en mobile y desktop */}
                 <a
@@ -393,7 +355,7 @@ const ctaBtn = [
                   rel="noopener noreferrer"
                   aria-label="GitHub"
                   title="GitHub"
-                  className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
+                  className={`flex h-9 w-9 items-center justify-center rounded-md border p-0 text-sm transition-colors ${
                     isDark
                       ? "text-zinc-200 hover:text-white bg-zinc-800/60 hover:bg-zinc-800 border-zinc-600/50 hover:border-zinc-500/70"
                       : "text-zinc-800 hover:text-black bg-zinc-100/70 hover:bg-zinc-100 border-zinc-900/20 hover:border-zinc-900/40"
@@ -404,13 +366,13 @@ const ctaBtn = [
                   </svg>
                 </a>
 
-                {/* LinkedIn — solo desktop */}
+                {/* LinkedIn */}
                 <a
                   href="https://www.linkedin.com/in/maurizio-caballero-286a56219/?originalSubdomain=cl"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  className={`hidden md:flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
+                  className={`flex h-9 w-9 items-center justify-center rounded-md border p-0 text-sm transition-colors ${
                     isDark
                       ? "text-blue-300 hover:text-blue-200 bg-blue-900/40 hover:bg-blue-900/55 border-blue-700/40 hover:border-blue-600/70"
                       : "text-blue-800 hover:text-blue-900 bg-blue-100/70 hover:bg-blue-100 border-blue-900/30 hover:border-blue-900/50"
@@ -420,6 +382,21 @@ const ctaBtn = [
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
                     <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0zM8 8h4.8v2.2h.07c.67-1.2 2.3-2.47 4.73-2.47C21.4 7.73 24 10 24 14.3V24h-5v-8.6c0-2.05-.04-4.68-2.85-4.68-2.86 0-3.3 2.23-3.3 4.53V24H8V8z" />
                   </svg>
+                </a>
+
+                <a
+                  href="https://www.youtube.com/@Devmauri"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="YouTube"
+                  title="YouTube"
+                  className={`flex h-9 w-9 items-center justify-center rounded-md border p-0 text-sm transition-colors ${
+                    isDark
+                      ? "border-red-700/35 bg-red-950/35 text-red-300 hover:border-red-600/65 hover:bg-red-950/55 hover:text-red-200"
+                      : "border-red-900/20 bg-red-50/75 text-red-700 hover:border-red-900/35 hover:bg-red-100 hover:text-red-800"
+                  }`}
+                >
+                  <Youtube size={16} aria-hidden="true" />
                 </a>
 
                 {/* X — ✅ ahora sí vuelve a Section One con scroll y cierra */}

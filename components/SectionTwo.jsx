@@ -18,7 +18,7 @@ export default function SectionTwo({
 
   // base “glass” del header
   const glassBase =
-    "flex items-center justify-center gap-2 rounded-md border px-2 py-1.5 text-sm transition-colors md:px-3";
+    "flex h-9 w-9 shrink-0 items-center justify-center rounded-md border p-0 text-sm transition-colors";
 
   const btnLI =
     `${glassBase} flex ` +
@@ -90,7 +90,7 @@ export default function SectionTwo({
             </div>
 
             {/* DER (derecha→izquierda) */}
-            <div className="flex shrink-0 items-center justify-end gap-1 sm:gap-3">
+            <div className="flex shrink-0 items-center justify-end gap-2">
               {/* Extras desktop */}
               <a href="https://web.facebook.com/profile.php?id=61565151473870" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className={btnFB}>
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
@@ -193,6 +193,24 @@ export default function SectionTwo({
       />
 
       {/* Firma: misma posición y dimensiones; solo cambia el asset del tema */}
+      <div
+        aria-hidden="true"
+        className={`pointer-events-none absolute right-0 top-[29%] z-[23] h-24 w-40 opacity-70 sm:right-3 sm:h-28 sm:w-52 md:right-1 md:top-[19%] md:h-40 md:w-64 lg:right-5 lg:w-72 ${
+          isDark ? "text-cyan-300" : "text-cyan-700"
+        }`}
+      >
+        <svg viewBox="0 0 300 150" className="h-full w-full" fill="none">
+          <path d="M18 116H104L127 93H267" stroke="currentColor" strokeWidth="1.2" opacity=".48" />
+          <path d="M72 132H178L205 105H287" stroke="currentColor" strokeWidth=".8" opacity=".28" />
+          <path d="M187 28h54l27 27-27 27h-54l-27-27 27-27Z" stroke="currentColor" strokeWidth="1" opacity=".34" />
+          <circle cx="18" cy="116" r="3.5" fill="currentColor" opacity=".68" />
+          <circle cx="127" cy="93" r="3" fill="currentColor" opacity=".48" />
+          <circle cx="267" cy="93" r="3.5" fill="currentColor" opacity=".62" />
+          <circle cx="72" cy="132" r="2.5" fill="currentColor" opacity=".42" />
+          <circle cx="205" cy="105" r="2.5" fill="currentColor" opacity=".4" />
+          <path d="M225 38v34M208 55h34" stroke="currentColor" strokeWidth=".8" opacity=".25" />
+        </svg>
+      </div>
       <div className="pointer-events-none absolute right-2 top-[31%] z-[24] w-28 sm:right-6 sm:w-36 md:right-3 md:top-[22%] md:w-40 lg:right-8 lg:w-52">
         <Image
           src={isDark ? "/assets/firma-oscuro.png" : "/assets/firma-claro.png"}
@@ -218,13 +236,13 @@ export default function SectionTwo({
             <h1 className="max-w-full font-azonix text-[1.62rem] font-black leading-[1.02] text-slate-950 dark:text-white md:text-4xl lg:text-5xl">
               <span className="md:hidden">
                 ¡Hola! Soy
-                <span className="mt-1 block w-fit max-w-full bg-cyan-200/75 px-2 text-slate-950 shadow-[0_0_24px_rgba(34,211,238,.18)] dark:bg-cyan-300/15 dark:text-cyan-100">
+                <span className="mt-1 block w-fit max-w-full bg-cyan-200/35 px-2 text-slate-950 shadow-[0_0_24px_rgba(34,211,238,.10)] dark:bg-cyan-300/15 dark:text-cyan-100 dark:shadow-[0_0_24px_rgba(34,211,238,.18)]">
                   Maurizio Caballero
                 </span>
               </span>
               <span className="hidden md:inline">
                 ¡Hola! Soy
-                <span className="mt-1 block max-w-full bg-cyan-200/75 px-2 text-slate-950 shadow-[0_0_28px_rgba(34,211,238,.18)] dark:bg-cyan-300/15 dark:text-cyan-100">
+                <span className="mt-1 block max-w-full bg-cyan-200/35 px-2 text-slate-950 shadow-[0_0_28px_rgba(34,211,238,.10)] dark:bg-cyan-300/15 dark:text-cyan-100 dark:shadow-[0_0_28px_rgba(34,211,238,.18)]">
                   Maurizio Caballero
                 </span>
               </span>
@@ -241,7 +259,7 @@ export default function SectionTwo({
                 {"</>"}
               </span>
               <h2 className="font-sans text-[0.72rem] font-bold leading-snug text-slate-900 dark:text-white md:text-lg">
-                <span className="whitespace-nowrap text-[0.58rem] min-[390px]:text-[0.62rem] md:hidden">Estudiante de Ing. Eléctrica y Automatización Industrial.</span>
+                <span className="whitespace-nowrap text-[clamp(0.62rem,2.75vw,0.72rem)] md:hidden">Estudiante de Ing. en Electricidad y Automatización Industrial.</span>
                 <span className="hidden md:inline">Este portafolio es mi bitácora profesional: un espacio donde documento el camino que estoy construyendo dentro de la Ingeniería en Electricidad y Automatización Industrial.</span>
               </h2>
               <p className="mt-1.5 font-sans text-[0.7rem] leading-[1.35] text-slate-700 dark:text-zinc-200 md:mt-3 md:text-base md:leading-relaxed">
