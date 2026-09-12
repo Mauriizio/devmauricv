@@ -72,7 +72,7 @@ export default function SectionTwo({
 
   return (
     <section
-      className={`relative w-screen h-dvh snap-start snap-always flex-shrink-0 overscroll-none transition-colors duration-150 ${
+      className={`relative h-dvh w-full max-w-full snap-start snap-always flex-shrink-0 overscroll-none transition-colors duration-150 ${
         isDark ? "bg-black" : "bg-gray-50"
       } overflow-hidden`}
     >
@@ -173,7 +173,7 @@ export default function SectionTwo({
       />
 
       {/* Avatar: las dos variantes comparten exactamente la misma caja */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-[8.5rem] top-[10.5rem] z-10 md:bottom-0 md:left-auto md:right-0 md:top-24 md:w-[48vw] md:max-w-[760px]">
+      <div className="pointer-events-none absolute inset-x-0 bottom-[8.5rem] top-[10.5rem] z-10 md:bottom-0 md:left-auto md:right-0 md:top-24 md:w-[48vw] md:max-w-[760px] lg:right-[2vw] xl:right-[3vw]">
         <Image
           src={isDark ? "/assets/new-avtar-oscuro.png" : "/assets/new-avtar-claro.png"}
           alt="Retrato profesional de Maurizio Caballero"
@@ -195,7 +195,7 @@ export default function SectionTwo({
       {/* Firma: misma posición y dimensiones; solo cambia el asset del tema */}
       <div
         aria-hidden="true"
-        className={`pointer-events-none absolute right-0 top-[29%] z-[23] h-24 w-40 opacity-70 sm:right-3 sm:h-28 sm:w-52 md:right-1 md:top-[19%] md:h-40 md:w-64 lg:right-5 lg:w-72 ${
+        className={`pointer-events-none absolute left-2 top-[34%] z-[23] h-24 w-36 opacity-55 sm:left-5 sm:w-40 md:left-auto md:right-2 md:top-[27%] md:h-32 md:w-52 lg:right-4 lg:top-[28%] lg:h-36 lg:w-60 ${
           isDark ? "text-cyan-300" : "text-cyan-700"
         }`}
       >
@@ -211,7 +211,7 @@ export default function SectionTwo({
           <path d="M225 38v34M208 55h34" stroke="currentColor" strokeWidth=".8" opacity=".25" />
         </svg>
       </div>
-      <div className="pointer-events-none absolute right-2 top-[31%] z-[24] w-28 sm:right-6 sm:w-36 md:right-3 md:top-[22%] md:w-40 lg:right-8 lg:w-52">
+      <div className="pointer-events-none absolute left-5 top-[36%] z-[24] w-24 sm:left-8 sm:w-28 md:left-auto md:right-4 md:top-[29%] md:w-36 lg:right-7 lg:top-[30%] lg:w-44 xl:right-10 xl:w-48">
         <Image
           src={isDark ? "/assets/firma-oscuro.png" : "/assets/firma-claro.png"}
           alt="Firma de Maurizio Caballero"
@@ -249,12 +249,16 @@ export default function SectionTwo({
             </h1>
 
             <div
-              className={`absolute bottom-[calc(4.75rem+env(safe-area-inset-bottom))] left-4 right-4 min-w-0 overflow-hidden rounded-2xl border p-3.5 text-left backdrop-blur-md md:static md:mt-7 md:w-full md:max-w-[52rem] md:p-6 ${
+              className={`absolute bottom-[calc(4.75rem+env(safe-area-inset-bottom))] left-4 right-4 min-w-0 overflow-hidden rounded-2xl border p-3.5 text-left backdrop-blur-xl md:static md:mt-7 md:w-full md:max-w-[52rem] md:p-6 ${
                 isDark
-                  ? "border-cyan-300/45 bg-zinc-950/55 shadow-[0_0_34px_rgba(34,211,238,.20)] md:border-cyan-300/15 md:bg-black/35 md:shadow-[0_16px_45px_rgba(0,0,0,.30)]"
-                  : "border-cyan-600/35 bg-white/55 shadow-[0_0_34px_rgba(8,145,178,.18)] md:border-white/80 md:bg-white/65 md:shadow-[0_16px_45px_rgba(8,145,178,.12)]"
+                  ? "border-cyan-300/40 bg-zinc-950/[0.68] shadow-[0_0_28px_rgba(34,211,238,.16),0_18px_48px_rgba(0,0,0,.32)] md:border-cyan-300/20 md:bg-black/[0.40]"
+                  : "border-white/85 bg-white/[0.72] shadow-[0_0_26px_rgba(8,145,178,.12),0_18px_48px_rgba(15,23,42,.12)] md:bg-white/[0.58]"
               }`}
             >
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/90 to-transparent"
+              />
               <span className="mb-2 hidden h-8 w-8 place-items-center rounded-lg bg-cyan-400/10 font-mono text-sm font-bold text-cyan-700 dark:text-cyan-300 md:mb-3 md:grid md:h-9 md:w-9 md:rounded-xl md:text-base">
                 {"</>"}
               </span>

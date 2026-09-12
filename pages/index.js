@@ -257,7 +257,7 @@ export default function Home({ initialView, initialProject }) {
       {/* Hero principal único */}
       <main
         aria-hidden={anyOverlayOpen}
-        className={`relative h-dvh min-h-0 w-screen overflow-hidden
+        className={`relative h-dvh min-h-0 w-full max-w-full overflow-hidden
           transition-transform duration-300 ease-out motion-reduce:transition-none
           ${anyOverlayOpen ? "transform -translate-y-full overflow-hidden" : ""}`}
         style={{ willChange: anyOverlayOpen ? "transform" : "auto" }}

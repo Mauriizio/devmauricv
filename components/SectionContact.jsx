@@ -79,7 +79,7 @@ export default function SectionContact({ show, onClose }) {
         aria-hidden={!show}
         inert={!show}
         aria-labelledby="contact-title"
-        className={`fixed inset-0 z-50 h-dvh w-screen overflow-y-auto font-azonix transition-transform duration-[300ms] ease-out motion-reduce:transition-none ${
+        className={`fixed inset-0 z-50 h-dvh w-full max-w-full overflow-x-hidden overflow-y-auto font-azonix transition-transform duration-[300ms] ease-out motion-reduce:transition-none ${
           show ? "translate-y-0" : "translate-y-full"
         } ${isDark ? "dark bg-gray-900 text-white" : "bg-stone-200 text-zinc-800"}`}
       >

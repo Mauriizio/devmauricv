@@ -15,10 +15,13 @@
 }
 
 /* Base: tipografía consistente */
-:root { scrollbar-gutter: stable both-edges; }
+:root { scrollbar-gutter: stable; }
 
 html, body, #__next {
   height: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   overflow-y: hidden;        /* bloquea vertical global cuando todo es horizontal */
   overscroll-behavior-y: none;
 }

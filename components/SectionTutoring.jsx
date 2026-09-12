@@ -69,7 +69,7 @@ export default function SectionTutoring({ show, onClose }) {
         aria-hidden={!show}
         inert={!show}
         aria-labelledby="tutoring-title"
-        className={`fixed inset-0 z-50 h-dvh w-screen overflow-y-auto transition-transform duration-300 ease-out motion-reduce:transition-none ${
+        className={`fixed inset-0 z-50 h-dvh w-full max-w-full overflow-x-hidden overflow-y-auto transition-transform duration-300 ease-out motion-reduce:transition-none ${
           show ? "translate-y-0" : "translate-y-full"
         } ${isDark ? "dark bg-zinc-950 text-white" : "bg-slate-100 text-slate-900"}`}
       >

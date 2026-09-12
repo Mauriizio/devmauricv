@@ -201,7 +201,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
     <section
       ref={(node) => { scrollContainerRef.current = node; dialogRef.current = node }}
       role="dialog" aria-modal="true" aria-labelledby="project-detail-title"
-      className={`fixed inset-0 w-screen h-dvh font-azonix z-50 overflow-y-auto scroll-pb-[calc(96px+env(safe-area-inset-bottom,0px))] transition-transform duration-[350ms] ease-in-out
+      className={`fixed inset-0 h-dvh w-full max-w-full font-azonix z-50 overflow-x-hidden overflow-y-auto scroll-pb-[calc(96px+env(safe-area-inset-bottom,0px))] transition-transform duration-[350ms] ease-in-out
         ${show ? "translate-y-0" : "translate-y-full"} ${isDark ? "dark bg-gray-900 text-white" : "bg-stone-200 text-zinc-800"}`}
     >
       {show && (

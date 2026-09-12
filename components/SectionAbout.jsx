@@ -311,7 +311,7 @@ const ctaBtn = [
         aria-labelledby="about-title"
         tabIndex={-1}
         onKeyDown={handleKeyDown}
-        className={`fixed inset-0 w-screen h-dvh font-azonix z-40 transition-transform duration-[350ms] ease-in-out overflow-y-auto scroll-pb-[calc(96px+env(safe-area-inset-bottom,0px))] noise-overlay ${
+        className={`fixed inset-0 h-dvh w-full max-w-full font-azonix z-40 transition-transform duration-[350ms] ease-in-out overflow-x-hidden overflow-y-auto scroll-pb-[calc(96px+env(safe-area-inset-bottom,0px))] noise-overlay ${
           show ? "translate-y-0" : "translate-y-full"
         } ${isDark ? "dark bg-gray-900 text-white" : "bg-stone-200 text-zinc-800"}`}
       >
