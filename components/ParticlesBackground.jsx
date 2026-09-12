@@ -1,160 +1,96 @@
-// components/ParticlesBackground.jsx
 "use client";
 
-import { useCallback, useMemo } from "react";
-import Particles from "react-tsparticles";
-import { loadParticlesEngine } from "@/components/loadParticlesEngine";
+import Image from "next/image";
+
+const PARTICLES = [
+  { text: "const", x: 8, y: 18, color: "#22d3ee", duration: 24, delay: -4 },
+  { image: "/logos/lhtml.png", x: 18, y: 74, size: 24, duration: 29, delay: -18 },
+  { text: "let", x: 27, y: 38, color: "#f0abfc", duration: 26, delay: -12 },
+  { image: "/logos/lcss.png", x: 36, y: 86, size: 23, duration: 31, delay: -8 },
+  { text: "return", x: 43, y: 13, color: "#67e8f9", duration: 28, delay: -21 },
+  { image: "/logos/ljs.png", x: 51, y: 57, size: 24, duration: 25, delay: -6 },
+  { text: "PLC", x: 59, y: 28, color: "#86efac", duration: 30, delay: -15 },
+  { image: "/logos/loff.png", x: 68, y: 79, size: 25, duration: 27, delay: -2 },
+  { text: "Ω", x: 76, y: 12, color: "#ffffff", duration: 32, delay: -24 },
+  { image: "/logos/lcuba.png", x: 84, y: 48, size: 25, duration: 28, delay: -10 },
+  { text: "=>", x: 91, y: 88, color: "#22d3ee", duration: 25, delay: -19 },
+  { image: "/logos/lwor.png", x: 95, y: 24, size: 24, duration: 30, delay: -7 },
+  { text: "if", x: 13, y: 52, color: "#86efac", duration: 27, delay: -22, mobileHidden: true },
+  { text: "class", x: 32, y: 66, color: "#ffffff", duration: 31, delay: -13, mobileHidden: true },
+  { text: "V", x: 48, y: 91, color: "#67e8f9", duration: 24, delay: -17, mobileHidden: true },
+  { text: "import", x: 63, y: 45, color: "#f0abfc", duration: 29, delay: -5, mobileHidden: true },
+  { text: "∑", x: 73, y: 67, color: "#ffffff", duration: 26, delay: -20, mobileHidden: true },
+  { text: "export", x: 88, y: 62, color: "#22d3ee", duration: 32, delay: -11, mobileHidden: true },
+];
 
 export default function ParticlesBackground() {
-  const particlesInit = useCallback(async (engine) => {
-    await loadParticlesEngine(engine);
-  }, []);
-
-  const prefersReduced = useMemo(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return false;
-    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  }, []);
-
-  // Estrellas de fondo (capa 0)
-  const starsOptions = useMemo(
-    () => ({
-      fullScreen: { enable: false },
-      background: { color: "transparent" },
-      detectRetina: false,
-      fpsLimit: 30,
-      pauseOnBlur: true,
-      pauseOnOutsideViewport: true,
-      particles: {
-        number: { value: 150, density: { enable: true, area: 1050 } },
-        color: { value: ["#ffffff", "#22d3ee", "#67e8f9"] },
-        shape: { type: "circle" },
-        size: {
-          value: { min: 0.1, max: 2.2 },
-          random: { enable: true, minimumValue: 0.3 },
-        },
-        move: {
-          enable: !prefersReduced,
-          speed: prefersReduced ? 0 : 0.1,
-          direction: "none",
-          random: true,
-          straight: false,
-          outModes: { default: "out" },
-        },
-        opacity: {
-          value: { min: 0.58, max: 1 },
-          random: { enable: true, minimumValue: 0.5 },
-          animation: {
-            enable: !prefersReduced,
-            speed: prefersReduced ? 0 : 3,
-            minimumValue: 0.3,
-            sync: false,
-          },
-        },
-      },
-      // Si ya venías usando twinkle/shadow y funcionan con slim en tu proyecto, los mantenemos
-      twinkle: {
-        particles: { enable: !prefersReduced, frequency: 0.1, opacity: 1 },
-      },
-      shadow: {
-        enable: true,
-        color: "#F3F8FF",
-        blur: 12,
-        offset: { x: 0, y: 0 },
-      },
-      interactivity: {
-        detectsOn: "window",
-        events: { onHover: { enable: false }, onClick: { enable: false }, resize: true },
-      },
-    }),
-    [prefersReduced]
-  );
-
-  // Partículas técnicas visibles (capa 1). Formas nativas de slim: sin imágenes ni plugins extra.
-  const mainOptions = useMemo(
-    () => ({
-      fullScreen: { enable: false },
-      background: { color: "transparent" },
-      detectRetina: false,
-      fpsLimit: 30,
-      pauseOnBlur: true,
-      pauseOnOutsideViewport: true,
-      particles: {
-        number: { value: 26, density: { enable: true, area: 620 } },
-        color: { value: ["#22d3ee", "#67e8f9", "#ffffff"] },
-        shape: { type: ["circle", "square"] },
-        size: { value: { min: 1.5, max: 4.5 } },
-        move: {
-          enable: !prefersReduced,
-          speed: prefersReduced ? 0 : 0.45,
-          direction: "top-left",
-          random: false,
-          straight: true,
-          outModes: { default: "out" },
-          attract: { enable: false, rotateX: 600, rotateY: 1200 },
-        },
-        angle: { value: 120, offset: 0 },
-        gravity: { enable: false },
-        opacity: {
-          value: 0.82,
-          random: false,
-          animation: { enable: !prefersReduced, speed: prefersReduced ? 0 : 1, minimumValue: 1, sync: true },
-        },
-        shadow: {
-          enable: true,
-          color: "#F3F8FF",
-          blur: 4,
-          offset: { x: 0, y: 0 },
-        },
-      },
-      interactivity: {
-        events: { onHover: { enable: false }, onClick: { enable: false }, resize: true },
-      },
-      responsive: [
-        {
-          maxWidth: 768,
-          options: {
-            particles: {
-              number: { value: 18, density: { enable: true, area: 560 } },
-              size: { value: { min: 1.5, max: 3.5 } },
-            },
-          },
-        },
-      ],
-    }),
-    [prefersReduced]
-  );
-
-  if (prefersReduced) return null;
-
   return (
-    <>
-      {/* Estrellas de fondo */}
-      <Particles
-        id="tsparticles-stars"
-        init={particlesInit}
-        options={starsOptions}
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          zIndex: 0,
-        }}
-      />
+    <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+      {PARTICLES.map((particle, index) => (
+        <span
+          key={`${particle.text || particle.image}-${index}`}
+          className={`tech-particle absolute grid place-items-center font-mono font-semibold ${
+            particle.mobileHidden ? "hidden md:grid" : ""
+          }`}
+          style={{
+            left: `${particle.x}%`,
+            top: `${particle.y}%`,
+            color: particle.color,
+            fontSize: particle.text?.length > 3 ? "0.72rem" : "0.9rem",
+            animationDuration: `${particle.duration}s`,
+            animationDelay: `${particle.delay}s`,
+          }}
+        >
+          {particle.image ? (
+            <Image
+              src={particle.image}
+              alt=""
+              width={particle.size}
+              height={particle.size}
+              sizes={`${particle.size}px`}
+              className="h-auto w-auto object-contain"
+            />
+          ) : (
+            particle.text
+          )}
+        </span>
+      ))}
 
-      {/* Partículas técnicas de mayor tamaño */}
-      <Particles
-        id="tsparticles-main"
-        init={particlesInit}
-        options={mainOptions}
-        style={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          zIndex: 1,
-        }}
-      />
-    </>
+      <style jsx>{`
+        .tech-particle {
+          opacity: 0.78;
+          filter: drop-shadow(0 0 5px currentColor);
+          will-change: transform, opacity;
+          animation-name: tech-particle-drift;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+        }
+
+        @keyframes tech-particle-drift {
+          0% {
+            transform: translate3d(52px, 52px, 0) rotate(0deg);
+            opacity: 0;
+          }
+          12% {
+            opacity: 0.78;
+          }
+          88% {
+            opacity: 0.78;
+          }
+          100% {
+            transform: translate3d(-86px, -86px, 0) rotate(-8deg);
+            opacity: 0;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .tech-particle {
+            animation: none;
+            opacity: 0.55;
+            will-change: auto;
+          }
+        }
+      `}</style>
+    </div>
   );
 }

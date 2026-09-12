@@ -3,11 +3,9 @@
 
 import { useTheme } from "@/context/ThemeContext";
 import LogoMarkShimmer from "@/components/LogoMarkShimmer";
-import dynamic from "next/dynamic";
+import ParticlesBackground from "@/components/ParticlesBackground";
 import Image from "next/image";
 import { ArrowRight, Download, GraduationCap, Mail, Moon, Sun, UserRound, Youtube } from "lucide-react";
-
-const ParticlesBackground = dynamic(() => import("@/components/ParticlesBackground"), { ssr: false });
 
 export default function SectionTwo({
   onMenuOpen,
@@ -243,7 +241,7 @@ export default function SectionTwo({
                 {"</>"}
               </span>
               <h2 className="font-sans text-[0.72rem] font-bold leading-snug text-slate-900 dark:text-white md:text-lg">
-                <span className="md:hidden">Estudiante de Ingeniería en Electricidad y Automatización Industrial.</span>
+                <span className="whitespace-nowrap text-[0.58rem] min-[390px]:text-[0.62rem] md:hidden">Estudiante de Ing. Eléctrica y Automatización Industrial.</span>
                 <span className="hidden md:inline">Este portafolio es mi bitácora profesional: un espacio donde documento el camino que estoy construyendo dentro de la Ingeniería en Electricidad y Automatización Industrial.</span>
               </h2>
               <p className="mt-1.5 font-sans text-[0.7rem] leading-[1.35] text-slate-700 dark:text-zinc-200 md:mt-3 md:text-base md:leading-relaxed">
