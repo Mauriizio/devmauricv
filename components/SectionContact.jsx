@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import Head from "next/head"
-import { Download, Facebook, Github, Instagram, Linkedin, Moon, Sun, X as CloseIcon } from "lucide-react"
+import { Facebook, Github, Instagram, Linkedin, Moon, Sun, X as CloseIcon } from "lucide-react"
 import { useTheme } from "@/context/ThemeContext"
 import { useFocusTrap } from "@/components/useFocusTrap"
 import LogoMarkShimmer from "@/components/LogoMarkShimmer"
@@ -89,27 +89,27 @@ export default function SectionContact({ show, onClose }) {
           }`}
         >
           <div className="mx-auto max-w-6xl px-2 sm:px-4">
-            <div className="flex min-h-[56px] items-center gap-2 sm:gap-3 md:min-h-[64px]">
+            <div className="grid min-h-[56px] grid-cols-[1fr_auto] items-center gap-2 md:flex md:min-h-[64px]">
               <div className="flex min-w-0 flex-1 items-center">
                 <div className="flex h-10 items-center md:h-11">
                   <LogoMarkShimmer isDark={isDark} animated={show} className="h-10 w-auto md:h-11" />
                 </div>
               </div>
 
-              <div className="flex min-w-0 flex-1 items-center justify-end gap-2 sm:gap-3">
+              <div className="col-span-2 flex min-w-0 flex-wrap items-center justify-center gap-2 border-t border-current/10 pt-2 md:col-span-1 md:ml-auto md:flex-nowrap md:justify-end md:border-0 md:pt-0">
                 <a
-                  href="/cv.pdf"
-                  download
-                  aria-label="Descargar CV"
-                  title="CV"
-                  className={`hidden items-center justify-center gap-2 rounded-md border px-3 py-1.5 text-sm transition-colors md:flex ${
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="WhatsApp"
+                  title="WhatsApp"
+                  className={`flex h-9 w-9 items-center justify-center rounded-md border p-0 text-sm transition-colors ${
                     isDark
-                      ? "border-cyan-700/40 bg-white/0 text-cyan-300 hover:border-cyan-700/70 hover:bg-white/5 hover:text-cyan-200"
-                      : "border-cyan-900/30 bg-white/40 text-cyan-800 hover:border-cyan-900/60 hover:bg-white/60 hover:text-cyan-900"
+                      ? "border-emerald-700/40 bg-emerald-900/40 text-emerald-300 hover:border-emerald-600/70 hover:bg-emerald-900/55 hover:text-emerald-200"
+                      : "border-emerald-900/30 bg-emerald-100/70 text-emerald-800 hover:border-emerald-900/50 hover:bg-emerald-100 hover:text-emerald-900"
                   }`}
                 >
-                  <Download size={16} />
-                  <span className="hidden font-sans text-xs font-bold sm:inline">CV</span>
+                  <WhatsAppIcon className="h-4 w-4" />
                 </a>
 
                 <a
@@ -118,7 +118,7 @@ export default function SectionContact({ show, onClose }) {
                   rel="noopener noreferrer"
                   aria-label="Instagram"
                   title="Instagram"
-                  className={`hidden items-center justify-center rounded-md border px-3 py-1.5 text-sm transition-colors md:flex ${
+                  className={`flex h-9 w-9 items-center justify-center rounded-md border p-0 text-sm transition-colors ${
                     isDark
                       ? "border-pink-700/40 bg-pink-900/40 text-pink-300 hover:border-pink-600/70 hover:bg-pink-900/55 hover:text-pink-200"
                       : "border-pink-900/20 bg-pink-100/70 text-pink-700 hover:border-pink-900/40 hover:bg-pink-100 hover:text-pink-800"
@@ -133,7 +133,7 @@ export default function SectionContact({ show, onClose }) {
                   rel="noopener noreferrer"
                   aria-label="Facebook"
                   title="Facebook"
-                  className={`hidden items-center justify-center rounded-md border px-3 py-1.5 text-sm transition-colors md:flex ${
+                  className={`flex h-9 w-9 items-center justify-center rounded-md border p-0 text-sm transition-colors ${
                     isDark
                       ? "border-blue-700/40 bg-blue-900/40 text-blue-300 hover:border-blue-600/70 hover:bg-blue-900/55 hover:text-blue-200"
                       : "border-blue-900/20 bg-blue-100/70 text-blue-700 hover:border-blue-900/40 hover:bg-blue-100 hover:text-blue-900"
@@ -148,7 +148,7 @@ export default function SectionContact({ show, onClose }) {
                   rel="noopener noreferrer"
                   aria-label="GitHub"
                   title="GitHub"
-                  className={`flex items-center justify-center rounded-md border px-3 py-1.5 text-sm transition-colors ${
+                  className={`flex h-9 w-9 items-center justify-center rounded-md border p-0 text-sm transition-colors ${
                     isDark
                       ? "border-zinc-600/50 bg-zinc-800/60 text-zinc-200 hover:border-zinc-500/70 hover:bg-zinc-800 hover:text-white"
                       : "border-zinc-900/20 bg-zinc-100/70 text-zinc-800 hover:border-zinc-900/40 hover:bg-zinc-100 hover:text-black"
@@ -163,7 +163,7 @@ export default function SectionContact({ show, onClose }) {
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
                   title="LinkedIn"
-                  className={`hidden items-center justify-center rounded-md border px-3 py-1.5 text-sm transition-colors md:flex ${
+                  className={`flex h-9 w-9 items-center justify-center rounded-md border p-0 text-sm transition-colors ${
                     isDark
                       ? "border-blue-700/40 bg-blue-900/40 text-blue-300 hover:border-blue-600/70 hover:bg-blue-900/55 hover:text-blue-200"
                       : "border-blue-900/30 bg-blue-100/70 text-blue-800 hover:border-blue-900/50 hover:bg-blue-100 hover:text-blue-900"
@@ -177,7 +177,7 @@ export default function SectionContact({ show, onClose }) {
                   onClick={onClose}
                   aria-label="Cerrar"
                   title="Cerrar"
-                  className={`flex items-center justify-center rounded-md border px-3 py-1.5 text-sm transition-colors ${
+                  className={`flex h-9 w-9 items-center justify-center rounded-md border p-0 text-sm transition-colors ${
                     isDark
                       ? "border-rose-700/40 bg-rose-900/40 text-rose-300 hover:border-rose-600/70 hover:bg-rose-900/55 hover:text-rose-200"
                       : "border-rose-900/20 bg-rose-100/70 text-rose-700 hover:border-rose-900/40 hover:bg-rose-100 hover:text-rose-900"
