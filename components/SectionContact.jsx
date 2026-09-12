@@ -143,21 +143,6 @@ export default function SectionContact({ show, onClose }) {
                 </a>
 
                 <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="WhatsApp"
-                  title="WhatsApp"
-                  className={`flex items-center justify-center rounded-md border px-3 py-1.5 text-sm transition-colors ${
-                    isDark
-                      ? "border-emerald-700/40 bg-emerald-900/40 text-emerald-300 hover:border-emerald-600/70 hover:bg-emerald-900/55 hover:text-emerald-200"
-                      : "border-emerald-900/30 bg-emerald-100/70 text-emerald-800 hover:border-emerald-900/50 hover:bg-emerald-100 hover:text-emerald-900"
-                  }`}
-                >
-                  <WhatsAppIcon className="h-4 w-4" />
-                </a>
-
-                <a
                   href="https://github.com/Mauriizio"
                   target="_blank"
                   rel="noopener noreferrer"

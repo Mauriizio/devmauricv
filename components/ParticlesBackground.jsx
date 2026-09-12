@@ -25,8 +25,8 @@ export default function ParticlesBackground() {
       pauseOnBlur: true,
       pauseOnOutsideViewport: true,
       particles: {
-        number: { value: 135, density: { enable: true, area: 1100 } },
-        color: { value: ["#ffffff", "#00ffff", "#ff00ff"] },
+        number: { value: 150, density: { enable: true, area: 1050 } },
+        color: { value: ["#ffffff", "#22d3ee", "#67e8f9"] },
         shape: { type: "circle" },
         size: {
           value: { min: 0.1, max: 2.2 },
@@ -41,7 +41,7 @@ export default function ParticlesBackground() {
           outModes: { default: "out" },
         },
         opacity: {
-          value: { min: 0.4, max: 1 },
+          value: { min: 0.58, max: 1 },
           random: { enable: true, minimumValue: 0.5 },
           animation: {
             enable: !prefersReduced,
@@ -79,15 +79,15 @@ export default function ParticlesBackground() {
       pauseOnBlur: true,
       pauseOnOutsideViewport: true,
       particles: {
-        number: { value: 14, density: { enable: true, area: 500 } },
-        color: { value: ["#00ffea", "#ff00f7", "#00ff00", "#ffffff"] },
+        number: { value: 16, density: { enable: true, area: 540 } },
+        color: { value: ["#22d3ee", "#67e8f9", "#ffffff"] },
         shape: {
           type: ["image", "char"],
           character: {
             value: [
               "{", "}", "<", ">", "/", "*", "const", "let", "return", "(=)", "==", "+", "</>",
               "===", "[ ]", "=>", "&&", "||", "if", "else", "for", "while", "do", "case",
-              "break", "class", "import", "export",
+              "break", "class", "import", "export", "V", "A", "Ω", "PLC", "Δ", "∑",
             ],
             font: "monospace",
             weight: "400",

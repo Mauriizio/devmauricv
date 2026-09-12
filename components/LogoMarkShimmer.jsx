@@ -44,11 +44,11 @@ export default function LogoMarkShimmer({
           <stop offset="100%" stopColor="#868686ff" />
         </linearGradient>
 
-        {/* Oro oscuro (un poco más frío y contrastado) */}
+        {/* Variante oscura: conserva el acabado blanco/plata, sin dorado */}
         <linearGradient id={darkGradientId} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"  stopColor="#BFA157" />
-          <stop offset="50%" stopColor="#9A7B37" />
-          <stop offset="100%" stopColor="#6F5425" />
+          <stop offset="0%"  stopColor="#A3A3A3" />
+          <stop offset="45%" stopColor="#FFFFFF" />
+          <stop offset="100%" stopColor="#B8B8B8" />
         </linearGradient>
 
         {/* Barra shimmer */}
