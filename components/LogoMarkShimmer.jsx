@@ -4,26 +4,20 @@
 import { useId } from "react";
 
 /**
- * Logo con relleno "oro + ruido" y shimmer.
+ * Logo blanco/plata con ruido y shimmer.
  * - Ruido animado via <animate> en 'seed' (determinista, sin Math.random)
- * - Dos pipelines: claro (multiply) y oscuro (screen)
- * - Cambia oro/mezcla según 'isDark'
+ * - La misma apariencia se conserva en modo claro y oscuro
  */
 export default function LogoMarkShimmer({
   className = "",
-  isDark = false,
   title = "Maurizio Caballero",
   animated = true,
 }) {
   const instanceId = useId().replace(/:/g, "");
   const lightGradientId = `${instanceId}-mc-gold-light`;
-  const darkGradientId = `${instanceId}-mc-gold-dark`;
   const shimmerId = `${instanceId}-mc-shimmer`;
   const clipId = `${instanceId}-mc-clip`;
   const lightFilterId = `${instanceId}-mc-grain-light`;
-  const darkFilterId = `${instanceId}-mc-grain-dark`;
-  const gradId = isDark ? darkGradientId : lightGradientId;
-  const filterId = isDark ? darkFilterId : lightFilterId;
 
   return (
     <svg
@@ -37,18 +31,11 @@ export default function LogoMarkShimmer({
     >
       <title>{title}</title>
       <defs>
-        {/* Oro claro */}
+        {/* Blanco/plata */}
         <linearGradient id={lightGradientId} x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%"  stopColor="#999999ff" />
           <stop offset="45%" stopColor="#ffffffff" />
           <stop offset="100%" stopColor="#868686ff" />
-        </linearGradient>
-
-        {/* Variante oscura: conserva el acabado blanco/plata, sin dorado */}
-        <linearGradient id={darkGradientId} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"  stopColor="#A3A3A3" />
-          <stop offset="45%" stopColor="#FFFFFF" />
-          <stop offset="100%" stopColor="#B8B8B8" />
         </linearGradient>
 
         {/* Barra shimmer */}
@@ -63,8 +50,8 @@ export default function LogoMarkShimmer({
           <path d="m 0,44.660594 h 9.898456 l 16.289424,-27.018189 15.261656,27.028649 35.23118,-0.0307 -5.11014,-8.02009 -30.88751,0.0171 10.63598,-18.996697 9.813098,-7.45e-4 L 51.319316,1.7976846e-7 38.682931,20.384371 26.184443,0.11493018 Z"/>
         </clipPath>
 
-        {/* ===== Ruido + mezcla (CLARO) =====
-           SourceGraphic -> rect con gradiente oro
+        {/* ===== Ruido + mezcla =====
+           SourceGraphic -> rect con gradiente blanco/plata
            feTurbulence  -> grano muy fino (flicker variando 'seed')
            Mezcla final  -> multiply para oscurecer puntitos */}
         <filter id={lightFilterId} x="-20%" y="-20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
@@ -91,52 +78,15 @@ export default function LogoMarkShimmer({
             "
             result="grainHi"
           />
-          {/* Mezcla puntitos sobre el oro */}
+          {/* Mezcla puntitos sobre el gradiente */}
           <feBlend in="SourceGraphic" in2="grainHi" mode="multiply" />
         </filter>
 
-        {/* ===== Ruido + mezcla (OSCURO) =====
-           Igual grano, pero invertido y mezclado en 'screen'
-           para granitos luminosos sobre fondo oscuro */}
-        <filter id={darkFilterId} x="-20%" y="-20%" width="140%" height="140%" colorInterpolationFilters="sRGB">
-          <feTurbulence
-            type="turbulence"
-            baseFrequency="9"
-            numOctaves="9"
-            seed="0"
-            stitchTiles="stitch"
-            result="grain"
-          >
-            {animated ? <animate attributeName="seed" values="0;8;16;24;32;40;0" dur="0.38s" repeatCount="indefinite" /> : null}
-          </feTurbulence>
-
-          {/* Invierto/graduo para que el grano levante luz */}
-          <feComponentTransfer in="grain">
-            <feFuncR type="table" tableValues="1 0"/>
-            <feFuncG type="table" tableValues="1 0"/>
-            <feFuncB type="table" tableValues="1 0"/>
-            <feFuncA type="gamma" amplitude="1" exponent="1.8" offset="0"/>
-          </feComponentTransfer>
-
-          {/* Un poco más de contraste */}
-          <feColorMatrix
-            type="matrix"
-            values="
-              1 0 0 0 0
-              0 1 0 0 0
-              0 0 1 0 0
-              0 0 0 2 -0.9
-            "
-            result="grainInv"
-          />
-          {/* Granito claro encima del oro */}
-          <feBlend in="SourceGraphic" in2="grainInv" mode="screen" />
-        </filter>
       </defs>
 
-      {/* Relleno oro + ruido dentro del contorno */}
+      {/* Relleno blanco/plata + ruido dentro del contorno */}
       <g clipPath={`url(#${clipId})`}>
-        <rect width="100%" height="100%" fill={`url(#${gradId})`} filter={`url(#${filterId})`} />
+        <rect width="100%" height="100%" fill={`url(#${lightGradientId})`} filter={`url(#${lightFilterId})`} />
       </g>
 
       {/* Barra shimmer que cruza el logo */}

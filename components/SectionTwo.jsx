@@ -5,7 +5,7 @@ import { useTheme } from "@/context/ThemeContext";
 import LogoMarkShimmer from "@/components/LogoMarkShimmer";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { ArrowRight, Download, GraduationCap, Mail, Moon, Sun, UserRound } from "lucide-react";
+import { ArrowRight, Download, GraduationCap, Mail, Moon, Sun, UserRound, Youtube } from "lucide-react";
 
 const ParticlesBackground = dynamic(() => import("@/components/ParticlesBackground"), { ssr: false });
 
@@ -20,16 +20,16 @@ export default function SectionTwo({
 
   // base “glass” del header
   const glassBase =
-    "flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors";
+    "flex items-center justify-center gap-2 rounded-md border px-2 py-1.5 text-sm transition-colors md:px-3";
 
   const btnLI =
-    `${glassBase} flex px-2.5 md:px-3 ` +
+    `${glassBase} flex ` +
     (isDark
       ? "text-blue-300 hover:text-blue-200 bg-blue-900/40 hover:bg-blue-900/55 border-blue-700/40 hover:border-blue-600/70"
       : "text-blue-800 hover:text-blue-900 bg-blue-100/70 hover:bg-blue-100 border-blue-900/30 hover:border-blue-900/50");
 
   const btnIG =
-    `${glassBase} hidden md:flex ` +
+    `${glassBase} flex ` +
     (isDark
       ? "text-pink-300 hover:text-pink-200 bg-pink-900/40 hover:bg-pink-900/55 border-pink-700/40 hover:border-pink-600/70"
       : "text-pink-700 hover:text-pink-800 bg-pink-100/70 hover:bg-pink-100 border-pink-900/20 hover:border-pink-900/40");
@@ -41,10 +41,16 @@ export default function SectionTwo({
       : "text-blue-700 hover:text-blue-900 bg-blue-100/70 hover:bg-blue-100 border-blue-900/20 hover:border-blue-900/40");
 
   const btnGH =
-    `${glassBase} flex px-2.5 md:px-3 ` +
+    `${glassBase} flex ` +
     (isDark
       ? "text-zinc-200 hover:text-white bg-zinc-800/60 hover:bg-zinc-800 border-zinc-600/50 hover:border-zinc-500/70"
       : "text-zinc-800 hover:text-black bg-zinc-100/70 hover:bg-zinc-100 border-zinc-900/20 hover:border-zinc-900/40");
+
+  const btnYT =
+    `${glassBase} flex ` +
+    (isDark
+      ? "text-red-300 hover:text-red-200 bg-red-950/35 hover:bg-red-950/55 border-red-700/35 hover:border-red-600/65"
+      : "text-red-700 hover:text-red-800 bg-red-50/75 hover:bg-red-100 border-red-900/20 hover:border-red-900/35");
 
   // ✅ CTAs unificados (mismo estilo que About/Contact)
   const ctaBtn = [
@@ -74,35 +80,19 @@ export default function SectionTwo({
     >
       {/* Header */}
       <div
-        className={`absolute top-0 left-0 right-0 z-30 backdrop-blur-lg border-b p-4 ${
+        className={`absolute top-0 left-0 right-0 z-30 border-b p-3 backdrop-blur-lg md:p-4 ${
           isDark ? "bg-black/60 border-white/10" : "bg-white/60 border-gray-300/50"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="mx-auto max-w-6xl px-2 md:px-4">
           <div className="flex items-center gap-2 sm:gap-3 min-h-[56px] md:min-h-[64px]">
             {/* IZQ: Logo */}
             <div className="mr-auto flex shrink-0 items-center">
-              <LogoMarkShimmer isDark={isDark} className="h-10 w-auto md:h-14" />
+              <LogoMarkShimmer isDark={isDark} className="h-9 w-auto md:h-14" />
             </div>
 
             {/* DER (derecha→izquierda) */}
-            <div className="flex shrink-0 items-center justify-end gap-1.5 sm:gap-3">
-              {/* CV */}
-              <a
-                href="/cv.pdf"
-                download
-                aria-label="Descargar CV"
-                onClick={(e) => {
-                  if (onDownloadCV) { e.preventDefault(); onDownloadCV(); }
-                }}
-                className={glassBase + " " + (isDark
-                  ? "text-cyan-300 hover:text-cyan-200 bg-white/0 hover:bg-white/5 border-cyan-700/40 hover:border-cyan-700/70"
-                  : "text-cyan-800 hover:text-cyan-900 bg-white/40 hover:bg-white/60 border-cyan-900/30 hover:border-cyan-900/60")}
-              >
-                <Download size={16} />
-                <span className="hidden sm:inline text-xs font-sans font-bold">CV</span>
-              </a>
-
+            <div className="flex shrink-0 items-center justify-end gap-1 sm:gap-3">
               {/* Extras desktop */}
               <a href="https://web.facebook.com/profile.php?id=61565151473870" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className={btnFB}>
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
@@ -122,6 +112,9 @@ export default function SectionTwo({
                   <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none" />
                 </svg>
               </a>
+              <a href="https://www.youtube.com/@Devmauri" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube" className={btnYT}>
+                <Youtube size={16} aria-hidden="true" />
+              </a>
               <a
                 href="https://www.linkedin.com/in/maurizio-caballero-286a56219/?originalSubdomain=cl"
                 target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={btnLI}
@@ -139,11 +132,11 @@ export default function SectionTwo({
                 aria-label={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
                 aria-pressed={isDark}
                 className={`relative shrink-0 inline-flex items-center rounded-full border
-                            h-6 w-[2.50rem] min-w-[2.50rem] md:w-[2.50rem]
+                            h-6 w-9 min-w-9 md:w-[2.50rem] md:min-w-[2.50rem]
                             ${isDark ? "bg-cyan-700 border-cyan-400/60 justify-end" : "bg-cyan-200 border-cyan-900/50 justify-start"}
                             shadow-[0_2px_10px_rgba(0,0,0,0.10)] transition-colors duration-200`}
               >
-                <span className="h-5 w-5 mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] relative grid place-items-center">
+                <span className="relative mx-1 grid h-4 w-4 place-items-center rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] md:h-5 md:w-5">
                   {isDark ? (
                     <Sun size={12} className="text-amber-500" aria-hidden="true" />
                   ) : (
@@ -163,7 +156,7 @@ export default function SectionTwo({
         }`}
       />
 
-      <div className="pointer-events-none absolute inset-0 z-[6]">
+      <div className="pointer-events-none absolute inset-0 z-[9]">
         <ParticlesBackground />
       </div>
 
@@ -250,7 +243,7 @@ export default function SectionTwo({
                 {"</>"}
               </span>
               <h2 className="font-sans text-[0.72rem] font-bold leading-snug text-slate-900 dark:text-white md:text-lg">
-                <span className="md:hidden">Estudiante de Ingeniería en Electricidad y Automatización Industrial · Técnico en Desarrollo de Sistemas.</span>
+                <span className="md:hidden">Estudiante de Ingeniería en Electricidad y Automatización Industrial.</span>
                 <span className="hidden md:inline">Este portafolio es mi bitácora profesional: un espacio donde documento el camino que estoy construyendo dentro de la Ingeniería en Electricidad y Automatización Industrial.</span>
               </h2>
               <p className="mt-1.5 font-sans text-[0.7rem] leading-[1.35] text-slate-700 dark:text-zinc-200 md:mt-3 md:text-base md:leading-relaxed">
