@@ -69,7 +69,7 @@ export default function ParticlesBackground() {
     [prefersReduced]
   );
 
-  // Letras & logos (capa 1)
+  // Partículas técnicas visibles (capa 1). Formas nativas de slim: sin imágenes ni plugins extra.
   const mainOptions = useMemo(
     () => ({
       fullScreen: { enable: false },
@@ -79,33 +79,13 @@ export default function ParticlesBackground() {
       pauseOnBlur: true,
       pauseOnOutsideViewport: true,
       particles: {
-        number: { value: 16, density: { enable: true, area: 540 } },
+        number: { value: 26, density: { enable: true, area: 620 } },
         color: { value: ["#22d3ee", "#67e8f9", "#ffffff"] },
-        shape: {
-          type: ["image", "char"],
-          character: {
-            value: [
-              "{", "}", "<", ">", "/", "*", "const", "let", "return", "(=)", "==", "+", "</>",
-              "===", "[ ]", "=>", "&&", "||", "if", "else", "for", "while", "do", "case",
-              "break", "class", "import", "export", "V", "A", "Ω", "PLC", "Δ", "∑",
-            ],
-            font: "monospace",
-            weight: "400",
-            fill: true,
-          },
-          image: [
-            { src: "/logos/lhtml.png", width: 20, height: 20, preload: true },
-            { src: "/logos/lcss.png",  width: 20, height: 20, preload: true },
-            { src: "/logos/ljs.png",   width: 20, height: 20, preload: true },
-            { src: "/logos/loff.png",  width: 20, height: 20, preload: true },
-            { src: "/logos/lcuba.png", width: 20, height: 20, preload: true },
-            { src: "/logos/lwor.png",  width: 20, height: 20, preload: true },
-          ],
-        },
-        size: { value: { min: 10, max: 20 } },
+        shape: { type: ["circle", "square"] },
+        size: { value: { min: 1.5, max: 4.5 } },
         move: {
           enable: !prefersReduced,
-          speed: prefersReduced ? 0 : 2,
+          speed: prefersReduced ? 0 : 0.45,
           direction: "top-left",
           random: false,
           straight: true,
@@ -115,7 +95,7 @@ export default function ParticlesBackground() {
         angle: { value: 120, offset: 0 },
         gravity: { enable: false },
         opacity: {
-          value: 0.8,
+          value: 0.82,
           random: false,
           animation: { enable: !prefersReduced, speed: prefersReduced ? 0 : 1, minimumValue: 1, sync: true },
         },
@@ -134,8 +114,8 @@ export default function ParticlesBackground() {
           maxWidth: 768,
           options: {
             particles: {
-              number: { value: 10, density: { enable: true, area: 520 } },
-              size: { value: { min: 4, max: 10 } },
+              number: { value: 18, density: { enable: true, area: 560 } },
+              size: { value: { min: 1.5, max: 3.5 } },
             },
           },
         },
@@ -162,7 +142,7 @@ export default function ParticlesBackground() {
         }}
       />
 
-      {/* Partículas de letras e imágenes */}
+      {/* Partículas técnicas de mayor tamaño */}
       <Particles
         id="tsparticles-main"
         init={particlesInit}
