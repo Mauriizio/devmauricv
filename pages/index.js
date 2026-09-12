@@ -11,6 +11,7 @@ const SectionAbout   = dynamic(() => import("@/components/SectionAbout"),   { lo
 const MenuOverlay    = dynamic(() => import("@/components/MenuOverlay"),    { loading: () => <div className="sr-only">Cargando…</div> })
 const ProjectDetail  = dynamic(() => import("@/components/ProjectDetail"),  { loading: () => <div className="sr-only">Cargando…</div> })
 const SectionContact = dynamic(() => import("@/components/SectionContact"), { loading: () => <div className="sr-only">Cargando…</div> })
+const SectionTutoring = dynamic(() => import("@/components/SectionTutoring"), { loading: () => <div className="sr-only">Cargando…</div> })
 
 // --- SSR: leer ?view=...&id=... para evitar el "salto" al recargar ---
 export async function getServerSideProps(ctx) {
@@ -31,6 +32,7 @@ export default function Home({ initialView, initialProject }) {
   const [showMenu, setShowMenu] = useState(initialView === "projects")
   const [showAbout, setShowAbout] = useState(initialView === "about")
   const [showContact, setShowContact] = useState(initialView === "contact")
+  const [showTutoring, setShowTutoring] = useState(initialView === "tutoring")
   const [selectedProject, setSelectedProject] = useState(initialProject)
   const [showProject, setShowProject] = useState(initialView === "project" && !!initialProject)
   const [loadedViews, setLoadedViews] = useState(() => ({
@@ -38,6 +40,7 @@ export default function Home({ initialView, initialProject }) {
     project: initialView === "project" && !!initialProject,
     about: initialView === "about",
     contact: initialView === "contact",
+    tutoring: initialView === "tutoring",
   }))
 
   // Sincroniza estado si cambia la URL (back/forward o navegación interna)
@@ -48,11 +51,13 @@ export default function Home({ initialView, initialProject }) {
     setShowMenu(view === "projects")
     setShowAbout(view === "about")
     setShowContact(view === "contact")
+    setShowTutoring(view === "tutoring")
     setLoadedViews((current) => ({
       ...current,
       projects: current.projects || view === "projects",
       about: current.about || view === "about",
       contact: current.contact || view === "contact",
+      tutoring: current.tutoring || view === "tutoring",
     }))
 
     if (view === "project" && typeof id === "string") {
@@ -112,6 +117,13 @@ export default function Home({ initialView, initialProject }) {
   }
   const handleContactClose = () => router.back()
 
+  const handleTutoringOpen = () => {
+    setLoadedViews((current) => ({ ...current, tutoring: true }))
+    pushView({ view: "tutoring", id: undefined })
+  }
+  const handleTutoringClose = () =>
+    router.replace({ pathname: router.pathname }, undefined, { shallow: true, scroll: false })
+
   const handleProjectSelect = (project) => {
     if (!project) return
     setSelectedProject(project)
@@ -129,7 +141,7 @@ export default function Home({ initialView, initialProject }) {
     router.push({ pathname: router.pathname, query: nextQuery }, undefined, { shallow: true })
   }
 
-  const anyOverlayOpen = showAbout || showProject || showMenu || showContact
+  const anyOverlayOpen = showAbout || showProject || showMenu || showContact || showTutoring
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mauriziodev.vercel.app"
 
   return (
@@ -210,6 +222,7 @@ export default function Home({ initialView, initialProject }) {
           "https://github.com/Mauriizio",
           "https://www.linkedin.com/in/maurizio-caballero-286a56219/",
           "https://www.instagram.com/devmauriz/",
+          "https://www.youtube.com/@Devmauri",
           "https://x.com/devmauriz"
         ],
       }),
@@ -239,6 +252,7 @@ export default function Home({ initialView, initialProject }) {
         <SectionAbout show={showAbout} onVolverArriba={handleVolverArriba} onContactOpen={handleContactOpen} />
       ) : null}
       {loadedViews.contact ? <SectionContact show={showContact} onClose={handleContactClose} /> : null}
+      {loadedViews.tutoring ? <SectionTutoring show={showTutoring} onClose={handleTutoringClose} /> : null}
 
       {/* Hero principal único */}
       <main
@@ -248,7 +262,12 @@ export default function Home({ initialView, initialProject }) {
           ${anyOverlayOpen ? "transform -translate-y-full overflow-hidden" : ""}`}
         style={{ willChange: anyOverlayOpen ? "transform" : "auto" }}
       >
-        <SectionTwo onMenuOpen={openMenu} onVerMas={handleVerMas} onContactOpen={handleContactOpen} />
+        <SectionTwo
+          onMenuOpen={openMenu}
+          onVerMas={handleVerMas}
+          onContactOpen={handleContactOpen}
+          onTutoringOpen={handleTutoringOpen}
+        />
       </main>
     </>
   )

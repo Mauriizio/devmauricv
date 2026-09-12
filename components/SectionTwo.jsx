@@ -5,7 +5,7 @@ import { useTheme } from "@/context/ThemeContext";
 import LogoMarkShimmer from "@/components/LogoMarkShimmer";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { ArrowRight, Download, Mail, MessageCircle, Moon, Sun, UserRound } from "lucide-react";
+import { ArrowRight, Download, GraduationCap, Mail, Moon, Sun, UserRound } from "lucide-react";
 
 const ParticlesBackground = dynamic(() => import("@/components/ParticlesBackground"), { ssr: false });
 
@@ -13,6 +13,7 @@ export default function SectionTwo({
   onMenuOpen,
   onVerMas,
   onContactOpen,
+  onTutoringOpen,
   onDownloadCV,   // opcional
 }) {
   const { isDark, toggleDarkMode } = useTheme();
@@ -21,15 +22,8 @@ export default function SectionTwo({
   const glassBase =
     "flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors";
 
-  const btnWA =
-    `${glassBase} ` +
-    (isDark
-      ? "text-emerald-300 hover:text-emerald-200 bg-emerald-900/40 hover:bg-emerald-900/55 border-emerald-700/40 hover:border-emerald-600/70"
-      : "text-emerald-800 hover:text-emerald-900 bg-emerald-100/70 hover:bg-emerald-100 border-emerald-900/30 hover:border-emerald-900/50");
-
-  // SOLO DESKTOP
   const btnLI =
-    `${glassBase} hidden md:flex ` +
+    `${glassBase} flex px-2.5 md:px-3 ` +
     (isDark
       ? "text-blue-300 hover:text-blue-200 bg-blue-900/40 hover:bg-blue-900/55 border-blue-700/40 hover:border-blue-600/70"
       : "text-blue-800 hover:text-blue-900 bg-blue-100/70 hover:bg-blue-100 border-blue-900/30 hover:border-blue-900/50");
@@ -47,7 +41,7 @@ export default function SectionTwo({
       : "text-blue-700 hover:text-blue-900 bg-blue-100/70 hover:bg-blue-100 border-blue-900/20 hover:border-blue-900/40");
 
   const btnGH =
-    `${glassBase} hidden md:flex ` +
+    `${glassBase} flex px-2.5 md:px-3 ` +
     (isDark
       ? "text-zinc-200 hover:text-white bg-zinc-800/60 hover:bg-zinc-800 border-zinc-600/50 hover:border-zinc-500/70"
       : "text-zinc-800 hover:text-black bg-zinc-100/70 hover:bg-zinc-100 border-zinc-900/20 hover:border-zinc-900/40");
@@ -55,7 +49,7 @@ export default function SectionTwo({
   // ✅ CTAs unificados (mismo estilo que About/Contact)
   const ctaBtn = [
     "hidden md:inline-flex items-center justify-center gap-1.5",
-    "min-w-[150px] lg:min-w-[175px] px-5 py-2.5",
+    "min-w-[130px] px-4 py-2.5 lg:min-w-[145px]",
     "rounded-md border font-azonix font-extrabold transition-colors",
     "supports-[backdrop-filter]:backdrop-blur-sm",
     "disabled:opacity-60 disabled:pointer-events-none",
@@ -87,12 +81,12 @@ export default function SectionTwo({
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex items-center gap-2 sm:gap-3 min-h-[56px] md:min-h-[64px]">
             {/* IZQ: Logo */}
-            <div className="flex-1 min-w-0 flex items-center">
-              <LogoMarkShimmer isDark={isDark} className="h-12 w-auto md:h-14" />
+            <div className="mr-auto flex shrink-0 items-center">
+              <LogoMarkShimmer isDark={isDark} className="h-10 w-auto md:h-14" />
             </div>
 
             {/* DER (derecha→izquierda) */}
-            <div className="flex-1 min-w-0 flex items-center justify-end gap-2 sm:gap-3">
+            <div className="flex shrink-0 items-center justify-end gap-1.5 sm:gap-3">
               {/* CV */}
               <a
                 href="/cv.pdf"
@@ -107,20 +101,6 @@ export default function SectionTwo({
               >
                 <Download size={16} />
                 <span className="hidden sm:inline text-xs font-sans font-bold">CV</span>
-              </a>
-
-              {/* WhatsApp */}
-              <a
-                href="https://wa.me/56935446606"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp"
-                title="WhatsApp"
-                className={btnWA}
-              >
-                <svg viewBox="0 0 256 256" width="16" height="16" fill="currentColor" aria-hidden="true">
-                  <path d="M128 24a104 104 0 0 0-89.8 156.3L24 232l52.7-13.7A104 104 0 1 0 128 24Zm0 16a88 88 0 0 1 73 137.5l-3.4 5 2.1 34.8-32.9-8.5-5.2 3A88 88 0 1 1 128 40Zm45.4 115.7c-2.6 7.5-12.8 12.1-20.6 12.5-7.6.4-17.3-1.7-31.6-9.5-18.1-10-29.7-26.4-32.2-31.1-2.6-4.8-7.7-15.6-5.8-26.3 2-10.7 9.8-15.9 13-16.5s6.7-.3 9.6 6.6 7.9 19.3 8.6 20.7c.7 1.3 1.1 2.9.2 4.6-.9 1.6-1.3 2.6-2.6 4.1-1.3 1.6-2.7 3.6-3.8 4.8-1.3 1.3-2.6 2.7-1.1 5.3 1.6 2.6 7.2 11.9 15.5 19.2 10.6 9.3 19.5 12.2 22.4 13.5 2.9 1.3 4.6 1.1 6.3-.7 1.6-1.8 7.4-8.6 9.4-11.6 2-3 4.1-2.4 6.8-1.4 2.8 1 17.5 8.2 20.5 9.9 3 1.6 5 2.4 4.3 4.8Z"/>
-                </svg>
               </a>
 
               {/* Extras desktop */}
@@ -191,8 +171,8 @@ export default function SectionTwo({
         aria-hidden="true"
         className={`pointer-events-none absolute inset-0 z-[8] ${
           isDark
-            ? "bg-[radial-gradient(circle_at_76%_42%,rgba(6,182,212,.18),transparent_31%),linear-gradient(90deg,rgba(9,9,11,.97)_0%,rgba(9,9,11,.88)_48%,rgba(9,9,11,.24)_100%)]"
-            : "bg-[radial-gradient(circle_at_76%_42%,rgba(34,211,238,.18),transparent_31%),linear-gradient(90deg,rgba(248,250,252,.98)_0%,rgba(248,250,252,.90)_48%,rgba(248,250,252,.24)_100%)]"
+            ? "bg-[radial-gradient(circle_at_76%_42%,rgba(6,182,212,.22),transparent_31%),linear-gradient(90deg,rgba(9,9,11,.82)_0%,rgba(9,9,11,.58)_48%,rgba(9,9,11,.12)_100%)]"
+            : "bg-[radial-gradient(circle_at_76%_42%,rgba(34,211,238,.20),transparent_31%),linear-gradient(90deg,rgba(248,250,252,.94)_0%,rgba(248,250,252,.78)_48%,rgba(248,250,252,.18)_100%)]"
         }`}
       />
 
@@ -237,8 +217,8 @@ export default function SectionTwo({
       <div className="relative z-20 h-full w-full px-4 pt-24 md:px-10 md:pt-28">
         <div className="flex h-full min-h-0 items-start pt-3 md:items-center md:pt-0">
           <div className="mx-auto flex w-full min-w-0 flex-col items-start text-left md:mx-0 md:max-w-[55%] lg:max-w-[52%]">
-            <p className="mb-2 font-sans text-[0.62rem] font-bold uppercase tracking-[0.28em] text-cyan-700 dark:text-cyan-300 md:mb-3 md:text-xs">
-              <span className="md:hidden">Sobre mí</span>
+            <p className="mb-2 whitespace-nowrap font-sans text-[0.48rem] font-bold uppercase tracking-[0.12em] text-cyan-700 dark:text-cyan-300 min-[390px]:text-[0.52rem] md:mb-3 md:text-xs md:tracking-[0.28em]">
+              <span className="md:hidden">Ingeniería • Automatización • Tecnología</span>
               <span className="hidden md:inline">
               Ingeniería <span className="px-1 text-cyan-400">•</span> Automatización <span className="px-1 text-cyan-400">•</span> Software aplicado
               </span>
@@ -269,10 +249,11 @@ export default function SectionTwo({
               <span className="mb-2 hidden h-8 w-8 place-items-center rounded-lg bg-cyan-400/10 font-mono text-sm font-bold text-cyan-700 dark:text-cyan-300 md:mb-3 md:grid md:h-9 md:w-9 md:rounded-xl md:text-base">
                 {"</>"}
               </span>
-              <h2 className="hidden font-sans text-sm font-bold leading-snug text-slate-900 dark:text-white md:block md:text-lg">
-                Este portafolio es mi bitácora profesional: un espacio donde documento el camino que estoy construyendo dentro de la Ingeniería en Electricidad y Automatización Industrial.
+              <h2 className="font-sans text-[0.72rem] font-bold leading-snug text-slate-900 dark:text-white md:text-lg">
+                <span className="md:hidden">Estudiante de Ingeniería en Electricidad y Automatización Industrial · Técnico en Desarrollo de Sistemas.</span>
+                <span className="hidden md:inline">Este portafolio es mi bitácora profesional: un espacio donde documento el camino que estoy construyendo dentro de la Ingeniería en Electricidad y Automatización Industrial.</span>
               </h2>
-              <p className="font-sans text-[0.72rem] leading-[1.4] text-slate-700 dark:text-zinc-200 md:mt-3 md:text-base md:leading-relaxed">
+              <p className="mt-1.5 font-sans text-[0.7rem] leading-[1.35] text-slate-700 dark:text-zinc-200 md:mt-3 md:text-base md:leading-relaxed">
                 <span className="md:hidden">Aquí reúno proyectos de desarrollo de software, documentación técnica, sistemas, bases de datos, automatización y trabajos académicos.</span>
                 <span className="hidden md:inline">
                 Soy estudiante y aquí reúno proyectos de desarrollo web, documentación técnica, sistemas, bases de datos, automatización y trabajos académicos. No es solo una vitrina de servicios: es un registro honesto de mis aprendizajes, proyectos y evolución hacia una base profesional sólida.
@@ -312,18 +293,12 @@ export default function SectionTwo({
                   </span>
                   <span className="mt-1 font-sans text-[0.5rem] font-semibold leading-tight text-slate-700 dark:text-zinc-200">Descargar CV</span>
                 </a>
-                <a
-                  href="https://wa.me/56935446606"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex min-w-0 flex-col items-center text-center"
-                  aria-label="Contactar por WhatsApp"
-                >
+                <button type="button" onClick={onTutoringOpen} className="group flex min-w-0 flex-col items-center text-center" aria-label="Abrir tutorías">
                   <span className="grid h-8 w-8 place-items-center rounded-lg border border-cyan-700/20 bg-cyan-400/10 text-cyan-700 transition-colors group-hover:bg-cyan-400/20 dark:border-cyan-300/20 dark:text-cyan-200">
-                    <MessageCircle size={16} aria-hidden="true" />
+                    <GraduationCap size={16} aria-hidden="true" />
                   </span>
-                  <span className="mt-1 font-sans text-[0.5rem] font-semibold leading-tight text-slate-700 dark:text-zinc-200">WhatsApp</span>
-                </a>
+                  <span className="mt-1 font-sans text-[0.5rem] font-semibold leading-tight text-slate-700 dark:text-zinc-200">Tutorías</span>
+                </button>
               </div>
 
               <div className="mt-2.5 md:hidden">
@@ -338,6 +313,7 @@ export default function SectionTwo({
               <button type="button" onClick={onMenuOpen} className={ctaBtn}>Ver proyectos</button>
               <button type="button" onClick={onVerMas} className={ctaBtn}>Más sobre mí</button>
               <button type="button" onClick={onContactOpen} className={ctaBtn}>Contacto</button>
+              <button type="button" onClick={onTutoringOpen} className={ctaBtn}>Tutorías</button>
             </div>
           </div>
         </div>

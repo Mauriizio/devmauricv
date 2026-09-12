@@ -1,7 +1,15 @@
+"use client"
+
+import { useRouter } from "next/router"
+
 const WHATSAPP_URL =
   "https://wa.me/56935446606?text=Hola%20Maurizio%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20conversar%20contigo."
 
 export default function FloatingWhatsApp() {
+  const router = useRouter()
+
+  if (router.query?.view === "contact") return null
+
   return (
     <a
       href={WHATSAPP_URL}
