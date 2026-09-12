@@ -5,16 +5,9 @@ import { useTheme } from "@/context/ThemeContext";
 import LogoMarkShimmer from "@/components/LogoMarkShimmer";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { ArrowRight, Cog, Download, FileText, GraduationCap, Laptop, Moon, Sun } from "lucide-react";
+import { ArrowRight, Download, Mail, MessageCircle, Moon, Sun, UserRound } from "lucide-react";
 
 const ParticlesBackground = dynamic(() => import("@/components/ParticlesBackground"), { ssr: false });
-
-const MOBILE_FOCUS_AREAS = [
-  { label: "Desarrollo web", Icon: Laptop },
-  { label: "Automatización industrial", Icon: Cog },
-  { label: "Documentación técnica", Icon: FileText },
-  { label: "Proyectos académicos", Icon: GraduationCap },
-];
 
 export default function SectionTwo({
   onMenuOpen,
@@ -72,7 +65,7 @@ export default function SectionTwo({
   ].join(" ");
 
   const mobileCtaBtn = [
-    "inline-flex w-full items-center justify-between rounded-xl border px-4 py-3",
+    "inline-flex w-full items-center justify-between rounded-xl border px-4 py-2.5",
     "font-azonix text-[0.62rem] font-bold uppercase tracking-[0.08em] transition-[background-color,border-color,transform]",
     isDark
       ? "border-cyan-300/60 bg-cyan-300/5 text-cyan-100 shadow-[0_0_20px_rgba(34,211,238,.15)] hover:bg-cyan-300/10"
@@ -251,10 +244,12 @@ export default function SectionTwo({
               </span>
             </p>
 
-            <h1 className="max-w-[13ch] font-azonix text-[1.72rem] font-black leading-[1.02] text-slate-950 dark:text-white md:max-w-full md:text-4xl lg:text-5xl">
+            <h1 className="max-w-full font-azonix text-[1.62rem] font-black leading-[1.02] text-slate-950 dark:text-white md:text-4xl lg:text-5xl">
               <span className="md:hidden">
-                Aprendo ingeniería.
-                <span className="block text-cyan-600 dark:text-cyan-300">Construyo soluciones.</span>
+                ¡Hola! Soy
+                <span className="mt-1 block w-fit max-w-full bg-cyan-200/75 px-2 text-slate-950 shadow-[0_0_24px_rgba(34,211,238,.18)] dark:bg-cyan-300/15 dark:text-cyan-100">
+                  Maurizio Caballero
+                </span>
               </span>
               <span className="hidden md:inline">
                 ¡Hola! Soy
@@ -265,23 +260,20 @@ export default function SectionTwo({
             </h1>
 
             <div
-              className={`absolute bottom-[calc(4.75rem+env(safe-area-inset-bottom))] left-4 right-4 min-w-0 overflow-hidden rounded-2xl border p-4 text-left backdrop-blur-md md:static md:mt-7 md:w-full md:max-w-[52rem] md:p-6 ${
+              className={`absolute bottom-[calc(4.75rem+env(safe-area-inset-bottom))] left-4 right-4 min-w-0 overflow-hidden rounded-2xl border p-3.5 text-left backdrop-blur-md md:static md:mt-7 md:w-full md:max-w-[52rem] md:p-6 ${
                 isDark
                   ? "border-cyan-300/45 bg-zinc-950/55 shadow-[0_0_34px_rgba(34,211,238,.20)] md:border-cyan-300/15 md:bg-black/35 md:shadow-[0_16px_45px_rgba(0,0,0,.30)]"
                   : "border-cyan-600/35 bg-white/55 shadow-[0_0_34px_rgba(8,145,178,.18)] md:border-white/80 md:bg-white/65 md:shadow-[0_16px_45px_rgba(8,145,178,.12)]"
               }`}
             >
-              <span className="mb-2 grid h-8 w-8 place-items-center rounded-lg bg-cyan-400/10 font-mono text-sm font-bold text-cyan-700 dark:text-cyan-300 md:mb-3 md:h-9 md:w-9 md:rounded-xl md:text-base">
+              <span className="mb-2 hidden h-8 w-8 place-items-center rounded-lg bg-cyan-400/10 font-mono text-sm font-bold text-cyan-700 dark:text-cyan-300 md:mb-3 md:grid md:h-9 md:w-9 md:rounded-xl md:text-base">
                 {"</>"}
               </span>
-              <h2 className="font-sans text-sm font-bold leading-snug text-slate-900 dark:text-white md:text-lg">
-                <span className="md:hidden">Soy estudiante de Ingeniería en Electricidad y Automatización Industrial.</span>
-                <span className="hidden md:inline">
+              <h2 className="hidden font-sans text-sm font-bold leading-snug text-slate-900 dark:text-white md:block md:text-lg">
                 Este portafolio es mi bitácora profesional: un espacio donde documento el camino que estoy construyendo dentro de la Ingeniería en Electricidad y Automatización Industrial.
-                </span>
               </h2>
-              <p className="mt-2 font-sans text-[0.72rem] leading-[1.35] text-slate-700 dark:text-zinc-200 md:mt-3 md:text-base md:leading-relaxed">
-                <span className="md:hidden">Esta bitácora reúne desarrollo web, documentación técnica, sistemas, bases de datos, automatización y trabajos académicos. Aquí documento mis proyectos, aprendizajes y evolución profesional.</span>
+              <p className="font-sans text-[0.72rem] leading-[1.4] text-slate-700 dark:text-zinc-200 md:mt-3 md:text-base md:leading-relaxed">
+                <span className="md:hidden">Aquí reúno proyectos de desarrollo de software, documentación técnica, sistemas, bases de datos, automatización y trabajos académicos.</span>
                 <span className="hidden md:inline">
                 Soy estudiante y aquí reúno proyectos de desarrollo web, documentación técnica, sistemas, bases de datos, automatización y trabajos académicos. No es solo una vitrina de servicios: es un registro honesto de mis aprendizajes, proyectos y evolución hacia una base profesional sólida.
                 </span>
@@ -290,22 +282,53 @@ export default function SectionTwo({
                 Aprender <span className="px-1 text-cyan-400">+</span> Construir <span className="px-1 text-cyan-400">+</span> Documentar <span className="px-1 text-cyan-400">=</span> Evolucionar
               </p>
 
-              <div className="mt-3 grid grid-cols-4 gap-1.5 border-y border-cyan-700/15 py-3 dark:border-cyan-300/15 md:hidden">
-                {MOBILE_FOCUS_AREAS.map(({ label, Icon }) => (
-                  <div key={label} className="flex min-w-0 flex-col items-center text-center">
-                    <span className="grid h-8 w-8 place-items-center rounded-lg border border-cyan-700/15 bg-cyan-400/10 text-cyan-700 dark:border-cyan-300/15 dark:text-cyan-200">
-                      <Icon size={16} aria-hidden="true" />
-                    </span>
-                    <span className="mt-1.5 font-sans text-[0.5rem] font-semibold leading-tight text-slate-700 dark:text-zinc-200">
-                      {label}
-                    </span>
-                  </div>
-                ))}
+              <div className="mt-2.5 grid grid-cols-4 gap-1.5 border-y border-cyan-700/15 py-2.5 dark:border-cyan-300/15 md:hidden">
+                <button type="button" onClick={onVerMas} className="group flex min-w-0 flex-col items-center text-center" aria-label="Más sobre mí">
+                  <span className="grid h-8 w-8 place-items-center rounded-lg border border-cyan-700/20 bg-cyan-400/10 text-cyan-700 transition-colors group-hover:bg-cyan-400/20 dark:border-cyan-300/20 dark:text-cyan-200">
+                    <UserRound size={16} aria-hidden="true" />
+                  </span>
+                  <span className="mt-1 font-sans text-[0.5rem] font-semibold leading-tight text-slate-700 dark:text-zinc-200">Sobre mí</span>
+                </button>
+                <button type="button" onClick={onContactOpen} className="group flex min-w-0 flex-col items-center text-center" aria-label="Abrir contacto">
+                  <span className="grid h-8 w-8 place-items-center rounded-lg border border-cyan-700/20 bg-cyan-400/10 text-cyan-700 transition-colors group-hover:bg-cyan-400/20 dark:border-cyan-300/20 dark:text-cyan-200">
+                    <Mail size={16} aria-hidden="true" />
+                  </span>
+                  <span className="mt-1 font-sans text-[0.5rem] font-semibold leading-tight text-slate-700 dark:text-zinc-200">Contacto</span>
+                </button>
+                <a
+                  href="/cv.pdf"
+                  download
+                  onClick={(event) => {
+                    if (onDownloadCV) {
+                      event.preventDefault();
+                      onDownloadCV();
+                    }
+                  }}
+                  className="group flex min-w-0 flex-col items-center text-center"
+                  aria-label="Descargar CV"
+                >
+                  <span className="grid h-8 w-8 place-items-center rounded-lg border border-cyan-700/20 bg-cyan-400/10 text-cyan-700 transition-colors group-hover:bg-cyan-400/20 dark:border-cyan-300/20 dark:text-cyan-200">
+                    <Download size={16} aria-hidden="true" />
+                  </span>
+                  <span className="mt-1 font-sans text-[0.5rem] font-semibold leading-tight text-slate-700 dark:text-zinc-200">Descargar CV</span>
+                </a>
+                <a
+                  href="https://wa.me/56935446606"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex min-w-0 flex-col items-center text-center"
+                  aria-label="Contactar por WhatsApp"
+                >
+                  <span className="grid h-8 w-8 place-items-center rounded-lg border border-cyan-700/20 bg-cyan-400/10 text-cyan-700 transition-colors group-hover:bg-cyan-400/20 dark:border-cyan-300/20 dark:text-cyan-200">
+                    <MessageCircle size={16} aria-hidden="true" />
+                  </span>
+                  <span className="mt-1 font-sans text-[0.5rem] font-semibold leading-tight text-slate-700 dark:text-zinc-200">WhatsApp</span>
+                </a>
               </div>
 
-              <div className="mt-3 md:hidden">
-                <button type="button" onClick={onVerMas} className={mobileCtaBtn}>
-                  <span>Conoce mi trayectoria</span>
+              <div className="mt-2.5 md:hidden">
+                <button type="button" onClick={onMenuOpen} className={mobileCtaBtn}>
+                  <span>Ver proyectos</span>
                   <ArrowRight size={16} aria-hidden="true" />
                 </button>
               </div>
