@@ -25,8 +25,6 @@ export default function SectionTwo({
     onClose?.();
   };
 
-  const accentText = isDark ? "text-cyan-600" : "text-cyan-900";
-
   // base “glass” del header
   const glassBase =
     "flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors";
@@ -217,93 +215,102 @@ export default function SectionTwo({
         </div>
       </div>
 
-      {/* Fondo base */}
-      <div className={`absolute inset-0 z-[5] transition-colors duration-150 ${isDark ? "bg-black" : "bg-gray-50"}`} />
+      {/* Escena técnica inspirada en la referencia visual */}
+      <div
+        className={`absolute inset-0 z-[5] transition-colors duration-150 ${
+          isDark ? "bg-zinc-950" : "bg-slate-50"
+        }`}
+      />
 
-      {/* Partículas */}
-      <div className="absolute inset-0 z-[6] pointer-events-none">
+      <div className="pointer-events-none absolute inset-0 z-[6]">
         <ParticlesBackground />
       </div>
 
-      {/* Scrim izquierdo */}
       <div
-        aria-hidden
-        className={`pointer-events-none absolute inset-y-0 left-0 z-[15]
-                    w-[46vw] md:w-[40vw] lg:w-[36vw]
-                    ${isDark ? "bg-gradient-to-r from-black/60 via-black/15 to-transparent"
-                             : "bg-gradient-to-r from-white/25 via-white/10 to-transparent"}`}
+        aria-hidden="true"
+        className={`pointer-events-none absolute inset-0 z-[8] ${
+          isDark
+            ? "bg-[radial-gradient(circle_at_76%_42%,rgba(6,182,212,.18),transparent_31%),linear-gradient(90deg,rgba(9,9,11,.97)_0%,rgba(9,9,11,.88)_48%,rgba(9,9,11,.24)_100%)]"
+            : "bg-[radial-gradient(circle_at_76%_42%,rgba(34,211,238,.18),transparent_31%),linear-gradient(90deg,rgba(248,250,252,.98)_0%,rgba(248,250,252,.90)_48%,rgba(248,250,252,.24)_100%)]"
+        }`}
       />
 
-      {/* Overlay general */}
-      <div className={`absolute inset-0 z-10 transition-colors duration-150 ${isDark ? "bg-black/65 md:bg-black/70" : "bg-black/30 md:bg-white/40 z-10"}`} />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-5 top-28 z-[9] h-24 w-24 opacity-35 [background-image:radial-gradient(circle,#22d3ee_1.4px,transparent_1.4px)] [background-size:14px_14px] md:left-auto md:right-7 md:top-32"
+      />
 
-      {/* Avatar */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
-        <div className="absolute inset-0 md:hidden">
-          <Image src="/assets/avatar.png" alt="Avatar Maurizio Caballero" fill priority sizes="100vw" className="object-cover object-center z-20" />
-        </div>
-        <div className="hidden md:block absolute top-0 right-0 bottom-0 w-[60vw] max-w-[900px]">
-          <Image src="/assets/avatar.png" alt="Avatar Maurizio Caballero" fill priority sizes="(min-width: 1024px) 60vw, 80vw" className="object-contain object-right z-20" />
-        </div>
+      {/* Avatar: las dos variantes comparten exactamente la misma caja */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[43%] sm:h-[48%] md:inset-y-0 md:left-auto md:h-full md:w-[53vw] md:max-w-[920px]">
+        <Image
+          src={isDark ? "/assets/new-avtar-oscuro.png" : "/assets/new-avtar-claro.png"}
+          alt="Retrato profesional de Maurizio Caballero"
+          fill
+          sizes="(min-width: 1280px) 920px, (min-width: 768px) 53vw, 100vw"
+          className="object-contain object-bottom md:object-right-bottom"
+        />
       </div>
 
-      {/* Contenido */}
-      {/* ***** RESERVA para CTA en móvil (no afecta desktop) ***** */}
       <div
-        className="relative z-20 w-full h-full px-5 md:px-10 pt-24"
-        style={{
-          // colchón para no invadir CTAs absolutos + safe area
-          paddingBottom: "calc(132px + env(safe-area-inset-bottom))",
-        }}
+        aria-hidden="true"
+        className={`pointer-events-none absolute inset-x-0 bottom-0 z-[11] h-[48%] md:hidden ${
+          isDark
+            ? "bg-gradient-to-b from-zinc-950 via-zinc-950/45 to-transparent"
+            : "bg-gradient-to-b from-slate-50 via-slate-50/45 to-transparent"
+        }`}
+      />
+
+      {/* Firma: misma posición y dimensiones; solo cambia el asset del tema */}
+      <div className="pointer-events-none absolute bottom-[8.5rem] right-3 z-[24] w-32 sm:right-6 sm:w-40 md:bottom-auto md:right-5 md:top-[42%] md:w-48 lg:right-8 lg:w-56">
+        <Image
+          src={isDark ? "/assets/firma-oscuro.png" : "/assets/firma-claro.png"}
+          alt="Firma de Maurizio Caballero"
+          width={1536}
+          height={1024}
+          sizes="(min-width: 1024px) 224px, (min-width: 768px) 192px, 160px"
+          className="h-auto w-full object-contain opacity-90"
+        />
+      </div>
+
+      {/* Presentación */}
+      <div
+        className="relative z-20 h-full w-full px-5 pt-24 md:px-10 md:pt-28"
+        style={{ paddingBottom: "calc(132px + env(safe-area-inset-bottom))" }}
       >
-        {/* Área útil: centrada entre header y CTAs */}
-        <div
-          className="h-full min-h-0 flex items-center md:items-start"
-          style={{
-            height: "calc(100% - (132px + env(safe-area-inset-bottom)))",
-          }}
-        >
-          <div className="font-azonix flex flex-col gap-3 items-center text-center mx-auto max-w-[92%] md:items-start md:text-left md:mx-0 md:max-w-[52%]">
-            <h1 className={`text-[1.6rem] leading-[1.15] md:text-4xl lg:text-5xl font-black drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)] ${accentText}`}>
-              ¡Hola! Soy <br />
-              <span className={`${isDark ? "bg-cyan-200/10 text-black" : "bg-cyan-100 text-gray-900"} px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]`}>
-                Maurizio Caballero
+        <div className="flex h-full min-h-0 items-start pt-4 md:items-center md:pt-0">
+          <div className="mx-auto flex w-full min-w-0 max-w-[94%] flex-col items-center text-center md:mx-0 md:max-w-[55%] md:items-start md:text-left lg:max-w-[52%]">
+            <p className="mb-3 font-sans text-[0.65rem] font-bold uppercase tracking-[0.28em] text-cyan-700 dark:text-cyan-300 sm:text-xs">
+              Ingeniería <span className="px-1 text-cyan-400">•</span> Automatización <span className="px-1 text-cyan-400">•</span> Software aplicado
+            </p>
+
+            <h1 className="max-w-full font-azonix text-[1.4rem] font-black leading-[1.08] text-slate-950 dark:text-white sm:text-3xl md:text-4xl lg:text-5xl">
+              ¡Hola! Soy
+              <span className="mt-1 block max-w-full bg-cyan-200/75 px-2 text-slate-950 shadow-[0_0_28px_rgba(34,211,238,.18)] dark:bg-cyan-300/15 dark:text-cyan-100">
+                <span className="block sm:inline">Maurizio</span>{" "}
+                <span className="block sm:inline">Caballero</span>
               </span>
             </h1>
 
-            {/* Frase resumen (márgenes suaves, sin 15vh) */}
-            <p
-              className={`relative mt-3 md:mt-6 lg:mt-8 mb-2 md:mb-1
-                          font-black text-base md:text-xl leading-relaxed md:leading-tight
-                          text-slate-900/95 dark:text-white/90
-                          max-w-[48ch] md:max-w-[38ch] lg:max-w-[34ch]
-                          text-center md:text-left mx-auto md:mx-0
-                          drop-shadow-[0_1px_0.5px_rgba(255,255,255,0.30)]
-                          dark:drop-shadow-[0_1px_0.5px_rgba(0,0,0,0.30)]
-                          before:content-[''] before:absolute before:inset-[-8px] before:rounded-2xl
-                          before:bg-white/45 dark:before:bg-black/20
-                          before:bg-gradient-to-br before:from-white/70 before:to-white/20
-                          dark:before:from-black/55 dark:before:to-black/15
-                          supports-[backdrop-filter]:before:backdrop-blur-xl
-                          before:shadow-[0_10px_30px_rgba(0,0,0,0.10)]
-                          dark:before:shadow-[0_10px_30px_rgba(0,0,0,0.35)]
-                          before:ring before:ring-black/10 dark:before:ring-white/10
-                          before:border before:border-white/20 dark:before:border-white/10
-                          before:z-[-1]`}
+            <div
+              className={`mt-5 w-full min-w-0 max-w-[52rem] overflow-hidden rounded-2xl border p-4 text-left backdrop-blur-md sm:p-5 md:mt-7 md:p-6 ${
+                isDark
+                  ? "border-cyan-300/15 bg-black/35 shadow-[0_16px_45px_rgba(0,0,0,.30)]"
+                  : "border-white/80 bg-white/65 shadow-[0_16px_45px_rgba(8,145,178,.12)]"
+              }`}
             >
-              Construyo proyectos donde la ingeniería, el software y la documentación se conectan: desarrollar{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">sistemas de información</span>, apoyar{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">documentación técnica</span>, diseñar{" "}
-              <span className="text-cyan-800 dark:text-cyan-300"> bases de datos</span>,{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">crear aplicaciones web y móviles</span>,{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">gestionar proyectos tecnológicos y académicos</span>,{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">brindar soporte técnico</span> y{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">capacitar usuarios</span>.{" "}
-              {/* ***** Corrección ortográfica ***** */}
-              {/* Últimamente también me he estado especializando en{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">automatización de procesos con Inteligencia Artificial</span>,
-              con un enfoque en mejorar la productividad empresarial. */}
-            </p>
+              <span className="mb-3 grid h-9 w-9 place-items-center rounded-xl bg-cyan-400/10 font-mono text-base font-bold text-cyan-700 dark:text-cyan-300">
+                {"</>"}
+              </span>
+              <h2 className="font-sans text-sm font-bold leading-snug text-slate-900 dark:text-white sm:text-base md:text-lg">
+                Este portafolio es mi bitácora profesional: un espacio donde documento el camino que estoy construyendo dentro de la Ingeniería en Electricidad y Automatización Industrial.
+              </h2>
+              <p className="mt-2 font-sans text-xs leading-relaxed text-slate-600 dark:text-zinc-300 sm:text-sm md:mt-3 md:text-base">
+                Soy estudiante y aquí reúno proyectos de desarrollo web, documentación técnica, sistemas, bases de datos, automatización y trabajos académicos. No es solo una vitrina de servicios: es un registro honesto de mis aprendizajes, proyectos y evolución hacia una base profesional sólida.
+              </p>
+              <p className="mt-3 break-words font-sans text-[0.58rem] font-bold uppercase leading-relaxed tracking-[0.15em] text-cyan-800 dark:text-cyan-300 sm:text-[0.68rem] sm:tracking-[0.18em] md:mt-5 md:text-xs">
+                Aprender <span className="px-1 text-cyan-400">+</span> Construir <span className="px-1 text-cyan-400">+</span> Documentar <span className="px-1 text-cyan-400">=</span> Evolucionar
+              </p>
+            </div>
           </div>
         </div>
       </div>
