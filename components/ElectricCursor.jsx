@@ -1,158 +1,62 @@
 import { useEffect, useRef, useState } from "react"
 import { useTheme } from "@/context/ThemeContext"
 
-const LOGO_W = 76.68
-const LOGO_H = 44.67
-const LOGO_VERTS = [
-  [0, 44.66],
-  [9.9, 44.66],
-  [26.19, 17.64],
-  [41.45, 44.67],
-  [76.68, 44.64],
-  [71.57, 36.62],
-  [40.68, 36.64],
-  [51.32, 17.64],
-  [61.13, 17.64],
-  [51.32, 0],
-  [38.68, 20.38],
-  [26.18, 0.11],
-]
-const TRAIL_LEN = 32
 const DESKTOP_CURSOR_QUERY = "(hover: hover) and (pointer: fine)"
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)"
-
-function bolt(x1, y1, x2, y2, roughness, depth, out) {
-  if (depth === 0) {
-    out.push(x1, y1, x2, y2)
-    return
-  }
-
-  const len = Math.hypot(x2 - x1, y2 - y1)
-  const mx = (x1 + x2) / 2 + (Math.random() - 0.5) * len * roughness
-  const my = (y1 + y2) / 2 + (Math.random() - 0.5) * len * roughness
-
-  bolt(x1, y1, mx, my, roughness, depth - 1, out)
-  bolt(mx, my, x2, y2, roughness, depth - 1, out)
-
-  if (depth === 3 && Math.random() < 0.35) {
-    const bx = mx + (Math.random() - 0.5) * len * 0.3
-    const by = my + (Math.random() - 0.5) * len * 0.3
-    bolt(mx, my, bx, by, roughness, depth - 2, out)
-  }
-}
-
-function strokeBolt(ctx, pts, lineW, glowW, glowColor, coreColor, shadowColor, shadowBlur) {
-  ctx.lineCap = "round"
-
-  if (glowW > 0) {
-    ctx.strokeStyle = glowColor
-    ctx.lineWidth = glowW
-    ctx.shadowColor = shadowColor
-    ctx.shadowBlur = 12
-    ctx.beginPath()
-
-    for (let i = 0; i < pts.length; i += 4) {
-      ctx.moveTo(pts[i], pts[i + 1])
-      ctx.lineTo(pts[i + 2], pts[i + 3])
-    }
-
-    ctx.stroke()
-  }
-
-  ctx.strokeStyle = coreColor
-  ctx.lineWidth = lineW
-  ctx.shadowColor = shadowColor
-  ctx.shadowBlur = shadowBlur
-  ctx.beginPath()
-
-  for (let i = 0; i < pts.length; i += 4) {
-    ctx.moveTo(pts[i], pts[i + 1])
-    ctx.lineTo(pts[i + 2], pts[i + 3])
-  }
-
-  ctx.stroke()
-  ctx.shadowBlur = 0
-}
-
-function drawArc(ctx, x1, y1, x2, y2, rough, depth, alpha, glowW, isDark) {
-  const pts = []
-  bolt(x1, y1, x2, y2, rough, depth, pts)
-
-  const glowColor = isDark ? `rgba(80, 160, 255, ${alpha * 0.28})` : `rgba(0, 40, 200, ${alpha * 0.2})`
-  const coreColor = isDark ? `rgba(245, 250, 255, ${alpha})` : `rgba(0, 40, 200, ${alpha * 0.78})`
-  const shadowColor = isDark ? "#aad4ff" : "#0040ff"
-
-  strokeBolt(ctx, pts, isDark ? 0.95 : 0.8, glowW, glowColor, coreColor, shadowColor, isDark ? 7 : 3)
-}
-
-function drawLogoShape(ctx, cx, cy, scale, alpha, glow, isDark) {
-  ctx.save()
-  ctx.translate(cx - (LOGO_W * scale) / 2, cy - (LOGO_H * scale) / 2)
-  ctx.scale(scale, scale)
-  ctx.beginPath()
-  ctx.moveTo(LOGO_VERTS[0][0], LOGO_VERTS[0][1])
-
-  for (let i = 1; i < LOGO_VERTS.length; i++) {
-    ctx.lineTo(LOGO_VERTS[i][0], LOGO_VERTS[i][1])
-  }
-
-  ctx.closePath()
-
-  if (glow) {
-    ctx.shadowColor = isDark ? "#55aaff" : "#0044ff"
-    ctx.shadowBlur = isDark ? 10 : 5
-  }
-
-  ctx.fillStyle = isDark ? `rgba(170, 210, 255, ${alpha})` : `rgba(0, 0, 150, ${alpha})`
-  ctx.fill()
-  ctx.shadowBlur = 0
-  ctx.restore()
-}
-
-function isDesktopCursorEnabled() {
-  if (typeof window === "undefined") return false
-
-  return window.matchMedia(DESKTOP_CURSOR_QUERY).matches && !window.matchMedia(REDUCED_MOTION_QUERY).matches
-}
-
-function getCanvasPoint(event, dpr) {
-  return {
-    x: event.clientX * dpr,
-    y: event.clientY * dpr,
-  }
-}
+const TRAIL_LIFETIME_MS = 170
+const MAX_TRAIL_POINTS = 11
 
 function isTextEntryTarget(target) {
-  if (!(target instanceof Element)) return false
-
-  return Boolean(target.closest('input, textarea, select, [contenteditable="true"]'))
+  return target instanceof Element && Boolean(
+    target.closest('input, textarea, select, [contenteditable="true"]')
+  )
 }
 
-export default function ElectricCursor({ trailIntensity = 0.4 }) {
+function drawElectricSegment(ctx, from, to, alpha, isDark) {
+  const dx = to.x - from.x
+  const dy = to.y - from.y
+  const distance = Math.hypot(dx, dy)
+  if (distance < 2 || distance > 140) return
+
+  const normalX = -dy / distance
+  const normalY = dx / distance
+  const jitter = (Math.random() - 0.5) * Math.min(10, distance * 0.32)
+  const midX = (from.x + to.x) / 2 + normalX * jitter
+  const midY = (from.y + to.y) / 2 + normalY * jitter
+
+  ctx.beginPath()
+  ctx.moveTo(from.x, from.y)
+  ctx.lineTo(midX, midY)
+  ctx.lineTo(to.x, to.y)
+  ctx.lineCap = "round"
+  ctx.strokeStyle = isDark
+    ? `rgba(75, 170, 255, ${alpha * 0.34})`
+    : `rgba(0, 55, 210, ${alpha * 0.22})`
+  ctx.lineWidth = isDark ? 3 : 2.25
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(from.x, from.y)
+  ctx.lineTo(midX, midY)
+  ctx.lineTo(to.x, to.y)
+  ctx.strokeStyle = isDark
+    ? `rgba(235, 250, 255, ${alpha})`
+    : `rgba(0, 40, 190, ${alpha * 0.85})`
+  ctx.lineWidth = isDark ? 0.9 : 0.75
+  ctx.stroke()
+}
+
+export default function ElectricCursor() {
   const { isDark } = useTheme()
   const canvasRef = useRef(null)
+  const cursorRef = useRef(null)
   const isDarkRef = useRef(isDark)
-  const trailIntensityRef = useRef(trailIntensity)
-  const stateRef = useRef({
-    dpr: 1,
-    mx: -999,
-    my: -999,
-    inside: false,
-    textEntryTarget: false,
-    flick: 1,
-    flickT: 0,
-    raf: null,
-    trail: Array.from({ length: TRAIL_LEN }, () => ({ x: -999, y: -999 })),
-  })
+  const stateRef = useRef({ points: [], raf: null, visible: false })
   const [enabled, setEnabled] = useState(false)
 
   useEffect(() => {
     isDarkRef.current = isDark
   }, [isDark])
-
-  useEffect(() => {
-    trailIntensityRef.current = trailIntensity
-  }, [trailIntensity])
 
   useEffect(() => {
     const desktopQuery = window.matchMedia(DESKTOP_CURSOR_QUERY)
@@ -172,147 +76,96 @@ export default function ElectricCursor({ trailIntensity = 0.4 }) {
   useEffect(() => {
     if (!enabled) return undefined
 
+    const canvas = canvasRef.current
+    const cursor = cursorRef.current
+    const ctx = canvas?.getContext("2d", { alpha: true })
+    if (!canvas || !cursor || !ctx) return undefined
+
     const root = document.documentElement
+    const state = stateRef.current
     root.classList.add("electric-cursor-active")
 
-    return () => {
-      root.classList.remove("electric-cursor-active")
-    }
-  }, [enabled])
-
-  useEffect(() => {
-    if (!enabled) return undefined
-
-    const canvas = canvasRef.current
-    const ctx = canvas?.getContext("2d")
-
-    if (!canvas || !ctx) return undefined
-
-    const state = stateRef.current
-
     const resize = () => {
-      state.dpr = Math.min(window.devicePixelRatio || 1, 1.75)
-      canvas.width = Math.ceil(window.innerWidth * state.dpr)
-      canvas.height = Math.ceil(window.innerHeight * state.dpr)
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
       canvas.style.width = `${window.innerWidth}px`
       canvas.style.height = `${window.innerHeight}px`
+      state.points = []
     }
 
-    const clearTrail = () => {
-      state.trail = Array.from({ length: TRAIL_LEN }, () => ({ x: -999, y: -999 }))
+    const stop = () => {
+      if (state.raf) cancelAnimationFrame(state.raf)
+      state.raf = null
+      state.points = []
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+    }
+
+    const draw = (timestamp) => {
+      state.points = state.points.filter((point) => timestamp - point.time < TRAIL_LIFETIME_MS)
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      for (let index = 0; index < state.points.length - 1; index += 1) {
+        const point = state.points[index]
+        const nextPoint = state.points[index + 1]
+        const age = timestamp - point.time
+        const fade = Math.max(0, 1 - age / TRAIL_LIFETIME_MS)
+        const positionFade = 1 - index / MAX_TRAIL_POINTS
+        drawElectricSegment(ctx, point, nextPoint, fade * positionFade * 0.8, isDarkRef.current)
+      }
+
+      if (state.points.length > 1 && state.visible) {
+        state.raf = requestAnimationFrame(draw)
+      } else {
+        state.raf = null
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+      }
+    }
+
+    const start = () => {
+      if (!state.raf) state.raf = requestAnimationFrame(draw)
     }
 
     const onPointerMove = (event) => {
-      const point = getCanvasPoint(event, state.dpr)
-      state.mx = point.x
-      state.my = point.y
-      state.inside = true
-      state.textEntryTarget = isTextEntryTarget(event.target)
-    }
-
-    const onPointerLeave = () => {
-      state.inside = false
-      state.mx = -999
-      state.my = -999
-      state.textEntryTarget = false
-    }
-
-    const drawFrame = () => {
-      if (document.hidden || !isDesktopCursorEnabled()) {
-        state.raf = null
+      if (isTextEntryTarget(event.target)) {
+        cursor.style.opacity = "0"
+        state.visible = false
+        stop()
         return
       }
 
-      const width = canvas.width
-      const height = canvas.height
-      const dark = isDarkRef.current
-      const intensity = trailIntensityRef.current
+      const point = { x: event.clientX, y: event.clientY, time: performance.now() }
+      const previousPoint = state.points[0]
+      cursor.style.transform = `translate3d(${point.x}px, ${point.y}px, 0)`
+      cursor.style.opacity = "1"
+      state.visible = true
 
-      state.flickT -= 1
-
-      if (state.flickT <= 0) {
-        state.flick = 0.68 + Math.random() * 0.32
-        state.flickT = 3 + Math.floor(Math.random() * 6)
+      if (!previousPoint || Math.hypot(point.x - previousPoint.x, point.y - previousPoint.y) >= 3) {
+        state.points.unshift(point)
+        if (state.points.length > MAX_TRAIL_POINTS) state.points.length = MAX_TRAIL_POINTS
       }
 
-      if (state.inside && !state.textEntryTarget) {
-        state.trail.unshift({ x: state.mx, y: state.my })
-      } else {
-        state.trail.unshift({ x: -999, y: -999 })
-      }
-
-      state.trail.pop()
-      ctx.clearRect(0, 0, width, height)
-
-      if (state.inside && !state.textEntryTarget && intensity > 0.01) {
-        ctx.save()
-
-        if (dark) {
-          ctx.globalCompositeOperation = "screen"
-        }
-
-        for (let i = 1; i < TRAIL_LEN - 1; i++) {
-          const a = state.trail[i]
-          const b = state.trail[i + 1]
-
-          if (a.x < 0 || b.x < 0) continue
-
-          const dist = Math.hypot(a.x - b.x, a.y - b.y)
-
-          if (dist < 4 * state.dpr || dist > 150 * state.dpr) continue
-
-          const segAlpha = (1 - i / TRAIL_LEN) * intensity * state.flick
-
-          if (segAlpha < 0.018) continue
-
-          const depth = dist > 70 * state.dpr ? 3 : dist > 30 * state.dpr ? 2 : 1
-          const rough = 0.34 + intensity * 0.1
-          const glowW = dark ? 1.2 + intensity * 1.8 : 0.8 + intensity
-
-          drawArc(ctx, a.x, a.y, b.x, b.y, rough, depth, segAlpha * 0.72, glowW * state.dpr, dark)
-        }
-
-        ctx.restore()
-        drawLogoShape(ctx, state.mx, state.my, 0.2 * state.dpr, dark ? 0.9 : 0.82, true, dark)
-      }
-
-      state.raf = requestAnimationFrame(drawFrame)
+      start()
     }
 
-    const startFrame = () => {
-      if (!state.raf && !document.hidden && isDesktopCursorEnabled()) {
-        state.raf = requestAnimationFrame(drawFrame)
-      }
-    }
-
-    const onVisibilityChange = () => {
-      if (document.hidden) {
-        if (state.raf) cancelAnimationFrame(state.raf)
-        state.raf = null
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-      } else {
-        clearTrail()
-        startFrame()
-      }
+    const hide = () => {
+      cursor.style.opacity = "0"
+      state.visible = false
+      stop()
     }
 
     resize()
-    clearTrail()
-    window.addEventListener("resize", resize)
+    window.addEventListener("resize", resize, { passive: true })
     window.addEventListener("pointermove", onPointerMove, { passive: true })
-    document.addEventListener("mouseleave", onPointerLeave)
-    document.addEventListener("visibilitychange", onVisibilityChange)
-    startFrame()
+    document.addEventListener("mouseleave", hide)
+    window.addEventListener("blur", hide)
 
     return () => {
-      if (state.raf) cancelAnimationFrame(state.raf)
-      state.raf = null
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      stop()
+      root.classList.remove("electric-cursor-active")
       window.removeEventListener("resize", resize)
       window.removeEventListener("pointermove", onPointerMove)
-      document.removeEventListener("mouseleave", onPointerLeave)
-      document.removeEventListener("visibilitychange", onVisibilityChange)
-      clearTrail()
+      document.removeEventListener("mouseleave", hide)
+      window.removeEventListener("blur", hide)
     }
   }, [enabled])
 
@@ -323,16 +176,31 @@ export default function ElectricCursor({ trailIntensity = 0.4 }) {
       <canvas
         ref={canvasRef}
         aria-hidden="true"
-        className="electric-cursor-canvas pointer-events-none"
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 9999,
-          width: "100vw",
-          height: "100vh",
-          pointerEvents: "none",
-        }}
+        className="pointer-events-none fixed inset-0 z-[2147483646]"
       />
+      <span
+        ref={cursorRef}
+        aria-hidden="true"
+        className={`pointer-events-none fixed left-0 top-0 z-[2147483647] opacity-0 ${
+          isDark ? "text-cyan-200" : "text-blue-800"
+        }`}
+        style={{
+          width: 17,
+          height: 11,
+          marginLeft: -8.5,
+          marginTop: -5.5,
+          transform: "translate3d(-40px, -40px, 0)",
+          transition: "opacity 70ms linear",
+          willChange: "transform",
+          filter: isDark
+            ? "drop-shadow(0 0 5px rgba(103, 232, 249, .9))"
+            : "drop-shadow(0 0 3px rgba(29, 78, 216, .55))",
+        }}
+      >
+        <svg viewBox="0 0 76.68 44.67" className="h-full w-full" fill="currentColor">
+          <path d="M0 44.66h9.9l16.29-27.02 15.26 27.03 35.23-.03-5.11-8.02-30.89.02 10.64-19h9.81L51.32 0 38.68 20.38 26.18.11Z" />
+        </svg>
+      </span>
       <style jsx global>{`
         html.electric-cursor-active,
         html.electric-cursor-active body,

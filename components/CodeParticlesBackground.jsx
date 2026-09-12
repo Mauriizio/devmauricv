@@ -3,11 +3,11 @@
 
 import React, { useCallback, useMemo } from "react";
 import Particles from "react-tsparticles";
-import { loadSlim } from "tsparticles-slim";
+import { loadParticlesEngine } from "@/components/loadParticlesEngine";
 
 export default function CodeParticlesBackground() {
   const particlesInit = useCallback(async (engine) => {
-    await loadSlim(engine);
+    await loadParticlesEngine(engine);
   }, []);
 
   // Respeta preferencias de movimiento reducido (cliente)
@@ -20,12 +20,12 @@ export default function CodeParticlesBackground() {
     () => ({
       fullScreen: { enable: false },
       background: { color: "transparent" },
-      detectRetina: true,
-      fpsLimit: 60,
+      detectRetina: false,
+      fpsLimit: 30,
       pauseOnBlur: true,
       pauseOnOutsideViewport: true,
       particles: {
-        number: { value: 10, density: { enable: true, area: 800 } },
+        number: { value: 7, density: { enable: true, area: 900 } },
         color: { value: ["#000000ff", "#ffffffff"] },
         shape: {
           type: ["char"],
@@ -54,6 +54,8 @@ export default function CodeParticlesBackground() {
     }),
     [prefersReduced]
   );
+
+  if (prefersReduced) return null;
 
   return (
     <Particles

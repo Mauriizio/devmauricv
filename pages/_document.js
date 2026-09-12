@@ -26,8 +26,8 @@ export default function Document() {
           property="og:description"
           content="Portafolio de desarrollo frontend: proyectos, stack y contacto."
         />
-        <meta property="og:url" content="https://maurizio.dev" />
-        <meta property="og:image" content="https://maurizio.dev/og/og-1200x630.png" />
+        <meta property="og:url" content="https://mauriziodev.vercel.app/" />
+        <meta property="og:image" content="https://mauriziodev.vercel.app/og/og-1200x630.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
 
@@ -42,7 +42,7 @@ export default function Document() {
           name="twitter:description"
           content="Portafolio de desarrollo frontend: proyectos, stack y contacto."
         />
-        <meta name="twitter:image" content="https://maurizio.dev/og/og-1200x630.png" />
+        <meta name="twitter:image" content="https://mauriziodev.vercel.app/og/og-1200x630.png" />
 
         {/* Precarga de fuente local (opcional) */}
         {/*

@@ -121,22 +121,11 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen, onCl
   const openDiplomaModal = (d) => setSelectedDiploma(d)
   const closeDiplomaModal = () => setSelectedDiploma(null)
 
-  // ✅ Scroll a Section One + cerrar overlay
- // ✅ cierra overlay y vuelve a Section One con scroll (fallback seguro)
-const scrollToSectionOne = () => {
-  const main =
-    document.querySelector("main") ||
-    document.querySelector("[data-main-scroll]") ||
-    document.querySelector("#main-scroll");
-
-  if (main?.scrollTo) {
-    main.scrollTo({ left: main.scrollWidth, behavior: "smooth" });
+  // El padre controla la URL y el contenedor horizontal exacto.
+  const scrollToSectionOne = () => {
+    if (typeof onClose === "function") onClose()
+    else if (typeof onVolverArriba === "function") onVolverArriba()
   }
-
-  // usa onClose si está, si no usa onVolverArriba
-  if (typeof onClose === "function") onClose();
-  else if (typeof onVolverArriba === "function") onVolverArriba();
-};
 
   const glassBase =
     "flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors";
@@ -321,7 +310,7 @@ const ctaBtn = [
         aria-labelledby="about-title"
         tabIndex={-1}
         onKeyDown={handleKeyDown}
-        className={`fixed inset-0 w-screen h-dvh font-azonix z-40 transition-all duration-1000 ease-in-out overflow-y-auto scroll-pb-[calc(96px+env(safe-area-inset-bottom,0px))] noise-overlay ${
+        className={`fixed inset-0 w-screen h-dvh font-azonix z-40 transition-transform duration-[350ms] ease-in-out overflow-y-auto scroll-pb-[calc(96px+env(safe-area-inset-bottom,0px))] noise-overlay ${
           show ? "translate-y-0" : "translate-y-full"
         } ${isDark ? "dark bg-gray-900 text-white" : "bg-stone-200 text-zinc-800"}`}
       >
@@ -381,7 +370,7 @@ const ctaBtn = [
 
                 {/* Facebook — solo desktop */}
                 <a
-                  href="https://web.facebook.com/profile.php?id=61580753613645"
+                  href="https://web.facebook.com/profile.php?id=61565151473870"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
@@ -399,7 +388,7 @@ const ctaBtn = [
 
                 {/* WhatsApp — visible en mobile y desktop */}
                 <a
-                  href="https://wa.me/56923927777"
+                  href="https://wa.me/56935446606"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="WhatsApp"
