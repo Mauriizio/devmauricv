@@ -1,9 +1,8 @@
 // pages/index.js
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import dynamic from "next/dynamic"
-import SectionOne from "@/components/SectionOne"
 import SectionTwo from "@/components/SectionTwo"
 
 
@@ -28,8 +27,6 @@ export async function getServerSideProps(ctx) {
 
 export default function Home({ initialView, initialProject }) {
   const router = useRouter()
-  const scrollerRef = useRef(null)
-
   // Estado inicial COHERENTE con SSR (evita flash)
   const [showMenu, setShowMenu] = useState(initialView === "projects")
   const [showAbout, setShowAbout] = useState(initialView === "about")
@@ -107,12 +104,6 @@ export default function Home({ initialView, initialProject }) {
   const handleVolverArriba = () => {
     setShowAbout(false)
     router.replace({ pathname: router.pathname }, undefined, { shallow: true, scroll: false })
-
-    requestAnimationFrame(() => {
-      const scroller = scrollerRef.current
-      if (!scroller) return
-      scroller.scrollTo({ left: scroller.scrollWidth, behavior: "smooth" })
-    })
   }
 
   const handleContactOpen = () => {
@@ -140,23 +131,6 @@ export default function Home({ initialView, initialProject }) {
 
   const anyOverlayOpen = showAbout || showProject || showMenu || showContact
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mauriziodev.vercel.app"
-
-  // Mejora UX: rueda → scroll horizontal (sin afectar overlays)
-  useEffect(() => {
-    const el = scrollerRef.current
-    if (!el) return
-
-    const onWheel = (e) => {
-      if (anyOverlayOpen) return
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        e.preventDefault()
-        el.scrollLeft += e.deltaY
-      }
-    }
-
-    el.addEventListener("wheel", onWheel, { passive: false })
-    return () => el.removeEventListener("wheel", onWheel)
-  }, [anyOverlayOpen])
 
   return (
     <>
@@ -266,23 +240,14 @@ export default function Home({ initialView, initialProject }) {
       ) : null}
       {loadedViews.contact ? <SectionContact show={showContact} onClose={handleContactClose} /> : null}
 
-      {/* Contenedor principal con scroll horizontal + snap */}
+      {/* Hero principal único */}
       <main
-        ref={scrollerRef}
         aria-hidden={anyOverlayOpen}
-        className={`flex flex-row-reverse w-screen h-dvh min-h-0
-          overflow-x-auto overflow-y-hidden overscroll-y-none
-          snap-x snap-mandatory scroll-smooth
+        className={`relative h-dvh min-h-0 w-screen overflow-hidden
           transition-transform duration-300 ease-out motion-reduce:transition-none
           ${anyOverlayOpen ? "transform -translate-y-full overflow-hidden" : ""}`}
-        style={{
-          overflowX: anyOverlayOpen ? "hidden" : "auto",
-          overscrollBehaviorY: "none",
-          touchAction: anyOverlayOpen ? "auto" : "pan-x",
-          willChange: anyOverlayOpen ? "transform" : "auto",
-        }}
+        style={{ willChange: anyOverlayOpen ? "transform" : "auto" }}
       >
-        <SectionOne onMenuOpen={openMenu} onVerMas={handleVerMas} onContactOpen={handleContactOpen} />
         <SectionTwo onMenuOpen={openMenu} onVerMas={handleVerMas} onContactOpen={handleContactOpen} />
       </main>
     </>

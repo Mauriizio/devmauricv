@@ -5,7 +5,7 @@ import Head from "next/head"
 import { Download, Facebook, Github, Instagram, Linkedin, Moon, Sun, X as CloseIcon } from "lucide-react"
 import { useTheme } from "@/context/ThemeContext"
 import { useFocusTrap } from "@/components/useFocusTrap"
-import LogoMC from "@/components/LogoMC"
+import LogoMarkShimmer from "@/components/LogoMarkShimmer"
 
 const WHATSAPP_URL =
   "https://wa.me/56935446606?text=Hola%20Maurizio%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20conversar%20contigo."
@@ -91,8 +91,8 @@ export default function SectionContact({ show, onClose }) {
           <div className="mx-auto max-w-6xl px-2 sm:px-4">
             <div className="flex min-h-[56px] items-center gap-2 sm:gap-3 md:min-h-[64px]">
               <div className="flex min-w-0 flex-1 items-center">
-                <div className="flex h-7 items-center md:h-8">
-                  <LogoMC />
+                <div className="flex h-10 items-center md:h-11">
+                  <LogoMarkShimmer isDark={isDark} animated={show} className="h-10 w-auto md:h-11" />
                 </div>
               </div>
 

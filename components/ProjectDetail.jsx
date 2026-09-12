@@ -8,7 +8,7 @@ import { createPortal } from "react-dom"
 import { useTheme } from "@/context/ThemeContext"
 import { useFocusTrap } from "@/components/useFocusTrap"
 import { ArrowLeft, X as IconX, Sun, Moon, Download } from "lucide-react"
-import LogoMC from "@/components/LogoMC"
+import LogoMarkShimmer from "@/components/LogoMarkShimmer"
 import { getProjectLinks, getProjectSections, getProjectSeo, normalizeProject } from "@/data/contentHelpers"
 
 function ProjectImageFrame({ src, alt, ariaLabel, sizes, fit = "contain", variant = "content", onOpen }) {
@@ -235,8 +235,8 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
     <div className="flex items-center gap-2 sm:gap-3 min-h-[56px] md:min-h-[64px]">
       {/* IZQ: Logo */}
       <div className="flex-1 min-w-0 flex items-center">
-        <div className="h-7 md:h-8 flex items-center">
-          <LogoMC />
+        <div className="flex h-10 items-center md:h-11">
+          <LogoMarkShimmer isDark={isDark} animated={show} className="h-10 w-auto md:h-11" />
         </div>
       </div>
 

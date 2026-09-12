@@ -2,38 +2,31 @@
 "use client";
 
 import { useTheme } from "@/context/ThemeContext";
-import LogoMCFancy from "@/components/LogoMCFancy";
+import LogoMarkShimmer from "@/components/LogoMarkShimmer";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { X as IconX, Sun, Moon, Download } from "lucide-react";
+import { ArrowRight, Cog, Download, FileText, GraduationCap, Laptop, Moon, Sun } from "lucide-react";
 
 const ParticlesBackground = dynamic(() => import("@/components/ParticlesBackground"), { ssr: false });
+
+const MOBILE_FOCUS_AREAS = [
+  { label: "Desarrollo web", Icon: Laptop },
+  { label: "Automatización industrial", Icon: Cog },
+  { label: "Documentación técnica", Icon: FileText },
+  { label: "Proyectos académicos", Icon: GraduationCap },
+];
 
 export default function SectionTwo({
   onMenuOpen,
   onVerMas,
   onContactOpen,
-  onClose,        // opcional
   onDownloadCV,   // opcional
 }) {
   const { isDark, toggleDarkMode } = useTheme();
 
-  // volver a Section One con scroll
-  const scrollToSectionOne = () => {
-    const main = document.querySelector("main");
-    if (main) main.scrollTo({ left: main.scrollWidth, behavior: "smooth" });
-    onClose?.();
-  };
-
   // base “glass” del header
   const glassBase =
     "flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors";
-
-  const btnCV =
-    `${glassBase} ` +
-    (isDark
-      ? "text-cyan-300 hover:text-cyan-200 bg-white/0 hover:bg-white/5 border-cyan-700/40 hover:border-cyan-700/70"
-      : "text-cyan-800 hover:text-cyan-900 bg-white/40 hover:bg-white/60 border-cyan-900/30 hover:border-cyan-900/60");
 
   const btnWA =
     `${glassBase} ` +
@@ -66,29 +59,6 @@ export default function SectionTwo({
       ? "text-zinc-200 hover:text-white bg-zinc-800/60 hover:bg-zinc-800 border-zinc-600/50 hover:border-zinc-500/70"
       : "text-zinc-800 hover:text-black bg-zinc-100/70 hover:bg-zinc-100 border-zinc-900/20 hover:border-zinc-900/40");
 
-  const btnX =
-    `${glassBase} ` +
-    (isDark
-      ? "text-rose-300 hover:text-rose-200 bg-rose-900/40 hover:bg-rose-900/55 border-rose-700/40 hover:border-rose-600/70"
-      : "text-rose-700 hover:text-rose-900 bg-rose-100/70 hover:bg-rose-100 border-rose-900/20 hover:border-rose-900/40");
-
-  // Toggle tipo palanquita (mejor contraste + tamaños responsivos)
-  const switchTrackBase = isDark
-    ? "bg-cyan-700 border-cyan-400/60"
-    : "bg-cyan-200 border-cyan-900/50";
-
-  const switchBtn =
-    `relative shrink-0 inline-flex items-center rounded-full border
-     h-6 w-[2.50rem] min-w-[2.50rem]       /* móvil: más ancho */
-     md:w-11 md:min-w-[2.75rem]            /* desktop: un pelín más pequeño */
-     ${switchTrackBase}
-     ${isDark ? "justify-end" : "justify-start"}
-     shadow-[0_2px_10px_rgba(0,0,0,0.10)]
-     transition-colors duration-200`;
-
-  const switchKnob =
-    "h-5 w-5 mx-1 rounded-full bg-white shadow-[0_1px_6px_rgba(0,0,0,.25)] transition-transform duration-200";
-
   // ✅ CTAs unificados (mismo estilo que About/Contact)
   const ctaBtn = [
     "hidden md:inline-flex items-center justify-center gap-1.5",
@@ -102,11 +72,11 @@ export default function SectionTwo({
   ].join(" ");
 
   const mobileCtaBtn = [
-    "inline-flex min-w-0 items-center justify-center rounded-lg border px-2 py-2.5",
-    "font-azonix text-[0.56rem] font-bold leading-tight transition-colors",
+    "inline-flex w-full items-center justify-between rounded-xl border px-4 py-3",
+    "font-azonix text-[0.62rem] font-bold uppercase tracking-[0.08em] transition-[background-color,border-color,transform]",
     isDark
-      ? "border-cyan-300/20 bg-cyan-300/5 text-cyan-200 hover:bg-cyan-300/10"
-      : "border-cyan-800/20 bg-white/55 text-cyan-900 hover:bg-white/80",
+      ? "border-cyan-300/60 bg-cyan-300/5 text-cyan-100 shadow-[0_0_20px_rgba(34,211,238,.15)] hover:bg-cyan-300/10"
+      : "border-cyan-700/45 bg-white/35 text-cyan-950 shadow-[0_0_20px_rgba(8,145,178,.12)] hover:bg-white/60",
   ].join(" ");
 
   return (
@@ -125,12 +95,7 @@ export default function SectionTwo({
           <div className="flex items-center gap-2 sm:gap-3 min-h-[56px] md:min-h-[64px]">
             {/* IZQ: Logo */}
             <div className="flex-1 min-w-0 flex items-center">
-              <LogoMCFancy
-                className="h-12 w-auto text-gray-900 dark:text-cyan-300 hover:text-fuchsia-500 transition-colors"
-                gap={0.5}
-                shift={0.08}
-                duration={500}
-              />
+              <LogoMarkShimmer isDark={isDark} className="h-12 w-auto md:h-14" />
             </div>
 
             {/* DER (derecha→izquierda) */}
@@ -192,11 +157,6 @@ export default function SectionTwo({
                   <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0zM8 8h4.8v2.2h.07c.67-1.2 2.3-2.47 4.73-2.47C21.4 7.73 24 10 24 14.3V24h-5v-8.6c0-2.05-.04-4.68-2.85-4.68-2.86 0-3.3 2.23-3.3 4.53V24H8V8z"/>
                 </svg>
               </a>
-
-              {/* X */}
-              <button type="button" onClick={scrollToSectionOne} aria-label="Cerrar" className={btnX}>
-                <IconX size={16} />
-              </button>
 
               {/* Toggle extremo derecho */}
               {/* Toggle — extremo derecho, con icono contextual (luna en claro / sol en oscuro) */}
@@ -293,8 +253,8 @@ export default function SectionTwo({
 
             <h1 className="max-w-[13ch] font-azonix text-[1.72rem] font-black leading-[1.02] text-slate-950 dark:text-white md:max-w-full md:text-4xl lg:text-5xl">
               <span className="md:hidden">
-                Más que código,
-                <span className="block text-cyan-600 dark:text-cyan-300">es propósito.</span>
+                Aprendo ingeniería.
+                <span className="block text-cyan-600 dark:text-cyan-300">Construyo soluciones.</span>
               </span>
               <span className="hidden md:inline">
                 ¡Hola! Soy
@@ -307,8 +267,8 @@ export default function SectionTwo({
             <div
               className={`absolute bottom-[calc(4.75rem+env(safe-area-inset-bottom))] left-4 right-4 min-w-0 overflow-hidden rounded-2xl border p-4 text-left backdrop-blur-md md:static md:mt-7 md:w-full md:max-w-[52rem] md:p-6 ${
                 isDark
-                  ? "border-cyan-300/25 bg-zinc-950/90 shadow-[0_0_32px_rgba(34,211,238,.12)] md:bg-black/35"
-                  : "border-cyan-700/20 bg-white/90 shadow-[0_16px_45px_rgba(8,145,178,.16)] md:border-white/80 md:bg-white/65"
+                  ? "border-cyan-300/45 bg-zinc-950/55 shadow-[0_0_34px_rgba(34,211,238,.20)] md:border-cyan-300/15 md:bg-black/35 md:shadow-[0_16px_45px_rgba(0,0,0,.30)]"
+                  : "border-cyan-600/35 bg-white/55 shadow-[0_0_34px_rgba(8,145,178,.18)] md:border-white/80 md:bg-white/65 md:shadow-[0_16px_45px_rgba(8,145,178,.12)]"
               }`}
             >
               <span className="mb-2 grid h-8 w-8 place-items-center rounded-lg bg-cyan-400/10 font-mono text-sm font-bold text-cyan-700 dark:text-cyan-300 md:mb-3 md:h-9 md:w-9 md:rounded-xl md:text-base">
@@ -330,10 +290,24 @@ export default function SectionTwo({
                 Aprender <span className="px-1 text-cyan-400">+</span> Construir <span className="px-1 text-cyan-400">+</span> Documentar <span className="px-1 text-cyan-400">=</span> Evolucionar
               </p>
 
-              <div className="mt-3 grid grid-cols-3 gap-2 md:hidden">
-                <button type="button" onClick={onMenuOpen} className={mobileCtaBtn}>Proyectos</button>
-                <button type="button" onClick={onVerMas} className={mobileCtaBtn}>Sobre mí</button>
-                <button type="button" onClick={onContactOpen} className={mobileCtaBtn}>Contacto</button>
+              <div className="mt-3 grid grid-cols-4 gap-1.5 border-y border-cyan-700/15 py-3 dark:border-cyan-300/15 md:hidden">
+                {MOBILE_FOCUS_AREAS.map(({ label, Icon }) => (
+                  <div key={label} className="flex min-w-0 flex-col items-center text-center">
+                    <span className="grid h-8 w-8 place-items-center rounded-lg border border-cyan-700/15 bg-cyan-400/10 text-cyan-700 dark:border-cyan-300/15 dark:text-cyan-200">
+                      <Icon size={16} aria-hidden="true" />
+                    </span>
+                    <span className="mt-1.5 font-sans text-[0.5rem] font-semibold leading-tight text-slate-700 dark:text-zinc-200">
+                      {label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-3 md:hidden">
+                <button type="button" onClick={onVerMas} className={mobileCtaBtn}>
+                  <span>Conoce mi trayectoria</span>
+                  <ArrowRight size={16} aria-hidden="true" />
+                </button>
               </div>
             </div>
 

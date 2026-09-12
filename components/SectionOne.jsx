@@ -4,7 +4,6 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { useTheme } from "@/context/ThemeContext";
 // import CodeParticlesBackground from "./CodeParticlesBackground";
 import { Download, ChevronsLeft,  Sun, Moon, X as IconX, ChevronsRight } from "lucide-react";
-import LogoMCFancy from "@/components/LogoMCFancy";
 import LogoMarkShimmer from "@/components/LogoMarkShimmer";
 import dynamic from "next/dynamic"
 
@@ -101,12 +100,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
     <div className="flex items-center gap-2 sm:gap-3 min-h-[56px] md:min-h-[64px]">
       {/* IZQ: Logo */}
       <div className="flex-1 min-w-0 flex items-center">
-        <LogoMCFancy
-          className="h-12 w-auto text-gray-900 dark:text-cyan-300 hover:text-fuchsia-500 transition-colors"
-          gap={0.5}
-          shift={0.08}
-          duration={500}
-        />
+        <LogoMarkShimmer isDark={isDark} className="h-12 w-auto md:h-14" />
       </div>
 
       {/* DER (visual derecha→izquierda). Render: CV, IG, FB, WA, GH, LI, Toggle */}
