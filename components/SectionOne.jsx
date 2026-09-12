@@ -149,7 +149,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
 
         {/* Facebook — solo desktop */}
         <a
-          href="https://web.facebook.com/profile.php?id=61580753613645"
+          href="https://web.facebook.com/profile.php?id=61565151473870"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Facebook"
@@ -167,7 +167,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
 
         {/* WhatsApp — siempre visible */}
         <a
-          href="https://wa.me/56923927777"
+          href="https://wa.me/56935446606"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="WhatsApp"
@@ -280,7 +280,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
   </div>
 
   {/* Subtítulo (más respiración) */}
-  <p className={`mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg ${actionColor}`}>
+  <p className={`mt-4 w-full max-w-full px-2 text-sm leading-relaxed break-words sm:mt-6 sm:text-lg md:mt-8 ${actionColor}`}>
     Ingeniería en Electricidad y Automatización Industrial.
   </p>
 
@@ -297,7 +297,7 @@ export default function SectionOne({ onMenuOpen, onVerMas, onContactOpen }) {
     </div>
 
     {/* CTAs móviles bajo el logo */}
-    <div className="md:hidden mt-10 flex items-center justify-center gap-36 sm:gap-12">
+    <div className="mt-10 flex w-full max-w-sm items-center justify-between px-8 sm:px-12 md:hidden">
       <button
         type="button"
         onClick={goSectionTwo}

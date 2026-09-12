@@ -1,11 +1,10 @@
 // pages/index.js
-import { useEffect, useMemo, useState, useRef } from "react"
+import { useEffect, useState, useRef } from "react"
 import Head from "next/head"
 import { useRouter } from "next/router"
 import dynamic from "next/dynamic"
 import SectionOne from "@/components/SectionOne"
 import SectionTwo from "@/components/SectionTwo"
-import { projectsData } from "@/data/projects"
 
 
 // Overlays con code-splitting (SSR ON + fallback accesible)
@@ -17,21 +16,19 @@ const SectionContact = dynamic(() => import("@/components/SectionContact"), { lo
 // --- SSR: leer ?view=...&id=... para evitar el "salto" al recargar ---
 export async function getServerSideProps(ctx) {
   const { view = null, id = null } = ctx.query || {}
-  return { props: { initialView: view, initialId: id } }
+  let initialProject = null
+
+  if (view === "project" && typeof id === "string") {
+    const { projectsData } = await import("@/data/projects")
+    initialProject = projectsData.find((project) => project.id === id) || null
+  }
+
+  return { props: { initialView: view, initialProject } }
 }
 
-export default function Home({ initialView, initialId }) {
+export default function Home({ initialView, initialProject }) {
   const router = useRouter()
   const scrollerRef = useRef(null)
-
-  // Resolver proyecto inicial en SSR
-  const initialProject = useMemo(
-    () =>
-      initialView === "project" && typeof initialId === "string"
-        ? projectsData.find((p) => p.id === initialId) || null
-        : null,
-    [initialView, initialId]
-  )
 
   // Estado inicial COHERENTE con SSR (evita flash)
   const [showMenu, setShowMenu] = useState(initialView === "projects")
@@ -39,24 +36,54 @@ export default function Home({ initialView, initialId }) {
   const [showContact, setShowContact] = useState(initialView === "contact")
   const [selectedProject, setSelectedProject] = useState(initialProject)
   const [showProject, setShowProject] = useState(initialView === "project" && !!initialProject)
+  const [loadedViews, setLoadedViews] = useState(() => ({
+    projects: initialView === "projects",
+    project: initialView === "project" && !!initialProject,
+    about: initialView === "about",
+    contact: initialView === "contact",
+  }))
 
   // Sincroniza estado si cambia la URL (back/forward o navegación interna)
   useEffect(() => {
+    let cancelled = false
     const { view = null, id = null } = router.query || {}
 
     setShowMenu(view === "projects")
     setShowAbout(view === "about")
     setShowContact(view === "contact")
+    setLoadedViews((current) => ({
+      ...current,
+      projects: current.projects || view === "projects",
+      about: current.about || view === "about",
+      contact: current.contact || view === "contact",
+    }))
 
     if (view === "project" && typeof id === "string") {
-      const proj = projectsData.find((p) => p.id === id) || null
-      setSelectedProject(proj)
-      setShowProject(!!proj)
+      if (selectedProject?.id === id) {
+        setShowProject(true)
+        setLoadedViews((current) => ({ ...current, project: true }))
+      } else {
+        setShowProject(false)
+        import("@/data/projects").then(({ projectsData }) => {
+          if (cancelled) return
+
+          const project = projectsData.find((candidate) => candidate.id === id) || null
+          setSelectedProject(project)
+          setShowProject(!!project)
+
+          if (project) {
+            setLoadedViews((current) => ({ ...current, project: true }))
+          }
+        })
+      }
     } else {
       setShowProject(false)
-      setSelectedProject(null)
     }
-  }, [router.query])
+
+    return () => {
+      cancelled = true
+    }
+  }, [router.query, selectedProject?.id])
 
   // Helpers para mutar la URL (sin recargar la página)
   const pushView = (params) => {
@@ -66,17 +93,38 @@ export default function Home({ initialView, initialId }) {
   }
 
   // Abrir / cerrar vistas
-  const openMenu = () => pushView({ view: "projects", id: undefined })
+  const openMenu = () => {
+    setLoadedViews((current) => ({ ...current, projects: true }))
+    pushView({ view: "projects", id: undefined })
+  }
   const closeMenu = () => router.back()
+  const handleHome = () => router.replace({ pathname: router.pathname }, undefined, { shallow: true })
 
-  const handleVerMas = () => pushView({ view: "about", id: undefined })
-  const handleVolverArriba = () => router.back()
+  const handleVerMas = () => {
+    setLoadedViews((current) => ({ ...current, about: true }))
+    pushView({ view: "about", id: undefined })
+  }
+  const handleVolverArriba = () => {
+    setShowAbout(false)
+    router.replace({ pathname: router.pathname }, undefined, { shallow: true, scroll: false })
 
-  const handleContactOpen = () => pushView({ view: "contact", id: undefined })
+    requestAnimationFrame(() => {
+      const scroller = scrollerRef.current
+      if (!scroller) return
+      scroller.scrollTo({ left: scroller.scrollWidth, behavior: "smooth" })
+    })
+  }
+
+  const handleContactOpen = () => {
+    setLoadedViews((current) => ({ ...current, contact: true }))
+    pushView({ view: "contact", id: undefined })
+  }
   const handleContactClose = () => router.back()
 
   const handleProjectSelect = (project) => {
     if (!project) return
+    setSelectedProject(project)
+    setLoadedViews((current) => ({ ...current, project: true }))
     pushView({ view: "project", id: project.id })
   }
 
@@ -91,7 +139,7 @@ export default function Home({ initialView, initialId }) {
   }
 
   const anyOverlayOpen = showAbout || showProject || showMenu || showContact
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mauriziodev.vercel.app"
 
   // Mejora UX: rueda → scroll horizontal (sin afectar overlays)
   useEffect(() => {
@@ -196,16 +244,27 @@ export default function Home({ initialView, initialId }) {
 </Head>
 
       {/* Overlays */}
-      <MenuOverlay show={showMenu} onClose={closeMenu} onProjectSelect={handleProjectSelect} onContactOpen={handleContactOpen} />
-      <ProjectDetail
-        show={showProject}
-        project={selectedProject}
-        onClose={handleCloseProject}
-        onBackToProjects={handleBackToProjects}
-      />
-      <SectionAbout show={showAbout} onVolverArriba={handleVolverArriba} onContactOpen={handleContactOpen} />
-
-      <SectionContact show={showContact} onClose={handleContactClose} />
+      {loadedViews.projects ? (
+        <MenuOverlay
+          show={showMenu}
+          onClose={closeMenu}
+          onHome={handleHome}
+          onProjectSelect={handleProjectSelect}
+          onContactOpen={handleContactOpen}
+        />
+      ) : null}
+      {loadedViews.project ? (
+        <ProjectDetail
+          show={showProject}
+          project={selectedProject}
+          onClose={handleCloseProject}
+          onBackToProjects={handleBackToProjects}
+        />
+      ) : null}
+      {loadedViews.about ? (
+        <SectionAbout show={showAbout} onVolverArriba={handleVolverArriba} onContactOpen={handleContactOpen} />
+      ) : null}
+      {loadedViews.contact ? <SectionContact show={showContact} onClose={handleContactClose} /> : null}
 
       {/* Contenedor principal con scroll horizontal + snap */}
       <main
@@ -220,7 +279,7 @@ export default function Home({ initialView, initialId }) {
           overflowX: anyOverlayOpen ? "hidden" : "auto",
           overscrollBehaviorY: "none",
           touchAction: anyOverlayOpen ? "auto" : "pan-x",
-          willChange: "transform",
+          willChange: anyOverlayOpen ? "transform" : "auto",
         }}
       >
         <SectionOne onMenuOpen={openMenu} onVerMas={handleVerMas} onContactOpen={handleContactOpen} />

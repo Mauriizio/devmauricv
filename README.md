@@ -14,8 +14,7 @@ El objetivo del proyecto es presentar experiencia, proyectos técnicos, bitácor
 - React.
 - Tailwind CSS.
 - Framer Motion para animaciones e interacciones.
-- Resend para el envío principal del formulario de contacto.
-- Web3Forms como fallback opcional del formulario.
+- WhatsApp como canal principal de contacto directo.
 - ESLint para validación estática.
 
 ## Arquitectura
@@ -25,7 +24,7 @@ La arquitectura actual se basa en Pages Router:
 - `pages/index.js`: página principal del portafolio.
 - `pages/_app.js`: punto de entrada global de la aplicación y providers.
 - `pages/_document.js`: estructura HTML base, idioma y metadatos globales.
-- `pages/api/contact.js`: API route del formulario de contacto.
+- `components/FloatingWhatsApp.jsx`: acceso global de contacto directo.
 - `components/`: secciones, overlays, fondos visuales, logos y componentes reutilizables.
 - `data/projects.js`: fuente de datos para los proyectos del portafolio.
 - `context/`: estado global compartido, como el tema claro/oscuro.
@@ -68,13 +67,8 @@ El proyecto usa variables de entorno para contacto, SEO e indexación. No deben 
 
 | Variable | Uso | Notas |
 | --- | --- | --- |
-| `RESEND_API_KEY` | Envío principal del formulario con Resend. | Obligatoria para usar Resend. Debe configurarse como secreto del entorno. |
-| `CONTACT_TO` | Destinatario de los mensajes del formulario. | Usar un correo controlado por el proyecto o el entorno de despliegue. |
-| `MAIL_FROM` | Remitente usado por Resend. | En producción debe ser un remitente validado en Resend. |
-| `NEXT_PUBLIC_SITE_URL` | URL pública usada para canonical/SEO. | Ejemplo local: `http://localhost:3000`. |
+| `NEXT_PUBLIC_SITE_URL` | URL pública usada para canonical/SEO. | Producción: `https://mauriziodev.vercel.app`. |
 | `ALLOW_INDEXING` | Controla la indexación del sitio. | Usar `true` solo cuando producción esté lista para indexarse. |
-| `WEB3FORMS_ACCESS_KEY` | Fallback opcional para Web3Forms. | Preferible para configurar el fallback desde servidor. |
-| `NEXT_PUBLIC_WEB3FORMS_KEY` | Alternativa soportada por el código. | Usar con cuidado: el prefijo `NEXT_PUBLIC` puede exponer la variable si se usa en cliente. |
 
 ## Configuración local
 
@@ -129,18 +123,9 @@ Para agregar o editar un proyecto:
    npm run lint
    ```
 
-## Formulario de contacto
+## Contacto
 
-El formulario envía solicitudes a `pages/api/contact.js`.
-
-Flujo actual:
-
-1. Intenta enviar el mensaje con Resend si `RESEND_API_KEY` está configurada.
-2. Usa `CONTACT_TO` como destinatario.
-3. Usa `MAIL_FROM` como remitente.
-4. Si Resend no está disponible o falla, puede intentar Web3Forms si existe `WEB3FORMS_ACCESS_KEY` o `NEXT_PUBLIC_WEB3FORMS_KEY`.
-
-En producción, `MAIL_FROM` debe corresponder a un remitente validado en Resend para evitar errores de entrega.
+La sección de contacto enlaza directamente a WhatsApp y a los perfiles sociales. El botón flotante de WhatsApp permanece disponible en todas las vistas.
 
 ## Indexación y SEO
 

@@ -201,7 +201,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
     <section
       ref={(node) => { scrollContainerRef.current = node; dialogRef.current = node }}
       role="dialog" aria-modal="true" aria-labelledby="project-detail-title"
-      className={`fixed inset-0 w-screen h-dvh font-azonix z-50 overflow-y-auto scroll-pb-[calc(96px+env(safe-area-inset-bottom,0px))] transition-transform duration-500 ease-in-out
+      className={`fixed inset-0 w-screen h-dvh font-azonix z-50 overflow-y-auto scroll-pb-[calc(96px+env(safe-area-inset-bottom,0px))] transition-transform duration-[350ms] ease-in-out
         ${show ? "translate-y-0" : "translate-y-full"} ${isDark ? "dark bg-gray-900 text-white" : "bg-stone-200 text-zinc-800"}`}
     >
       {show && (
@@ -261,7 +261,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
 
         {/* WhatsApp — visible en mobile y desktop (permanece) */}
         <a
-          href="https://wa.me/56923927777" target="_blank" rel="noopener noreferrer"
+          href="https://wa.me/56935446606" target="_blank" rel="noopener noreferrer"
           aria-label="WhatsApp" title="WhatsApp"
           className={`flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
             isDark
@@ -297,7 +297,7 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
 
         {/* Facebook — solo desktop */}
         <a
-          href="https://web.facebook.com/profile.php?id=61580753613645" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+          href="https://web.facebook.com/profile.php?id=61565151473870" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
           className={`hidden md:flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors ${
             isDark
               ? "text-blue-300 hover:text-blue-200 bg-blue-900/40 hover:bg-blue-900/55 border-blue-700/40 hover:border-blue-600/70"

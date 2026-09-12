@@ -3,6 +3,7 @@ const allowIndexing = process.env.ALLOW_INDEXING === "true";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  turbopack: { root: process.cwd() },
   images: { formats: ['image/avif', 'image/webp'] },
   async headers() {
     return [

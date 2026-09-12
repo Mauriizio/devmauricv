@@ -25,8 +25,6 @@ export default function SectionTwo({
     onClose?.();
   };
 
-  const accentText = isDark ? "text-cyan-600" : "text-cyan-900";
-
   // base “glass” del header
   const glassBase =
     "flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md border transition-colors";
@@ -93,14 +91,22 @@ export default function SectionTwo({
 
   // ✅ CTAs unificados (mismo estilo que About/Contact)
   const ctaBtn = [
-    "inline-flex items-center justify-center gap-1.5",
-    "w-[min(82vw,200px)] mx-auto sm:mx-0 px-5 py-2 my-1",
+    "hidden md:inline-flex items-center justify-center gap-1.5",
+    "min-w-[150px] lg:min-w-[175px] px-5 py-2.5",
     "rounded-md border font-azonix font-extrabold transition-colors",
     "supports-[backdrop-filter]:backdrop-blur-sm",
     "disabled:opacity-60 disabled:pointer-events-none",
     isDark
       ? "text-cyan-300 hover:text-cyan-200 bg-black/30 border-cyan-700/40 hover:border-cyan-700/70"
       : "text-cyan-900 hover:text-cyan-700 bg-white/70 border-cyan-800/30 hover:border-cyan-800/60",
+  ].join(" ");
+
+  const mobileCtaBtn = [
+    "inline-flex min-w-0 items-center justify-center rounded-lg border px-2 py-2.5",
+    "font-azonix text-[0.56rem] font-bold leading-tight transition-colors",
+    isDark
+      ? "border-cyan-300/20 bg-cyan-300/5 text-cyan-200 hover:bg-cyan-300/10"
+      : "border-cyan-800/20 bg-white/55 text-cyan-900 hover:bg-white/80",
   ].join(" ");
 
   return (
@@ -147,7 +153,7 @@ export default function SectionTwo({
 
               {/* WhatsApp */}
               <a
-                href="https://wa.me/56923927777"
+                href="https://wa.me/56935446606"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
@@ -160,7 +166,7 @@ export default function SectionTwo({
               </a>
 
               {/* Extras desktop */}
-              <a href="https://web.facebook.com/profile.php?id=61580753613645" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className={btnFB}>
+              <a href="https://web.facebook.com/profile.php?id=61565151473870" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className={btnFB}>
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
                   <path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.9l-.5 2.9h-2.4v7A10 10 0 0 0 22 12Z"/>
                 </svg>
@@ -217,112 +223,127 @@ export default function SectionTwo({
         </div>
       </div>
 
-      {/* Fondo base */}
-      <div className={`absolute inset-0 z-[5] transition-colors duration-150 ${isDark ? "bg-black" : "bg-gray-50"}`} />
+      {/* Escena técnica inspirada en la referencia visual */}
+      <div
+        className={`absolute inset-0 z-[5] transition-colors duration-150 ${
+          isDark ? "bg-zinc-950" : "bg-slate-50"
+        }`}
+      />
 
-      {/* Partículas */}
-      <div className="absolute inset-0 z-[6] pointer-events-none">
+      <div className="pointer-events-none absolute inset-0 z-[6]">
         <ParticlesBackground />
       </div>
 
-      {/* Scrim izquierdo */}
       <div
-        aria-hidden
-        className={`pointer-events-none absolute inset-y-0 left-0 z-[15]
-                    w-[46vw] md:w-[40vw] lg:w-[36vw]
-                    ${isDark ? "bg-gradient-to-r from-black/60 via-black/15 to-transparent"
-                             : "bg-gradient-to-r from-white/25 via-white/10 to-transparent"}`}
+        aria-hidden="true"
+        className={`pointer-events-none absolute inset-0 z-[8] ${
+          isDark
+            ? "bg-[radial-gradient(circle_at_76%_42%,rgba(6,182,212,.18),transparent_31%),linear-gradient(90deg,rgba(9,9,11,.97)_0%,rgba(9,9,11,.88)_48%,rgba(9,9,11,.24)_100%)]"
+            : "bg-[radial-gradient(circle_at_76%_42%,rgba(34,211,238,.18),transparent_31%),linear-gradient(90deg,rgba(248,250,252,.98)_0%,rgba(248,250,252,.90)_48%,rgba(248,250,252,.24)_100%)]"
+        }`}
       />
 
-      {/* Overlay general */}
-      <div className={`absolute inset-0 z-10 transition-colors duration-150 ${isDark ? "bg-black/65 md:bg-black/70" : "bg-black/30 md:bg-white/40 z-10"}`} />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-5 top-28 z-[9] h-24 w-24 opacity-35 [background-image:radial-gradient(circle,#22d3ee_1.4px,transparent_1.4px)] [background-size:14px_14px] md:left-auto md:right-7 md:top-32"
+      />
 
-      {/* Avatar */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
-        <div className="absolute inset-0 md:hidden">
-          <Image src="/assets/avatar.png" alt="Avatar Maurizio Caballero" fill priority sizes="100vw" className="object-cover object-center z-20" />
-        </div>
-        <div className="hidden md:block absolute top-0 right-0 bottom-0 w-[60vw] max-w-[900px]">
-          <Image src="/assets/avatar.png" alt="Avatar Maurizio Caballero" fill priority sizes="(min-width: 1024px) 60vw, 80vw" className="object-contain object-right z-20" />
-        </div>
+      {/* Avatar: las dos variantes comparten exactamente la misma caja */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-[8.5rem] top-[10.5rem] z-10 md:bottom-0 md:left-auto md:right-0 md:top-24 md:w-[48vw] md:max-w-[760px]">
+        <Image
+          src={isDark ? "/assets/new-avtar-oscuro.png" : "/assets/new-avtar-claro.png"}
+          alt="Retrato profesional de Maurizio Caballero"
+          fill
+          sizes="(min-width: 1280px) 760px, (min-width: 768px) 48vw, 100vw"
+          className="object-contain object-bottom md:object-right-bottom"
+        />
       </div>
 
-      {/* Contenido */}
-      {/* ***** RESERVA para CTA en móvil (no afecta desktop) ***** */}
       <div
-        className="relative z-20 w-full h-full px-5 md:px-10 pt-24"
-        style={{
-          // colchón para no invadir CTAs absolutos + safe area
-          paddingBottom: "calc(132px + env(safe-area-inset-bottom))",
-        }}
-      >
-        {/* Área útil: centrada entre header y CTAs */}
-        <div
-          className="h-full min-h-0 flex items-center md:items-start"
-          style={{
-            height: "calc(100% - (132px + env(safe-area-inset-bottom)))",
-          }}
-        >
-          <div className="font-azonix flex flex-col gap-3 items-center text-center mx-auto max-w-[92%] md:items-start md:text-left md:mx-0 md:max-w-[52%]">
-            <h1 className={`text-[1.6rem] leading-[1.15] md:text-4xl lg:text-5xl font-black drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)] ${accentText}`}>
-              ¡Hola! Soy <br />
-              <span className={`${isDark ? "bg-cyan-200/10 text-black" : "bg-cyan-100 text-gray-900"} px-1 drop-shadow-[1px_1px_1px_rgba(255,255,255,0.6)]`}>
-                Maurizio Caballero
+        aria-hidden="true"
+        className={`pointer-events-none absolute inset-x-0 bottom-0 z-[11] h-[52%] md:hidden ${
+          isDark
+            ? "bg-gradient-to-b from-transparent via-zinc-950/45 to-zinc-950/95"
+            : "bg-gradient-to-b from-transparent via-slate-50/45 to-slate-50/95"
+        }`}
+      />
+
+      {/* Firma: misma posición y dimensiones; solo cambia el asset del tema */}
+      <div className="pointer-events-none absolute right-2 top-[31%] z-[24] w-28 sm:right-6 sm:w-36 md:right-3 md:top-[22%] md:w-40 lg:right-8 lg:w-52">
+        <Image
+          src={isDark ? "/assets/firma-oscuro.png" : "/assets/firma-claro.png"}
+          alt="Firma de Maurizio Caballero"
+          width={1536}
+          height={1024}
+          sizes="(min-width: 1024px) 208px, (min-width: 768px) 160px, 144px"
+          className="h-auto w-full object-contain opacity-90"
+        />
+      </div>
+
+      {/* Presentación */}
+      <div className="relative z-20 h-full w-full px-4 pt-24 md:px-10 md:pt-28">
+        <div className="flex h-full min-h-0 items-start pt-3 md:items-center md:pt-0">
+          <div className="mx-auto flex w-full min-w-0 flex-col items-start text-left md:mx-0 md:max-w-[55%] lg:max-w-[52%]">
+            <p className="mb-2 font-sans text-[0.62rem] font-bold uppercase tracking-[0.28em] text-cyan-700 dark:text-cyan-300 md:mb-3 md:text-xs">
+              <span className="md:hidden">Sobre mí</span>
+              <span className="hidden md:inline">
+              Ingeniería <span className="px-1 text-cyan-400">•</span> Automatización <span className="px-1 text-cyan-400">•</span> Software aplicado
+              </span>
+            </p>
+
+            <h1 className="max-w-[13ch] font-azonix text-[1.72rem] font-black leading-[1.02] text-slate-950 dark:text-white md:max-w-full md:text-4xl lg:text-5xl">
+              <span className="md:hidden">
+                Más que código,
+                <span className="block text-cyan-600 dark:text-cyan-300">es propósito.</span>
+              </span>
+              <span className="hidden md:inline">
+                ¡Hola! Soy
+                <span className="mt-1 block max-w-full bg-cyan-200/75 px-2 text-slate-950 shadow-[0_0_28px_rgba(34,211,238,.18)] dark:bg-cyan-300/15 dark:text-cyan-100">
+                  Maurizio Caballero
+                </span>
               </span>
             </h1>
 
-            {/* Frase resumen (márgenes suaves, sin 15vh) */}
-            <p
-              className={`relative mt-3 md:mt-6 lg:mt-8 mb-2 md:mb-1
-                          font-black text-base md:text-xl leading-relaxed md:leading-tight
-                          text-slate-900/95 dark:text-white/90
-                          max-w-[48ch] md:max-w-[38ch] lg:max-w-[34ch]
-                          text-center md:text-left mx-auto md:mx-0
-                          drop-shadow-[0_1px_0.5px_rgba(255,255,255,0.30)]
-                          dark:drop-shadow-[0_1px_0.5px_rgba(0,0,0,0.30)]
-                          before:content-[''] before:absolute before:inset-[-8px] before:rounded-2xl
-                          before:bg-white/45 dark:before:bg-black/20
-                          before:bg-gradient-to-br before:from-white/70 before:to-white/20
-                          dark:before:from-black/55 dark:before:to-black/15
-                          supports-[backdrop-filter]:before:backdrop-blur-xl
-                          before:shadow-[0_10px_30px_rgba(0,0,0,0.10)]
-                          dark:before:shadow-[0_10px_30px_rgba(0,0,0,0.35)]
-                          before:ring before:ring-black/10 dark:before:ring-white/10
-                          before:border before:border-white/20 dark:before:border-white/10
-                          before:z-[-1]`}
+            <div
+              className={`absolute bottom-[calc(4.75rem+env(safe-area-inset-bottom))] left-4 right-4 min-w-0 overflow-hidden rounded-2xl border p-4 text-left backdrop-blur-md md:static md:mt-7 md:w-full md:max-w-[52rem] md:p-6 ${
+                isDark
+                  ? "border-cyan-300/25 bg-zinc-950/90 shadow-[0_0_32px_rgba(34,211,238,.12)] md:bg-black/35"
+                  : "border-cyan-700/20 bg-white/90 shadow-[0_16px_45px_rgba(8,145,178,.16)] md:border-white/80 md:bg-white/65"
+              }`}
             >
-              Construyo proyectos donde la ingeniería, el software y la documentación se conectan: desarrollar{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">sistemas de información</span>, apoyar{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">documentación técnica</span>, diseñar{" "}
-              <span className="text-cyan-800 dark:text-cyan-300"> bases de datos</span>,{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">crear aplicaciones web y móviles</span>,{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">gestionar proyectos tecnológicos y académicos</span>,{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">brindar soporte técnico</span> y{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">capacitar usuarios</span>.{" "}
-              {/* ***** Corrección ortográfica ***** */}
-              {/* Últimamente también me he estado especializando en{" "}
-              <span className="text-cyan-800 dark:text-cyan-300">automatización de procesos con Inteligencia Artificial</span>,
-              con un enfoque en mejorar la productividad empresarial. */}
-            </p>
+              <span className="mb-2 grid h-8 w-8 place-items-center rounded-lg bg-cyan-400/10 font-mono text-sm font-bold text-cyan-700 dark:text-cyan-300 md:mb-3 md:h-9 md:w-9 md:rounded-xl md:text-base">
+                {"</>"}
+              </span>
+              <h2 className="font-sans text-sm font-bold leading-snug text-slate-900 dark:text-white md:text-lg">
+                <span className="md:hidden">Soy estudiante de Ingeniería en Electricidad y Automatización Industrial.</span>
+                <span className="hidden md:inline">
+                Este portafolio es mi bitácora profesional: un espacio donde documento el camino que estoy construyendo dentro de la Ingeniería en Electricidad y Automatización Industrial.
+                </span>
+              </h2>
+              <p className="mt-2 font-sans text-[0.72rem] leading-[1.35] text-slate-700 dark:text-zinc-200 md:mt-3 md:text-base md:leading-relaxed">
+                <span className="md:hidden">Esta bitácora reúne desarrollo web, documentación técnica, sistemas, bases de datos, automatización y trabajos académicos. Aquí documento mis proyectos, aprendizajes y evolución profesional.</span>
+                <span className="hidden md:inline">
+                Soy estudiante y aquí reúno proyectos de desarrollo web, documentación técnica, sistemas, bases de datos, automatización y trabajos académicos. No es solo una vitrina de servicios: es un registro honesto de mis aprendizajes, proyectos y evolución hacia una base profesional sólida.
+                </span>
+              </p>
+              <p className="mt-3 hidden break-words font-sans text-xs font-bold uppercase leading-relaxed tracking-[0.18em] text-cyan-800 dark:text-cyan-300 md:block">
+                Aprender <span className="px-1 text-cyan-400">+</span> Construir <span className="px-1 text-cyan-400">+</span> Documentar <span className="px-1 text-cyan-400">=</span> Evolucionar
+              </p>
+
+              <div className="mt-3 grid grid-cols-3 gap-2 md:hidden">
+                <button type="button" onClick={onMenuOpen} className={mobileCtaBtn}>Proyectos</button>
+                <button type="button" onClick={onVerMas} className={mobileCtaBtn}>Sobre mí</button>
+                <button type="button" onClick={onContactOpen} className={mobileCtaBtn}>Contacto</button>
+              </div>
+            </div>
+
+            <div className="mt-6 hidden flex-wrap gap-3 md:flex">
+              <button type="button" onClick={onMenuOpen} className={ctaBtn}>Ver proyectos</button>
+              <button type="button" onClick={onVerMas} className={ctaBtn}>Más sobre mí</button>
+              <button type="button" onClick={onContactOpen} className={ctaBtn}>Contacto</button>
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* CTAs (absolutos) */}
-      <div
-        className="font-azonix absolute z-30 left-0 right-0 bottom-4 md:bottom-6
-                   flex flex-col items-center gap-1 md:items-start md:left-8 md:right-auto"
-        style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
-      >
-        <button type="button" onClick={onMenuOpen} className={ctaBtn}>
-          Ver proyectos
-        </button>
-        <button type="button" onClick={onVerMas} className={ctaBtn}>
-          Más sobre mí
-        </button>
-        <button type="button" onClick={onContactOpen} className={ctaBtn}>
-          Contacto
-        </button>
       </div>
     </section>
   );

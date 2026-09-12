@@ -2,6 +2,7 @@ import "@/styles/globals.css"
 import { ThemeProvider } from "@/context/ThemeContext"
 import Head from "next/head"
 import ElectricCursor from "@/components/ElectricCursor"
+import FloatingWhatsApp from "@/components/FloatingWhatsApp"
 
 export default function App({ Component, pageProps }) {
   return (
@@ -11,6 +12,7 @@ export default function App({ Component, pageProps }) {
       </Head>
       <ThemeProvider>
         <Component {...pageProps} />
+        <FloatingWhatsApp />
         <ElectricCursor />
       </ThemeProvider>
     </>

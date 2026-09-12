@@ -3,6 +3,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react"
 import Head from "next/head"
+import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { getProjectCardData, normalizeProjects } from "@/data/contentHelpers"
 import { projectsData } from "@/data/projects"
@@ -112,7 +113,7 @@ const projectMatchesFilter = (project, filter) => {
   )
 }
 
-export default function MenuOverlay({ show, onClose, onProjectSelect, onContactOpen }) {
+export default function MenuOverlay({ show, onClose, onHome, onProjectSelect, onContactOpen }) {
   const { isDark, toggleDarkMode } = useTheme()
   const [activeFilter, setActiveFilter] = useState("Todos")
   const [isMobileFilterView, setIsMobileFilterView] = useState(false)
@@ -210,11 +211,10 @@ const ctaBtn = [
 ].join(" ");
 
 
-  // Ir SIEMPRE a Section One sin depender del padre ni del historial.
+  // Ir a Section One sin recargar la aplicación.
 const goHome = () => {
   try { document.activeElement?.blur?.() } catch {}
-  // Navegación directa al inicio (evita history.back del padre)
-  window.location.replace("/");
+  onHome?.()
 };
 
 
@@ -279,7 +279,7 @@ const goHome = () => {
 
         {/* WhatsApp — visible en mobile y desktop */}
         <a
-          href="https://wa.me/56923927777"
+          href="https://wa.me/56935446606"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="WhatsApp"
@@ -315,7 +315,7 @@ const goHome = () => {
 
         {/* Facebook — solo desktop */}
         <a
-          href="https://web.facebook.com/profile.php?id=61580753613645"
+          href="https://web.facebook.com/profile.php?id=61565151473870"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Facebook"
@@ -489,11 +489,10 @@ const goHome = () => {
                         </span>
                       )}
 
-                      <img
+                      <Image
                         src={project.coverImage}
                         alt={project.coverAlt}
-                        loading="lazy"
-                        decoding="async"
+                        fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="absolute inset-0 w-full h-full object-contain transition-transform duration-300 group-hover:scale-[1.03]"
                         onError={(e) => { e.currentTarget.src = "/placeholder.svg" }}

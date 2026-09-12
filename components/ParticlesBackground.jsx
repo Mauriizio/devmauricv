@@ -3,11 +3,11 @@
 
 import { useCallback, useMemo } from "react";
 import Particles from "react-tsparticles";
-import { loadSlim } from "tsparticles-slim";
+import { loadParticlesEngine } from "@/components/loadParticlesEngine";
 
 export default function ParticlesBackground() {
   const particlesInit = useCallback(async (engine) => {
-    await loadSlim(engine);
+    await loadParticlesEngine(engine);
   }, []);
 
   const prefersReduced = useMemo(() => {
@@ -20,12 +20,12 @@ export default function ParticlesBackground() {
     () => ({
       fullScreen: { enable: false },
       background: { color: "transparent" },
-      detectRetina: true,
-      fpsLimit: 60,
+      detectRetina: false,
+      fpsLimit: 30,
       pauseOnBlur: true,
       pauseOnOutsideViewport: true,
       particles: {
-        number: { value: 400, density: { enable: true, area: 900 } },
+        number: { value: 135, density: { enable: true, area: 1100 } },
         color: { value: ["#ffffff", "#00ffff", "#ff00ff"] },
         shape: { type: "circle" },
         size: {
@@ -74,12 +74,12 @@ export default function ParticlesBackground() {
     () => ({
       fullScreen: { enable: false },
       background: { color: "transparent" },
-      detectRetina: true,
-      fpsLimit: 60,
+      detectRetina: false,
+      fpsLimit: 30,
       pauseOnBlur: true,
       pauseOnOutsideViewport: true,
       particles: {
-        number: { value: 20, density: { enable: true, area: 200 } },
+        number: { value: 14, density: { enable: true, area: 500 } },
         color: { value: ["#00ffea", "#ff00f7", "#00ff00", "#ffffff"] },
         shape: {
           type: ["image", "char"],
@@ -127,27 +127,14 @@ export default function ParticlesBackground() {
         },
       },
       interactivity: {
-        detectsOn: "window",
-        events: {
-          onHover: { enable: !prefersReduced, mode: "repulse" },
-          onClick: { enable: !prefersReduced, mode: "none" },
-          ontouchmove: { enable: !prefersReduced, mode: "repulse" },
-          resize: true,
-          touchstart: { enable: !prefersReduced, mode: "repulse" },
-          touchmove: { enable: !prefersReduced, mode: "repulse" },
-          touchend: { enable: !prefersReduced, mode: "repulse" },
-        },
-        modes: {
-          repulse: { distance: 300, duration: 0.6, speed: 4, maxSpeed: 5, easing: "ease-out" },
-          push: { quantity: 2 },
-        },
+        events: { onHover: { enable: false }, onClick: { enable: false }, resize: true },
       },
       responsive: [
         {
           maxWidth: 768,
           options: {
             particles: {
-              number: { value: 60 },
+              number: { value: 10, density: { enable: true, area: 520 } },
               size: { value: { min: 4, max: 10 } },
             },
           },
@@ -156,6 +143,8 @@ export default function ParticlesBackground() {
     }),
     [prefersReduced]
   );
+
+  if (prefersReduced) return null;
 
   return (
     <>
