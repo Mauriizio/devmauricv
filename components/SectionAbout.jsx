@@ -317,21 +317,21 @@ const ctaBtn = [
       >
         {/* Header (Menu Overlay) */}
         <div
-          className={`sticky top-0 z-20 backdrop-blur-lg border-b p-4 ${
+          className={`sticky top-0 z-20 border-b p-3 backdrop-blur-lg md:p-4 ${
             isDark ? "bg-gray-900/60 border-white/10" : "bg-stone-200/60 border-stone-300/50"
           }`}
         >
           <div className="max-w-6xl mx-auto px-2 sm:px-4">
-            <div className="grid min-h-[56px] grid-cols-[1fr_auto] items-center gap-2 md:flex md:min-h-[64px]">
+            <div className="flex min-h-[56px] items-center gap-1.5 md:min-h-[64px] md:gap-2">
               {/* IZQ: Logo */}
-              <div className="flex-1 min-w-0 flex items-center">
-                <div className="flex h-10 items-center md:h-11">
-                  <LogoMarkShimmer isDark={isDark} animated={show} className="h-10 w-auto md:h-11" />
+              <div className="mr-auto flex min-w-0 items-center">
+                <div className="flex h-9 items-center md:h-11">
+                  <LogoMarkShimmer isDark={isDark} animated={show} className="h-9 w-auto md:h-11" />
                 </div>
               </div>
 
               {/* Acciones contextuales: CV, GitHub, LinkedIn, YouTube, cerrar y tema */}
-              <div className="col-span-2 flex min-w-0 items-center justify-end gap-2 border-t border-current/10 pt-2 md:col-span-1 md:ml-auto md:border-0 md:pt-0">
+              <div className="flex shrink-0 items-center justify-end gap-2">
                 {/* CV */}
                 <a
           href="/cv.pdf"

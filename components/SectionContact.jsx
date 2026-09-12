@@ -84,34 +84,19 @@ export default function SectionContact({ show, onClose }) {
         } ${isDark ? "dark bg-gray-900 text-white" : "bg-stone-200 text-zinc-800"}`}
       >
         <div
-          className={`sticky top-0 z-20 border-b p-4 backdrop-blur-lg ${
+          className={`sticky top-0 z-20 border-b p-3 backdrop-blur-lg md:p-4 ${
             isDark ? "border-white/10 bg-gray-900/60" : "border-stone-300/50 bg-stone-200/60"
           }`}
         >
           <div className="mx-auto max-w-6xl px-2 sm:px-4">
-            <div className="grid min-h-[56px] grid-cols-[1fr_auto] items-center gap-2 md:flex md:min-h-[64px]">
-              <div className="flex min-w-0 flex-1 items-center">
-                <div className="flex h-10 items-center md:h-11">
-                  <LogoMarkShimmer isDark={isDark} animated={show} className="h-10 w-auto md:h-11" />
+            <div className="flex min-h-[56px] items-center gap-1.5 md:min-h-[64px] md:gap-2">
+              <div className="mr-auto flex min-w-0 items-center">
+                <div className="flex h-9 items-center md:h-11">
+                  <LogoMarkShimmer isDark={isDark} animated={show} className="h-9 w-auto md:h-11" />
                 </div>
               </div>
 
-              <div className="col-span-2 flex min-w-0 flex-wrap items-center justify-center gap-2 border-t border-current/10 pt-2 md:col-span-1 md:ml-auto md:flex-nowrap md:justify-end md:border-0 md:pt-0">
-                <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="WhatsApp"
-                  title="WhatsApp"
-                  className={`flex h-9 w-9 items-center justify-center rounded-md border p-0 text-sm transition-colors ${
-                    isDark
-                      ? "border-emerald-700/40 bg-emerald-900/40 text-emerald-300 hover:border-emerald-600/70 hover:bg-emerald-900/55 hover:text-emerald-200"
-                      : "border-emerald-900/30 bg-emerald-100/70 text-emerald-800 hover:border-emerald-900/50 hover:bg-emerald-100 hover:text-emerald-900"
-                  }`}
-                >
-                  <WhatsAppIcon className="h-4 w-4" />
-                </a>
-
+              <div className="flex shrink-0 items-center justify-end gap-2">
                 <a
                   href="https://www.instagram.com/devmauriz/"
                   target="_blank"
@@ -125,21 +110,6 @@ export default function SectionContact({ show, onClose }) {
                   }`}
                 >
                   <Instagram size={16} />
-                </a>
-
-                <a
-                  href="https://web.facebook.com/profile.php?id=61565151473870"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  title="Facebook"
-                  className={`flex h-9 w-9 items-center justify-center rounded-md border p-0 text-sm transition-colors ${
-                    isDark
-                      ? "border-blue-700/40 bg-blue-900/40 text-blue-300 hover:border-blue-600/70 hover:bg-blue-900/55 hover:text-blue-200"
-                      : "border-blue-900/20 bg-blue-100/70 text-blue-700 hover:border-blue-900/40 hover:bg-blue-100 hover:text-blue-900"
-                  }`}
-                >
-                  <Facebook size={16} />
                 </a>
 
                 <a
