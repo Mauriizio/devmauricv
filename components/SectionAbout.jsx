@@ -262,7 +262,15 @@ const ctaBtn = [
           </button>
 
           <div className={`max-h-[90vh] overflow-y-auto rounded-lg shadow-2xl ${isDark ? "bg-gray-900 text-white" : "bg-white text-gray-800"}`}>
-            {selectedDiploma.file ? (
+            {selectedDiploma.image ? (
+              <div className={`flex min-h-64 items-center justify-center p-3 md:p-5 ${isDark ? "bg-gray-950" : "bg-stone-100"}`}>
+                <img
+                  src={selectedDiploma.image}
+                  alt={`Vista ampliada de ${selectedDiploma.title}`}
+                  className="max-h-[68vh] w-full object-contain"
+                />
+              </div>
+            ) : selectedDiploma.file ? (
               <object
                 data={`${selectedDiploma.file}#page=1&view=FitH&toolbar=0&navpanes=0`}
                 type="application/pdf"
@@ -575,12 +583,21 @@ const ctaBtn = [
                     onClick={() => openDiplomaModal(diploma)}
                   >
                     <div className={`relative grid h-32 place-items-center overflow-hidden md:h-36 ${isDark ? "bg-gray-950" : "bg-stone-100"}`}>
-                      <div className="px-5 text-center font-sans">
-                        <span className="text-4xl" aria-hidden="true">📄</span>
-                        <p className={`mt-2 text-xs font-semibold ${diploma.file ? "text-cyan-700 dark:text-cyan-300" : "text-amber-700 dark:text-amber-300"}`}>
-                          {diploma.file ? "Certificado PDF" : "Pendiente de sanitización"}
-                        </p>
-                      </div>
+                      {diploma.image ? (
+                        <img
+                          src={diploma.image}
+                          alt={`Miniatura de ${diploma.title}`}
+                          loading="lazy"
+                          className="h-full w-full object-contain p-2"
+                        />
+                      ) : (
+                        <div className="px-5 text-center font-sans">
+                          <span className="text-4xl" aria-hidden="true">📄</span>
+                          <p className={`mt-2 text-xs font-semibold ${diploma.file ? "text-cyan-700 dark:text-cyan-300" : "text-amber-700 dark:text-amber-300"}`}>
+                            {diploma.file ? "Certificado PDF" : "Pendiente de sanitización"}
+                          </p>
+                        </div>
+                      )}
                       {/* Overlay con icono de zoom */}
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300
                                       flex items-center justify-center">
