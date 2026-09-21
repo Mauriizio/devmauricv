@@ -118,6 +118,21 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
     media.contentImage || media.content || media.section || project.contentImage || project.images?.content || project.images?.section || media.image || project.image || heroImage
   const extraImage =
     media.extraImage || media.extra || media.afterChallenges || project.extraImage || project.images?.extra || project.images?.afterChallenges || media.image || project.image || heroImage
+  const gallery = (Array.isArray(media.gallery) ? media.gallery : Array.isArray(project.gallery) ? project.gallery : [])
+    .map((item, index) => {
+      if (typeof item === "string") {
+        return { src: item, alt: `${projectTitle} — Vista adicional ${index + 1}`, caption: "" }
+      }
+
+      if (!item?.src) return null
+
+      return {
+        src: item.src,
+        alt: item.alt || `${projectTitle} — Vista adicional ${index + 1}`,
+        caption: item.caption || "",
+      }
+    })
+    .filter(Boolean)
 
   const primaryGithubLink = projectLinks.find((link) => link.type === "github" || link.id === "github")
   const primaryLiveLink = projectLinks.find((link) => link.type === "live" || link.id === "live" || link.type === "demo")
@@ -471,6 +486,28 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
           />
           <figcaption className="sr-only">Vista adicional del proyecto</figcaption>
         </figure>
+
+        {gallery.length > 0 && (
+          <section className="space-y-6">
+            <h3 className="title-section text-center">Galería del proyecto</h3>
+            <div className="grid gap-6 md:grid-cols-2">
+              {gallery.map((item) => (
+                <figure key={item.src} className="space-y-3">
+                  <ProjectImageFrame
+                    src={item.src}
+                    alt={item.alt}
+                    ariaLabel={`Abrir en grande: ${item.alt}`}
+                    sizes="(max-width: 768px) 100vw, 480px"
+                    onOpen={openLightbox}
+                  />
+                  {item.caption && (
+                    <figcaption className="text-responsive text-center">{item.caption}</figcaption>
+                  )}
+                </figure>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Enlaces */}
         {(projectLinks.length > 0 || projectDownloads.length > 0) && (

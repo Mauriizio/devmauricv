@@ -693,10 +693,16 @@ export const projectsData = [
   categories: ["Desarrollo Web", "Sitio para cliente"],
   tags: ["Next.js", "Responsive", "Negocio local", "Belleza"],
   tools: ["Next.js", "Diseño responsive"],
+  icon: "/assets/projects/keribel-vl/logo.png",
+  image: "/assets/projects/keribel-vl/logo.png",
+  detailImage: "/assets/projects/keribel-vl/cover.png",
+  contentImage: "/assets/projects/keribel-vl/service.png",
+  extraImage: "/assets/projects/keribel-vl/detalle.png",
+  ogImage: "/assets/projects/keribel-vl/cover.png",
   summary:
-    "Sitio web para una pyme de uñas y servicios de belleza en Santiago Centro, orientado a mostrar trabajos, servicios y facilitar reservas.",
+    "Sitio web para una pyme de manicure, nail art y servicios de belleza en Santiago Centro, orientado a presentar su trabajo y facilitar reservas.",
   description:
-    "Proyecto web para Keribel vL, un emprendimiento de manicure, nail art y servicios de belleza. La página presenta trabajos, servicios, ubicación y contacto directo para agendar.",
+    "Keribel vL es una web desarrollada para un emprendimiento de manicure, nail art, uñas acrílicas, poligel, soft gel y otros servicios de belleza. El sitio reúne la identidad del negocio, una muestra de trabajos, el catálogo de servicios, la ubicación y accesos directos para consultar disponibilidad o reservar.",
   status: "completed",
   featured: false,
   visibility: "public",
@@ -714,13 +720,13 @@ export const projectsData = [
       id: "objetivo",
       title: "Objetivo",
       content:
-        "Crear una presencia web clara y visual para mostrar el trabajo de Keribel vL y facilitar el contacto con potenciales clientes.",
+        "Dar al emprendimiento una presencia digital profesional que comunique su estilo, muestre trabajos reales y ayude a las personas a conocer los servicios antes de contactar.",
     },
     {
       id: "resultado",
       title: "Resultado",
       content:
-        "Sitio responsive publicado en Vercel con presentación de servicios, trabajos realizados, ubicación y acceso directo a reserva por WhatsApp.",
+        "Una experiencia responsive que combina una portada visual, galería de trabajos, detalle de servicios y accesos directos a reserva y contacto por WhatsApp.",
     },
   ],
   seo: {
@@ -742,10 +748,23 @@ export const projectsData = [
   categories: ["Desarrollo Web", "Sitio para cliente"],
   tags: ["Next.js", "Responsive", "Barbería", "Negocio local"],
   tools: ["Next.js", "Diseño responsive"],
+  icon: "/assets/projects/mundo-barber/logo.png",
+  image: "/assets/projects/mundo-barber/logo.png",
+  detailImage: "/assets/projects/mundo-barber/cover.png",
+  contentImage: "/assets/projects/mundo-barber/vista.png",
+  extraImage: "/assets/projects/mundo-barber/promocion.png",
+  ogImage: "/assets/projects/mundo-barber/cover.png",
+  gallery: [
+    {
+      src: "/assets/projects/mundo-barber/card.png",
+      alt: "Tarjeta promocional de Mundo Barber con identidad visual, precio, ubicación y código QR",
+      caption: "Pieza promocional con identidad de marca, datos del local y acceso mediante código QR.",
+    },
+  ],
   summary:
     "Sitio web para barbería en Puente Alto, enfocado en presentar servicios, promociones y facilitar reservas por WhatsApp.",
   description:
-    "Proyecto web para Mundo Barber, diseñado como presencia digital para comunicar servicios, precios, promociones y contacto de forma directa.",
+    "Mundo Barber es un sitio web para una barbería de Puente Alto, diseñado para presentar el local, comunicar servicios, precios y promociones, y ofrecer un camino directo hacia la reserva o el contacto. La experiencia se adapta a dispositivos móviles y se complementa con piezas gráficas vinculadas a la promoción del negocio.",
   status: "completed",
   featured: false,
   visibility: "public",
@@ -769,13 +788,13 @@ export const projectsData = [
       id: "objetivo",
       title: "Objetivo",
       content:
-        "Dar a la barbería una presencia web sencilla, moderna y orientada a convertir visitas en reservas.",
+        "Dar a la barbería una presencia digital moderna, clara y útil para que sus clientes conozcan la propuesta, las promociones y las vías de reserva.",
     },
     {
       id: "resultado",
       title: "Resultado",
       content:
-        "Sitio responsive con información comercial clara, promociones y acceso directo a contacto y reserva.",
+        "Sitio responsive con información comercial, reserva por WhatsApp y una identidad visual aplicada tanto a la interfaz como a material promocional con código QR.",
     },
   ],
   seo: {
@@ -797,10 +816,16 @@ export const projectsData = [
   categories: ["Desarrollo Web", "Menú digital"],
   tags: ["Next.js", "Responsive", "Menú digital", "Gastronomía"],
   tools: ["Next.js", "Diseño responsive"],
+  icon: "/assets/projects/pizza10-menu/logo.png",
+  image: "/assets/projects/pizza10-menu/logo.png",
+  detailImage: "/assets/projects/pizza10-menu/cover.png",
+  contentImage: "/assets/projects/pizza10-menu/menu.png",
+  extraImage: "/assets/projects/pizza10-menu/flayer.jpeg",
+  ogImage: "/assets/projects/pizza10-menu/cover.png",
   summary:
     "Menú web para Pizza 10, orientado a mostrar pizzas familiares, postres y productos de panadería desde una interfaz simple y accesible.",
   description:
-    "Proyecto de menú digital para Pizza 10, pensado para consultar la oferta desde el teléfono sin depender de cartas impresas.",
+    "Pizza 10 es un menú digital para un negocio gastronómico. La experiencia organiza pizzas, adicionales, postres y productos de panadería para que la oferta pueda consultarse con rapidez desde el teléfono, complementando o sustituyendo la carta física mediante una interfaz web.",
   status: "completed",
   featured: false,
   visibility: "public",
@@ -830,7 +855,7 @@ export const projectsData = [
       id: "resultado",
       title: "Resultado",
       content:
-        "Menú web responsive publicado en Vercel con navegación directa por la oferta de Pizza 10.",
+        "Menú web responsive publicado en Vercel, acompañado de una pieza promocional con código QR que facilita el acceso desde material impreso.",
     },
   ],
   seo: {
@@ -850,12 +875,30 @@ export const projectsData = [
   title: "Horaly App",
   category: "Software / Productividad",
   categories: ["Software / Productividad", "Aplicación web"],
-  tags: ["Next.js", "Responsive", "Productividad", "Horarios", "Estudiantes"],
+  tags: ["Next.js", "Responsive", "Productividad", "Horarios", "Estudiantes", "Herramientas académicas"],
   tools: ["Next.js", "Aplicación web responsive"],
+  icon: "/assets/projects/horaly-app/logo.svg",
+  image: "/assets/projects/horaly-app/logo.svg",
+  detailImage: "/assets/projects/horaly-app/cover.png",
+  contentImage: "/assets/projects/horaly-app/cover2.png",
+  extraImage: "/assets/projects/horaly-app/tools.png",
+  ogImage: "/assets/projects/horaly-app/cover.png",
+  gallery: [
+    {
+      src: "/assets/projects/horaly-app/calculadora-cientifica.png",
+      alt: "Calculadora científica de Horaly App con funciones trigonométricas y registro de cálculos",
+      caption: "Calculadora científica integrada entre las herramientas de apoyo académico.",
+    },
+    {
+      src: "/assets/projects/horaly-app/calculadora-resistencias.png",
+      alt: "Calculadora de código de colores de resistencias de Horaly App",
+      caption: "Herramienta para calcular resistencias de 4, 5 y 6 bandas en ambos sentidos.",
+    },
+  ],
   summary:
-    "Aplicación web para organizar horarios de clases, bloques de estudio y recordatorios en una interfaz moderna y personalizable.",
+    "Producto de productividad académica para organizar clases, asignaturas, notas, recordatorios, apuntes y herramientas de estudio.",
   description:
-    "Proyecto orientado a estudiantes para planificar la semana académica y mantener horarios y bloques de estudio organizados desde una aplicación web.",
+    "Horaly App es una aplicación web de productividad académica que reúne horarios de clases, asignaturas, calificaciones, promedios, recordatorios, actividades y apuntes en un mismo espacio. Su dashboard permite revisar el progreso y detectar qué materias requieren más atención; además incorpora un cuaderno por asignatura y herramientas para estudiantes, entre ellas una calculadora científica y una calculadora de resistencias.",
   status: "completed",
   featured: false,
   visibility: "public",
@@ -879,20 +922,33 @@ export const projectsData = [
       id: "objetivo",
       title: "Objetivo",
       content:
-        "Facilitar la planificación semanal de estudiantes mediante una herramienta digital centrada en horarios, estudio y recordatorios.",
+        "Centralizar la organización académica para que cada estudiante pueda planificar su semana, registrar información de sus asignaturas y comprender su avance desde una sola interfaz.",
+    },
+    {
+      id: "organizacion",
+      title: "Organización y seguimiento",
+      content:
+        "La aplicación permite crear materias y bloques de horario, registrar notas y calcular promedios, organizar evaluaciones y recordatorios, y consultar un resumen del progreso académico y de los próximos pendientes.",
+    },
+    {
+      id: "estudio",
+      title: "Cuaderno y herramientas",
+      content:
+        "Cada asignatura puede reunir apuntes en un cuaderno interno. El módulo de herramientas amplía el producto con utilidades académicas como la calculadora científica y el cálculo del código de colores de resistencias.",
     },
     {
       id: "resultado",
       title: "Resultado",
       content:
-        "Aplicación web responsive publicada en Vercel y preparada para seguir evolucionando con nuevas funciones de organización académica.",
+        "Producto web responsive publicado en Vercel, con navegación académica integrada y una base preparada para seguir incorporando herramientas de estudio.",
     },
   ],
   seo: {
     title: "Horaly App | Organización de horarios académicos",
     description:
-      "Aplicación web para planificar clases, bloques de estudio y recordatorios.",
-    keywords: ["Horaly App", "horarios", "estudiantes", "productividad", "Next.js"],
+      "Aplicación web para organizar clases, asignaturas, notas, promedios, recordatorios, apuntes y herramientas académicas.",
+    image: "/assets/projects/horaly-app/cover.png",
+    keywords: ["Horaly App", "horarios", "estudiantes", "notas", "productividad", "herramientas académicas", "Next.js"],
   },
 },
 
