@@ -114,10 +114,13 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
   // Imágenes con fallbacks
   const heroImage =
     media.detailImage || media.hero || project.detailImage || project.images?.hero || media.image || project.image || "/placeholder.svg?height=400&width=800"
-  const contentImage =
+  const contentImageCandidate =
     media.contentImage || media.content || media.section || project.contentImage || project.images?.content || project.images?.section || media.image || project.image || heroImage
-  const extraImage =
+  const contentImage = contentImageCandidate !== heroImage ? contentImageCandidate : null
+  const extraImageCandidate =
     media.extraImage || media.extra || media.afterChallenges || project.extraImage || project.images?.extra || project.images?.afterChallenges || media.image || project.image || heroImage
+  const extraImage = extraImageCandidate !== heroImage && extraImageCandidate !== contentImage ? extraImageCandidate : null
+  const usedImageSources = new Set([heroImage, contentImage, extraImage].filter(Boolean))
   const gallery = (Array.isArray(media.gallery) ? media.gallery : Array.isArray(project.gallery) ? project.gallery : [])
     .map((item, index) => {
       if (typeof item === "string") {
@@ -132,7 +135,11 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
         caption: item.caption || "",
       }
     })
-    .filter(Boolean)
+    .filter((item) => {
+      if (!item || usedImageSources.has(item.src)) return false
+      usedImageSources.add(item.src)
+      return true
+    })
 
   const primaryGithubLink = projectLinks.find((link) => link.type === "github" || link.id === "github")
   const primaryLiveLink = projectLinks.find((link) => link.type === "live" || link.id === "live" || link.type === "demo")
@@ -400,13 +407,20 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
         <header className="text-center space-y-4 md:space-y-6">
           <h2 className="title-main mb-2" id="project-detail-title">{projectTitle}</h2>
           {projectDescription && (<p className="text-responsive max-w-3xl mx-auto">{projectDescription}</p>)}
+          {(normalizedProject.course || normalizedProject.semester || normalizedProject.grade) && (
+            <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+              {normalizedProject.course && <span className="tag-tech tag-solid">{normalizedProject.course}</span>}
+              {normalizedProject.semester && <span className="tag-tech tag-solid">{normalizedProject.semester}</span>}
+              {normalizedProject.grade && <span className="tag-tech tag-solid">Nota {normalizedProject.grade}</span>}
+            </div>
+          )}
         </header>
 
         {/* Hero */}
         <figure className="mx-auto max-w-4xl">
           <ProjectImageFrame
             src={heroImage}
-            alt={`${projectTitle} — Hero`}
+            alt={project.heroAlt || `${projectTitle} — Vista principal`}
             ariaLabel="Abrir imagen en grande"
             sizes="(max-width: 768px) 100vw, 960px"
             fit={heroImageFit}
@@ -427,16 +441,16 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
         )}
 
         {/* Imagen de contenido */}
-        <figure className="mx-auto max-w-4xl">
+        {contentImage && <figure className="mx-auto max-w-4xl">
           <ProjectImageFrame
             src={contentImage}
-            alt={`${projectTitle} — Contenido`}
+            alt={project.contentImageAlt || `${projectTitle} — Contenido`}
             ariaLabel="Abrir imagen en grande"
             sizes="(max-width: 768px) 100vw, 960px"
             onOpen={openLightbox}
           />
           <figcaption className="sr-only">Vista de contenido del proyecto</figcaption>
-        </figure>
+        </figure>}
 
         {/* Secciones */}
         {hasExplicitSections
@@ -476,16 +490,16 @@ export default function ProjectDetail({ show, project, onClose, onBackToProjects
             )}
 
         {/* Imagen extra */}
-        <figure className="mx-auto max-w-4xl">
+        {extraImage && <figure className="mx-auto max-w-4xl">
           <ProjectImageFrame
             src={extraImage}
-            alt={`${projectTitle} — Vista adicional`}
+            alt={project.extraImageAlt || `${projectTitle} — Vista adicional`}
             ariaLabel="Abrir imagen en grande"
             sizes="(max-width: 768px) 100vw, 960px"
             onOpen={openLightbox}
           />
           <figcaption className="sr-only">Vista adicional del proyecto</figcaption>
-        </figure>
+        </figure>}
 
         {gallery.length > 0 && (
           <section className="space-y-6">

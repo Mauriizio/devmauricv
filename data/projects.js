@@ -1113,50 +1113,151 @@ export const projectsData = [
   },
 },
 
-// Plano eléctrico casa dos plantas
+// Examen final de Seguridad Ocupacional: matriz de riesgos IPER/MIPER
+{
+  id: "matriz-riesgos-seguridad-ocupacional",
+  slug: "matriz-riesgos-seguridad-ocupacional",
+  type: "academic",
+  contentKind: "safety-risk-assessment",
+  title: "Matriz de Riesgos IPER/MIPER — Seguridad Ocupacional",
+  category: "Bitácora Académica",
+  categories: ["Bitácora Académica", "Seguridad Ocupacional"],
+  tags: ["IPER", "MIPER", "Seguridad Ocupacional", "Riesgo eléctrico", "LOTO", "Jerarquía de controles"],
+  tools: [
+    "IPER/MIPER",
+    "Evaluación de riesgos",
+    "Jerarquía de controles",
+    "Seguridad eléctrica",
+    "Microsoft Excel",
+  ],
+  summary:
+    "Examen transversal de Seguridad Ocupacional: matriz IPER/MIPER para evaluar los riesgos del reemplazo de un interruptor termomagnético trifásico.",
+  description:
+    "Proyecto académico desarrollado en equipo junto a Martín Vera. El documento organiza peligros, consecuencias, valoración inicial, controles preventivos y riesgo residual para una intervención simulada en un tablero de distribución eléctrica.",
+  status: "completed",
+  featured: false,
+  visibility: "public",
+  semester: "1er semestre",
+  course: "Seguridad Ocupacional",
+  image: "/assets/bitacora/matriz  de riesgo/matriz (2).png",
+  icon: "/assets/bitacora/matriz  de riesgo/matriz (2).png",
+  detailImage: "/assets/bitacora/matriz  de riesgo/matriz (2).png",
+  contentImage: "/assets/bitacora/matriz  de riesgo/MATRIX.png",
+  extraImage: "/assets/bitacora/matriz  de riesgo/matriz (1).png",
+  heroAlt: "Matriz IPER con identificación de peligros y evaluación de riesgos eléctricos",
+  contentImageAlt: "Detalle de tareas, riesgos y medidas preventivas para intervenir un tablero eléctrico",
+  extraImageAlt: "Registro de elaboración y revisión del trabajo académico de seguridad ocupacional",
+  ogImage: "/assets/bitacora/matriz  de riesgo/matriz (2).png",
+  media: {
+    cover: "/assets/bitacora/matriz  de riesgo/matriz (2).png",
+    matriz: "/assets/bitacora/matriz  de riesgo/MATRIX.png",
+    autoria: "/assets/bitacora/matriz  de riesgo/matriz (1).png",
+  },
+  sections: [
+    {
+      id: "contexto-academico",
+      title: "Contexto académico",
+      content:
+        "Trabajo final y examen transversal de Seguridad Ocupacional, desarrollado en equipo junto a Martín Vera a partir de un caso de estudio académico, sin representar una intervención ejecutada en una empresa real.",
+    },
+    {
+      id: "objetivo",
+      title: "Objetivo",
+      content:
+        "Evaluar de forma estructurada los riesgos asociados al reemplazo de un interruptor termomagnético trifásico en un tablero de distribución, desde la preparación del trabajo hasta la reenergización controlada.",
+    },
+    {
+      id: "metodologia",
+      title: "Metodología IPER/MIPER",
+      content:
+        "La matriz descompone el proceso en etapas y tareas, identifica peligros, riesgos y consecuencias, y valora probabilidad y consecuencia en una escala de 1 a 5. El resultado se clasifica como bajo, medio, alto o crítico y vuelve a evaluarse después de aplicar controles.",
+    },
+    {
+      id: "identificacion-de-peligros",
+      title: "Identificación de peligros",
+      content:
+        "El análisis considera contacto eléctrico, proximidad a partes energizadas, herramientas no aisladas, cortocircuito y arco eléctrico, además de orden, circulación, iluminación, ausencia de ATS/ART, uso de EPP y reenergización.",
+    },
+    {
+      id: "evaluacion-del-riesgo",
+      title: "Evaluación del riesgo",
+      content:
+        "Cada escenario relaciona la probabilidad con la consecuencia o severidad para establecer el nivel inicial, su clasificación y la prioridad de tratamiento antes de calcular el riesgo residual.",
+    },
+    {
+      id: "jerarquia-de-controles",
+      title: "Jerarquía de controles",
+      content:
+        "Las medidas propuestas incluyen corte y aislamiento, bloqueo y etiquetado LOTO, verificación de ausencia de tensión, herramientas aisladas, barreras dieléctricas, delimitación, permiso de trabajo, charla de seguridad, checklist y EPP dieléctrico.",
+    },
+    {
+      id: "resultado",
+      title: "Resultado y documento final",
+      content:
+        "El resultado es una matriz trazable con evaluación inicial y residual, acompañada por control de cambios, participantes, glosario, anexos y referencias de evaluación. El archivo XLSX original queda pendiente de sanitización antes de su publicación.",
+    },
+    {
+      id: "aprendizajes",
+      title: "Aprendizajes",
+      content:
+        "El examen reforzó la relación entre secuencia de trabajo, peligro, nivel de riesgo y selección de controles, junto con la responsabilidad de documentar claramente un análisis preventivo.",
+    },
+  ],
+  seo: {
+    title: "Matriz de Riesgos IPER/MIPER | Seguridad Ocupacional",
+    description:
+      "Examen académico de Seguridad Ocupacional sobre evaluación IPER/MIPER para el reemplazo de un interruptor termomagnético trifásico.",
+    image: "/assets/bitacora/matriz  de riesgo/matriz (2).png",
+    keywords: ["IPER", "MIPER", "seguridad ocupacional", "riesgo eléctrico", "LOTO", "matriz de riesgos"],
+  },
+},
+
+// Proyecto final de Dibujo de Planos Eléctricos
 {
   id: "plano-casa-dos-plantas",
   slug: "plano-casa-dos-plantas",
   type: "academic",
   contentKind: "technical-drawing",
-  title: "Plano eléctrico de casa de dos plantas en AutoCAD",
+  title: "Proyecto de instalación eléctrica residencial en AutoCAD",
   category: "Bitácora Académica",
   categories: ["Bitácora Académica", "Dibujo de planos eléctricos"],
-  tags: ["AutoCAD", "Plano eléctrico", "Alumbrado", "Enchufes", "Cuadro de distribución", "Circuitos"],
+  tags: ["AutoCAD", "Plano eléctrico", "Alumbrado", "Enchufes", "Cuadro de cargas", "Diagrama unilineal"],
   tools: [
     "AutoCAD",
     "Simbología eléctrica",
-    "Circuitos de alumbrado",
-    "Circuitos de enchufes",
-    "Cuadro de distribución",
+    "Cálculo eléctrico",
+    "Interpretación de planos",
+    "Documentación técnica",
   ],
   summary:
-    "Plano eléctrico desarrollado en AutoCAD para una vivienda de dos plantas, con circuitos de alumbrado, enchufes y cuadro de distribución.",
+    "Examen final de instalación eléctrica residencial: plantas de alumbrado y enchufes, cuadro de cargas, cálculos, protecciones y diagrama unilineal desarrollados en AutoCAD.",
   description:
-    "Entrada de bitácora académica sobre diseño de planos eléctricos, uso de comandos AutoCAD, circuitos y documentación técnica para una vivienda de dos plantas.",
+    "Proyecto académico completo de Dibujo de Planos Eléctricos que integra representación técnica, distribución de circuitos, criterios eléctricos, cálculo y presentación profesional de una lámina final.",
   status: "completed",
   featured: false,
   visibility: "public",
   semester: "1er semestre",
   course: "Dibujo de Planos Eléctricos",
-  image: "/assets/bitacora/plano-casa-dos-plantas/cover.webp",
-  icon: "/assets/bitacora/plano-casa-dos-plantas/cover.webp",
-  detailImage: "/assets/bitacora/plano-casa-dos-plantas/cover.webp",
-  contentImage: "/assets/bitacora/plano-casa-dos-plantas/planta-alumbrado.webp",
-  extraImage: "/assets/bitacora/plano-casa-dos-plantas/planta-enchufes.webp",
-  ogImage: "/assets/bitacora/plano-casa-dos-plantas/cover.webp",
+  grade: "7,0",
+  image: "/assets/bitacora/plano-electrico/plano.png",
+  icon: "/assets/bitacora/plano-electrico/plano.png",
+  detailImage: "/assets/bitacora/plano-electrico/plano.png",
+  heroAlt: "Lámina final del proyecto académico de instalación eléctrica residencial",
+  ogImage: "/assets/bitacora/plano-electrico/plano.png",
   media: {
-    cover: "/assets/bitacora/plano-casa-dos-plantas/cover.webp",
-    plantaAlumbrado: "/assets/bitacora/plano-casa-dos-plantas/planta-alumbrado.webp",
-    plantaEnchufes: "/assets/bitacora/plano-casa-dos-plantas/planta-enchufes.webp",
-    cuadroDistribucion: "/assets/bitacora/plano-casa-dos-plantas/cuadro-distribucion-alumbrado.webp",
-    detalleCircuitos: "/assets/bitacora/plano-casa-dos-plantas/detalle-circuitos.webp",
+    cover: "/assets/bitacora/plano-electrico/plano.png",
   },
   downloads: [
     {
+      id: "pdf",
+      label: "Ver plano en PDF",
+      url: "/assets/bitacora/plano-electrico/Vista_en_PDF_tRABAJO_FINAL_DIBUJO_PLANOS_mAURIZIO_CAABALLERO.pdf",
+      type: "pdf",
+    },
+    {
       id: "dwg",
-      label: "DWG",
-      url: "/docs/bitacora/plano-casa-dos-plantas/casa-dos-plantas.dwg",
+      label: "Descargar archivo AutoCAD DWG",
+      url: "/assets/bitacora/plano-electrico/Caballero_Maurizio_Examen_Dibujo_de_Planos.dwg",
       type: "dwg",
     },
   ],
@@ -1165,39 +1266,63 @@ export const projectsData = [
       id: "objetivo",
       title: "Objetivo",
       content:
-        "Registrar un plano eléctrico académico para una vivienda de dos plantas, organizando alumbrado, enchufes y documentación asociada.",
+        "Desarrollar la documentación técnica de una instalación eléctrica residencial para una vivienda de dos plantas, conectando dibujo, distribución de circuitos, cálculo y selección de componentes. La propuesta corresponde exclusivamente a un proyecto académico.",
     },
     {
       id: "desarrollo-en-autocad",
       title: "Desarrollo en AutoCAD",
       content:
-        "El desarrollo se realizó en AutoCAD, aplicando simbología eléctrica y organización por plantas para mantener legible la información técnica.",
+        "La lámina se construyó en AutoCAD a partir de la planta arquitectónica, aplicando capas, simbología y criterios de representación para reunir toda la información de manera legible y profesional.",
     },
     {
-      id: "circuitos-y-distribucion",
-      title: "Circuitos y distribución",
+      id: "planta-de-alumbrado",
+      title: "Planta de alumbrado",
       content:
-        "La documentación separa circuitos de alumbrado y enchufes, facilitando la revisión de distribución y trazado por nivel.",
+        "La planta de alumbrado documenta el circuito C1, sus luminarias, interruptores, canalizaciones y relación con el tablero T.D.A. sobre ambas plantas de la vivienda.",
+    },
+    {
+      id: "circuitos-de-enchufes",
+      title: "Circuitos de enchufes",
+      content:
+        "La planta de enchufes separa los circuitos C2 y C3 para cargas generales y especiales, facilitando la lectura de puntos, recorridos y protecciones asociadas.",
     },
     {
       id: "cuadro-de-cargas",
       title: "Cuadro de cargas",
       content:
-        "El cuadro de distribución complementa el plano y permite relacionar circuitos con su organización eléctrica general.",
+        "El cuadro de distribución relaciona los circuitos con potencia, corriente, protecciones, conductores y canalizaciones, y permite revisar la organización eléctrica general del proyecto.",
+    },
+    {
+      id: "calculo-electrico",
+      title: "Cálculo eléctrico",
+      content:
+        "La lámina presenta un sistema monofásico de 220 V y 50 Hz, con 7,474 kW de potencia total y 33,97 A de corriente calculada. También documenta el cálculo del alimentador, la caída de tensión y la selección de la protección general como parte del ejercicio académico.",
+    },
+    {
+      id: "diagrama-unilineal",
+      title: "Diagrama unilineal",
+      content:
+        "El diagrama unilineal del T.D.A. representa la alimentación, protección general, diferenciales y circuitos derivados, conectando el esquema eléctrico con las plantas y el cuadro de cargas.",
+    },
+    {
+      id: "documentacion-tecnica",
+      title: "Documentación técnica",
+      content:
+        "La entrega reúne plantas, simbología, cálculos, cuadro de cargas y diagrama unilineal en una única lámina final, junto con el PDF de revisión y el archivo DWG original de AutoCAD.",
     },
     {
       id: "aprendizaje",
       title: "Aprendizaje",
       content:
-        "El ejercicio refuerza lectura de planos, uso de capas y orden documental para presentar información eléctrica de forma clara.",
+        "El examen, calificado con nota 7,0, reforzó la conexión entre AutoCAD, electrotecnia, cálculo, interpretación de planos y documentación técnica.",
     },
   ],
   seo: {
-    title: "Plano eléctrico de casa de dos plantas | AutoCAD",
+    title: "Proyecto de instalación eléctrica residencial | AutoCAD",
     description:
-      "Plano eléctrico académico en AutoCAD con alumbrado, enchufes, cuadro de distribución y detalle de circuitos.",
-    image: "/assets/bitacora/plano-casa-dos-plantas/cover.webp",
-    keywords: ["AutoCAD", "plano eléctrico", "casa dos plantas", "alumbrado", "enchufes"],
+      "Examen final académico en AutoCAD con alumbrado, enchufes, cuadro de cargas, cálculo eléctrico y diagrama unilineal.",
+    image: "/assets/bitacora/plano-electrico/plano.png",
+    keywords: ["AutoCAD", "plano eléctrico", "instalación residencial", "cuadro de cargas", "diagrama unilineal"],
   },
 }
 
