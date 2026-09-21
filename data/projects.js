@@ -175,7 +175,7 @@ export const projectsData = [
       "Optimización de rendimiento",
     ],
     githubUrl: "https://github.com/Mauriizio/coriolis",
-    liveUrl: "https://www.coriolisaccesorios.store/",
+    liveUrl: "https://coriolis-caballeromaurizio-gmailcoms-projects.vercel.app/",
 },
 
 //Mecanica El Intercontinental
@@ -260,7 +260,7 @@ export const projectsData = [
       "Optimización de rendimiento",
     ],
     githubUrl: "https://github.com/Mauriizio/sturdy-rotary-phone",
-    liveUrl: "https://www.dulcessecretos.online/",
+    liveUrl: "https://sturdy-rotary-p-git-209069-caballeromaurizio-gmailcoms-projects.vercel.app/",
   },
 
 //GH Formación
@@ -329,7 +329,7 @@ export const projectsData = [
       "Optimización de rendimiento",
     ],
     githubUrl: "https://github.com/Mauriizio/cvdaniyer",
-    liveUrl: "https://daniyer.online/",
+    liveUrl: "https://cvdaniyer-caballeromaurizio-gmailcoms-projects.vercel.app/",
 },
 
 
@@ -365,7 +365,7 @@ export const projectsData = [
       "Optimización de rendimiento",
     ],
     githubUrl: "https://github.com/Mauriizio/moralescv",
-    liveUrl: "https://www.paolamorales.online/",
+    liveUrl: "https://moralescv-f4u3-caballeromaurizio-gmailcoms-projects.vercel.app/",
 },
 
 //Portafolio Gladys Pabon Estudiante de Geologia
@@ -398,7 +398,7 @@ export const projectsData = [
       "Optimización de rendimiento",
     ],
     githubUrl: "https://github.com/Mauriizio/cvgladys",
-    liveUrl: "https://www.dacorpa.online/",
+    liveUrl: "https://cvgladys.vercel.app/",
 }
 
 ,
@@ -678,6 +678,221 @@ export const projectsData = [
       "Proyecto web con usuarios, registro de perros, calculadora de porciones y base de datos Supabase.",
     image: "/assets/projects/ferox-barf/cover.webp",
     keywords: ["Ferox BARF", "Supabase", "SQL", "usuarios", "calculadora", "Next.js"],
+  },
+},
+
+
+// Keribel vL
+{
+  id: "keribel-vl",
+  slug: "keribel-vl",
+  type: "web-project",
+  contentKind: "client-website",
+  title: "Keribel vL",
+  category: "Desarrollo Web",
+  categories: ["Desarrollo Web", "Sitio para cliente"],
+  tags: ["Next.js", "Responsive", "Negocio local", "Belleza"],
+  tools: ["Next.js", "Diseño responsive"],
+  summary:
+    "Sitio web para una pyme de uñas y servicios de belleza en Santiago Centro, orientado a mostrar trabajos, servicios y facilitar reservas.",
+  description:
+    "Proyecto web para Keribel vL, un emprendimiento de manicure, nail art y servicios de belleza. La página presenta trabajos, servicios, ubicación y contacto directo para agendar.",
+  status: "completed",
+  featured: false,
+  visibility: "public",
+  role: "Desarrollo y publicación web.",
+  links: [
+    {
+      id: "demo",
+      label: "Demo",
+      url: "https://keribel-vl.vercel.app/",
+      type: "live",
+    },
+  ],
+  sections: [
+    {
+      id: "objetivo",
+      title: "Objetivo",
+      content:
+        "Crear una presencia web clara y visual para mostrar el trabajo de Keribel vL y facilitar el contacto con potenciales clientes.",
+    },
+    {
+      id: "resultado",
+      title: "Resultado",
+      content:
+        "Sitio responsive publicado en Vercel con presentación de servicios, trabajos realizados, ubicación y acceso directo a reserva por WhatsApp.",
+    },
+  ],
+  seo: {
+    title: "Keribel vL | Sitio web para pyme de belleza",
+    description:
+      "Sitio web para Keribel vL, pyme de manicure, nail art y servicios de belleza en Santiago Centro.",
+    keywords: ["Keribel vL", "desarrollo web", "manicure", "nail art", "pyme"],
+  },
+},
+
+// Mundo Barber
+{
+  id: "mundo-barber",
+  slug: "mundo-barber",
+  type: "web-project",
+  contentKind: "client-website",
+  title: "Mundo Barber",
+  category: "Desarrollo Web",
+  categories: ["Desarrollo Web", "Sitio para cliente"],
+  tags: ["Next.js", "Responsive", "Barbería", "Negocio local"],
+  tools: ["Next.js", "Diseño responsive"],
+  summary:
+    "Sitio web para barbería en Puente Alto, enfocado en presentar servicios, promociones y facilitar reservas por WhatsApp.",
+  description:
+    "Proyecto web para Mundo Barber, diseñado como presencia digital para comunicar servicios, precios, promociones y contacto de forma directa.",
+  status: "completed",
+  featured: false,
+  visibility: "public",
+  role: "Desarrollo y publicación web.",
+  links: [
+    {
+      id: "demo",
+      label: "Demo",
+      url: "https://mundo-barber.vercel.app/",
+      type: "live",
+    },
+    {
+      id: "github",
+      label: "GitHub",
+      url: "https://github.com/Mauriizio/mundo-barber",
+      type: "github",
+    },
+  ],
+  sections: [
+    {
+      id: "objetivo",
+      title: "Objetivo",
+      content:
+        "Dar a la barbería una presencia web sencilla, moderna y orientada a convertir visitas en reservas.",
+    },
+    {
+      id: "resultado",
+      title: "Resultado",
+      content:
+        "Sitio responsive con información comercial clara, promociones y acceso directo a contacto y reserva.",
+    },
+  ],
+  seo: {
+    title: "Mundo Barber | Sitio web para barbería",
+    description:
+      "Sitio web para Mundo Barber en Puente Alto, con servicios, promociones y reservas por WhatsApp.",
+    keywords: ["Mundo Barber", "desarrollo web", "barbería", "Puente Alto"],
+  },
+},
+
+// Pizza 10
+{
+  id: "pizza10-menu",
+  slug: "pizza10-menu",
+  type: "web-project",
+  contentKind: "client-website",
+  title: "Pizza 10",
+  category: "Desarrollo Web",
+  categories: ["Desarrollo Web", "Menú digital"],
+  tags: ["Next.js", "Responsive", "Menú digital", "Gastronomía"],
+  tools: ["Next.js", "Diseño responsive"],
+  summary:
+    "Menú web para Pizza 10, orientado a mostrar pizzas familiares, postres y productos de panadería desde una interfaz simple y accesible.",
+  description:
+    "Proyecto de menú digital para Pizza 10, pensado para consultar la oferta desde el teléfono sin depender de cartas impresas.",
+  status: "completed",
+  featured: false,
+  visibility: "public",
+  role: "Desarrollo y publicación web.",
+  links: [
+    {
+      id: "demo",
+      label: "Demo",
+      url: "https://pizza10-menu.vercel.app/",
+      type: "live",
+    },
+    {
+      id: "github",
+      label: "GitHub",
+      url: "https://github.com/Mauriizio/pizza10-menu",
+      type: "github",
+    },
+  ],
+  sections: [
+    {
+      id: "objetivo",
+      title: "Objetivo",
+      content:
+        "Digitalizar el menú del negocio para facilitar la consulta de productos desde dispositivos móviles.",
+    },
+    {
+      id: "resultado",
+      title: "Resultado",
+      content:
+        "Menú web responsive publicado en Vercel con navegación directa por la oferta de Pizza 10.",
+    },
+  ],
+  seo: {
+    title: "Pizza 10 | Menú digital",
+    description:
+      "Menú web de Pizza 10 con pizzas familiares, postres y panadería.",
+    keywords: ["Pizza 10", "menú digital", "desarrollo web", "pizzería"],
+  },
+},
+
+// Horaly App
+{
+  id: "horaly-app",
+  slug: "horaly-app",
+  type: "web-project",
+  contentKind: "software",
+  title: "Horaly App",
+  category: "Software / Productividad",
+  categories: ["Software / Productividad", "Aplicación web"],
+  tags: ["Next.js", "Responsive", "Productividad", "Horarios", "Estudiantes"],
+  tools: ["Next.js", "Aplicación web responsive"],
+  summary:
+    "Aplicación web para organizar horarios de clases, bloques de estudio y recordatorios en una interfaz moderna y personalizable.",
+  description:
+    "Proyecto orientado a estudiantes para planificar la semana académica y mantener horarios y bloques de estudio organizados desde una aplicación web.",
+  status: "completed",
+  featured: false,
+  visibility: "public",
+  role: "Desarrollo de producto y publicación web.",
+  links: [
+    {
+      id: "demo",
+      label: "Demo",
+      url: "https://horaly-app.vercel.app/",
+      type: "live",
+    },
+    {
+      id: "github",
+      label: "GitHub",
+      url: "https://github.com/Mauriizio/HoralyApp",
+      type: "github",
+    },
+  ],
+  sections: [
+    {
+      id: "objetivo",
+      title: "Objetivo",
+      content:
+        "Facilitar la planificación semanal de estudiantes mediante una herramienta digital centrada en horarios, estudio y recordatorios.",
+    },
+    {
+      id: "resultado",
+      title: "Resultado",
+      content:
+        "Aplicación web responsive publicada en Vercel y preparada para seguir evolucionando con nuevas funciones de organización académica.",
+    },
+  ],
+  seo: {
+    title: "Horaly App | Organización de horarios académicos",
+    description:
+      "Aplicación web para planificar clases, bloques de estudio y recordatorios.",
+    keywords: ["Horaly App", "horarios", "estudiantes", "productividad", "Next.js"],
   },
 },
 
