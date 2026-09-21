@@ -5,6 +5,7 @@ import { useState, useEffect, useRef, useMemo } from "react"
 import Head from "next/head"
 import {
   ArrowLeft,
+  ArrowRight,
   X as IconX,
   Sun,
   Moon,
@@ -18,7 +19,7 @@ import LogoMarkShimmer from "@/components/LogoMarkShimmer"
 import TechCoverSVG from "@/components/TechCoverSVG"
 import { certificates } from "@/data/certificates"
 
-export default function SectionAbout({ show, onVolverArriba, onContactOpen, onClose }) {
+export default function SectionAbout({ show, onVolverArriba, onContactOpen, onProjectsOpen, onClose }) {
   const { isDark, toggleDarkMode } = useTheme()
   const [selectedDiploma, setSelectedDiploma] = useState(null)
 
@@ -37,9 +38,26 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen, onCl
   const handleKeyDown = (e) => { if (e.key === "Escape") onVolverArriba?.() }
 
   const technologies = [
-     "JavaScript ES6+","TypeScript", "React.js","Next.js", "Vite", "MySQL", "SupaBase", "Tailwind CSS", "Astro", "HTML5 & CSS3","Framer Motion",  "Git", "SEO", "Accesibilidad", "Optimización Web", "Responsive Design", "Documentación técnica", "Electrotecnia", "Automatización",
+    "HTML5 & CSS3",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Node.js",
+    "Tailwind CSS",
+    "Supabase",
+    "IA generativa",
+    "Automatización Industrial",
   ]
-  const tools = ["GitHub","VS Code","Figma","Deploy/Vercel/Netlify","Chrome DevTools","Google ADS","GIMP", "Inkscape", "CapCut", "TexturePackerGUI", "AI Tools", "Cubase", "AI Powered Development", "Bash", "PowerShell", "AutoCAD", ]
+  const tools = [
+    "GitHub",
+    "VS Code",
+    "Vercel",
+    "OpenAI",
+    "AutoCAD",
+    "FluidSIM",
+    "Proteus",
+  ]
 
   const experiences = [
     {
@@ -482,7 +500,7 @@ const ctaBtn = [
 
   <p className="text-responsive max-w-3xl mx-auto font-sans leading-relaxed">
     <span className="font-bold">Estudiante de Ingeniería en Electricidad y Automatización Industrial</span><br/>
-    Programación web/móvil · Automatización · Documentación técnica · Proyectos multidisciplinarios<br/>
+    Desarrollo web · IA aplicada · Automatización industrial · Documentación técnica<br/>
     Bitácora académica y proyectos aplicados en electricidad, software y sistemas.<br/>
   </p>
 
@@ -690,6 +708,12 @@ const ctaBtn = [
               ¿Conversemos sobre un proyecto técnico, académico o web aplicado?
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              <button type="button" onClick={onProjectsOpen} className={ctaBtn}>
+                <span className="inline-flex items-center gap-1 text-sm">
+                  Ver proyectos
+                  <ArrowRight size={18} aria-hidden="true" />
+                </span>
+              </button>
               <a href="/cv.pdf" download className={ctaBtn}>
                 <span className="inline-flex items-center gap-1 text-sm">
                   <Download size={20} />

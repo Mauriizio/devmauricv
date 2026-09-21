@@ -62,6 +62,16 @@ export default function SectionTwo({
       : "text-cyan-900 hover:text-cyan-700 bg-white/70 border-cyan-800/30 hover:border-cyan-800/60",
   ].join(" ");
 
+  const primaryCtaBtn = [
+    "hidden md:inline-flex items-center justify-center gap-1.5",
+    "min-w-[130px] px-4 py-2.5 lg:min-w-[145px]",
+    "rounded-md border font-azonix font-extrabold transition-all",
+    "supports-[backdrop-filter]:backdrop-blur-sm",
+    isDark
+      ? "border-cyan-200 bg-cyan-300 text-slate-950 shadow-[0_0_24px_rgba(34,211,238,.24)] hover:bg-cyan-200 hover:shadow-[0_0_30px_rgba(34,211,238,.32)]"
+      : "border-cyan-700 bg-cyan-700 text-white shadow-[0_0_22px_rgba(8,145,178,.20)] hover:bg-cyan-800 hover:border-cyan-800",
+  ].join(" ");
+
   const mobileCtaBtn = [
     "inline-flex w-full items-center justify-between rounded-xl border px-4 py-2.5",
     "font-azonix text-[0.62rem] font-bold uppercase tracking-[0.08em] transition-[background-color,border-color,transform]",
@@ -323,7 +333,7 @@ export default function SectionTwo({
             </div>
 
             <div className="mt-6 hidden flex-wrap gap-3 md:flex">
-              <button type="button" onClick={onMenuOpen} className={ctaBtn}>Ver proyectos</button>
+              <button type="button" onClick={onMenuOpen} className={primaryCtaBtn}>Ver proyectos</button>
               <button type="button" onClick={onVerMas} className={ctaBtn}>Más sobre mí</button>
               <button type="button" onClick={onContactOpen} className={ctaBtn}>Contacto</button>
               <button type="button" onClick={onTutoringOpen} className={ctaBtn}>Tutorías</button>

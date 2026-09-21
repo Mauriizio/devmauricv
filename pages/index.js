@@ -249,7 +249,7 @@ export default function Home({ initialView, initialProject }) {
         />
       ) : null}
       {loadedViews.about ? (
-        <SectionAbout show={showAbout} onVolverArriba={handleVolverArriba} onContactOpen={handleContactOpen} />
+        <SectionAbout show={showAbout} onVolverArriba={handleVolverArriba} onContactOpen={handleContactOpen} onProjectsOpen={openMenu} />
       ) : null}
       {loadedViews.contact ? <SectionContact show={showContact} onClose={handleContactClose} /> : null}
       {loadedViews.tutoring ? <SectionTutoring show={showTutoring} onClose={handleTutoringClose} /> : null}
