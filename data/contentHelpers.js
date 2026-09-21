@@ -106,6 +106,7 @@ const getMediaFromProject = (project = {}) => ({
   detailImage: project.detailImage || "",
   contentImage: project.contentImage || "",
   extraImage: project.extraImage || "",
+  gallery: Array.isArray(project.gallery) ? project.gallery : [],
   ogImage: project.ogImage || project.image || project.icon || "",
 });
 
