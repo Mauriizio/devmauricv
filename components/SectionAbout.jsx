@@ -456,7 +456,7 @@ const ctaBtn = [
         ${isDark ? "ring-gray-900 bg-gray-800" : "ring-white bg-white"}`}
     >
       <img
-        src="/assets/perfil.jpg"
+        src="/assets/perfil.png"
         alt="Foto de Maurizio Caballero"
         className="h-full w-full object-cover object-top"
         onError={(e) => { e.currentTarget.src = "/placeholder.svg" }}
