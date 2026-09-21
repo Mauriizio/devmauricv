@@ -16,6 +16,7 @@ import {
 import { useTheme } from "@/context/ThemeContext"
 import LogoMarkShimmer from "@/components/LogoMarkShimmer"
 import TechCoverSVG from "@/components/TechCoverSVG"
+import { certificates } from "@/data/certificates"
 
 export default function SectionAbout({ show, onVolverArriba, onContactOpen, onClose }) {
   const { isDark, toggleDarkMode } = useTheme()
@@ -34,22 +35,6 @@ export default function SectionAbout({ show, onVolverArriba, onContactOpen, onCl
 
   // ESC para cerrar (usa tu handler)
   const handleKeyDown = (e) => { if (e.key === "Escape") onVolverArriba?.() }
-
-  // Datos (tuyos, intactos)
-  const diplomas = [
-    {
-      id: 1,
-      title:
-        "Iniciación a HTML, CSS y JavaScript - Centro de Desarrollo de Competencias Digitales de Castilla-La Mancha.",
-      image: "/certificados/n1Certificado_Iniciacin_a_HTML_CSS_y_JavaScript.jpg",
-      provider: "Centro de Desarrollo de Competencias Digitales de Castilla-La Mancha",
-    },
-    { id: 2, title: "Fundamentos de Ingeniería de Software - Platzi Academy", image: "/certificados/n2diploma-ingenieria.jpg", provider: "Platzi" },
-    { id: 3, title: "Diseño y Programacion Web – AIEP / Fundación Telefonica Movistar / SENCE", image: "/certificados/n3.jpg", provider: "AIEP / Fundación Telefónica Movistar / SENCE" },
-    { id: 4, title: "Programacion con JavaScript– AIEP / Fundación Telefonica Movistar / SENCE", image: "/certificados/n4.jpg", provider: "AIEP / Fundación Telefónica Movistar / SENCE" },
-    { id: 5, title: "Diseño Web con HTML5+CSS– AIEP / Fundación Telefonica Movistar / SENCE", image: "/certificados/n5.jpg", provider: "AIEP / Fundación Telefónica Movistar / SENCE" },
-    { id: 6, title: "Fundamentos de CyberSeguridad / Coursera Google", image: "/certificados/n6.jpg", provider: "Google via Coursera" },
-  ]
 
   const technologies = [
      "JavaScript ES6+","TypeScript", "React.js","Next.js", "Vite", "MySQL", "SupaBase", "Tailwind CSS", "Astro", "HTML5 & CSS3","Framer Motion",  "Git", "SEO", "Accesibilidad", "Optimización Web", "Responsive Design", "Documentación técnica", "Electrotecnia", "Automatización",
@@ -235,11 +220,11 @@ const ctaBtn = [
     description: aboutDesc,
     knowsAbout: [...technologies, ...tools],
     skills: technologies,
-    hasCredential: diplomas.map((d) => ({
+    hasCredential: certificates.map((certificate) => ({
       "@type": "EducationalOccupationalCredential",
-      name: d.title,
-      recognizedBy: d.provider ? { "@type": "Organization", name: d.provider } : undefined,
-      url: d.image?.startsWith("/") ? undefined : d.image,
+      name: certificate.title,
+      recognizedBy: { "@type": "Organization", name: certificate.institution },
+      url: certificate.file,
     })),
   }
 
@@ -276,18 +261,35 @@ const ctaBtn = [
             <IconX size={24} />
           </button>
 
-          <div className="bg-white rounded-lg overflow-hidden shadow-2xl">
-            <img
-              src={selectedDiploma.image || "/placeholder.svg"}
-              alt={selectedDiploma.title}
-              loading="eager"
-              decoding="async"
-              fetchPriority="high"
-              className="w-full h-auto max-h-[80vh] object-contain"
-              onError={(e) => { e.currentTarget.src = "/placeholder.svg" }}
-            />
-            <div className="p-4 bg-white">
-              <h3 className="text-lg md:text-xl font-semibold text-gray-800 font-sans">{selectedDiploma.title}</h3>
+          <div className={`max-h-[90vh] overflow-y-auto rounded-lg shadow-2xl ${isDark ? "bg-gray-900 text-white" : "bg-white text-gray-800"}`}>
+            {selectedDiploma.file ? (
+              <object
+                data={`${selectedDiploma.file}#page=1&view=FitH&toolbar=0&navpanes=0`}
+                type="application/pdf"
+                aria-label={`Vista previa de ${selectedDiploma.title}`}
+                className="h-[55vh] min-h-72 w-full bg-white md:h-[65vh]"
+              >
+                <p className="p-6 font-sans">La vista previa no está disponible en este navegador.</p>
+              </object>
+            ) : (
+              <div className="grid min-h-64 place-items-center p-8 text-center font-sans">
+                <div>
+                  <span className="text-5xl" aria-hidden="true">📄</span>
+                  <p className="mt-4 font-semibold">Documento pendiente de sanitización</p>
+                </div>
+              </div>
+            )}
+            <div className={`space-y-2 p-4 font-sans ${isDark ? "bg-gray-900" : "bg-white"}`}>
+              <h3 className="text-lg md:text-xl font-semibold">{selectedDiploma.title}</h3>
+              <p className="text-sm text-cyan-700 dark:text-cyan-300">{selectedDiploma.institution}</p>
+              <p className="text-sm">{selectedDiploma.date}{selectedDiploma.duration ? ` · ${selectedDiploma.duration}` : ""}</p>
+              <p className="text-sm leading-relaxed">{selectedDiploma.description}</p>
+              {selectedDiploma.privacyStatus && <p className="text-sm font-semibold text-amber-700 dark:text-amber-300">{selectedDiploma.privacyStatus}</p>}
+              {selectedDiploma.file && (
+                <a href={selectedDiploma.file} target="_blank" rel="noopener noreferrer" className={ctaBtn}>
+                  <Download size={16} aria-hidden="true" /> Ver certificado PDF
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -560,24 +562,25 @@ const ctaBtn = [
             {/* Wrapper relativo para chevrones y fades */}
             <div className="relative">
               {/* Carrusel horizontal */}
-              <div className="flex overflow-x-auto gap-4 md:gap-6 pb-4 z-10
+              <div ref={diplomasRowRef} className="flex overflow-x-auto gap-4 md:gap-6 pb-4 z-10
                               scrollbar-thin scrollbar-thumb-cyan-500 scrollbar-track-stone-200">
-                {diplomas.map((diploma) => (
-                  <div
+                {certificates.map((diploma) => (
+                  <button
+                    type="button"
                     key={diploma.id}
-                    className="flex-none w-56 md:w-64 bg-white rounded-lg overflow-hidden shadow-md border border-stone-200
-                               hover:scale-105 transition-transform duration-300 cursor-pointer group"
+                    className={`group flex-none w-64 md:w-72 rounded-lg overflow-hidden shadow-md border text-left
+                               hover:scale-[1.02] transition-transform duration-300 cursor-pointer ${
+                                 isDark ? "bg-gray-800 border-white/10" : "bg-white border-stone-200"
+                               }`}
                     onClick={() => openDiplomaModal(diploma)}
                   >
-                    <div className="relative">
-                      <img
-                        src={diploma.image || "/placeholder.svg"}
-                        alt={diploma.title}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-32 md:h-36 object-contain"
-                        onError={(e) => { e.currentTarget.src = "/placeholder.svg" }}
-                      />
+                    <div className={`relative grid h-32 place-items-center overflow-hidden md:h-36 ${isDark ? "bg-gray-950" : "bg-stone-100"}`}>
+                      <div className="px-5 text-center font-sans">
+                        <span className="text-4xl" aria-hidden="true">📄</span>
+                        <p className={`mt-2 text-xs font-semibold ${diploma.file ? "text-cyan-700 dark:text-cyan-300" : "text-amber-700 dark:text-amber-300"}`}>
+                          {diploma.file ? "Certificado PDF" : "Pendiente de sanitización"}
+                        </p>
+                      </div>
                       {/* Overlay con icono de zoom */}
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300
                                       flex items-center justify-center">
@@ -587,12 +590,16 @@ const ctaBtn = [
                         />
                       </div>
                     </div>
-                    <div className="p-3 md:p-4">
-                      <h4 className="text-xs md:text-lg font-orbitron font-semibold text-zinc-800 line-clamp-3">
+                    <div className="flex min-h-52 flex-col p-4 font-sans">
+                      <span className="mb-2 self-start rounded-full border border-cyan-500/30 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-cyan-700 dark:text-cyan-300">{diploma.category}</span>
+                      <h4 className={`text-sm md:text-base font-orbitron font-semibold leading-snug ${isDark ? "text-white" : "text-zinc-800"}`}>
                         {diploma.title}
                       </h4>
+                      <p className="mt-2 text-xs text-cyan-700 dark:text-cyan-300">{diploma.institution}</p>
+                      <p className={`mt-1 text-xs ${isDark ? "text-white/70" : "text-zinc-600"}`}>{diploma.date}{diploma.duration ? ` · ${diploma.duration}` : ""}</p>
+                      <p className={`mt-3 line-clamp-4 text-xs leading-relaxed ${isDark ? "text-white/80" : "text-zinc-700"}`}>{diploma.description}</p>
                     </div>
-                  </div>
+                  </button>
                 ))}
               </div>
 
